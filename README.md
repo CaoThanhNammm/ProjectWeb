@@ -3,7 +3,7 @@
 Giới thiệu trang web:
 	Trang web bán sản phẩm gia dụng: Sử dụng JSP, HTMl, CSS, JDBC, Servlet, JS
 
-Công cụ: Tomcat 8.5, jdk 8, sql server, boostrap 5.3.2
+Công cụ: Tomcat 8.5, jdk 8, sql server, boostrap 5.3.2, font awesome 6.4.0
 
 ---------------------------------------------------------------------------------------------
 
