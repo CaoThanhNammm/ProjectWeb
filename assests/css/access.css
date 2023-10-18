@@ -1,0 +1,108 @@
+body {
+    height: 100vh;
+}
+
+#root {
+    background-color: var(--backgorund-primary);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Start: login */
+#login {
+    background-color: white;
+    text-align: center;
+    padding: 40px 0;
+    border-radius: 8px;
+}
+
+.login_img {
+    width: 600px;
+    object-fit: cover;
+}
+
+.form_login_group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.form_login_group_h1 {
+    font-size: 80px;
+    font-weight: 750;
+}
+
+.form_login_group_h5 {
+    font-size: 20px;
+    font-weight: 350;
+}
+
+.form_login_group_icon {
+    position: absolute;
+    font-size: 20px;
+    top: calc(50% - 12px);
+    left: calc(25% - 5px);
+}
+
+.form_login_group input {
+    background-color: var(--backgorund-primary);
+    width: 55%;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 10px;
+}
+
+.form_login_group input:focus {
+    outline: none;
+}
+
+#form_login .form_login_btn {
+    width: 55%;
+    margin: auto;
+    border: 1px solid black;
+    margin-bottom: 16px;
+
+}
+
+#form_login .form_login_btn_submit {
+    background-color: black;
+    color: white;
+}
+
+.form_login_group_clause {
+    width: 55%;
+    margin: 0 auto;
+    color: var(--color-gray);
+    text-align: left;
+}
+
+.form_login_group_clause,
+.form_login_group_clause * {
+    font-size: 12px;
+}
+
+.form_login_group-primary {
+    color: var(--color-primary);
+}
+
+.form_login_group_head::after,
+.form_login_group_head::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 1px;
+    width: 18%;
+    background-color: black;
+    top: 6.25%;
+}
+
+.form_login_group_head::after {
+    left: 22.5%;
+}
+
+.form_login_group_head::before {
+    right: 22.5%;
+}
+
+/* End: login */
