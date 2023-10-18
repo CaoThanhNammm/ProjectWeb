@@ -1,0 +1,23 @@
+:root {
+    --color-primary: #ffd814;
+    --color-gray: #6f6f73;
+    --background-footer: #232f3e;
+    --background-primary: #eaeded;
+    --fsize-normal: 16px;
+    --fsize-h5: 18px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: var(--fsize-normal);
+}
+
+li {
+    list-style: none;
+}
+
+h5 {
+    font-size: var(--fsize-h5);
+    font-weight: 550;
+}
