@@ -1,11 +1,19 @@
 :root {
-    --color-primary: #ffd814;
-    --color-gray: #6f6f73;
-    --background-footer: #232f3e;
-    --background-primary: #eaeded;
-    --fsize-normal: 16px;
+    /* màu nào dùng nhiều đặt theo cú pháp color_primary
+    màu nào dùng ít đặt theo cú pháp color_second(hoặc third, fourth) theo thứ tự giảm dần */
+    --yellow-primary: #febd69;
+    --black-primary: black;
+    --white-primary: #fff;
+
+    --gray-second: #6f6f73;
+    --background-footer-second: #232f3e;
+    --yellow-second: #f3a847;
+
+    --fsize-normal: 15px;
     --fsize-h5: 18px;
+    --padding-left-right-page: 20px; /* padding trái phải cho toàn bộ trang */
 }
+
 
 * {
     margin: 0;
