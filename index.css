@@ -1,0 +1,58 @@
+<<<<<<< HEAD
+:root {
+    /* màu nào dùng nhiều đặt theo cú pháp color_primary
+    màu nào dùng ít đặt theo cú pháp color_second(hoặc third, fourth) theo thứ tự giảm dần */
+    --yellow-primary: #febd69;
+    --black-primary: black;
+    --white-primary: #fff;
+
+    --gray-second: #6f6f73;
+    --background-footer-second: #232f3e;
+    --yellow-second: #f3a847;
+
+    --fsize-normal: 16px;
+    --fsize-h5: 18px;
+    --padding-left-right-page: 20px; /* padding trái phải cho toàn bộ trang */
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: var(--fsize-normal);
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+=======
+:root {
+    /* màu nào dùng nhiều đặt theo cú pháp color_primary
+    màu nào dùng ít đặt theo cú pháp color_second(hoặc third, fourth) theo thứ tự giảm dần */
+    --yellow-primary: #febd69;
+    --black-primary: black;
+    --white-primary: #fff;
+
+    --gray-second: #6f6f73;
+    --background-footer-second: #232f3e;
+    --yellow-second: #f3a847;
+
+    --fsize-normal: 16px;
+    --fsize-h5: 18px;
+    --padding-left-right-page: 20px; /* padding trái phải cho toàn bộ trang */
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: var(--fsize-normal);
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+>>>>>>> 21130448-CaoThanhNam
+}
