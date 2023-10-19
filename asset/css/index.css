@@ -5,9 +5,11 @@
     --black-primary: black;
     --white-primary: #fff;
 
-    --gray-second: #6f6f73;
+    --gray-second: #bebec9;
     --background-footer-second: #232f3e;
     --yellow-second: #f3a847;
+    --red-second: red;
+    --gray-third: #878787;
 
     --fsize-normal: 15px;
     --fsize-h5: 18px;
@@ -19,6 +21,7 @@
     margin: 0;
     padding: 0;
     font-size: var(--fsize-normal);
+    box-sizing: border-box;
 }
 
 li {
@@ -29,3 +32,104 @@ h5 {
     font-size: var(--fsize-h5);
     font-weight: 550;
 }
+
+/* start: content */
+.define_row{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    margin-right: calc(var(--bs-gutter-x) * .5) !important;
+    margin-left: calc(var(--bs-gutter-x) * .5) !important;
+    margin-top: var(--bs-gutter-y);
+}
+
+.product{
+    cursor: pointer;
+    padding: 12px 12px;
+    margin-bottom: 12px;
+}
+
+.product_img {
+    width: 100%;
+    height: 200px;
+}
+
+
+.product_img img{
+    width: 100%;
+    height: 100%;
+}
+
+
+.product_btn{
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.product_btn-add_card_none, .product_btn--product_detail_none{
+    color: var(--white-primary);
+    background-color: var(--white-primary);
+    border: none;
+}
+
+.active{
+    display: block;
+}
+
+.product_in4_right{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 12px;
+}
+
+.product_in4_wishlist{
+    font-size: 20px;
+}
+
+.product_in4_price{
+    text-decoration: line-through;
+}
+
+.product_in4_price, .product_in4_sale_price{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.product_in4_name_product{
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.product_btn-add_card, .product_btn--product_detail{
+    text-decoration: none;
+    color: var(--black-primary);
+}
+
+.product_btn-add_card{
+    border: 1px solid var(--black-primary);
+    font-weight: 600;
+    padding: 7px 9%;
+    float: left;
+}
+
+.product_btn-add_card:hover{
+    color: var(--white-primary);
+    background-color: var(--black-primary);
+    font-weight: 600;
+}
+
+.product_btn--product_detail{
+    color: var(--white-primary);
+    background-color: var(--black-primary);
+    padding: 8px 9%;
+    float: right;
+}
+
+.product_btn--product_detail:hover{
+    color: var(--white-primary);
+}
+
+.add_wish_list{
+    color: var(--red-second);
+}
+/* end: content */
