@@ -1,9 +1,5 @@
-# ProjectWeb
-
-Giới thiệu trang web:
-	Trang web bán sản phẩm gia dụng: Sử dụng JSP, HTMl, CSS, JDBC, Servlet, JS
-
-Công cụ: Tomcat 8.5, jdk 8, sql server, boostrap 5.3.2, font awesome 6.4.0, JQuery 3.7.1
+# hqtcsdl-nhom6
+Hệ quản trị cơ sở dữ liệu
 
 ---------------------------------------------------------------------------------------------
 
@@ -94,4 +90,4 @@ Hoặc nên sử dụng file log để ghi lại các sự thay đổi (tối ư
 	Mỗi cá nhân phải tự tìm hiểu và hạn chế nhờ sự giúp đỡ từ thành viên khác, nếu không cá nhân được nhờ sẽ đưa ra yêu cầu tương ứng và do nhóm trưởng thống nhất
 	Nhóm trưởng có trách nhiệm giám sát mọi công việc và là người kiểm tra cuối
 
-Hình phạt: ...
+Hình phạt: Out khỏi nhóm nếu quá 2 lần không hoàn thành

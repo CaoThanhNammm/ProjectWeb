@@ -1,0 +1,183 @@
+body {
+    height: 100vh;
+}
+
+#root {
+    background-color: var(--backgorund-primary);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+}
+
+.access {
+    background-color: white;
+    text-align: center;
+    padding: 40px 0;
+    border-radius: 8px;
+    position: relative;
+}
+
+.access_img {
+    width: 94%;
+    object-fit: cover;
+}
+
+.access_group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.access_group_h1 {
+    font-size: 5rem;
+    font-weight: 750;
+}
+
+.access_group_h5 {
+    font-size: 1.3rem;
+    font-weight: 350;
+}
+
+.access_group_icon {
+    position: absolute;
+    font-size: 20px;
+    top: calc(50% - 12px);
+    left: calc(25% - 5px);
+}
+
+.access_group input {
+    background-color: var(--backgorund-primary);
+    width: 55%;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 10px;
+}
+
+.access_group input:focus {
+    outline: none;
+}
+
+.access .access_btn {
+    width: 55%;
+    margin: auto;
+    border: 1px solid black;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.access .access_btn:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.access .access_btn_submit {
+    background-color: black;
+    color: white;
+}
+
+.access_group_clause {
+    width: 55%;
+    margin: 0 auto;
+    color: var(--color-gray);
+    text-align: left;
+}
+
+.access_group_clause,
+.access_group_clause * {
+    font-size: 12px;
+}
+
+.access_group_head::after,
+.access_group_head::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 1px;
+    width: 18%;
+    background-color: black;
+    top: 6.25%;
+}
+
+.access_group_head::after {
+    left: 22.5%;
+}
+
+.access_group_head::before {
+    right: 22.5%;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .access_group_h1 {
+        font-size: 3rem;
+    }
+
+    .access_group_h5 {
+        font-size: 1rem;
+    }
+
+    .access_group_head::after,
+    .access_group_head::before {
+        width: 10%;
+    }
+}
+
+@media (min-width: 421px) and (max-width: 768px),
+screen and (max-width: 420px) {
+    .access_mb {
+        position: absolute;
+        top: 10%;
+    }
+
+    .access {
+        color: white;
+    }
+
+    .access_group_icon {
+        color: black;
+    }
+
+    .access .access_btn {
+        color: white;
+        border-color: white;
+    }
+
+    .access_group_head::after,
+    .access_group_head::before {
+        width: 10%;
+        background-color: var(--color-gray);
+    }
+
+    .access_group_h1 {
+        font-size: 3rem;
+    }
+
+    .access_group_h5 {
+        font-size: 1rem;
+    }
+
+    .access_img {
+        width: 100%;
+        height: 800px;
+        object-fit: cover;
+    }
+
+    .access_group_clause {
+        color: white;
+    }
+}
+
+/* End: Access */
+
+/* Start: Register */
+.access_group_regulation::after {
+    content: "Ít nhất 6 ký tự";
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    position: absolute;
+    top: 100%;
+    text-align: left;
+    left: 25%;
+}
+
+/* End: Register */
