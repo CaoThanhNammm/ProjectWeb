@@ -20,50 +20,56 @@
     <div id="root">
         <div id="login" class="container">
             <div class="row">
-                <div class="col">
+                <div class="col login_mb">
                     <form id="form_login" action="">
-                        <div class="form_login_group">
-                            <h1 class="form_login_group_h1">Chào mừng</h1>
-                            <h5 class="form_login_group_h5">Rất vui vì bạn quay lại với chúng tôi</h3>
+                        <div class="access_group">
+                            <h1 class="access_group_h1">Chào mừng</h1>
+                            <h5 class="access_group_h5">Rất vui vì bạn quay lại với chúng tôi</h3>
                         </div>
 
                         <div class="mt-4">
-                            <div class="form_login_group">
-                                <i class="fa-solid fa-user-tie form_login_group_icon"></i>
+                            <div class="access_group">
+                                <i class="fa-solid fa-user-tie access_group_icon"></i>
                                 <input type="text" placeholder="Tên đăng nhập hoặc số điện thoại" required>
                             </div>
-                            <div class="form_login_group">
-                                <i class="fa-solid fa-lock form_login_group_icon"></i>
+                            <div class="access_group">
+                                <i class="fa-solid fa-lock access_group_icon"></i>
                                 <input type="password" placeholder="Mật khẩu" required>
                             </div>
 
-                            <button type="submit" class="btn form_login_btn form_login_btn_submit">Tiếp tục</button>
+                            <button type="submit" class="btn access_btn access_btn_submit">Tiếp tục</button>
 
-                            <div class="form_login_group">
-                                <div class="form_login_group_clause">
-                                    Bằng cách tiếp tục, bạn đồng ý với <span>Điều kiện sử dụng</span> và <span>Thông báo
-                                        quyền riêng tư</span> của <span>N2Q</span>.
+                            <div class="access_group">
+                                <div class="access_group_clause">
+                                    Bằng cách tiếp tục, bạn đồng ý với <span class="color-blue">Điều khoản sử
+                                        dụng</span>
+                                    và <span class="color-blue">Thông báo
+                                        quyền riêng tư</span> của <span class="color-primary">N2Q</span>.
                                 </div>
                             </div>
 
-                            <div class="form_login_group d-flex flex-column">
-                                <span class="mb-4 form_login_group_head">
+                            <div class="access_group d-flex flex-column">
+                                <span class="mb-4 access_group_head">
                                     Hoặc đăng nhập
                                 </span>
-                                <a href="" class="form_login_btn btn btn-default">
-                                    <i class="fa-brands fa-google"></i>
-                                    Bằng <span class="form_login_group-primary">google</span>
+                                <a href="" class="access_btn btn btn-default">
+                                    <img class="icon" src="../image/general/google.png" alt="google">
+                                    Bằng <span class="color-primary">google</span>
                                 </a>
-                                <a href="" class="form_login_btn btn btn-default">
-                                    <i class="fa-brands fa-facebook"></i>
-                                    Bằng <span class="form_login_group-primary">facebook</span>
+                                <a href="" class="access_btn btn btn-default">
+                                    <img class="icon" src="../image/general/facebook.png" alt="facebook">
+                                    Bằng <span class="color-primary">facebook</span>
                                 </a>
                             </div>
+                        </div>
+
+                        <div>
+                            <h6>Chưa có tài khoản hãy <a href="">Đăng ký ngay</a></h6>
                         </div>
                     </form>
                 </div>
 
-                <div class="col">
+                <div class="col d-flex justify-content-center">
                     <img class="login_img" src="../image/access/image.png" alt="Ảnh giới thiệu">
                 </div>
 

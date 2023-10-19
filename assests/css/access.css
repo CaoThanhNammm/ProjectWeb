@@ -10,42 +10,43 @@ body {
     height: 100%;
 }
 
-/* Start: login */
+/* Start: Login */
 #login {
     background-color: white;
     text-align: center;
     padding: 40px 0;
     border-radius: 8px;
+    position: relative;
 }
 
 .login_img {
-    width: 600px;
+    width: 94%;
     object-fit: cover;
 }
 
-.form_login_group {
+.access_group {
     position: relative;
     margin-bottom: 24px;
 }
 
-.form_login_group_h1 {
-    font-size: 80px;
+.access_group_h1 {
+    font-size: 5rem;
     font-weight: 750;
 }
 
-.form_login_group_h5 {
-    font-size: 20px;
+.access_group_h5 {
+    font-size: 1.3rem;
     font-weight: 350;
 }
 
-.form_login_group_icon {
+.access_group_icon {
     position: absolute;
     font-size: 20px;
     top: calc(50% - 12px);
     left: calc(25% - 5px);
 }
 
-.form_login_group input {
+.access_group input {
     background-color: var(--backgorund-primary);
     width: 55%;
     padding: 12px 35px;
@@ -53,41 +54,37 @@ body {
     border-radius: 10px;
 }
 
-.form_login_group input:focus {
+.access_group input:focus {
     outline: none;
 }
 
-#form_login .form_login_btn {
+#form_login .access_btn {
     width: 55%;
     margin: auto;
     border: 1px solid black;
     margin-bottom: 16px;
-
+    text-align: center;
 }
 
-#form_login .form_login_btn_submit {
+#form_login .access_btn_submit {
     background-color: black;
     color: white;
 }
 
-.form_login_group_clause {
+.access_group_clause {
     width: 55%;
     margin: 0 auto;
     color: var(--color-gray);
     text-align: left;
 }
 
-.form_login_group_clause,
-.form_login_group_clause * {
+.access_group_clause,
+.access_group_clause * {
     font-size: 12px;
 }
 
-.form_login_group-primary {
-    color: var(--color-primary);
-}
-
-.form_login_group_head::after,
-.form_login_group_head::before {
+.access_group_head::after,
+.access_group_head::before {
     content: "";
     display: block;
     position: absolute;
@@ -97,12 +94,71 @@ body {
     top: 6.25%;
 }
 
-.form_login_group_head::after {
+.access_group_head::after {
     left: 22.5%;
 }
 
-.form_login_group_head::before {
+.access_group_head::before {
     right: 22.5%;
 }
 
-/* End: login */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .access_group_h1 {
+        font-size: 3rem;
+    }
+
+    .access_group_h5 {
+        font-size: 1rem;
+    }
+
+    .access_group_head::after,
+    .access_group_head::before {
+        width: 10%;
+    }
+}
+
+@media (min-width: 421px) and (max-width: 768px),
+screen and (max-width: 420px) {
+    .login_mb {
+        position: absolute;
+        top: 10%;
+    }
+
+    #login {
+        color: white;
+    }
+
+    .access_group_icon {
+        color: black;
+    }
+
+    #form_login .access_btn {
+        color: white;
+        border-color: white;
+    }
+
+    .access_group_head::after,
+    .access_group_head::before {
+        width: 10%;
+        background-color: var(--color-gray);
+    }
+
+    .access_group_h1 {
+        font-size: 3rem;
+    }
+
+    .access_group_h5 {
+        font-size: 1rem;
+    }
+
+    .login_img {
+        height: 800px;
+        object-fit: cover;
+    }
+
+    .access_group_clause {
+        color: white;
+    }
+}
+
+/* End: Login */

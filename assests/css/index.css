@@ -1,6 +1,7 @@
 :root {
-    --color-primary: #ffd814;
+    --color-primary: rgb(240 136 6);
     --color-gray: #6f6f73;
+    --color-blue: #0066ce;
     --background-footer: #232f3e;
     --backgorund-primary: #eaeded;
     --fsize-normal: 16px;
@@ -15,4 +16,17 @@
 
 li {
     list-style: none;
+}
+
+.color-primary {
+    color: var(--color-primary);
+}
+
+.color-blue {
+    color: var(--color-blue);
+}
+
+.icon {
+    width: 1.5rem;
+    object-fit: cover;
 }
