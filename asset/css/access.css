@@ -7,11 +7,10 @@ body {
     align-items: center;
     display: flex;
     justify-content: center;
-    height: 100%;
+    height: fit-content;
 }
 
-/* Start: Login */
-#login {
+.access {
     background-color: white;
     text-align: center;
     padding: 40px 0;
@@ -19,7 +18,7 @@ body {
     position: relative;
 }
 
-.login_img {
+.access_img {
     width: 94%;
     object-fit: cover;
 }
@@ -58,7 +57,7 @@ body {
     outline: none;
 }
 
-#form_login .access_btn {
+.access .access_btn {
     width: 55%;
     margin: auto;
     border: 1px solid black;
@@ -66,7 +65,12 @@ body {
     text-align: center;
 }
 
-#form_login .access_btn_submit {
+.access .access_btn:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.access .access_btn_submit {
     background-color: black;
     color: white;
 }
@@ -119,12 +123,12 @@ body {
 
 @media (min-width: 421px) and (max-width: 768px),
 screen and (max-width: 420px) {
-    .login_mb {
+    .access_mb {
         position: absolute;
         top: 10%;
     }
 
-    #login {
+    .access {
         color: white;
     }
 
@@ -132,7 +136,7 @@ screen and (max-width: 420px) {
         color: black;
     }
 
-    #form_login .access_btn {
+    .access .access_btn {
         color: white;
         border-color: white;
     }
@@ -151,7 +155,8 @@ screen and (max-width: 420px) {
         font-size: 1rem;
     }
 
-    .login_img {
+    .access_img {
+        width: 100%;
         height: 800px;
         object-fit: cover;
     }
@@ -161,4 +166,18 @@ screen and (max-width: 420px) {
     }
 }
 
-/* End: Login */
+/* End: Access */
+
+/* Start: Register */
+.access_group_regulation::after {
+    content: "Ít nhất 6 ký tự";
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    position: absolute;
+    top: 100%;
+    text-align: left;
+    left: 25%;
+}
+
+/* End: Register */
