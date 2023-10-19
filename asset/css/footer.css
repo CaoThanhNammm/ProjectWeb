@@ -1,5 +1,5 @@
 #footer {
-    background-color: var(--backgroud-footer);
+    background-color: var(--background-footer);
     color: white;
 }
 
@@ -22,13 +22,13 @@
     display: block;
     width: 10%;
     height: 2px;
-    background-color    : var(--color-primary);
+    background-color: var(--color-primary);
     position: relative;
     top: 0;
     z-index: 1;
 }
 
-.footer_list_item  {
+.footer_list_item {
     margin-bottom: 8px;
 }
 
