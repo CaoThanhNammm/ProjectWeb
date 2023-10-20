@@ -27,10 +27,6 @@ li {
     color: var(--color-blue);
 }
 
-.color-yellow {
-    color: var(--color-yellow) !important;
-}
-
 .icon {
     width: 1.5rem;
     object-fit: cover;
