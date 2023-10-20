@@ -1,13 +1,13 @@
-body {
-    height: 100vh;
-}
-
 #root {
-    background-color: var(--backgorund-primary);
     align-items: center;
     display: flex;
     justify-content: center;
     height: fit-content;
+}
+
+#register,
+#login {
+    background-color: var(--backgorund-primary);
 }
 
 /* Start: Access - Qui định cho các khu vực truy cập */
@@ -19,17 +19,17 @@ body {
     position: relative;
 }
 
-.access_group_logo {
-    background-color: var(--backgorund-primary);
-}
-
-.access_group_logo_img {
+[class^="access_group_logo_img"] {
     width: 20%;
     object-fit: cover;
 }
 
+.access_group_logo_img-white {
+    display: none;
+}
+
 .access_group i[class^='fa'] {
-    color: var(--color-blue);
+    color: var(--color-gray);
 }
 
 .access_img {
@@ -68,10 +68,8 @@ body {
 }
 
 .access_group input {
-    background-color: var(--backgorund-primary);
     width: 55%;
     padding: 12px 35px;
-    border: none;
     border-radius: 10px;
 }
 
@@ -95,6 +93,7 @@ body {
 .access .access_btn_submit {
     background-color: black;
     color: white;
+    border: none;
 }
 
 .access_group_clause {
@@ -128,6 +127,11 @@ body {
     right: 22.5%;
 }
 
+.access_btn_focus {
+    font-weight: 700;
+    color: black;
+}
+
 @media (min-width: 769px) and (max-width: 1024px) {
     .access_group_h1 {
         font-size: 3rem;
@@ -144,6 +148,14 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+    #root {
+        height: fit-content;
+    }
+
+    .access_btn_focus {
+        color: white;
+    }
+
     .access_mb {
         position: absolute;
         top: 10%;
@@ -188,6 +200,14 @@ body {
     .access_img {
         border-radius: 0;
         object-fit: cover;
+    }
+
+    .access_group_logo_img-white {
+        display: inline;
+    }
+
+    .access_group_logo_img-black {
+        display: none;
     }
 }
 
