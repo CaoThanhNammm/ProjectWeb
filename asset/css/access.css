@@ -7,12 +7,12 @@
 
 #register,
 #login {
-    background-color: var(--backgorund-primary);
+    background-color: var(--gray-primary);
 }
 
 /* Start: Access - Qui định cho các khu vực truy cập */
 .access {
-    background-color: white;
+    background-color: var(--white-primary);
     text-align: center;
     padding: 40px 0;
     border-radius: 8px;
@@ -80,19 +80,19 @@
 .access .access_btn {
     width: 55%;
     margin: auto;
-    border: 1px solid black;
+    border: 1px solid var(--black-primary);
     margin-bottom: 16px;
     text-align: center;
 }
 
 .access .access_btn:hover {
-    background-color: var(--color-primary);
-    color: white;
+    background-color: var(--yellow-primary);
+    color: var(--white-primary);
 }
 
 .access .access_btn_submit {
-    background-color: black;
-    color: white;
+    background-color: var(--black-primary);
+    color: var(--white-primary);
     border: none;
 }
 
@@ -115,7 +115,7 @@
     position: absolute;
     height: 1px;
     width: 18%;
-    background-color: black;
+    background-color: var(--black-primary);
     top: 6.25%;
 }
 
@@ -129,7 +129,7 @@
 
 .access_btn_focus {
     font-weight: 700;
-    color: black;
+    color: var(--black-primary);
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -153,7 +153,7 @@
     }
 
     .access_btn_focus {
-        color: white;
+        color: var(--white-primary);
     }
 
     .access_mb {
@@ -163,16 +163,16 @@
 
     .access,
     .access_group_clause {
-        color: white;
+        color: var(--white-primary);
     }
 
     .access_group_icon {
-        color: black;
+        color: var(--black-primary);
     }
 
     .access .access_btn {
-        color: white;
-        border-color: white;
+        color: var(--white-primary);
+        border-color: var(--white-primary);
     }
 
     .access_group_head::after,
