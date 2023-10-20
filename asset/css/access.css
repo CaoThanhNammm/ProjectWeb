@@ -10,6 +10,7 @@ body {
     height: fit-content;
 }
 
+/* Start: Access - Qui định cho các khu vực truy cập */
 .access {
     background-color: white;
     text-align: center;
@@ -18,9 +19,30 @@ body {
     position: relative;
 }
 
+.access_group_logo {
+    background-color: var(--backgorund-primary);
+}
+
+.access_group_logo_img {
+    width: 20%;
+    object-fit: cover;
+}
+
+.access_group i[class^='fa'] {
+    color: var(--color-blue);
+}
+
 .access_img {
+    border-radius: 10%;
     width: 94%;
     object-fit: cover;
+}
+
+.access_group_gender {
+    width: 55%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .access_group {
@@ -121,14 +143,14 @@ body {
     }
 }
 
-@media (min-width: 421px) and (max-width: 768px),
-screen and (max-width: 420px) {
+@media screen and (max-width: 768px) {
     .access_mb {
         position: absolute;
         top: 10%;
     }
 
-    .access {
+    .access,
+    .access_group_clause {
         color: white;
     }
 
@@ -155,14 +177,17 @@ screen and (max-width: 420px) {
         font-size: 1rem;
     }
 
-    .access_img {
-        width: 100%;
+    #login .access_img {
         height: 800px;
-        object-fit: cover;
     }
 
-    .access_group_clause {
-        color: white;
+    #register .access_img {
+        height: 1200px;
+    }
+
+    .access_img {
+        border-radius: 0;
+        object-fit: cover;
     }
 }
 
@@ -172,7 +197,7 @@ screen and (max-width: 420px) {
 .access_group_regulation::after {
     content: "Ít nhất 6 ký tự";
     display: block;
-    width: 100%;
+    width: fit-content;
     font-size: 14px;
     position: absolute;
     top: 100%;
