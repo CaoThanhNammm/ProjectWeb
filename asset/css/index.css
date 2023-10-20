@@ -2,6 +2,7 @@
     --color-primary: rgb(240 136 6);
     --color-gray: #6f6f73;
     --color-blue: #0066ce;
+    --color-yellow: #ffd814;
     --background-footer: #232f3e;
     --backgorund-primary: #eaeded;
     --fsize-normal: 16px;
@@ -24,6 +25,10 @@ li {
 
 .color-blue {
     color: var(--color-blue);
+}
+
+.color-yellow {
+    color: var(--color-yellow) !important;
 }
 
 .icon {
