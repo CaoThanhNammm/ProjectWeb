@@ -7,8 +7,9 @@ Note: hiện ra 2 nút thêm vào giở hàng và xem chi tiết sản phẩm
 
 function hoverChangeProductImg(){
     var elementProduct = document.querySelectorAll(".product");
-    
-    elementProduct.forEach(function(value){
+    var elementProductFooter = document.querySelectorAll(".product_btn");
+
+    elementProduct.forEach(function(value, index){
         var elementProductBtn = value.querySelectorAll(".product_btn a");
 
         value.onmouseover = function(){
