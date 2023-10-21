@@ -4,15 +4,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/cart.css">
+    <title>Cart</title>
+
+    <!-- Thêm header và footer -->
+    <script src="../js/reuse.js"></script>
 </head>
 
 <body>
-    <div>
-        hello moi nguoi to la
+    <!-- 
+        Create: Nguyễn Khải Nam
+        Date:
+        Note: Trang giỏ hàng
+     -->
+    <div id="cart" class="container mt-5">
+        <div class="cart_head">
+            <h1>Giỏ hàng</h1>
+            <span class="cart_head_count">0</span>
+        </div>
+
+        <div class="cart_body container mt-5">
+            <!-- Nếu không có sản phẩm -->
+            <div class="cart_body-empty">
+                <h3>Hiện giỏ hàng của bạn đang trống</h3>
+                <a class="cart_body_btn btn" href="../../index.html">Quay lại cửa hàng</a>
+            </div>
+
+            <!-- Nếu có sản phẩm -->
+            <div class="cart_body_list">
+                <div class="card mb-3">
+                    <img class="card-img-top" src="../image/jpg/product_img.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Ghế đá</h5>
+                        <p class="card-text">Chúng tôi có một chiếc ghế đá với công dụng tuyệt vời có thể giúp bạn lấy
+                            lại sức khi mệt, ngoài ra ghế đá của chúng tôi có sức tải lên tới 200kg.</p>
+                        <div class="mt-5">
+                            <span>Trị giá: 1.200.000.000 VND / 1 sản phẩm</span>
+                        </div>
+                        <div class="card-body_footer">
+                            <div>
+                                <span class="card_abate">
+                                    <span class="card_abate-empty"
+                                        onclick="swapClass('.card_abate-empty', '.card_abate-check')"></span>
+                                    Thanh toán
+                                </span>
+                                <button class="btn btn-warning">Loại bỏ</button>
+                            </div>
+                            <span class="card_amount">
+                                <button class="card_amount-minus" onclick="quantityAdjust('.card_amount_input', '-')"><i
+                                        class="fa-solid fa-minus"></i></button>
+                                <input class="card_amount_input" type="number" min="1" max="999" step="1" value="1"
+                                    readonly>
+                                <button class="card_amount-plus" onclick="quantityAdjust('.card_amount_input', '+')"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img class="card-img-top" src="../image/jpg/content_introduce.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Ghế đá</h5>
+                        <p class="card-text">Chúng tôi có một chiếc ghế đá với công dụng tuyệt vời có thể giúp bạn lấy
+                            lại sức khi mệt, ngoài ra ghế đá của chúng tôi có sức tải lên tới 200kg.</p>
+                        <div class="mt-5">
+                            <span>Trị giá: 1.200.000.000 VND / 1 sản phẩm</span>
+                        </div>
+                        <div class="card-body_footer">
+                            <div>
+                                <span class="card_abate">
+                                    <span class="card_abate-empty"
+                                        onclick="swapClass('.card_abate-empty', '.card_abate-check')"></span>
+                                    Thanh toán
+                                </span>
+                                <button class="btn btn-warning">Loại bỏ</button>
+                            </div>
+                            <span class="card_amount">
+                                <button class="card_amount-minus" onclick="quantityAdjust('.card_amount_input', '-')"><i
+                                        class="fa-solid fa-minus"></i></button>
+                                <input class="card_amount_input" type="number" min="1" max="999" step="1" value="1"
+                                    readonly>
+                                <button class="card_amount-plus" onclick="quantityAdjust('.card_amount_input', '+')"><i
+                                        class="fa-solid fa-plus"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="../js/reuse.js"></script>
+    <script src="../js/index.js"></script>
 </body>
 
 </html>

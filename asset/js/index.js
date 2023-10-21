@@ -1,3 +1,6 @@
+// Cú pháp viết tắt
+var $ = document.querySelector.bind(document);
+var $$ = document.querySelectorAll.bind(document);
 
 document.addEventListener('DOMContentLoaded', function () {
     hoverChangeProductImg();
@@ -36,7 +39,6 @@ Create: Cao Thành Named
 Date: 19/10/2023
 Note: nếu ấn vào wishlist thì sản phẩm được thêm vào wishlist
 */
-
 function addWishList() {
     var elementHeartIcon = document.querySelectorAll(".product_in4_wishlist");
     elementHeartIcon.forEach(function (value) {
@@ -45,4 +47,47 @@ function addWishList() {
         }
     });
 
+}
+
+/*
+Create: Nguyễn Khải Nam
+Date: 21/10/2023
+Note: Hàm tăng giảm số lượng
+*/
+function quantityAdjust(name, option) {
+    var e = $(name)
+    var min = e.getAttribute('min')
+    var max = e.getAttribute('max')
+    var value = e.getAttribute('value')
+    var step = e.getAttribute('step')
+
+    var calcStep = (option === '-' ? -1 : 1) * step
+    let newValue = parseInt(value) + calcStep
+
+    console.log(max, min, value, step)
+
+    if (min <= newValue && newValue <= max) {
+        e.setAttribute('value', newValue)
+    }
+}
+
+/*
+    Create: 
+    Date: 21/10/2003
+    Note: Cập nhật phần tử 1 thành 2
+*/
+function swapClass(name1, name2) {
+    var e = $(name1)
+    if (e) {
+        name1 = name1.replace('.', '')
+        name2 = name2.replace('.', '')
+        e.classList.add(name2)
+        e.classList.remove(name1)
+    } else {
+        e = $(name2)
+        name1 = name1.replace('.', '')
+        name2 = name2.replace('.', '')
+        e.classList.add(name1)
+        e.classList.remove(name2)
+    }
 }

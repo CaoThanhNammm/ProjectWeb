@@ -3,7 +3,9 @@
     --black-primary: black;
     --white-primary: #fff;
     --gray-primary: #eaeded;
+    --red-primary: #bc5b64;
 
+    /* Mức độ ưu tiên */
     --gray-second: #bebec9;
     --blue-second: #232f3e;
     --yellow-second: #f3a847;
@@ -21,6 +23,10 @@
     box-sizing: border-box;
 }
 
+body {
+    width: 100%;
+}
+
 li {
     list-style: none;
 }
@@ -32,6 +38,37 @@ li {
 .icon {
     width: 1.5rem;
     object-fit: cover;
+}
+
+h1 {
+    font-size: 38px;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 33px;
+    font-weight: 750;
+}
+
+h3 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 23px;
+    font-weight: 650;
+}
+
+h5 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+h6 {
+    font-size: 13px;
+    font-weight: 550;
 }
 
 /* Start: Content */

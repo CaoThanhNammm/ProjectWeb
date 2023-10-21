@@ -2,6 +2,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
+    min-height: 100vh;
     height: fit-content;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .access_group i[class^='fa'] {
-    color: var(--color-gray);
+    color: var(--gray-second);
 }
 
 .access_img {
@@ -64,13 +65,15 @@
     position: absolute;
     font-size: 20px;
     top: calc(50% - 12px);
-    left: calc(25% - 5px);
+    left: calc(25% - 6px);
 }
 
 .access_group input {
     width: 55%;
-    padding: 12px 35px;
+    padding: 12px 40px;
     border-radius: 10px;
+    border: 1px solid var(--gray-second);
+    font-size: 17px;
 }
 
 .access_group input:focus {
@@ -94,6 +97,7 @@
     background-color: var(--black-primary);
     color: var(--white-primary);
     border: none;
+    font-weight: 600;
 }
 
 .access_group_clause {
@@ -194,7 +198,7 @@
     }
 
     #register .access_img {
-        height: 1200px;
+        height: 1400px;
     }
 
     .access_img {

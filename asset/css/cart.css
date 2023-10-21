@@ -1,0 +1,110 @@
+/* Start: Cart */
+#cart {
+    min-height: 1000px;
+    border-top: 1px solid var(--gray-primary);
+}
+
+.cart_head {
+    display: flex;
+}
+
+.cart_body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.cart_body_btn {
+    background-color: var(--black-primary) !important;
+    color: var(--white-primary) !important;
+    margin-top: 20px;
+    padding: 15px 60px !important;
+}
+
+.cart_head_count {
+    color: var(--white-primary);
+    background-color: var(--red-primary);
+    border-radius: 50%;
+    margin-left: 20px;
+    height: 50%;
+    width: 30px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.cart_body-empty {
+    display: none;
+}
+
+.card {
+    text-align: left;
+    flex-direction: row !important;
+}
+
+img[class^='card-img'] {
+    width: 25%;
+    object-fit: cover;
+}
+
+.card_amount {}
+
+
+
+.card_amount_input {
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    cursor: default;
+}
+
+.card_amount_input:focus {
+    outline: none;
+}
+
+.card_amount_input::-webkit-outer-spin-button,
+.card_amount_input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.card_amount-minus,
+.card_amount-plus {
+    color: var(--black-primary);
+    background-color: var(--gray-primary);
+    border: none;
+    font-size: 20px;
+    padding: 0 5px;
+}
+
+.card_amount-minus:hover,
+.card_amount-plus:hover {
+    background-color: var(--gray-second);
+}
+
+.card_abate-check,
+.card_abate-empty {
+    border: 1px solid var(--gray-primary);
+    border-radius: 2px;
+    background-color: transparent;
+    padding: 3px 10px;
+    margin-right: 5px;
+}
+
+.card_abate-check {
+    background-color: var(--yellow-primary);
+    position: relative;
+}
+
+.card_abate-check.card_abate-check::after {
+    content: '\21C3';
+    display: block;
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    font-size: 25px;
+    rotate: 40deg;
+}
+
+.card-body_footer {
+    display: flex;
+    justify-content: space-between;
+}
