@@ -5,6 +5,7 @@ var $$ = document.querySelectorAll.bind(document);
 document.addEventListener('DOMContentLoaded', function () {
     hoverChangeProductImg();
     addWishList();
+    updateCountItem('.cart_head_count', count('.cart_body_list', '.card'));
 })
 /*
 Create: Cao Thành Named
@@ -64,30 +65,42 @@ function quantityAdjust(name, option) {
     var calcStep = (option === '-' ? -1 : 1) * step
     let newValue = parseInt(value) + calcStep
 
-    console.log(max, min, value, step)
-
     if (min <= newValue && newValue <= max) {
         e.setAttribute('value', newValue)
     }
 }
 
 /*
-    Create: 
+    Create: Nguyễn Khải Nam
     Date: 21/10/2003
-    Note: Cập nhật phần tử 1 thành 2
+    Note: Thêm class hoặc xóa nếu đã tồn tại
 */
-function swapClass(name1, name2) {
-    var e = $(name1)
-    if (e) {
-        name1 = name1.replace('.', '')
-        name2 = name2.replace('.', '')
-        e.classList.add(name2)
-        e.classList.remove(name1)
+function toggle(e, name) {
+    console.log(e)
+    name = name.replace('.', '')
+    if (e.classList.contains(name)) {
+        e.classList.remove(name)
     } else {
-        e = $(name2)
-        name1 = name1.replace('.', '')
-        name2 = name2.replace('.', '')
-        e.classList.add(name1)
-        e.classList.remove(name2)
+        e.classList.add(name)
+    }
+}
+
+/*
+    Create: Nguyễn Khải Nam
+    Date: 21/10/2003
+    Note: Đếm số lượng phần tử trong một class nào đó
+*/
+function count(parent, child) {
+    return $(parent).querySelectorAll(child).length
+}
+
+/*
+    Create: Nguyễn Khải Nam
+    Date: 21/10/2003
+    Note: Cập nhật giá trị cho name nào đó
+*/
+function updateCountItem(name, count) {
+    if ($(name)) {
+        $(name).innerHTML = count
     }
 }
