@@ -2,6 +2,7 @@ var elementModal = document.querySelector('.modal_overlay');
 var elementModalBody = document.querySelector('.modal_body');
 var elementIconAllList = document.querySelector('.all_list');
 var elementQuitIcon = document.querySelector(".modal_body_quit");
+var elementBody = document.querySelector('body');
 
 /*
     Create: Cao Thành Nam
@@ -23,7 +24,7 @@ function slideLeftToRightAllList(){
     elementModal.style.zIndex = 1;
     elementModal.style.opacity = 1;
     elementModalBody.style.left = '0';
-
+    elementBody.classList.add('hidden_overflow');
 }
 
 /*
@@ -50,6 +51,7 @@ function quitSlide(){
     elementModal.style.zIndex = -1;
     elementModal.style.opacity = 0;
     elementModalBody.style.left = '-30%';
+    elementBody.classList.remove('hidden_overflow');
     
     setTimeout(function(){
         elementCategoryItem.forEach(function(value, index){
@@ -70,6 +72,7 @@ var elementIconDown = document.querySelectorAll(".category_all_item_icon");
 function resetSlide(index){
     elementCategoryChildItem[index].classList.replace('active', 'unactive');
     elementIconDown[index].classList.replace('icon_up_rotate', 'icon_down_rotate');
+    elementCategoryItem[index].classList.remove('category_all_item_border-none');
 }
 
 
@@ -81,7 +84,7 @@ function resetSlide(index){
 function clickChildItem(){
     elementCategoryItem.forEach(function(value, index){
         value.onclick = function(){
-            value.classList.toggle("category_all_item_border");
+            value.classList.toggle("category_all_item_border-none");
             elementCategoryChildItem[index].classList.toggle('active');
             elementIconDown[index].classList.toggle('icon_up_rotate');
         }

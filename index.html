@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="asset/css/header.css">
-    <link rel="stylesheet" href="asset/css/content.css">
     <link rel="stylesheet" href="asset/css/footer.css">
     <link rel="stylesheet" href="asset/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -49,7 +48,7 @@
     <div class="navigation">
         <div class="all_list">
             <i class="fa-solid fa-list all_list_logo"></i>
-            <a href="" class="all_list_text">Tất cả danh mục</a>
+            <span class="all_list_text">Tất cả danh mục</span>
         </div>
 
         <ul class="navigtion-list">
@@ -68,6 +67,67 @@
         </ul>
     </div>
 
+    <div class="modal_overlay"></div>
+    <div class="modal_body">
+        <i class="fa-solid fa-xmark modal_body_quit"></i>
+        <ul class="category_all_list">
+            <div>
+                <li class="category_all_item">Sofa và Armchair
+                    <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                </li>
+                <ul class="category_all_item_child_list">
+                    <li>Sofa</li>
+                    <li>Sofa góc</li>
+                    <li>Ghế dài và đôn</li>
+                </ul>
+            </div>
+
+            <div>
+                <li class="category_all_item">Bàn
+                    <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                </li>
+                <ul class="category_all_item_child_list">
+                    <li>Sofa</li>
+                    <li>Sofa góc</li>
+                    <li>Ghế dài và đôn</li>
+                </ul>
+            </div>
+
+            <div>
+                <li class="category_all_item">Ghế
+                    <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                </li>
+                <ul class="category_all_item_child_list">
+                    <li>Sofa</li>
+                    <li>Sofa góc</li>
+                    <li>Ghế dài và đôn</li>
+                </ul>
+            </div>
+
+            <div>
+                <li class="category_all_item">Giường ngủ
+                    <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                </li>
+                <ul class="category_all_item_child_list">
+                    <li>Sofa</li>
+                    <li>Sofa góc</li>
+                    <li>Ghế dài và đôn</li>
+                </ul>
+            </div>
+
+            <div>
+                <li class="category_all_item">Tủ và kệ
+                    <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                </li>
+                <ul class="category_all_item_child_list">
+                    <li>Sofa</li>
+                    <li>Sofa góc</li>
+                    <li>Ghế dài và đôn</li>
+                </ul>
+            </div>
+        </ul>
+    </div>
+
 
     <!-- 
         Create: Cao Thành Nam
@@ -75,44 +135,117 @@
         Note: phần body của trang
     -->
     <div class="content">
-        <div class="content_introduce">
-            <img src="asset/image/jpg/content_introduce.jpg" alt="">
-
-            <div class="container-fluid">
-                <div class="container">
-                    <div class="slider">
-                        <div class="img_list">
-                            <div class="img_item">
-                                <img src="asset/image/png/img1.png" alt="">
-                                <img src="asset/image/png/img2.png" alt="">
-                            </div>
-
-                            <div class="img_item">
-                                <img src="asset/image/png/img3.png" alt="">
-                                <img src="asset/image/png/img4.png" alt="">
-                            </div>
-
-                            <div class="img_item">
-                                <img src="asset/image/png/img1.png" alt="">
-                                <img src="asset/image/png/img2.png" alt="">
-                            </div>
-
-                            <div class="img_item">
-                                <img src="asset/image/png/img3.png" alt="">
-                                <img src="asset/image/png/img4.png" alt="">
-                            </div>
-                        </div>
-
-                        <i class="fa-solid fa-angle-left left"></i>
-                        <i class="fa-solid fa-angle-right right"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Css inline tam ------------------------------------------------------------------------------------------>
         <div class="container-fluid pb-5 pt-4">
             <div class="container list_product_banner">
+                <div class="row mb-3">
+                    <div class="col-lg-3 col-sm-6 col-md-4 product">
+                        <div class="product_img">
+                            <img src="asset/image/jpg/product_img.jpg" alt="">
+                            <div class="product_img_hover">
+                                <img src="asset/image/jpg/product_img_hover.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="product_in4">
+                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product_btn">
+                            <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
+                            <a class=" product_btn--product_detail_none">xem thêm</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-md-4 product">
+                        <div class="product_img">
+                            <img src="asset/image/jpg/product_img.jpg" alt="">
+                            <div class="product_img_hover">
+                                <img src="asset/image/jpg/product_img_hover.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="product_in4">
+                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product_btn">
+                            <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
+                            <a class=" product_btn--product_detail_none">xem thêm</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-md-4 product">
+                        <div class="product_img">
+                            <img src="asset/image/jpg/product_img.jpg" alt="">
+                            <div class="product_img_hover">
+                                <img src="asset/image/jpg/product_img_hover.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="product_in4">
+                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product_btn">
+                            <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
+                            <a class=" product_btn--product_detail_none">xem thêm</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-md-4 product">
+                        <div class="product_img">
+                            <img src="asset/image/jpg/product_img.jpg" alt="">
+                            <div class="product_img_hover">
+                                <img src="asset/image/jpg/product_img_hover.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="product_in4">
+                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="product_btn">
+                            <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
+                            <a class=" product_btn--product_detail_none">xem thêm</a>
+                        </div>
+                    </div>
+
+
+                </div>
 
                 <div class="row mb-3">
                     <div class="col-lg-3 col-sm-6 col-md-4 product">
@@ -124,11 +257,16 @@
                         </div>
                         <div class="product_in4">
                             <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
                             </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
                         </div>
 
                         <div class="product_btn">
@@ -136,7 +274,6 @@
                             <a class=" product_btn--product_detail_none">xem thêm</a>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 col-md-4 product">
                         <div class="product_img">
                             <img src="asset/image/jpg/product_img.jpg" alt="">
@@ -146,11 +283,16 @@
                         </div>
                         <div class="product_in4">
                             <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
                             </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
                         </div>
 
                         <div class="product_btn">
@@ -158,7 +300,6 @@
                             <a class=" product_btn--product_detail_none">xem thêm</a>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 col-md-4 product">
                         <div class="product_img">
                             <img src="asset/image/jpg/product_img.jpg" alt="">
@@ -168,11 +309,16 @@
                         </div>
                         <div class="product_in4">
                             <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
                             </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
                         </div>
 
                         <div class="product_btn">
@@ -180,7 +326,6 @@
                             <a class=" product_btn--product_detail_none">xem thêm</a>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 col-md-4 product">
                         <div class="product_img">
                             <img src="asset/image/jpg/product_img.jpg" alt="">
@@ -190,11 +335,16 @@
                         </div>
                         <div class="product_in4">
                             <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
                             </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
                         </div>
 
                         <div class="product_btn">
@@ -214,11 +364,16 @@
                         </div>
                         <div class="product_in4">
                             <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
                             </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
                         </div>
 
                         <div class="product_btn">
@@ -226,7 +381,6 @@
                             <a class=" product_btn--product_detail_none">xem thêm</a>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 col-md-4 product">
                         <div class="product_img">
                             <img src="asset/image/jpg/product_img.jpg" alt="">
@@ -236,11 +390,16 @@
                         </div>
                         <div class="product_in4">
                             <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
                             </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
                         </div>
 
                         <div class="product_btn">
@@ -248,7 +407,6 @@
                             <a class=" product_btn--product_detail_none">xem thêm</a>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 col-md-4 product">
                         <div class="product_img">
                             <img src="asset/image/jpg/product_img.jpg" alt="">
@@ -258,11 +416,16 @@
                         </div>
                         <div class="product_in4">
                             <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
                             </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
                         </div>
 
                         <div class="product_btn">
@@ -270,7 +433,6 @@
                             <a class=" product_btn--product_detail_none">xem thêm</a>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 col-md-4 product">
                         <div class="product_img">
                             <img src="asset/image/jpg/product_img.jpg" alt="">
@@ -280,100 +442,16 @@
                         </div>
                         <div class="product_in4">
                             <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                            <div class="product_in4_bottom">
+                                <div>
+                                    <p class="product_in4_price">12,000,000₫</p>
+                                    <p class="product_in4_sale_price">6,000,000₫</p>
+                                </div>
+                                <div class="product_in4_wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span class="hint_wishlist">yêu thích</span>
+                                </div>
                             </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
-                        </div>
-
-                        <div class="product_btn">
-                            <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
-                            <a class=" product_btn--product_detail_none">xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <div class="product_img">
-                            <img src="asset/image/jpg/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="asset/image/jpg/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
-                            </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
-                        </div>
-
-                        <div class="product_btn">
-                            <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
-                            <a class=" product_btn--product_detail_none">xem thêm</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <div class="product_img">
-                            <img src="asset/image/jpg/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="asset/image/jpg/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
-                            </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
-                        </div>
-
-                        <div class="product_btn">
-                            <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
-                            <a class=" product_btn--product_detail_none">xem thêm</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <div class="product_img">
-                            <img src="asset/image/jpg/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="asset/image/jpg/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
-                            </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
-                        </div>
-
-                        <div class="product_btn">
-                            <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
-                            <a class=" product_btn--product_detail_none">xem thêm</a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <div class="product_img">
-                            <img src="asset/image/jpg/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="asset/image/jpg/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_right">
-                                <i class="fa-solid fa-heart product_in4_wishlist"></i>
-                            </div>
-                            <p class="product_in4_price">12,000,000₫</p>
-                            <p class="product_in4_sale_price">6,000,000₫</p>
                         </div>
 
                         <div class="product_btn">
@@ -464,6 +542,7 @@
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
         </script>
 
+    <script src="asset/js/header.js"></script>
     <script src="asset/js/index.js"></script>
 
     <script>
