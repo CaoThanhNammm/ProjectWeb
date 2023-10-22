@@ -72,22 +72,22 @@ h6 {
 }
 
 /* start: content */
-.content_introduce{
-    position: relative;
+.content_introduce .container{
+    margin-top: 12px;
 }
 
-.content_introduce .container{
-    position: absolute;
-    top: 83%;
-    left: 104px;
-}
 .content_introduce img{
     width: 100%;
+}
+
+.a{
+    width: 1300px;
 }
 .slider{
     position: relative;
     overflow: hidden;
     height: 200px;
+    width: 100%;
 }
 
 .img_list{
