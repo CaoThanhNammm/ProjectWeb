@@ -202,19 +202,18 @@ body{
     box-sizing: border-box;
     list-style-type: none;
     font-size: 20px;
-    padding: 16px 0 16px 20px;
+    padding: 13px 0 13px 20px;
     font-weight: 600;
     border-bottom: 1px solid var(--gray-primary);
     color: var(--gray-second);
     font-size: 20px;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .modal_body div:nth-child(5) .category_all_item{
-    border: red;
-}
-
-.category_all_item_border{
     border: none;
 }
 
@@ -224,6 +223,7 @@ body{
 
 .category_all_item_child_list{
     display: none;
+    padding: 0;
 }
 
 .category_all_item_child_list li{ 
@@ -272,6 +272,18 @@ body{
 
 .icon_down_rotate{
     rotate: 0;
+}
+
+.hidden_overflow{
+    overflow: hidden;
+}
+
+.category_all_item_border-none{
+    border: none;
+}
+
+.category_all_item_border{
+    border-bottom: 1px solid var(--gray-primary);
 }
 
 /* end: modal */
