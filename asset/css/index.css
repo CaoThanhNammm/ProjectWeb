@@ -1,36 +1,73 @@
 :root {
-    /* màu nào dùng nhiều đặt theo cú pháp color_primary
-    màu nào dùng ít đặt theo cú pháp color_second(hoặc third, fourth) theo thứ tự giảm dần */
     --yellow-primary: #febd69;
     --black-primary: black;
     --white-primary: #fff;
+    --gray-primary: #eaeded;
+    --red-primary: #bc5b64;
 
-    --gray-second: #bebec9;
-    --background-footer-second: #232f3e;
+    /* Mức độ ưu tiên */
+    --gray-second: #878787;
+    --blue-second: #232f3e;
     --yellow-second: #f3a847;
     --red-second: red;
-    --blue-second:#0ebeff;
     --gray-third: #878787;
 
-    --fsize-normal: 15px;
-    --fsize-h5: 18px;
-    --padding-left-right-page: 20px; /* padding trái phải cho toàn bộ trang */
+    --fsize-normal: 16px;
 }
-
 
 * {
     margin: 0;
     padding: 0;
     font-size: var(--fsize-normal);
+    font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
+}
+
+body {
+    width: 100%;
 }
 
 li {
     list-style: none;
 }
 
+.color-yellow {
+    color: var(--yellow-primary) !important;
+}
+
+.icon {
+    width: 1.5rem;
+    object-fit: cover;
+}
+
+h1 {
+    font-size: 38px;
+    font-weight: 800;
+}
+
+h2 {
+    font-size: 33px;
+    font-weight: 750;
+}
+
+h3 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 23px;
+    font-weight: 650;
+}
+
 h5 {
-    font-size: var(--fsize-h5);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+
+h6 {
+    font-size: 13px;
     font-weight: 550;
 }
 
@@ -118,15 +155,16 @@ h5 {
 
 .product_img_hover{
     position: absolute;
-    bottom: 100%;
-    height: 0;
-    overflow: hidden;
-    transition: .3s ease;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: 0.5s ease;
 }
 
 .product:hover .product_img_hover{
-    height: 100%;
-    bottom: 0;
+    opacity: 1;
 }
 
 .product_btn-add_card_none, .product_btn--product_detail_none{
@@ -139,14 +177,33 @@ h5 {
     display: block;
 }
 
-.product_in4_right{
+.product_in4_bottom{
+    padding: 0 12px;
     display: flex;
-    justify-content: right;
+    margin-top: 10px;
+    justify-content: space-between;
     margin-bottom: 12px;
+    position: relative;
 }
 
-.product_in4_wishlist{
+.product_in4_wishlist i{
     font-size: 20px;
+}
+
+.hint_wishlist{
+    position: absolute;
+    top: 25px;
+    right: 17px;
+    border-radius: 5px;
+    padding: 4px 25px;
+    color: var(--white-primary);
+    background-color: rgb(51,51,51);
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.product_in4_wishlist:hover .hint_wishlist{
+    opacity: 1;
 }
 
 .product_in4_price{
@@ -163,6 +220,7 @@ h5 {
 .product_in4_name_product{
     padding: 10px 0;
     font-weight: 600;
+    margin: 0;
 }
 
 .product_btn-add_card, .product_btn--product_detail{
