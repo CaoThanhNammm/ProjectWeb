@@ -21,8 +21,7 @@ function startSlideAllList(){
     Note: phương thức css cho các modal để hiển thị lên màn hình
 */
 function slideLeftToRightAllList(){
-    elementModal.style.zIndex = 1;
-    elementModal.style.opacity = 1;
+    elementModal.classList.toggle("active")
     elementModalBody.style.left = '0';
     elementBody.classList.add('hidden_overflow');
 }
@@ -48,8 +47,7 @@ function clickQuit(){
     Note: phương thức xử lý để modal tắt khỏi màn hình
 */
 function quitSlide(){
-    elementModal.style.zIndex = -1;
-    elementModal.style.opacity = 0;
+    elementModal.classList.remove("active")
     elementModalBody.style.left = '-30%';
     elementBody.classList.remove('hidden_overflow');
     

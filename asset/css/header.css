@@ -176,9 +176,9 @@ body{
     right: 0;
     bottom: 0;
     background-color: rgba(46, 44, 44, 0.5);
-    opacity: 0;
-    z-index: -1;
-    transition: 0.5s ease;
+    transition: 0.3s ease-out;
+    display: none;
+    z-index: 2;
 }
 
 .modal_body{
@@ -189,7 +189,7 @@ body{
     left: -30%;
     overflow-y: auto;
     background-color: var(--white-primary);
-    transition: 0.5s ease;
+    transition: 0.3s ease-out;
     z-index: 2;
 }
 
