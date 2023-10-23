@@ -42,5 +42,4 @@ function addWishList() {
             value.classList.checkAbate("add_wish_list");
         }
     });
-
 }
