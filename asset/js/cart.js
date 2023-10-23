@@ -122,10 +122,10 @@ function _update() {
     if (count > 0) {
         $('.cart_body-empty').style.display = 'none'
         $('.cart_body-item').style.display = 'flex'
-        _updateCountItem('.cart_head_count', count);
     } else {
         $('.cart_body-empty').style.display = 'block'
         $('.cart_body-item').style.display = 'none'
     }
+    _updateCountItem('.cart_head_count', count);
 }
 

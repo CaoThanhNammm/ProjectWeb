@@ -15,14 +15,14 @@ function hoverChangeProductImg() {
         var elementProductBtn = value.querySelectorAll(".product_btn a");
 
         value.onmouseover = function () {
-            elementProductImg.setAttribute("src", "asset\\image\\jpg\\content_introduce.jpg");
+            elementProductImg.setAttribute("src", "\\asset\\image\\jpg\\content_introduce.jpg");
             value.style.border = "1px solid var(--gray-second)";
             elementProductBtn[0].classList.replace("product_btn-add_card_none", "product_btn-add_card");
             elementProductBtn[1].classList.replace("product_btn--product_detail_none", "product_btn--product_detail");
         }
 
         value.onmouseout = function () {
-            elementProductImg.setAttribute("src", "asset\\image\\jpg\\product_img.jpg");
+            elementProductImg.setAttribute("src", "\\asset\\image\\jpg\\product_img.jpg");
             value.style.border = "none";
             elementProductBtn[0].classList.replace("product_btn-add_card", "product_btn-add_card_none");
             elementProductBtn[1].classList.replace("product_btn--product_detail", "product_btn--product_detail_none");
