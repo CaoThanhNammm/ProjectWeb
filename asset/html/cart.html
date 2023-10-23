@@ -22,17 +22,17 @@
 
         <div class="cart_body container mt-5">
             <!-- Nếu không có sản phẩm -->
-            <!-- <div class="cart_body-empty">
+            <div class="cart_body-empty">
                 <h3>Hiện giỏ hàng của bạn đang trống</h3>
                 <a class="cart_body_btn btn" href="../../index.html">Quay lại cửa hàng</a>
-            </div> -->
+            </div>
 
             <!-- Nếu có sản phẩm -->
             <div class="cart_body-item row">
                 <div class="row text-start mb-2">
                     <span class="card_abate">
                         <span class="card_abate-empty  card_abate-all"
-                            onclick="checkAbate(this, '.card_abate-check')"></span>
+                            onclick="_checkAbate(this, '.card_abate-check')"></span>
                         Thanh toán toàn bộ
                     </span>
                 </div>
@@ -52,21 +52,21 @@
                                 <div>
                                     <span class="card_abate">
                                         <span class="card_abate-empty"
-                                            onclick="checkAbate(this, '.card_abate-check')"></span>
+                                            onclick="_checkAbate(this, '.card_abate-check')"></span>
                                         Thanh toán
                                     </span>
                                     <button class="btn btn-warning"
-                                        onclick="removeItem('.cart_body_list', this, '.card')">Loại
+                                        onclick="_removeItem('.cart_body_list', this, '.card')">Loại
                                         bỏ</button>
                                 </div>
                                 <span class="card_amount">
                                     <button class="card_amount-minus"
-                                        onclick="quantityAdjust(this, '.card_amount_input', '-')"><i
+                                        onclick="_quantityAdjust(this, '.card_amount_input', '-')"><i
                                             class="fa-solid fa-minus"></i></button>
                                     <input class="card_amount_input" type="number" min="1" max="999" step="1" value="1"
                                         readonly>
                                     <button class="card_amount-plus"
-                                        onclick="quantityAdjust(this, '.card_amount_input', '+')"><i
+                                        onclick="_quantityAdjust(this, '.card_amount_input', '+')"><i
                                             class="fa-solid fa-plus"></i></button>
                                 </span>
                             </div>
@@ -87,21 +87,21 @@
                                 <div>
                                     <span class="card_abate">
                                         <span class="card_abate-empty"
-                                            onclick="checkAbate(this, '.card_abate-check')"></span>
+                                            onclick="_checkAbate(this, '.card_abate-check')"></span>
                                         Thanh toán
                                     </span>
                                     <button class="btn btn-warning"
-                                        onclick="removeItem('.cart_body_list', this, '.card')">Loại
+                                        onclick="_removeItem('.cart_body_list', this, '.card')">Loại
                                         bỏ</button>
                                 </div>
                                 <span class="card_amount">
                                     <button class="card_amount-minus"
-                                        onclick="quantityAdjust(this, '.card_amount_input', '-')"><i
+                                        onclick="_quantityAdjust(this, '.card_amount_input', '-')"><i
                                             class="fa-solid fa-minus"></i></button>
                                     <input class="card_amount_input" type="number" min="1" max="999" step="1" value="1"
                                         readonly>
                                     <button class="card_amount-plus"
-                                        onclick="quantityAdjust(this, '.card_amount_input', '+')"><i
+                                        onclick="_quantityAdjust(this, '.card_amount_input', '+')"><i
                                             class="fa-solid fa-plus"></i></button>
                                 </span>
                             </div>

@@ -3,20 +3,15 @@ var $ = document.querySelector.bind(document);
 var $$ = document.querySelectorAll.bind(document);
 
 document.addEventListener('DOMContentLoaded', function () {
-    update()
+    _update()
 })
-
-function update() {
-    updateCountItem('.cart_head_count', count('.cart_body_list', '.card'));
-}
-
 
 /*
 Create: Nguyễn Khải Nam
 Date: 21/10/2023
 Note: Hàm tăng giảm số lượng
 */
-function quantityAdjust(self, name, option) {
+function _quantityAdjust(self, name, option) {
     var e = self.parentElement.querySelector(name)
     var min = e.getAttribute('min')
     var max = e.getAttribute('max')
@@ -36,7 +31,7 @@ function quantityAdjust(self, name, option) {
     Date: 21/10/2003
     Note: Xử lý check thanh toán
 */
-function checkAbate(e, name) {
+function _checkAbate(e, name) {
     let check = true;
     let generalName = '';
     let mainElement = null;
@@ -52,7 +47,7 @@ function checkAbate(e, name) {
 
     name = name.replace('.', '');
     if (check) {
-        toggle(e, name)
+        _toggle(e, name)
     } else {
         let isRemove = false
         if (mainElement.classList.contains(name))
@@ -74,7 +69,7 @@ function checkAbate(e, name) {
     Date: 21/10/2003
     Note: Đếm số lượng phần tử con trong một class nào đó
 */
-function count(parent, child) {
+function _count(parent, child) {
     return $(parent).querySelectorAll(child).length
 }
 
@@ -83,7 +78,7 @@ function count(parent, child) {
     Date: 21/10/2003
     Note: Cập nhật giá trị cho name nào đó
 */
-function updateCountItem(name, value) {
+function _updateCountItem(name, value) {
     if ($(name)) {
         $(name).innerHTML = value
     }
@@ -94,7 +89,7 @@ function updateCountItem(name, value) {
     Date: 22/10/2003
     Note: Loại bỏ name khỏi class nếu đã tồn tại ngược lại thêm vào
 */
-function toggle(e, name) {
+function _toggle(e, name) {
     if (e.classList.contains(name)) {
         e.classList.remove(name);
     } else {
@@ -107,12 +102,30 @@ function toggle(e, name) {
     Date: 22/10/2003
     Note: Loại bỏ item khỏi class
 */
-function removeItem(parentClass, child, name) {
+function _removeItem(parentClass, child, name) {
     name = name.replace('.', '')
     while (!child.classList.contains(name)) {
         child = child.parentElement
     }
     $(parentClass).removeChild(child)
-    update()
+    _update()
+}
+
+/*
+    Create: Nguyễn Khải Nam
+    Date: 22/10/2003
+    Note: Tự động cập nhật giá trị cho trang cart
+*/
+function _update() {
+    let count = 0
+    count = _count('.cart_body_list', '.card')
+    if (count > 0) {
+        $('.cart_body-empty').style.display = 'none'
+        $('.cart_body-item').style.display = 'flex'
+        _updateCountItem('.cart_head_count', count);
+    } else {
+        $('.cart_body-empty').style.display = 'block'
+        $('.cart_body-item').style.display = 'none'
+    }
 }
 
