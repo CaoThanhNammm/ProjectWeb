@@ -1,7 +1,5 @@
-# LTW
-Trang web bán hàng gia dụng
-
-Sử dụng: JSP, Tomcat 8.5, JDK 8, Bootstrap 5.2.3, Ajax 6.4.0, 
+# hqtcsdl-nhom6
+Hệ quản trị cơ sở dữ liệu
 
 ---------------------------------------------------------------------------------------------
 

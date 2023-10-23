@@ -4,10 +4,6 @@
     border-top: 1px solid var(--gray-primary);
 }
 
-.cart_body-item {
-    /* display: none !important; */
-}
-
 .cart_head,
 .cart_body {
     display: flex;
