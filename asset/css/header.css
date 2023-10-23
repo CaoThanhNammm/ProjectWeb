@@ -188,7 +188,7 @@ body{
     left: -30%;
     overflow-y: auto;
     background-color: var(--white-primary);
-    transition: 0.5s ease-out;
+    transition: 0.3s ease-out;
     z-index: 2;
 }
 
