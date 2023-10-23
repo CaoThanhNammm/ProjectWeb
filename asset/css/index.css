@@ -107,6 +107,7 @@ h6 {
     padding: 9px 14px;
     color: #888a8e;
     border-radius: 50px;
+}
 
 /* Start: Content */
 .define_row {
@@ -386,7 +387,6 @@ h6 {
     transition: 0.2s ease;
 }
 
-/* end: content */
 .add_wish_list {
     color: var(--red-second);
 }
