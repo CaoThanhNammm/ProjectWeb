@@ -3,7 +3,10 @@
     --black-primary: black;
     --white-primary: #fff;
     --gray-primary: #eaeded;
+<<<<<<< HEAD
     --red-primary: #bc5b64;
+=======
+>>>>>>> master
 
     /* Mức độ ưu tiên */
     --gray-second: #bebec9;
@@ -39,6 +42,7 @@ li {
     width: 1.5rem;
     object-fit: cover;
 }
+<<<<<<< HEAD
 
 h1 {
     font-size: 38px;
@@ -70,6 +74,8 @@ h6 {
     font-size: 13px;
     font-weight: 550;
 }
+=======
+>>>>>>> master
 
 /* Start: Content */
 .define_row {

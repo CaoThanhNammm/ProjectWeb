@@ -30,7 +30,11 @@
 }
 
 .access_group i[class^='fa'] {
+<<<<<<< HEAD
     color: var(--gray-second);
+=======
+    color: var(--color-gray);
+>>>>>>> master
 }
 
 .access_img {
@@ -70,7 +74,11 @@
 
 .access_group input {
     width: 55%;
+<<<<<<< HEAD
     padding: 12px 40px;
+=======
+    padding: 12px 35px;
+>>>>>>> master
     border-radius: 10px;
     border: 1px solid var(--gray-second);
     font-size: 17px;
@@ -97,7 +105,10 @@
     background-color: var(--black-primary);
     color: var(--white-primary);
     border: none;
+<<<<<<< HEAD
     font-weight: 600;
+=======
+>>>>>>> master
 }
 
 .access_group_clause {
@@ -198,7 +209,11 @@
     }
 
     #register .access_img {
+<<<<<<< HEAD
         height: 1400px;
+=======
+        height: 1200px;
+>>>>>>> master
     }
 
     .access_img {
