@@ -1,6 +1,13 @@
-document.addEventListener('DOMContentLoaded', function () {
-    _generateHeaderAndFooter()
-})
+function _linkHeaderFooterCSS() {
+    head = document.querySelector("head");
+    head.innerHTML += `
+    <link rel="stylesheet" href="/asset/css/index.css">
+    <link rel="stylesheet" href="/asset/css/header.css">
+    <link rel="stylesheet" href="/asset/css/footer.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    `
+}
 
 /*
     Tạo bởi: Trần Minh Quân
@@ -24,3 +31,6 @@ function _generateHeaderAndFooter() {
             document.querySelector('footer').innerHTML = data;
         });
 }
+
+_linkHeaderFooterCSS()
+_generateHeaderAndFooter()
