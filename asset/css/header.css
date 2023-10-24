@@ -11,7 +11,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1px var(--padding-left-right-page);
+    padding: 4px 20px;
 }
 
 .logo_page{
@@ -104,6 +104,15 @@ body{
     font-size: 20px;
     font-weight: 600;
     color: var(--yellow-primary);
+}
+
+.header_login_signin_mobile img{
+    color: var(--white-primary);
+    width: 25px;
+}
+
+.header_login_signin_mobile{
+    display: none;
 }
 
 /* End: header_top */
