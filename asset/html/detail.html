@@ -14,9 +14,9 @@
         Ngày: 24-10-2023
         Chức năng: Chức năng detail
      -->
-    <div class="content">
-        <div class="row">
-            <div class="col-5 detail_slider">
+    <div class="detail">
+        <div class="row detail_part">
+            <div class="col-5">
                 <div class="slider_main">
                     <img src="/asset/image/detail/img1.jpg" alt="img1">
                 </div>
@@ -32,8 +32,8 @@
             <div class="col-7">
                 <h2>Nồi điện đa năng, nồi lẩu mini đa năng kèm khay hấp, chất liệu chống dính, dung tích 1,8L tốc độ
                     sôi cực nhanh</h2>
-                <a href="/index.html">Thương hiệu: Aroma</a>
-                <div class="detail_rate">
+                <a href="/index.html" class="brand">Thương hiệu: Aroma</a>
+                <div class="rate">
                     <p class="starrate">5.0</p>
                     <img class="star" src="/asset/image/detail/star.png" alt="star">
                     <img class="star" src="/asset/image/detail/star.png" alt="star">
@@ -42,11 +42,9 @@
                     <img class="star" src="/asset/image/detail/star.png" alt="star">
                 </div>
                 <div class="line"></div>
-                <div class="detail_price">
+                <div class="price">
                     <h3 class="final_price">1.100.000đ</h3>
                     <h3 class="old_price">2.000.000đ</h3>
-                    <h3>Tiết kiệm:</h3>
-                    <h3 class="saved_price">900.000đ</h3>
                 </div>
                 <table class="quickview">
                     <tr>
@@ -71,23 +69,28 @@
                     </tr>
                 </table>
                 <div>
-                    <button class="detail_buy_button">Mua ngay!</button>
-                    <button class="detail_addcart_button">Thêm vào giỏ</button>
+                    <button class="buy_button">Mua ngay!</button>
+                    <button class="addcart_button">Thêm vào giỏ</button>
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 30px;">
-            <div class="col-5 detail_describe">
+        <div class="row detail_part" style="margin-top: 30px;">
+            <div class="col-5">
                 <h2 class="title">Giới thiệu</h2>
                 <p style="white-space: pre-line; font-size: 14px;">
-                    - BỀ MẶT NẤU DUAL: Nồi điện mới của chúng tôi vừa là NƯỚNG vừa là Lẩu, giúp nấu nướng linh hoạt hơn mà ít tốn công sức hơn - để chuẩn bị những bữa ăn ngon.
-                    - ĐA CHỨC NĂNG: Bạn có thể điều chỉnh nhiệt độ từ 300° đến 450° F, giúp bạn thoải mái chế biến các món súp thịnh soạn, nướng thịt và rau - và nhiều hơn thế nữa.
-                    - NẤU CHE: Nắp kính cường lực ngăn ngừa bắn tung tóe khi nướng và nấu. Nó có thể ngăn ngừa sự lộn xộn trong nhà bếp và vết bẩn trên quần áo của bạn.
-                    - RỘNG RÃI & DI ĐỘNG: Nồi nấu bằng thép không gỉ cực lớn của chúng tôi có dung tích 2,5 lít và đảm bảo phân phối nhiệt đều và dễ dàng làm sạch – đó là máy rửa chén an toàn.
-                    - PHỤ KIỆN: Nồi này đi kèm đế nhiệt có thể điều chỉnh, nồi nấu bằng thép không gỉ, chảo nướng chống dính và nắp thủy tinh - cho những bữa ăn hoàn hảo mọi lúc.  
+                    - BỀ MẶT NẤU DUAL: Nồi điện mới của chúng tôi vừa là NƯỚNG vừa là Lẩu, giúp nấu nướng linh hoạt hơn
+                    mà ít tốn công sức hơn - để chuẩn bị những bữa ăn ngon.
+                    - ĐA CHỨC NĂNG: Bạn có thể điều chỉnh nhiệt độ từ 300° đến 450° F, giúp bạn thoải mái chế biến các
+                    món súp thịnh soạn, nướng thịt và rau - và nhiều hơn thế nữa.
+                    - NẤU CHE: Nắp kính cường lực ngăn ngừa bắn tung tóe khi nướng và nấu. Nó có thể ngăn ngừa sự lộn
+                    xộn trong nhà bếp và vết bẩn trên quần áo của bạn.
+                    - RỘNG RÃI & DI ĐỘNG: Nồi nấu bằng thép không gỉ cực lớn của chúng tôi có dung tích 2,5 lít và đảm
+                    bảo phân phối nhiệt đều và dễ dàng làm sạch – đó là máy rửa chén an toàn.
+                    - PHỤ KIỆN: Nồi này đi kèm đế nhiệt có thể điều chỉnh, nồi nấu bằng thép không gỉ, chảo nướng chống
+                    dính và nắp thủy tinh - cho những bữa ăn hoàn hảo mọi lúc.
                 </p>
             </div>
-            <div class="col-5 detail_info">
+            <div class="col-7">
                 <h2 class="title">Thông tin sản phẩm</h2>
                 <table class="table_full">
                     <tr>
@@ -133,6 +136,83 @@
                 </table>
             </div>
         </div>
+        <div class="row detail_part">
+            <h2 class="title" style="font-size: 28px; padding-bottom: 20px;">Các sản phẩm tương tự</h2>
+            <div class="row">
+                <div class="col-3 product">
+                    <div class="product_img">
+                        <img src="/asset/image/jpg/product_img.jpg" alt="">
+                    </div>
+                    <div class="product_in4">
+                        <p class="product_in4_name_product">ghe ngoi cao cap sieu vip pro vu tru</p>
+                        <div class="product_in4_right">
+                            <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                        </div>
+                        <p class="product_in4_price">12,000,000₫</p>
+                        <p class="product_in4_sale_price">6,000,000₫</p>
+                    </div>
+    
+                    <div class="product_btn">
+                        <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
+                        <a class=" product_btn--product_detail_none">xem thêm</a>
+                    </div>
+                </div>
+                <div class="col-3 product">
+                    <div class="product_img">
+                        <img src="/asset/image/jpg/product_img.jpg" alt="">
+                    </div>
+                    <div class="product_in4">
+                        <p class="product_in4_name_product">ghe ngoi cao cap sieu vip pro vu tru</p>
+                        <div class="product_in4_right">
+                            <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                        </div>
+                        <p class="product_in4_price">12,000,000₫</p>
+                        <p class="product_in4_sale_price">6,000,000₫</p>
+                    </div>
+    
+                    <div class="product_btn">
+                        <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
+                        <a class=" product_btn--product_detail_none">xem thêm</a>
+                    </div>
+                </div>
+                <div class="col-3 product">
+                    <div class="product_img">
+                        <img src="/asset/image/jpg/product_img.jpg" alt="">
+                    </div>
+                    <div class="product_in4">
+                        <p class="product_in4_name_product">ghe ngoi cao cap sieu vip pro vu tru</p>
+                        <div class="product_in4_right">
+                            <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                        </div>
+                        <p class="product_in4_price">12,000,000₫</p>
+                        <p class="product_in4_sale_price">6,000,000₫</p>
+                    </div>
+    
+                    <div class="product_btn">
+                        <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
+                        <a class=" product_btn--product_detail_none">xem thêm</a>
+                    </div>
+                </div>
+                <div class="col-3 product">
+                    <div class="product_img">
+                        <img src="/asset/image/jpg/product_img.jpg" alt="">
+                    </div>
+                    <div class="product_in4">
+                        <p class="product_in4_name_product">ghe ngoi cao cap sieu vip pro vu tru</p>
+                        <div class="product_in4_right">
+                            <i class="fa-solid fa-heart product_in4_wishlist"></i>
+                        </div>
+                        <p class="product_in4_price">12,000,000₫</p>
+                        <p class="product_in4_sale_price">6,000,000₫</p>
+                    </div>
+    
+                    <div class="product_btn">
+                        <a class=" product_btn-add_card_none">Thêm vào giỏ</a>
+                        <a class=" product_btn--product_detail_none">xem thêm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="/asset/js/reuse.js"></script>
     <script>
@@ -148,6 +228,30 @@
             });
         });
     </script>
+    <script>
+        var elementProduct = document.querySelectorAll(".product");
+
+        elementProduct.forEach(function (value, index) {
+            var elementProductImg = value.querySelector(".product_img img");
+            var elementProductBtn = value.querySelectorAll(".product_btn a");
+
+            value.onmouseover = function () {
+                elementProductImg.setAttribute("src", "/asset/image/jpg/content_introduce.jpg");
+                value.style.border = "1px solid var(--gray-second)";
+                elementProductBtn[0].classList.replace("product_btn-add_card_none", "product_btn-add_card");
+                elementProductBtn[1].classList.replace("product_btn--product_detail_none", "product_btn--product_detail");
+            }
+
+            value.onmouseout = function () {
+                elementProductImg.setAttribute("src", "/asset/image/jpg/product_img.jpg");
+                value.style.border = "none";
+                elementProductBtn[0].classList.replace("product_btn-add_card", "product_btn-add_card_none");
+                elementProductBtn[1].classList.replace("product_btn--product_detail", "product_btn--product_detail_none");
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </body>
 
 </html>
