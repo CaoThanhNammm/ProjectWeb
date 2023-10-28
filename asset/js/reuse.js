@@ -48,9 +48,8 @@ function _generateHeaderAndFooter() {
             body.appendChild(footer);
         });
 }
-<<<<<<< HEAD
-=======
 
-_linkHeaderFooterCSS()
-_generateHeaderAndFooter()
->>>>>>> master
+document.addEventListener('DOMContentLoaded', function () {
+    _linkHeaderFooterCSS()
+    _generateHeaderAndFooter()
+})
