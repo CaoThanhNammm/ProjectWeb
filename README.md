@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-# hqtcsdl-nhom6
-Hệ quản trị cơ sở dữ liệu
-=======
 # LTW
 Đồ án bán hàng gia dụng
 
 Sử dụng: Boostrap, Jquery, JDK 8, JDBC, SQL Server, Font awesome, 
->>>>>>> master
 
 ---------------------------------------------------------------------------------------------
 
