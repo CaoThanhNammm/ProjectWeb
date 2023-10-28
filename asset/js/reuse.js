@@ -49,5 +49,7 @@ function _generateHeaderAndFooter() {
         });
 }
 
-_linkHeaderFooterCSS()
-_generateHeaderAndFooter()
+document.addEventListener('DOMContentLoaded', function () {
+    _linkHeaderFooterCSS()
+    _generateHeaderAndFooter()
+})
