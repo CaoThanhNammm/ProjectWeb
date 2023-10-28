@@ -1,0 +1,93 @@
+/* MOBILE width < 576px */
+@media only screen and (max-width: 576px) {
+    .header_search{
+        width: 50%;
+    }  
+    .logo_page{
+        width: 20%;
+    }
+    .navigtion-item{
+        display: none;
+    }
+    .modal_body{
+        width: 100%;
+    }
+    .header_login_signin{
+        display: none;
+    }
+    .header_cart_logo {
+        width: 55px;
+    }
+    .header_cart_amount_product {
+        top: 4px;
+        left: 25px;
+    }
+
+    .header_login_signin_mobile img {
+        margin-left: 12px;
+    }
+    .header_login_signin_mobile{
+        display: block;
+    }
+
+    ::placeholder{
+        font-size: 13px;
+    }
+}
+/* MOBILE 576px <= width < 768 */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .header_search{
+        width: 50%
+    }  
+    .logo_page{
+        width: 12%;
+    }
+    .navigtion-item{
+        display: none;
+    }
+    .modal_body{
+        width: 50%;
+    }
+    .header_login_signin{
+        display: none;
+    }
+    .header_login_signin_mobile img {
+        margin-left: 12px;
+    }
+    .header_login_signin_mobile{
+        display: block;
+    }
+}
+
+/* TABLET 768px <= width < 992px*/
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .header_search{
+        width: 40%;
+    }   
+    .logo_page{
+        width: 11%;
+    }
+    .navigtion-item{
+        display: none;
+    }
+
+    .modal_body{
+        width: 35%;
+    }
+}
+
+
+/* PC 992px <= width < 1200px*/
+@media only screen and (min-width: 992px) and (max-width: 1190px) {
+    .header_search{
+        width: 45%;
+    }   
+    .logo_page{
+        width: 10%;
+    }
+}
+
+/* extra PC 1200px <= width < 1200px*/
+@media only screen and (min-width: 1200px) {
+   
+}
