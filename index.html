@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <header></header>
     <!-- 
             Create: Cao Thành Nam
             Date: 18/10/2023
@@ -410,26 +411,23 @@
                     </div>
                 </div>
         </div>
+
+        <footer></footer>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
         </script>
 
-    <!-- <script src="asset/js/header.js"></script> -->
     <script src="asset/js/index.js"></script>
-    <script src="asset/js/reuse.js"></script>
 
     <script>
         $(document).ready(function () {
             $('.year').html((new Date(jQuery.now())).getFullYear())
         });
-
-        hoverChangeProductImg();
-        addWishList();
-        moveLeft();
-        moveRight();
-        clickDot();
-        autoSlider();
+        $("header").load("/asset/html/header.html");
+        $("footer").load("/asset/html/footer.html");
     </script>
+
+
 </body>

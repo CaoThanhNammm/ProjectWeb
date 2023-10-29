@@ -4,7 +4,7 @@ Date: 20/10/2023
 Note: hiện ra 2 nút thêm vào giở hàng và xem chi tiết sản phẩm
 */
 
-function hoverChangeProductImg() {
+function _hoverChangeProductImg() {
   var elementProduct = document.querySelectorAll(".product");
   var elementProductFooter = document.querySelectorAll(".product_btn");
 
@@ -41,7 +41,7 @@ Date: 19/10/2023
 Note: nếu ấn vào wishlist thì sản phẩm được thêm vào wishlist
 */
 
-function addWishList() {
+function _addWishList() {
   var elementHeartIcon = document.querySelectorAll(".product_in4_wishlist");
   elementHeartIcon.forEach(function (value) {
     value.onclick = function () {
@@ -59,46 +59,55 @@ var elementRight = document.querySelector(".right");
 
 var elementDot = document.querySelectorAll(".slider_dot_item");
 
-function moveLeft() {
+function _moveLeft() {
   elementLeft.onclick = function () {
     if (active === 0) {
       active = length;
     }
     active--;
-    reloadSlider();
+    _reloadSlider();
   };
 }
 
-function moveRight() {
+function _moveRight() {
   elementRight.onclick = function () {
     if (active === length - 1) {
       active = -1;
     }
     active++;
-    reloadSlider();
+    _reloadSlider();
   };
 }
 
-function autoSlider() {
+function _autoSlider() {
   setInterval(function () {
     elementRight.click();
   }, 5000);
 }
 
-function reloadSlider() {
+function _reloadSlider() {
   var checkLeft = elementImgItem[active].offsetLeft;
   elementImgList.style.left = -checkLeft + "px";
- 
-  var elementLastDotActive = document.querySelector('.slider_dot_item.background_dot_slider-active');
-  elementLastDotActive.classList.remove('background_dot_slider-active');
-  elementDot[active].classList.add('background_dot_slider-active');
+
+  var elementLastDotActive = document.querySelector(
+    ".slider_dot_item.background_dot_slider-active"
+  );
+  elementLastDotActive.classList.remove("background_dot_slider-active");
+  elementDot[active].classList.add("background_dot_slider-active");
 }
 
-function clickDot() {
+function _clickDot() {
   elementDot.forEach(function (value, index) {
     value.addEventListener("click", function () {
       active = index;
-      reloadSlider();
+      _reloadSlider();
     });
   });
 }
+
+_hoverChangeProductImg();
+_addWishList();
+_moveLeft();
+_moveRight();
+_clickDot();
+_autoSlider();
