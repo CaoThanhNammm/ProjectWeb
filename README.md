@@ -1,7 +1,7 @@
-# ProjectWeb
+# LTW
+Đồ án bán hàng gia dụng
 
-Giới thiệu trang web:
-	Trang web bán sản phẩm gia dụng: Sử dụng JSP, HTMl, CSS, JDBC, Servlet, JS
+Sử dụng: Boostrap, Jquery, JDK 8, JDBC, SQL Server, Font awesome, 
 
 ---------------------------------------------------------------------------------------------
 
@@ -92,4 +92,4 @@ Hoặc nên sử dụng file log để ghi lại các sự thay đổi (tối ư
 	Mỗi cá nhân phải tự tìm hiểu và hạn chế nhờ sự giúp đỡ từ thành viên khác, nếu không cá nhân được nhờ sẽ đưa ra yêu cầu tương ứng và do nhóm trưởng thống nhất
 	Nhóm trưởng có trách nhiệm giám sát mọi công việc và là người kiểm tra cuối
 
-Hình phạt: ...
+Hình phạt: Out khỏi nhóm nếu quá 2 lần không hoàn thành

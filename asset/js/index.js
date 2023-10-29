@@ -8,31 +8,31 @@ function _hoverChangeProductImg() {
   var elementProduct = document.querySelectorAll(".product");
   var elementProductFooter = document.querySelectorAll(".product_btn");
 
-  elementProduct.forEach(function (value, index) {
-    var elementProductBtn = value.querySelectorAll(".product_btn a");
+    elementProduct.forEach(function (value, index) {
+        var elementProductBtn = value.querySelectorAll(".product_btn a");
 
-    value.onmouseover = function () {
-      elementProductBtn[0].classList.replace(
-        "product_btn-add_card_none",
-        "product_btn-add_card"
-      );
-      elementProductBtn[1].classList.replace(
-        "product_btn--product_detail_none",
-        "product_btn--product_detail"
-      );
-    };
+        value.onmouseover = function () {
+            elementProductBtn[0].classList.replace(
+                "product_btn-add_card_none",
+                "product_btn-add_card"
+            );
+            elementProductBtn[1].classList.replace(
+                "product_btn--product_detail_none",
+                "product_btn--product_detail"
+            );
+        };
 
-    value.onmouseout = function () {
-      elementProductBtn[0].classList.replace(
-        "product_btn-add_card",
-        "product_btn-add_card_none"
-      );
-      elementProductBtn[1].classList.replace(
-        "product_btn--product_detail",
-        "product_btn--product_detail_none"
-      );
-    };
-  });
+        value.onmouseout = function () {
+            elementProductBtn[0].classList.replace(
+                "product_btn-add_card",
+                "product_btn-add_card_none"
+            );
+            elementProductBtn[1].classList.replace(
+                "product_btn--product_detail",
+                "product_btn--product_detail_none"
+            );
+        };
+    });
 }
 
 /*
