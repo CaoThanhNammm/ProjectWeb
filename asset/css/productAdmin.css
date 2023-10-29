@@ -1,0 +1,12 @@
+/*
+    Create: Nguyễn Khải Nam
+    Date: 29/10/2023
+    Note: Trang trí cho trang product admin
+*/
+.nav-item .nav-link {
+    margin-right: 8px;
+}
+
+.nav-item .nav-link:hover {
+    color: var(--yellow-primary);
+}

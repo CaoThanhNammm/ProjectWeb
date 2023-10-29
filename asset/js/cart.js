@@ -2,13 +2,17 @@
 var $ = document.querySelector.bind(document);
 var $$ = document.querySelectorAll.bind(document);
 
+/*
+Create: Nguyễn Khải Nam
+Date: 21/10/2023
+Note: Tạo hành đồng cho sản phẩm
+*/
+
 document.addEventListener('DOMContentLoaded', function () {
     _update()
 })
 
 /*
-Create: Nguyễn Khải Nam
-Date: 21/10/2023
 Note: Hàm tăng giảm số lượng
 */
 function _quantityAdjust(self, name, option) {
@@ -27,8 +31,6 @@ function _quantityAdjust(self, name, option) {
 }
 
 /*
-    Create: Nguyễn Khải Nam
-    Date: 21/10/2003
     Note: Xử lý check thanh toán
 */
 function _checkAbate(e, name) {
@@ -53,7 +55,7 @@ function _checkAbate(e, name) {
         if (mainElement.classList.contains(name))
             isRemove = true
 
-        var items = $$('.' + generalName).forEach(item => {
+        $$('.' + generalName).forEach(item => {
             if (item.classList.contains(name) && isRemove) {
                 item.classList.remove(name);
             } else if (!(item.classList.contains(name) || isRemove)) {
@@ -65,8 +67,6 @@ function _checkAbate(e, name) {
 
 
 /*
-    Create: Nguyễn Khải Nam
-    Date: 21/10/2003
     Note: Đếm số lượng phần tử con trong một class nào đó
 */
 function _count(parent, child) {
@@ -74,19 +74,14 @@ function _count(parent, child) {
 }
 
 /*
-    Create: Nguyễn Khải Nam
-    Date: 21/10/2003
     Note: Cập nhật giá trị cho name nào đó
 */
 function _updateCountItem(name, value) {
-    if ($(name)) {
+    if ($(name))
         $(name).innerHTML = value
-    }
 }
 
 /*
-    Create: Nguyễn Khải Nam
-    Date: 22/10/2003
     Note: Loại bỏ name khỏi class nếu đã tồn tại ngược lại thêm vào
 */
 function _toggle(e, name) {
@@ -98,34 +93,26 @@ function _toggle(e, name) {
 }
 
 /*
-    Create: Nguyễn Khải Nam
-    Date: 22/10/2003
     Note: Loại bỏ item khỏi class
 */
 function _removeItem(parentClass, child, name) {
     name = name.replace('.', '')
     while (!child.classList.contains(name)) {
         child = child.parentElement
+        if (!child)
+            console.log('Sai cấu trúc cho chỗ cart')
     }
     $(parentClass).removeChild(child)
     _update()
 }
 
 /*
-    Create: Nguyễn Khải Nam
-    Date: 22/10/2003
     Note: Tự động cập nhật giá trị cho trang cart
 */
 function _update() {
-    let count = 0
-    count = _count('.cart_body_list', '.card')
-    if (count > 0) {
-        $('.cart_body-empty').style.display = 'none'
-        $('.cart_body-item').style.display = 'flex'
-    } else {
-        $('.cart_body-empty').style.display = 'block'
-        $('.cart_body-item').style.display = 'none'
-    }
+    let count = + _count('.cart_body_list', '.card')
+    $('.cart_body-empty').style.display = count > 0 ? 'none' : 'block'
+    $('.cart_body-item').style.display = count > 0 ? 'flex' : 'none'
     _updateCountItem('.cart_head_count', count);
 }
 
