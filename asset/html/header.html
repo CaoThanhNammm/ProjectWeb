@@ -16,8 +16,7 @@
         Note: header của trang web 
     -->
     <div class="header">
-        <img src="/asset/image/general/logo.png" alt="" class="logo_page">
-
+        <a href="/" class="logo_page"><img src="/asset/image/general/logo.png" alt=""></a>
         <!-- phần tìm kiếm sản phẩm của header -->
         <div class="header_search">
             <input type="text" class="search" placeholder="Tìm đồ gia dụng">
@@ -31,6 +30,11 @@
             <a href="/asset//html/register.html" class="sign_in">Đăng ký</a>
         </div>
 
+        <div class="list_wishList">
+            <i class="fa-regular fa-heart"></i>
+            <span class="amount_wishlist">3</span>
+        </div>
+
         <div class="header_login_signin_mobile">
             <img src="/asset/image/png/user.png" alt="">
         </div>
@@ -38,8 +42,10 @@
         <!-- phần giỏ hàng của header -->
         <div class="header_cart">
             <div class="header_cart_info">
-                <img src="/asset/image/png/cart.png" class="header_cart_logo" alt="">
-                <span class="header_cart_amount_product">0</span>
+                <a href="/asset/html/cart.html">
+                    <img src="/asset/image/png/cart.png" class="header_cart_logo" alt="">
+                    <span class="header_cart_amount_product">0</span>
+                </a>
             </div>
         </div>
     </div>
@@ -51,13 +57,13 @@
         </div>
 
         <ul class="navigtion-list">
-            <li class="navigtion-item"><a href="">Tivi</a></li>
-            <li class="navigtion-item"><a href="">Máy giặt</a></li>
-            <li class="navigtion-item"><a href="">Tủ lạnh</a></li>
-            <li class="navigtion-item"><a href="">Máy sấy</a></li>
-            <li class="navigtion-item"><a href="">Gia dụng</a></li>
-            <li class="navigtion-item"><a href="">Robot hút bụi</a></li>
-            <li class="navigtion-item"><a href="">Bếp điện</a></li>
+            <li class="navigtion-item"><a href="/asset/html/product.html">Tivi</a></li>
+            <li class="navigtion-item"><a href="/asset/html/product.html">Máy giặt</a></li>
+            <li class="navigtion-item"><a href="/asset/html/product.html">Tủ lạnh</a></li>
+            <li class="navigtion-item"><a href="/asset/html/product.html">Máy sấy</a></li>
+            <li class="navigtion-item"><a href="/asset/html/product.html">Gia dụng</a></li>
+            <li class="navigtion-item"><a href="/asset/html/product.html">Robot hút bụi</a></li>
+            <li class="navigtion-item"><a href="/asset/html/product.html">Bếp điện</a></li>
         </ul>
     </div>
 
@@ -120,6 +126,88 @@
                 </ul>
             </div>
         </ul>
+    </div>
+
+    <div class="modal_body_wishList">
+        <div class= "wishlist_header">
+            <i class="fa-solid fa-xmark modal_body_quit_wishlist"></i>
+            <h3 class="wishlist_title" style="margin-bottom: 0; margin-left: 12px;">Wishlist</h3>
+            <h3 class="wishlist_amount" style="margin-bottom: 0;">3</h3>
+        </div>
+
+        <div class="wishlist_product">
+            <img src="/asset/image/jpg/product_img.jpg" alt="">
+            <div class="wishlist_product_in4">
+                <a class="wishlist_product_title">Ghế</a>
+                <div class="wishlist_product_right_under">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="wishlist_product_price">100,000,000,000₫</span>
+                </div>
+            </div>
+        </div><div class="wishlist_product">
+            <img src="/asset/image/jpg/product_img.jpg" alt="">
+            <div class="wishlist_product_in4">
+                <a class="wishlist_product_title">Ghế</a>
+                <div class="wishlist_product_right_under">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="wishlist_product_price">100,000,000,000₫</span>
+                </div>
+            </div>
+        </div><div class="wishlist_product">
+            <img src="/asset/image/jpg/product_img.jpg" alt="">
+            <div class="wishlist_product_in4">
+                <a class="wishlist_product_title">Ghế</a>
+                <div class="wishlist_product_right_under">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="wishlist_product_price">100,000,000,000₫</span>
+                </div>
+            </div>
+        </div><div class="wishlist_product">
+            <img src="/asset/image/jpg/product_img.jpg" alt="">
+            <div class="wishlist_product_in4">
+                <a class="wishlist_product_title">Ghế</a>
+                <div class="wishlist_product_right_under">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="wishlist_product_price">100,000,000,000₫</span>
+                </div>
+            </div>
+        </div><div class="wishlist_product">
+            <img src="/asset/image/jpg/product_img.jpg" alt="">
+            <div class="wishlist_product_in4">
+                <a class="wishlist_product_title">Ghế</a>
+                <div class="wishlist_product_right_under">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="wishlist_product_price">100,000,000,000₫</span>
+                </div>
+            </div>
+        </div><div class="wishlist_product">
+            <img src="/asset/image/jpg/product_img.jpg" alt="">
+            <div class="wishlist_product_in4">
+                <a class="wishlist_product_title">Ghế</a>
+                <div class="wishlist_product_right_under">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="wishlist_product_price">100,000,000,000₫</span>
+                </div>
+            </div>
+        </div><div class="wishlist_product">
+            <img src="/asset/image/jpg/product_img.jpg" alt="">
+            <div class="wishlist_product_in4">
+                <a class="wishlist_product_title">Ghế</a>
+                <div class="wishlist_product_right_under">
+                    <i class="fa-regular fa-trash-can"></i>
+                    <span class="wishlist_product_price">100,000,000,000₫</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="wishlist_product_footer">
+            <span>Tổng cộng</span>
+            <span class="wishlist_product_footer_total">300,000,000₫</span>
+        </div>
+
+        <div class="wishlist_product_detail">
+            <a href="/asset/html/wishlistDetail.html">XEM WISHLIST</a>
+        </div>
     </div>
 </body>
 
