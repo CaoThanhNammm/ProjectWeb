@@ -1,18 +1,22 @@
-
-.introduce{
+/**
+Create: Cao Thành Nam, Nguyễn Khải Nam
+Date: 29/10/2023
+Note: Css cho trang giới thiệu
+*/
+.introduce {
     margin-top: 40px;
     text-align: center;
 }
 
-.about_img{
+.about_img {
     position: relative;
 }
 
-.about_img:hover .about_img_slogan{
+.about_img:hover .about_img_slogan {
     top: 34%;
 }
 
-.about_img_slogan{
+.about_img_slogan {
     position: absolute;
     top: 36%;
     width: 65%;
@@ -27,6 +31,6 @@
     transition: 0.3s ease;
 }
 
-.about_img img{
+.about_img img {
     width: 100%;
 }
