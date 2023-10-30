@@ -1,0 +1,107 @@
+.category_product{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.category_option_list{
+    margin-bottom: 0;
+    margin-top: 12px;
+    padding-left: 0;
+    margin-top: 20px;
+    padding-right: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--gray-second);
+}
+
+.category_option_item{
+    position: relative;
+    padding-bottom: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category_option_item ul{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    right: 0;
+    z-index: 2;
+    padding-left: 0;
+    background-color: var(--white-primary);
+    box-shadow: 0px 1px 3px 0px var(--gray-second);
+    cursor: pointer;
+    display: none;
+}
+
+
+.category_price_option_item ul li{
+    padding: 5px 12px;
+}
+
+.category_price_option_item ul li:hover{
+    background-color: var(--black-primary);
+    color: var(--yellow-primary);
+}
+
+.category_price_option .category_all_item_icon{
+    margin-left: 80px;
+    font-size: 17px;
+}
+
+.category_brand span, .category_price span{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.category_product_submit{
+    color: var( --white-primary);
+    background-color: var(--black-primary);
+    height: 44px;
+    padding: 0 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+.category_product_submit:hover{
+    color: var(--yellow-primary);
+}
+
+.category_brand_option_item ul li label{
+    cursor: pointer;
+    width: 100%;
+    padding: 5px 12px;
+}
+
+.category_brand_option_item ul li:hover span{
+    color: var(--yellow-primary);
+}
+
+.category_brand_option_item ul li label span{
+    margin-left: 3px;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--black-primary);
+}
+
+.category_brand_option_item ul li:hover{
+    background-color: var(--white-primary);
+}
+
+.category_option_list .active{
+    display: block;
+}
+
+.border_option_list{
+    border: none;
+    padding-bottom: 1px;
+}
+
+.rotate_icon{
+    rotate: 180deg;
+}

@@ -4,9 +4,9 @@ Date: 20/10/2023
 Note: hiện ra 2 nút thêm vào giở hàng và xem chi tiết sản phẩm
 */
 
-function hoverChangeProductImg() {
-    var elementProduct = document.querySelectorAll(".product");
-    var elementProductFooter = document.querySelectorAll(".product_btn");
+function _hoverChangeProductImg() {
+  var elementProduct = document.querySelectorAll(".product");
+  var elementProductFooter = document.querySelectorAll(".product_btn");
 
     elementProduct.forEach(function (value, index) {
         var elementProductBtn = value.querySelectorAll(".product_btn a");
@@ -41,13 +41,13 @@ Date: 19/10/2023
 Note: nếu ấn vào wishlist thì sản phẩm được thêm vào wishlist
 */
 
-function addWishList() {
-    var elementHeartIcon = document.querySelectorAll(".product_in4_wishlist");
-    elementHeartIcon.forEach(function (value) {
-        value.onclick = function () {
-            value.classList.toggle("add_wish_list");
-        };
-    });
+function _addWishList() {
+  var elementHeartIcon = document.querySelectorAll(".product_in4_wishlist");
+  elementHeartIcon.forEach(function (value) {
+    value.onclick = function () {
+      value.classList.toggle("add_wish_list");
+    };
+  });
 }
 
 var active = 0;
@@ -59,46 +59,55 @@ var elementRight = document.querySelector(".right");
 
 var elementDot = document.querySelectorAll(".slider_dot_item");
 
-function moveLeft() {
-    elementLeft.onclick = function () {
-        if (active === 0) {
-            active = length;
-        }
-        active--;
-        reloadSlider();
-    };
+function _moveLeft() {
+  elementLeft.onclick = function () {
+    if (active === 0) {
+      active = length;
+    }
+    active--;
+    _reloadSlider();
+  };
 }
 
-function moveRight() {
-    elementRight.onclick = function () {
-        if (active === length - 1) {
-            active = -1;
-        }
-        active++;
-        reloadSlider();
-    };
+function _moveRight() {
+  elementRight.onclick = function () {
+    if (active === length - 1) {
+      active = -1;
+    }
+    active++;
+    _reloadSlider();
+  };
 }
 
-function autoSlider() {
-    setInterval(function () {
-        elementRight.click();
-    }, 5000);
+function _autoSlider() {
+  setInterval(function () {
+    elementRight.click();
+  }, 5000);
 }
 
-function reloadSlider() {
-    var checkLeft = elementImgItem[active].offsetLeft;
-    elementImgList.style.left = -checkLeft + "px";
+function _reloadSlider() {
+  var checkLeft = elementImgItem[active].offsetLeft;
+  elementImgList.style.left = -checkLeft + "px";
 
-    var elementLastDotActive = document.querySelector('.slider_dot_item.background_dot_slider-active');
-    elementLastDotActive.classList.remove('background_dot_slider-active');
-    elementDot[active].classList.add('background_dot_slider-active');
+  var elementLastDotActive = document.querySelector(
+    ".slider_dot_item.background_dot_slider-active"
+  );
+  elementLastDotActive.classList.remove("background_dot_slider-active");
+  elementDot[active].classList.add("background_dot_slider-active");
 }
 
-function clickDot() {
-    elementDot.forEach(function (value, index) {
-        value.addEventListener("click", function () {
-            active = index;
-            reloadSlider();
-        });
+function _clickDot() {
+  elementDot.forEach(function (value, index) {
+    value.addEventListener("click", function () {
+      active = index;
+      _reloadSlider();
     });
+  });
 }
+
+_hoverChangeProductImg();
+_addWishList();
+_moveLeft();
+_moveRight();
+_clickDot();
+_autoSlider();

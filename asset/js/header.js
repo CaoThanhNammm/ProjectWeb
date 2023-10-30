@@ -14,12 +14,17 @@ function _startSlideAllList() {
     elementIconAllList.onclick = function () {
         _slideLeftToRightAllList();
     }
+
+    elementWistListIcon.onclick = function(){
+        _slideRightToLefttAllList();
+    }
 }
 
 /*
     Create: Cao Thành Nam
     Date: 22/10/2023
     Note: phương thức css cho các modal để hiển thị lên màn hình
+    phương này là của tất cả danh mục
 */
 
 function _slideLeftToRightAllList() {
@@ -27,6 +32,20 @@ function _slideLeftToRightAllList() {
     elementModalBody.style.left = '0';
     elementBody.classList.add('hidden_overflow');
 }
+
+/*
+    Create: Cao Thành Nam
+    Date: 29/10/2023
+    Note: phương thức css cho các modal để hiển thị lên màn hình
+    phương thức này là của wishlist
+*/
+function _slideRightToLefttAllList() {
+    elementModal.classList.toggle("active")
+    elementModalBodyWishList.style.right = '0';
+    elementBody.classList.add('hidden_overflow');
+}
+
+
 /*
     Create: Cao Thành Nam
     Date: 22/10/2023
@@ -40,6 +59,9 @@ function _clickQuit() {
     elementModal.onclick = function () {
         _quitSlide();
     }
+    elementQuitIconWishList.onclick = function () {
+        _quitSlide();
+    }
 }
 
 /*
@@ -51,7 +73,8 @@ function _quitSlide() {
     elementModal.classList.remove("active")
     elementModalBody.style.left = -$(elementModalBody).width() + "px";
     elementBody.classList.remove('hidden_overflow');
-
+    elementModalBodyWishList.style.right = -$(elementModalBodyWishList).width() + "px";
+    
     setTimeout(function () {
         elementCategoryItem.forEach(function (value, index) {
             _resetSlide(index);
@@ -89,6 +112,11 @@ function _clickChildItem() {
         }
     });
 }
+
+
+var elementWistListIcon = document.querySelector(".list_wishList");
+var elementModalBodyWishList = document.querySelector(".modal_body_wishList");
+var elementQuitIconWishList = document.querySelector(".modal_body_quit_wishlist");
 
 _startSlideAllList();
 _clickQuit();
