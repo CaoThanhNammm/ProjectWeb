@@ -79,22 +79,22 @@
             </div>
         </div>
         <div class="row detail_part" style="margin-top: 30px;">
-            <div class="col-5">
+            <div class="tab">
+                <button class="tablinks active" onclick="_switchTab(event, 'describe')">Giới thiệu</button>
+                <button class="tablinks" onclick="_switchTab(event, 'info')">Thông tin sản phẩm</button>
+                <button class="tablinks" onclick="_switchTab(event, 'rates')">Đánh giá</button>
+            </div>
+            <div id="describe" class="tabcontent active">
                 <h2 class="title">Giới thiệu</h2>
-                <p style="white-space: pre-line; font-size: 14px;">
-                    - BỀ MẶT NẤU DUAL: Nồi điện mới của chúng tôi vừa là NƯỚNG vừa là Lẩu, giúp nấu nướng linh hoạt hơn
-                    mà ít tốn công sức hơn - để chuẩn bị những bữa ăn ngon.
-                    - ĐA CHỨC NĂNG: Bạn có thể điều chỉnh nhiệt độ từ 300° đến 450° F, giúp bạn thoải mái chế biến các
-                    món súp thịnh soạn, nướng thịt và rau - và nhiều hơn thế nữa.
-                    - NẤU CHE: Nắp kính cường lực ngăn ngừa bắn tung tóe khi nướng và nấu. Nó có thể ngăn ngừa sự lộn
-                    xộn trong nhà bếp và vết bẩn trên quần áo của bạn.
-                    - RỘNG RÃI & DI ĐỘNG: Nồi nấu bằng thép không gỉ cực lớn của chúng tôi có dung tích 2,5 lít và đảm
-                    bảo phân phối nhiệt đều và dễ dàng làm sạch – đó là máy rửa chén an toàn.
-                    - PHỤ KIỆN: Nồi này đi kèm đế nhiệt có thể điều chỉnh, nồi nấu bằng thép không gỉ, chảo nướng chống
-                    dính và nắp thủy tinh - cho những bữa ăn hoàn hảo mọi lúc.
+                <p style="white-space: pre-line; font-size: 16px;">
+                    - BỀ MẶT NẤU DUAL: Nồi điện mới của chúng tôi vừa là NƯỚNG vừa là Lẩu, giúp nấu nướng linh hoạt hơn mà ít tốn công sức hơn - để chuẩn bị những bữa ăn ngon.
+                    - ĐA CHỨC NĂNG: Bạn có thể điều chỉnh nhiệt độ từ 300° đến 450° F, giúp bạn thoải mái chế biến các món súp thịnh soạn, nướng thịt và rau - và nhiều hơn thế nữa.
+                    - NẤU CHE: Nắp kính cường lực ngăn ngừa bắn tung tóe khi nướng và nấu. Nó có thể ngăn ngừa sự lộn xộn trong nhà bếp và vết bẩn trên quần áo của bạn.
+                    - RỘNG RÃI & DI ĐỘNG: Nồi nấu bằng thép không gỉ cực lớn của chúng tôi có dung tích 2,5 lít và đảm bảo phân phối nhiệt đều và dễ dàng làm sạch – đó là máy rửa chén an toàn.
+                    - PHỤ KIỆN: Nồi này đi kèm đế nhiệt có thể điều chỉnh, nồi nấu bằng thép không gỉ, chảo nướng chống dính và nắp thủy tinh - cho những bữa ăn hoàn hảo mọi lúc.
                 </p>
             </div>
-            <div class="col-7">
+            <div id="info" class="tabcontent">
                 <h2 class="title">Thông tin sản phẩm</h2>
                 <table class="table_full">
                     <tr>
@@ -138,6 +138,61 @@
                         <td>220 Vôn</td>
                     </tr>
                 </table>
+            </div>
+            <div id="rates" class="tabcontent">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="user_review">
+                            <div class="user_info">
+                                <h4 class="name">Trần Minh Quân</h4>
+                                <small class="date">Ngày: 30/10/2023</small>
+                            </div>
+                            <div class="rate">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                            </div>
+                            <div class="review">
+                                <p>Từ ngày có cái nồi này, mỗi tối tôi ăn 3 bát cơm, gia đình êm ấm, mỗi sáng thức dậy tôi cảm thấy như một người thành công. Hơi khói phả ra từ nồi cơm khiến tôi nhớ về ngày bé khi còn bên bếp lửa với bà, cái quạt mo phe phẩy thổi gió vào lò củi, gạo trắng ám mùi gỗ ấy là kỷ niệm về cái thời bao cấp đầy khốn khổ tại vùng quê Nam Kì.</p>
+                            </div>
+                        </div>
+                        <div class="user_review">
+                            <div class="user_info">
+                                <h4 class="name">Cao Thành Nam</h4>
+                                <small class="date">Ngày: 29/10/2023</small>
+                            </div>
+                            <div class="rate">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                            </div>
+                            <div class="review">
+                                <p>Gạo nấu ghè tan, cực ngây, êm.</p>
+                            </div>
+                        </div>
+                        <div class="user_review">
+                            <div class="user_info">
+                                <h4 class="name">Nguyễn Khải Nam</h4>
+                                <small class="date">Ngày: 28/10/2023</small>
+                            </div>
+                            <div class="rate">
+                                <img class="star" src="/asset/image/detail/star.png" alt="star">
+                            </div>
+                            <div class="review">
+                                <p>1 sao cho giống cờ Việt Nam.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h2 class="title">Để lại đánh giá</h2>
+                        <br>
+                        <p style="color: gray; text-align: center;">Hãy đăng nhập để gửi đánh giá</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row detail_part">
