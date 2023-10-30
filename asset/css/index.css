@@ -12,7 +12,6 @@
     --red-second: red;
     --gray-third: #b6b5b5;
     --white-second: rgba(229, 229, 229, 0.7);
-    ;
 
     --fsize-normal: 16px;
 }
@@ -168,7 +167,6 @@ h6 {
     color: var(--yellow-primary);
 }
 
-
 .product_event {
     box-sizing: border-box;
     width: 100%;
@@ -238,10 +236,6 @@ h6 {
 
 .product_img {
     position: relative;
-}
-
-.container-fluid {
-    margin-top: 150px;
 }
 
 .product_img_hover {
@@ -358,6 +352,5 @@ h6 {
     color: var(--red-second);
     transition: 0.2s ease;
 }
-
 
 /* end: content */
