@@ -378,9 +378,9 @@
     <script>
         $(document).ready(function () {
             $('.year').html((new Date(jQuery.now())).getFullYear())
+            $("header").load("/asset/html/header.html");
+            $("footer").load("/asset/html/footer.html");
         });
-        $("header").load("/asset/html/header.html");
-        $("footer").load("/asset/html/footer.html");
     </script>
 
 

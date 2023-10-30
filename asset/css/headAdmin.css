@@ -1,0 +1,59 @@
+/* 
+    Create: Nguyễn Khải Nam
+    Date: 30/10/2023
+    Note: Trang trí cho trang admin
+*/
+#admin {
+    float: left;
+    max-width: 250px;
+    min-height: 100dvh;
+}
+
+.admin_head {
+    min-height: 100vh;
+}
+
+.admin_head,
+.dropdown-menu {
+    background-color: var(--blue-second);
+    color: var(--white-primary) !important;
+}
+
+#admin a {
+    text-decoration: none;
+    color: var(--white-primary) !important;
+}
+
+#admin .dropdown-item:hover {
+    background-color: var(--yellow-second) !important;
+}
+
+#admin .admin_logo {
+    width: 50%;
+    object-fit: cover;
+}
+
+#admin .admin-menu {
+    border-top: 1px solid var(--gray-third);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#admin .nav-item {
+    margin-top: 20px;
+}
+
+#admin .nav-item .nav-link {
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#admin .nav-item:hover,
+#admin .nav-link:hover,
+#admin .active {
+    background-color: var(--yellow-primary);
+    border-radius: 5px;
+    color: var(--white-primary) !important;
+}

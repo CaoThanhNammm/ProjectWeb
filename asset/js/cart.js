@@ -1,15 +1,9 @@
 var $$ = document.querySelectorAll.bind(document)
-
-<<<<<<< HEAD
 /*
 Create: Nguyễn Khải Nam
 Date: 21/10/2023
 Note: Tạo hành đồng cho sản phẩm
 */
-
-=======
-// Cú pháp viết tắt
->>>>>>> master
 document.addEventListener('DOMContentLoaded', function () {
     _update()
 })
@@ -79,14 +73,9 @@ function _count(parent, child) {
     Note: Cập nhật giá trị cho name nào đó
 */
 function _updateCountItem(name, value) {
-<<<<<<< HEAD
-    if ($(name))
-        $(name).innerHTML = value
-=======
     if ($(name)) {
         $(name)[0].innerHTML = value
     }
->>>>>>> master
 }
 
 /*
@@ -118,15 +107,8 @@ function _removeItem(parentClass, child, name) {
     Note: Tự động cập nhật giá trị cho trang cart
 */
 function _update() {
-<<<<<<< HEAD
     let count = + _count('.cart_body_list', '.card')
-    $('.cart_body-empty').style.display = count > 0 ? 'none' : 'block'
-    $('.cart_body-item').style.display = count > 0 ? 'flex' : 'none'
-=======
-    let count = 0
-    count = _count('.cart_body_list', '.card')
     $('.cart_body-empty')[0].style.display = count > 0 ? 'none' : 'block'
     $('.cart_body-item')[0].style.display = count > 0 ? 'flex' : 'none'
->>>>>>> master
     _updateCountItem('.cart_head_count', count);
 }
