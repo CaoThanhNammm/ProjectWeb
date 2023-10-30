@@ -1,7 +1,6 @@
-// Cú pháp viết tắt
-var $ = document.querySelector.bind(document);
-var $$ = document.querySelectorAll.bind(document);
+var $$ = document.querySelectorAll.bind(document)
 
+// Cú pháp viết tắt
 document.addEventListener('DOMContentLoaded', function () {
     _update()
 })
@@ -70,7 +69,7 @@ function _checkAbate(e, name) {
     Note: Đếm số lượng phần tử con trong một class nào đó
 */
 function _count(parent, child) {
-    return $(parent).querySelectorAll(child).length
+    return $(parent)[0].querySelectorAll(child).length
 }
 
 /*
@@ -80,7 +79,7 @@ function _count(parent, child) {
 */
 function _updateCountItem(name, value) {
     if ($(name)) {
-        $(name).innerHTML = value
+        $(name)[0].innerHTML = value
     }
 }
 
@@ -107,7 +106,7 @@ function _removeItem(parentClass, child, name) {
     while (!child.classList.contains(name)) {
         child = child.parentElement
     }
-    $(parentClass).removeChild(child)
+    $(parentClass)[0].removeChild(child)
     _update()
 }
 
@@ -119,13 +118,7 @@ function _removeItem(parentClass, child, name) {
 function _update() {
     let count = 0
     count = _count('.cart_body_list', '.card')
-    if (count > 0) {
-        $('.cart_body-empty').style.display = 'none'
-        $('.cart_body-item').style.display = 'flex'
-    } else {
-        $('.cart_body-empty').style.display = 'block'
-        $('.cart_body-item').style.display = 'none'
-    }
+    $('.cart_body-empty')[0].style.display = count > 0 ? 'none' : 'block'
+    $('.cart_body-item')[0].style.display = count > 0 ? 'flex' : 'none'
     _updateCountItem('.cart_head_count', count);
 }
-
