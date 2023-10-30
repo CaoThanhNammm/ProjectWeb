@@ -42,6 +42,7 @@
 
 #admin .nav-item {
     margin-top: 20px;
+    transition: 0.2s ease-in;
 }
 
 #admin .nav-item .nav-link {
@@ -51,7 +52,6 @@
 }
 
 #admin .nav-item:hover,
-#admin .nav-link:hover,
 #admin .active {
     background-color: var(--yellow-primary);
     border-radius: 5px;
