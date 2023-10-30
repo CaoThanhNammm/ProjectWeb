@@ -4,13 +4,13 @@
     Note: Trang trí cho trang admin
 */
 #admin {
-    float: left;
-    max-width: 250px;
-    min-height: 100dvh;
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
 }
 
 .admin_head {
-    min-height: 100vh;
+    height: 100%;
 }
 
 .admin_head,
@@ -42,7 +42,7 @@
 
 #admin .nav-item {
     margin-top: 20px;
-    transition: 0.2s ease-in;
+    transition: 0.2s ease-in-out;
 }
 
 #admin .nav-item .nav-link {
