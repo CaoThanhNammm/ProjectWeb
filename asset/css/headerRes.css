@@ -118,5 +118,12 @@
 
 /* extra PC 1200px <= width < 1200px*/
 @media only screen and (min-width: 1200px) {
-   
+    .modal_body{
+        width: 30%;
+        left: -30%;
+    }
+    .modal_body_wishList{
+        width: 30%;
+        right: -30%;
+    }
 }
