@@ -28,10 +28,12 @@
                     <div class="admin-menu">
                         <ul class="navbar-nav mr-auto mt-2">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">
-                                    <i class="fa-solid fa-house"></i>
-                                    Tổng quan
-                                </a>
+                                <div class="nav-link active">
+                                    <a href="#">
+                                        <i class="fa-solid fa-house icon_title"></i>
+                                        Tổng quan
+                                    </a>
+                                </div>
                             </li>
 
                             <!-- <li class="nav-item dropdown">
@@ -48,31 +50,66 @@
                             </li> -->
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fa-solid fa-user-tie"></i>
-                                    Khách hàng
-                                </a>
+                                <div class="nav-link">
+                                    <a href="#">
+                                        <i class="fa-solid fa-user-tie icon_title"></i>
+                                        Khách hàng
+                                    </a>
+                                    <i class="fa-solid fa-caret-down icon_down"></i>
+                                </div>
+
+                                <ul class="nav-item_list_child">
+                                    <li class="nav-item_item_child"><a href="">Phân quyền người dùng</a></li>
+                                    <li class="nav-item_item_child"><a href="">Thống kê người dùng</a></li>
+                                </ul>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fa-brands fa-product-hunt"></i>
-                                    Sản phẩm
-                                </a>
+                                <div class="nav-link">
+                                    <a href="#">
+                                        <i class="fa-brands fa-product-hunt icon_title"></i>
+                                        Sản phẩm
+                                    </a>
+                                    <i class="fa-solid fa-caret-down icon_down"></i>
+
+                                </div>
+
+                                <ul class="nav-item_list_child">
+                                    <li class="nav-item_item_child"><a href="">Thêm sản phẩm</a></li>
+                                    <li class="nav-item_item_child"><a href="">Thống kê sản phẩm</a></li>
+                                    <li class="nav-item_item_child"><a href="">Chỉnh sửa sản phẩm</a></li>
+                                </ul>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    Đơn hàng
-                                </a>
+                                <div class="nav-link">
+                                    <a href="#">
+                                        <i class="fa-solid fa-cart-shopping icon_title"></i>
+                                        Đơn hàng
+                                    </a>
+                                    <i class="fa-solid fa-caret-down icon_down"></i>
+                                </div>
+
+                                <ul class="nav-item_list_child">
+                                    <li class="nav-item_item_child"><a href="">Xem đơn hàng</a></li>
+                                    <li class="nav-item_item_child"><a href="">Cần gì thì thêm vô</a></li>
+                                    <li class="nav-item_item_child"><a href="">Cần gì thì thêm vô</a></li>
+                                </ul>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fa-solid fa-ticket"></i>
-                                    Phiếu giảm giá
-                                </a>
+                                <div class="nav-link">
+                                    <a  href="#">
+                                        <i class="fa-solid fa-ticket icon_title"></i>
+                                        Phiếu giảm giá
+                                    </a>
+                                    <i class="fa-solid fa-caret-down icon_down"></i>
+                                </div>
+                                
+                                <ul class="nav-item_list_child">
+                                    <li class="nav-item_item_child"><a href="">Cần gì thì thêm vô</a></li>
+                                    <li class="nav-item_item_child"><a href="">Cần gì thì thêm vô</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -81,6 +118,7 @@
         </div>
     </header>
 
+    <script src="/asset/js/headerAdmin.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
         </script>
@@ -88,6 +126,8 @@
         $('.admin-dropdown-toggle').click(() => {
             $('.admin-dropdown-menu').toggle(500)
         })
+
+        slideTopToBottom();
     </script>
 </body>
 
