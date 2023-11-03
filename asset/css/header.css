@@ -75,7 +75,6 @@ body{
     margin: 0 8px;
     font-size: 15px;
     font-weight: 600;
-    transition: 0.3s ease;
 }
 
 .header_login_signin .line{
@@ -288,7 +287,6 @@ body{
     color: var(--white-primary);
     margin-left: 9px;
     font-weight: 600;
-    transition: 0.3s ease;
     cursor: pointer;
 }
 
@@ -296,15 +294,16 @@ body{
     color: var(--white-primary);
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s ease;
 }
 
 .navigtion-item:hover a, .log_in:hover, .sign_in:hover{
     color: var(--yellow-primary);
+    transition: 0.3s ease;
 }
 
 .all_list:hover .all_list_logo, .all_list:hover .all_list_text {
     color: var(--yellow-primary);
+    transition: 0.3s ease;
 }
 
 .all_list_logo{
