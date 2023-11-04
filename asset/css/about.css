@@ -1,18 +1,30 @@
+/**
+Create: Cao Thành Nam, Nguyễn Khải Nam
+Date: 29/10/2023
+Note: Css cho trang giới thiệu
+*/
 
-.introduce{
+.body{
+    overflow-x: hidden;
+}
+.introduce {
     margin-top: 40px;
     text-align: center;
 }
 
-.about_img{
+.introduce p{
+    font-size: 20px;
+}
+
+.about_img {
     position: relative;
 }
 
-.about_img:hover .about_img_slogan{
+.about_img:hover .about_img_slogan {
     top: 34%;
 }
 
-.about_img_slogan{
+.about_img_slogan {
     position: absolute;
     top: 36%;
     width: 65%;
@@ -27,6 +39,61 @@
     transition: 0.3s ease;
 }
 
-.about_img img{
+.about_img img {
     width: 100%;
+}
+
+#form input, #form textarea{
+    outline: none !important;
+    border: 2px solid rgb(201, 200, 200)!important;
+}
+
+#form input:focus, #form textarea:focus{
+    border: 2px solid gray!important;
+    box-shadow: none;
+}
+
+::placeholder{
+    color: rgb(163, 161, 161) !important;
+}
+
+.about_us img{
+    width: 100%;
+}
+
+.about_us{
+    margin-top: 50px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.value_webpage_first{
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+
+/* MOBILE width < 576px */
+@media only screen and (max-width: 576px) {
+    .about_img{
+        display: none;
+    }
+}
+/* MOBILE 576px <= width < 768 */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .about_img{
+        display: none;
+    }
+}
+
+/* TABLET 768px <= width < 992px*/
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    
+}
+
+/* extra PC 1200px <= width < 1200px*/
+@media only screen and (min-width: 1200px) {
+
 }

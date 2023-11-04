@@ -1,0 +1,79 @@
+#statistic_admin{
+    width: 100%;
+}
+
+#statistic_admin .header_search {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+    background-color: var(--white-primary);
+}
+
+#statistic_admin .header_search .search {
+    border-radius: 6px;
+    background-color: var(--white-primary);
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#statistic_admin .header_search .search_logo {
+    width: 61px;
+    display: flex;
+    cursor: pointer;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: var(--yellow-primary);
+    transition: 0.3s ease;
+}
+
+#statistic_admin .search_logo:hover {
+    background-color: var(--yellow-second);
+}
+
+#statistic_admin .navbar .navbar-nav select{
+    margin-left: 12px;
+}
+
+#statistic_admin select:focus {
+    outline: none;
+}
+
+#statistic_admin .table_user {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#statistic_admin .table_user td, #statistic_admin .table_user th{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: var(--gray-primary);
+}
+
+#statistic_admin .submit{
+    border: none;
+    background-color: var(--yellow-primary);
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 0px 20px;
+}
+
+#statistic_admin .submit:hover{
+    opacity: 0.8;
+}

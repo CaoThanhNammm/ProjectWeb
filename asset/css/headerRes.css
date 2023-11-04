@@ -4,13 +4,10 @@
         width: 50%;
     }  
     .logo_page{
-        width: 20%;
+        width: 22%;
     }
     .navigtion-item{
         display: none;
-    }
-    .modal_body{
-        width: 100%;
     }
     .header_login_signin{
         display: none;
@@ -18,14 +15,37 @@
     .header_cart_logo {
         width: 55px;
     }
+    .modal_body{
+        width: 100%;
+        left: -100%;
+    }
+    .modal_body_wishList{
+        width: 100%;
+        right: -100%;
+    }
+    
     .header_cart_amount_product {
         top: 4px;
         left: 25px;
     }
-
-    .header_login_signin_mobile img {
-        margin-left: 12px;
+    
+    .list_wishList--mobile{
+        display: block;
     }
+
+    .list_wishList{
+        display: none;
+    }
+    .list_wishList--mobile i{
+        color: var(--white-primary);
+        font-size: 25px;
+    }
+
+    .navigation{
+        display: flex;
+        justify-content: space-between;
+    }
+
     .header_login_signin_mobile{
         display: block;
     }
@@ -37,6 +57,7 @@
     ::placeholder{
         font-size: 13px;
     }
+  
 }
 /* MOBILE 576px <= width < 768 */
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -44,13 +65,18 @@
         width: 50%
     }  
     .logo_page{
-        width: 12%;
+        width: 19%;
     }
     .navigtion-item{
         display: none;
     }
     .modal_body{
         width: 50%;
+        left: -50%;
+    }
+    .modal_body_wishList{
+        width: 50%;
+        right: -50%;
     }
     .header_login_signin{
         display: none;
@@ -69,7 +95,7 @@
         width: 40%;
     }   
     .logo_page{
-        width: 11%;
+        width: 14%;
     }
     .navigtion-item{
         display: none;
@@ -77,6 +103,12 @@
 
     .modal_body{
         width: 50%;
+        left: -50%;
+    }
+    
+    .modal_body_wishList{
+        width: 50%;
+        right: -50%;
     }
 }
 
@@ -87,14 +119,26 @@
         width: 45%;
     }   
     .logo_page{
-        width: 10%;
+        width: 11%;
     }
     .modal_body{
         width: 40%;
+        left: -40%;
+    }
+    .modal_body_wishList{
+        width: 40%;
+        right: -40%;
     }
 }
 
 /* extra PC 1200px <= width < 1200px*/
 @media only screen and (min-width: 1200px) {
-   
+    .modal_body{
+        width: 30%;
+        left: -30%;
+    }
+    .modal_body_wishList{
+        width: 30%;
+        right: -30%;
+    }
 }

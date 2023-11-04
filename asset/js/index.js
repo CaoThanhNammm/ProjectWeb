@@ -105,9 +105,3 @@ function _clickDot() {
   });
 }
 
-_hoverChangeProductImg();
-_addWishList();
-_moveLeft();
-_moveRight();
-_clickDot();
-_autoSlider();
