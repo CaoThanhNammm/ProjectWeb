@@ -8,31 +8,31 @@ function _hoverChangeProductImg() {
   var elementProduct = document.querySelectorAll(".product");
   var elementProductFooter = document.querySelectorAll(".product_btn");
 
-    elementProduct.forEach(function (value, index) {
-        var elementProductBtn = value.querySelectorAll(".product_btn a");
+  elementProduct.forEach(function (value, index) {
+    var elementProductBtn = value.querySelectorAll(".product_btn .a");
 
-        value.onmouseover = function () {
-            elementProductBtn[0].classList.replace(
-                "product_btn-add_card_none",
-                "product_btn-add_card"
-            );
-            elementProductBtn[1].classList.replace(
-                "product_btn--product_detail_none",
-                "product_btn--product_detail"
-            );
-        };
+    value.onmouseover = function () {
+      elementProductBtn[0].classList.replace(
+        "product_btn-add_card_none",
+        "product_btn-add_card"
+      );
+      elementProductBtn[1].classList.replace(
+        "product_btn--product_detail_none",
+        "product_btn--product_detail"
+      );
+    };
 
-        value.onmouseout = function () {
-            elementProductBtn[0].classList.replace(
-                "product_btn-add_card",
-                "product_btn-add_card_none"
-            );
-            elementProductBtn[1].classList.replace(
-                "product_btn--product_detail",
-                "product_btn--product_detail_none"
-            );
-        };
-    });
+    value.onmouseout = function () {
+      elementProductBtn[0].classList.replace(
+        "product_btn-add_card",
+        "product_btn-add_card_none"
+      );
+      elementProductBtn[1].classList.replace(
+        "product_btn--product_detail",
+        "product_btn--product_detail_none"
+      );
+    };
+  });
 }
 
 /*
@@ -105,3 +105,20 @@ function _clickDot() {
   });
 }
 
+var elementAddCard = document.querySelectorAll(".product_btn button");
+var elemmentQuantity = document.querySelector(".header_cart_amount_product");
+
+function _addToCard() {
+  elementAddCard.forEach(function (value) {
+    value.onclick = function () {
+      var elementImgProduct =
+        value.parentElement.parentElement.querySelector(".fly_to_card");
+      elementImgProduct.classList.add("animation_add_to_card");
+
+      elemmentQuantity.innerHTML = parseInt(elemmentQuantity.innerText) + 1 + "";
+      setTimeout(function () {
+        elementImgProduct.classList.remove("animation_add_to_card");
+      }, 800);
+    };
+  });
+}
