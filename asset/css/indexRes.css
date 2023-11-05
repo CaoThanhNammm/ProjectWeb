@@ -31,6 +31,7 @@
         width: 100%;
         text-align: center;
         margin: 5px 0;
+        animation: none;
     }
 
     .product_btn {
@@ -47,7 +48,7 @@
     .slider_dot_list {
         left: 35%;
     }
-    
+
 }
 
 
@@ -72,12 +73,14 @@
         margin: 5px 0;
         padding: 7px 20px;
         border-radius: 5px;
+        animation: none;
     }
 
     .product_btn-add_card, .product_btn-add_card_none{
         background-color: var(--white-primary);
         color: var(--black-primary);
         border-radius: 5px;
+        animation: none;
     }
 
     .product_btn {
@@ -119,6 +122,7 @@
     .product_btn--product_detail, .product_btn-add_card{
         padding-left: 30px;
         padding-right: 30px;
+        animation: none;
     }
    
 }

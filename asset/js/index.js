@@ -41,11 +41,21 @@ Date: 19/10/2023
 Note: nếu ấn vào wishlist thì sản phẩm được thêm vào wishlist
 */
 
+var elementHeartIcon = document.querySelectorAll(".product_in4_wishlist");
 function _addWishList() {
-  var elementHeartIcon = document.querySelectorAll(".product_in4_wishlist");
   elementHeartIcon.forEach(function (value) {
     value.onclick = function () {
       value.classList.toggle("add_wish_list");
+      var quantity = parseInt(elemmentQuantityWishList.innerText);
+
+      if(value.classList.contains("add_wish_list")){
+        quantity += 1;
+      }
+      else{
+        quantity -= 1;
+      }
+
+      elemmentQuantityWishList.innerHTML = quantity;
     };
   });
 }
@@ -115,7 +125,9 @@ function _addToCard() {
         value.parentElement.parentElement.querySelector(".fly_to_card");
       elementImgProduct.classList.add("animation_add_to_card");
 
-      elemmentQuantity.innerHTML = parseInt(elemmentQuantity.innerText) + 1 + "";
+      elemmentQuantity.innerHTML =
+        parseInt(elemmentQuantity.innerText) + 1 + "";
+
       setTimeout(function () {
         elementImgProduct.classList.remove("animation_add_to_card");
       }, 800);

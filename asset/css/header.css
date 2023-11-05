@@ -57,10 +57,10 @@ body{
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
     background-color: var(--yellow-primary);
-    transition: 0.3s ease;
 }
 
 .search_logo:hover{
+    transition: 0.3s ease;
     background-color: var(--yellow-second);
 }
 
@@ -146,7 +146,7 @@ body{
     overflow-y: auto;
     background-color: var(--white-primary);
     transition: 0.3s ease-out;
-    z-index: 2;
+    z-index: 6;
 }
 
 .wishlist_header{
@@ -323,7 +323,7 @@ body{
     bottom: 0;
     background-color: rgba(46, 44, 44, 0.5);
     display: none;
-    z-index: 2;
+    z-index: 3;
 }
 
 .modal_body{
@@ -335,7 +335,7 @@ body{
     overflow-y: auto;
     background-color: var(--white-primary);
     transition: 0.3s ease-out;
-    z-index: 2;
+    z-index: 4;
 }
 
 .category_all_list{

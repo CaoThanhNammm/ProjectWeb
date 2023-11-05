@@ -124,6 +124,4 @@ var elementModalBodyWishList = document.querySelector(".modal_body_wishList");
 var elementQuitIconWishList = document.querySelector(".modal_body_quit_wishlist");
 
 var elemmentQuantity = document.querySelector(".header_cart_amount_product");
-
-
-elemmentQuantity.innerHTML = elemmentQuantity.innerHTML + " ";
+var elemmentQuantityWishList = document.querySelector(".amount_wishlist");
