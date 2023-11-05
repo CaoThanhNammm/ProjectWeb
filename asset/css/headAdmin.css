@@ -4,14 +4,15 @@
     Note: Trang trí cho trang admin
 */
 #admin {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue-second);
     width: 100%;
-    max-width: 400px;
+    padding: 0 20px;
+    min-height: 100vh;
     height: 100%;
 }
 
-.admin_head {
-    height: 100%;
-}
 
 .admin_head,
 .dropdown-menu {
