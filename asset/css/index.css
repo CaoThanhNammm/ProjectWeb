@@ -360,7 +360,6 @@ h6 {
 }
 
 .product_btn-add_card {
-    position: absolute;
     border: 1px solid var(--black-primary);
     font-weight: 600;
     padding: 7px 20px;

@@ -2,7 +2,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    align-items: center;
     margin-top: 50px;
+}
+
+.category_product_sort{
+    display: flex;
 }
 
 .category_option_list {
@@ -50,6 +55,11 @@
     margin-left: 80px;
     font-size: 17px;
 }
+
+/* .category_brand{
+    margin-left: 20px;
+    margin-right: 50px;
+} */
 
 .category_brand span,
 .category_price span {

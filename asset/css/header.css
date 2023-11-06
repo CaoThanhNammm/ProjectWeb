@@ -97,13 +97,13 @@ body{
 }
 
 .header_cart_logo{
-    width: 60px;
+    width: 30px;
 }
 
 .header_cart_amount_product{
     position: absolute;
-    top: 5px;
-    left: 28px;
+    top: -8px;
+    left: 14px;
     font-size: 20px;
     font-weight: 600;
     color: var(--yellow-primary);
