@@ -20,12 +20,13 @@
     margin: 0;
     padding: 0;
     font-size: var(--fsize-normal);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     box-sizing: border-box;
 }
 
 body {
     width: 100%;
+    overflow-x: hidden;
 }
 
 li {
@@ -189,7 +190,7 @@ h6 {
     width: 35%;
 }
 
-.product_event{
+.product_event {
     text-decoration: none;
 }
 
@@ -212,6 +213,7 @@ h6 {
 }
 
 .product {
+    position: relative;
     cursor: pointer;
     border-radius: 6px;
     margin: 15px 0;
@@ -236,8 +238,51 @@ h6 {
 
 .product_img {
     position: relative;
+    z-index: 2;
 }
 
+<<<<<<< HEAD
+=======
+.animation_add_to_card {
+    animation: flyIntoCart 0.8s ease-out;
+    z-index: 999;
+}
+
+.fly_to_card {
+    position: absolute;
+    left: 50%;
+    color: var(--yellow-primary);
+    border-radius: 20px;
+    font-size: 50px;
+}
+
+@keyframes flyIntoCart {
+    0% {
+        transform: translateX(100%) translateY(-100%);
+        opacity: 1;
+    }
+
+    30% {
+        transform: translateX(300%) translateY(-300%);
+    }
+
+    40% {
+        transform: translateX(600%) translateY(-600%);
+    }
+
+    60% {
+        transform: translateX(900%) translateY(-900%);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateX(2000%) translateY(-2000%);
+        opacity: 0;
+    }
+
+}
+
+>>>>>>> master
 .product_img_hover {
     position: absolute;
     top: 0;
@@ -314,9 +359,11 @@ h6 {
 .product_btn--product_detail {
     text-decoration: none;
     color: var(--black-primary);
+    background-color: var(--white-primary);
 }
 
 .product_btn-add_card {
+    position: absolute;
     border: 1px solid var(--black-primary);
     font-weight: 600;
     padding: 7px 20px;
@@ -329,6 +376,21 @@ h6 {
     background-color: var(--black-primary);
     font-weight: 600;
     transition: 0.2s ease-in;
+    animation: zoom 0.8s ease;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .product_btn--product_detail {
@@ -341,6 +403,7 @@ h6 {
 
 .product_btn--product_detail:hover {
     color: var(--white-primary);
+    animation: zoom 0.8s ease;
 }
 
 .product_btn {

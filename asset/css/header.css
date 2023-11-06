@@ -57,10 +57,10 @@ body{
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
     background-color: var(--yellow-primary);
-    transition: 0.3s ease;
 }
 
 .search_logo:hover{
+    transition: 0.3s ease;
     background-color: var(--yellow-second);
 }
 
@@ -75,7 +75,6 @@ body{
     margin: 0 8px;
     font-size: 15px;
     font-weight: 600;
-    transition: 0.3s ease;
 }
 
 .header_login_signin .line{
@@ -128,6 +127,10 @@ body{
     color: var(--white-primary);
 }
 
+.list_wishList--mobile{
+    display: none;
+}
+
 .amount_wishlist{
     color: var(--yellow-primary);
     font-size: 16px;
@@ -143,7 +146,7 @@ body{
     overflow-y: auto;
     background-color: var(--white-primary);
     transition: 0.3s ease-out;
-    z-index: 2;
+    z-index: 6;
 }
 
 .wishlist_header{
@@ -284,7 +287,6 @@ body{
     color: var(--white-primary);
     margin-left: 9px;
     font-weight: 600;
-    transition: 0.3s ease;
     cursor: pointer;
 }
 
@@ -292,15 +294,16 @@ body{
     color: var(--white-primary);
     text-decoration: none;
     font-weight: 600;
-    transition: 0.3s ease;
 }
 
 .navigtion-item:hover a, .log_in:hover, .sign_in:hover{
     color: var(--yellow-primary);
+    transition: 0.3s ease;
 }
 
 .all_list:hover .all_list_logo, .all_list:hover .all_list_text {
     color: var(--yellow-primary);
+    transition: 0.3s ease;
 }
 
 .all_list_logo{
@@ -320,7 +323,7 @@ body{
     bottom: 0;
     background-color: rgba(46, 44, 44, 0.5);
     display: none;
-    z-index: 2;
+    z-index: 3;
 }
 
 .modal_body{
@@ -332,7 +335,7 @@ body{
     overflow-y: auto;
     background-color: var(--white-primary);
     transition: 0.3s ease-out;
-    z-index: 2;
+    z-index: 4;
 }
 
 .category_all_list{

@@ -32,18 +32,18 @@
 
         <div class="list_wishList">
             <i class="fa-regular fa-heart"></i>
-            <span class="amount_wishlist">3</span>
+            <span class="amount_wishlist">0</span>
         </div>
 
         <div class="header_login_signin_mobile">
-            <img src="/asset/image/png/user.png" alt="">
+            <img src="/asset/image/home/user.png" alt="">
         </div>
 
         <!-- phần giỏ hàng của header -->
         <div class="header_cart">
             <div class="header_cart_info">
                 <a href="/asset/html/cart.html">
-                    <img src="/asset/image/png/cart.png" class="header_cart_logo" alt="">
+                    <img src="/asset/image/home/cart.png" class="header_cart_logo" alt="">
                     <span class="header_cart_amount_product">0</span>
                 </a>
             </div>
@@ -65,6 +65,11 @@
             <li class="navigtion-item"><a href="/asset/html/product.html">Robot hút bụi</a></li>
             <li class="navigtion-item"><a href="/asset/html/product.html">Bếp điện</a></li>
         </ul>
+
+        <div class="list_wishList--mobile">
+            <i class="fa-regular fa-heart"></i>
+            <span class="amount_wishlist">3</span>
+        </div>
     </div>
 
     <div class="modal_overlay"></div>
@@ -129,14 +134,14 @@
     </div>
 
     <div class="modal_body_wishList">
-        <div class= "wishlist_header">
+        <div class="wishlist_header">
             <i class="fa-solid fa-xmark modal_body_quit_wishlist"></i>
             <h3 class="wishlist_title" style="margin-bottom: 0; margin-left: 12px;">Wishlist</h3>
-            <h3 class="wishlist_amount" style="margin-bottom: 0;">3</h3>
+            <h3 class="wishlist_amount" style="margin-bottom: 0;">0</h3>
         </div>
 
         <div class="wishlist_product">
-            <img src="/asset/image/jpg/product_img.jpg" alt="">
+            <img src="/asset/image/home/product_img.jpg" alt="">
             <div class="wishlist_product_in4">
                 <a class="wishlist_product_title">Ghế</a>
                 <div class="wishlist_product_right_under">
@@ -144,8 +149,9 @@
                     <span class="wishlist_product_price">100,000,000,000₫</span>
                 </div>
             </div>
-        </div><div class="wishlist_product">
-            <img src="/asset/image/jpg/product_img.jpg" alt="">
+        </div>
+        <div class="wishlist_product">
+            <img src="/asset/image/home/product_img.jpg" alt="">
             <div class="wishlist_product_in4">
                 <a class="wishlist_product_title">Ghế</a>
                 <div class="wishlist_product_right_under">
@@ -153,8 +159,9 @@
                     <span class="wishlist_product_price">100,000,000,000₫</span>
                 </div>
             </div>
-        </div><div class="wishlist_product">
-            <img src="/asset/image/jpg/product_img.jpg" alt="">
+        </div>
+        <div class="wishlist_product">
+            <img src="/asset/image/home/product_img.jpg" alt="">
             <div class="wishlist_product_in4">
                 <a class="wishlist_product_title">Ghế</a>
                 <div class="wishlist_product_right_under">
@@ -162,8 +169,9 @@
                     <span class="wishlist_product_price">100,000,000,000₫</span>
                 </div>
             </div>
-        </div><div class="wishlist_product">
-            <img src="/asset/image/jpg/product_img.jpg" alt="">
+        </div>
+        <div class="wishlist_product">
+            <img src="/asset/image/home/product_img.jpg" alt="">
             <div class="wishlist_product_in4">
                 <a class="wishlist_product_title">Ghế</a>
                 <div class="wishlist_product_right_under">
@@ -171,8 +179,9 @@
                     <span class="wishlist_product_price">100,000,000,000₫</span>
                 </div>
             </div>
-        </div><div class="wishlist_product">
-            <img src="/asset/image/jpg/product_img.jpg" alt="">
+        </div>
+        <div class="wishlist_product">
+            <img src="/asset/image/home/product_img.jpg" alt="">
             <div class="wishlist_product_in4">
                 <a class="wishlist_product_title">Ghế</a>
                 <div class="wishlist_product_right_under">
@@ -180,8 +189,9 @@
                     <span class="wishlist_product_price">100,000,000,000₫</span>
                 </div>
             </div>
-        </div><div class="wishlist_product">
-            <img src="/asset/image/jpg/product_img.jpg" alt="">
+        </div>
+        <div class="wishlist_product">
+            <img src="/asset/image/home/product_img.jpg" alt="">
             <div class="wishlist_product_in4">
                 <a class="wishlist_product_title">Ghế</a>
                 <div class="wishlist_product_right_under">
@@ -189,8 +199,9 @@
                     <span class="wishlist_product_price">100,000,000,000₫</span>
                 </div>
             </div>
-        </div><div class="wishlist_product">
-            <img src="/asset/image/jpg/product_img.jpg" alt="">
+        </div>
+        <div class="wishlist_product">
+            <img src="/asset/image/home/product_img.jpg" alt="">
             <div class="wishlist_product_in4">
                 <a class="wishlist_product_title">Ghế</a>
                 <div class="wishlist_product_right_under">
@@ -212,5 +223,10 @@
 </body>
 
 <script src="/asset/js/header.js"></script>
+<script>
+    _startSlideAllList();
+    _clickQuit();
+    _clickChildItem();
+</script>
 
 </html>

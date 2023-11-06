@@ -18,6 +18,10 @@ function _startSlideAllList() {
     elementWistListIcon.onclick = function(){
         _slideRightToLefttAllList();
     }
+
+    elementWistListIconMobile.onclick = function(){
+        _slideRightToLefttAllList();
+    }
 }
 
 /*
@@ -115,9 +119,9 @@ function _clickChildItem() {
 
 
 var elementWistListIcon = document.querySelector(".list_wishList");
+var elementWistListIconMobile = document.querySelector(".list_wishList--mobile");
 var elementModalBodyWishList = document.querySelector(".modal_body_wishList");
 var elementQuitIconWishList = document.querySelector(".modal_body_quit_wishlist");
 
-_startSlideAllList();
-_clickQuit();
-_clickChildItem();
+var elemmentQuantity = document.querySelector(".header_cart_amount_product");
+var elemmentQuantityWishList = document.querySelector(".amount_wishlist");
