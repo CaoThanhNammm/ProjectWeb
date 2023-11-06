@@ -1,3 +1,25 @@
+
+const express = require('express')
+const app = express()
+
+// Cấu hình CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // Cho phép tất cả các nguồn truy cập
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Cho phép các phương thức HTTP
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Cho phép các tiêu đề tùy chỉnh
+  next();
+});
+
+// Các tài nguyên và địa chỉ API của bạn
+app.get('/your-resource', (req, res) => {
+  // Xử lý yêu cầu
+  res.send('Response from your server');
+});
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
+
 /*
 Create: Cao Thành Named
 Date: 20/10/2023
@@ -134,3 +156,4 @@ function _addToCard() {
     };
   });
 }
+
