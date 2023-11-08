@@ -47,8 +47,8 @@ function _changePage() {
 
 function _continueBuyProduct() {
   if (count == 0) {
-    console.log("asdas");
     console.log(document.querySelector(".cart_body-empty"));
     document.querySelector(".cart_body-empty").classList.add("active");
+    document.querySelector(".new_page").classList.add("unactive");
   }
 }
