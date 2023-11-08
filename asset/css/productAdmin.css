@@ -16,7 +16,6 @@
     color: var(--yellow-primary);
 }
 
-
 .card {
     text-align: left;
     flex-direction: row !important;
@@ -153,21 +152,21 @@ img[class^='card-img'] {
     Start: Phần thống kê sản phẩm
 */
 
-.statstics .row {
+.statistic_admin .row {
     padding-right: 0;
     margin-right: 0;
     width: 100%;
     --bs-gutter-x: 0;
 }
 
-.statstics .card-group {
+.statistic_admin .card-group {
     justify-content: space-between;
     padding-right: 0;
     margin-right: 0;
 
 }
 
-.statstics .card {
+.statistic_admin .card {
     margin-right: 20px;
     border: none;
     border-radius: 5px !important;
@@ -185,7 +184,7 @@ img[class^='card-img'] {
 .operating-systems {
     display: flex;
     justify-content: space-between;
-    width: 215px;
+    width: max-content;
     margin-top: 30px;
     margin-bottom: 50px;
 }
@@ -194,6 +193,8 @@ span[class*="os"] {
     font-size: 14px;
     font-weight: 300;
     font-size: 14px;
+    margin-right: 5px;
+    margin-left: 5px;
     color: black;
 }
 
