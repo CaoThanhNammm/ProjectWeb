@@ -122,3 +122,6 @@ var elementWistListIcon = document.querySelector(".list_wishList");
 var elementWistListIconMobile = document.querySelector(".list_wishList--mobile");
 var elementModalBodyWishList = document.querySelector(".modal_body_wishList");
 var elementQuitIconWishList = document.querySelector(".modal_body_quit_wishlist");
+
+var elemmentQuantity = document.querySelector(".header_cart_amount_product");
+var elemmentQuantityWishList = document.querySelector(".amount_wishlist");
