@@ -5,6 +5,10 @@ var elementPriceOptionList = document.querySelector(
 var elementPriceOptionListChild = elementPriceOptionList.querySelector(
   ".category_price_option_item ul"
 );
+
+var elementPriceOptionListChildItem =
+  elementPriceOptionListChild.querySelectorAll("li");
+
 var elementPriceIconDown = elementPriceOptionList.querySelector(
   ".category_all_item_icon"
 );
@@ -16,6 +20,11 @@ var elementBrandOptionList = document.querySelector(
 var elementBrandOptionListChild = elementBrandOptionList.querySelector(
   ".category_brand_option_item ul"
 );
+
+var elementBrandOptionListItem = elementBrandOptionListChild.querySelectorAll(
+  "input[type ='checkbox']"
+);
+
 var elementBrandIconDown = elementBrandOptionList.querySelector(
   ".category_all_item_icon"
 );
@@ -67,7 +76,6 @@ function _turnOffPrice(price, priceChild, icon) {
   icon.classList.remove("rotate_icon");
 }
 
-
 /* Create: Cao Thành Nam
 phương thức hiện sort theo giá
 */
@@ -76,7 +84,6 @@ function _turnOnPrice(price, priceChild, icon) {
   priceChild.classList.toggle("active");
   icon.classList.toggle("rotate_icon");
 }
-
 
 /* Create: Cao Thành Nam
 phương thức tắt sort theo brand
@@ -120,5 +127,60 @@ function _changePage() {
   });
 }
 
+function _chooseOptionPrice() {
+  elementPriceOptionListChildItem.forEach(function (value) {
+    var elementShowChoose = value.parentElement.parentElement.querySelector(
+      ".category_price_option_default"
+    );
+    value.onclick = function () {
+      elementShowChoose.innerText = value.innerText;
+    };
+  });
+}
+var re = [];
+function _chooseOptionBrand() {
+  elementBrandOptionListItem.forEach(function (value, index) {
+    var category_brand_option_default = document.querySelector(
+      ".category_brand_option_default"
+    );
+    value.onchange = function (e) {
+      if (e.target.checked) {
+        re.push(e.target.name);
+      } else {
+        re = re.filter(function (value) {
+          return value !== e.target.name;
+        });
+      }
+      _setChooseBrand(re);
+    };
+  });
+}
+
+function _setChooseBrand(array) {
+  var elementSetBrand = document.querySelector(
+    ".category_brand_option_default"
+  );
+  
+  if(array.length === 0) {
+    console.log("default")
+    elementSetBrand.innerText = "Theo thương hiệu";
+  }
+  else{
+    elementSetBrand.innerText = "";
+  }
+  
+  array.forEach(function (value, index) {
+    if (index === array.length - 1) {
+      elementSetBrand.innerText += value;
+    }
+    else{
+      elementSetBrand.innerText += value + "-";
+    }
+   
+  });
+}
+
 _clickPrice();
 _clickBrand();
+_chooseOptionPrice();
+_chooseOptionBrand();
