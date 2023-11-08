@@ -111,6 +111,10 @@
     display: block;
 }
 
+.active {
+    display: block;
+}
+
 .border_option_list {
     border: none;
     padding-bottom: 1px;
@@ -119,6 +123,7 @@
 .rotate_icon {
     rotate: 180deg;
 }
+
 
 .new_page {
     display: flex;
@@ -176,4 +181,8 @@
 
 .padding_down{
     padding: 9px 0;
+}
+
+.cart_body-empty{
+    display: none;
 }

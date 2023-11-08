@@ -115,7 +115,7 @@ function _refreshPageItem() {
 }
 
 /* Create: Cao Thành Nam
-phương thức ấn chuyển trang sẽ được avtive
+phương thức ấn chuyển trang sẽ được active
 */
 function _changePage() {
   elementNewPageItem.forEach(function (value) {
@@ -127,6 +127,9 @@ function _changePage() {
   });
 }
 
+/* Create: Cao Thành Nam
+phương thức set item cho bộ lọc theo giá
+*/
 function _chooseOptionPrice() {
   elementPriceOptionListChildItem.forEach(function (value) {
     var elementShowChoose = value.parentElement.parentElement.querySelector(
@@ -137,6 +140,10 @@ function _chooseOptionPrice() {
     };
   });
 }
+
+/* Create: Cao Thành Nam
+phương thức set item cho bộ lọc theo thương hiệu
+*/
 var re = [];
 function _chooseOptionBrand() {
   elementBrandOptionListItem.forEach(function (value, index) {
@@ -180,7 +187,4 @@ function _setChooseBrand(array) {
   });
 }
 
-_clickPrice();
-_clickBrand();
-_chooseOptionPrice();
-_chooseOptionBrand();
+
