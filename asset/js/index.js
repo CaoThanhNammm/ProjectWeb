@@ -1,9 +1,17 @@
+document.addEventListener('DOMContentLoaded', function () {
+  _hoverChangeProductImg();
+  _addWishList();
+  _moveLeft();
+  _moveRight();
+  _clickDot();
+  _autoSlider();
+  _addToCard();
+})
 /*
 Create: Cao Thành Named
 Date: 20/10/2023
 Note: hiện ra 2 nút thêm vào giở hàng và xem chi tiết sản phẩm
 */
-
 function _hoverChangeProductImg() {
   var elementProduct = document.querySelectorAll(".product");
   var elementProductFooter = document.querySelectorAll(".product_btn");
@@ -48,10 +56,10 @@ function _addWishList() {
       value.classList.toggle("add_wish_list");
       var quantity = parseInt(elemmentQuantityWishList.innerText);
 
-      if(value.classList.contains("add_wish_list")){
+      if (value.classList.contains("add_wish_list")) {
         quantity += 1;
       }
-      else{
+      else {
         quantity -= 1;
       }
 

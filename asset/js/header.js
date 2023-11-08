@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', function () {
+    _startSlideAllList();
+    _clickQuit();
+    _clickChildItem();
+})
+
 var elementModal = document.querySelector('.modal_overlay');
 var elementModalBody = document.querySelector('.modal_body');
 var elementIconAllList = document.querySelector('.all_list');
@@ -15,11 +21,11 @@ function _startSlideAllList() {
         _slideLeftToRightAllList();
     }
 
-    elementWistListIcon.onclick = function(){
+    elementWistListIcon.onclick = function () {
         _slideRightToLefttAllList();
     }
 
-    elementWistListIconMobile.onclick = function(){
+    elementWistListIconMobile.onclick = function () {
         _slideRightToLefttAllList();
     }
 }
@@ -78,7 +84,7 @@ function _quitSlide() {
     elementModalBody.style.left = -$(elementModalBody).width() + "px";
     elementBody.classList.remove('hidden_overflow');
     elementModalBodyWishList.style.right = -$(elementModalBodyWishList).width() + "px";
-    
+
     setTimeout(function () {
         elementCategoryItem.forEach(function (value, index) {
             _resetSlide(index);

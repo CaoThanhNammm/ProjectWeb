@@ -4,26 +4,13 @@
     Note: Trang trí cho trang admin
 */
 #admin {
-<<<<<<< HEAD
-    float: left;
-    max-width: 250px;
-    min-height: 100dvh;
-}
-
-.admin_head {
-    min-height: 100vh;
-}
-=======
     display: flex;
     flex-direction: column;
     background-color: var(--blue-second);
-    width: 100%;
+    min-width: 100%;
     padding: 0 20px;
     min-height: 100vh;
-    height: 100%;
 }
-
->>>>>>> master
 
 .admin_head,
 .dropdown-menu {
@@ -56,20 +43,6 @@
     margin-top: 20px;
 }
 
-<<<<<<< HEAD
-#admin .nav-item .nav-link {
-    width: 100%;
-    padding-left: 10%;
-    padding-right: 10%;
-}
-
-#admin .nav-item:hover,
-#admin .nav-link:hover,
-#admin .active {
-    background-color: var(--yellow-primary);
-    border-radius: 5px;
-    color: var(--white-primary) !important;
-=======
 #admin .nav-item .nav-link,
 .nav-item_item_child a {
     padding-left: 4%;
@@ -91,11 +64,11 @@
     color: var(--white-primary) !important;
 }
 
-.icon_down{
+.icon_down {
     color: var(--white-primary);
 }
 
-.icon_title{
+.icon_title {
     margin-right: 5px;
 }
 
@@ -109,11 +82,10 @@
     margin-top: 8px;
 }
 
-.nav-item_list_child{
+.nav-item_list_child {
     display: none;
 }
 
-.active_child{
+.active_child {
     display: block;
->>>>>>> master
 }
