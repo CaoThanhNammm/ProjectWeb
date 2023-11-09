@@ -313,24 +313,21 @@
             </div>
         </div>
 
-    </div>
-    <footer></footer>
-    </div>
+        <footer></footer>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
+            </script>
+
+        <script src="asset/js/index.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('.year').html((new Date(jQuery.now())).getFullYear())
+                $("header").load("asset/html/header.html");
+                $("footer").load("asset/html/footer.html");
+            });
         </script>
-
-    <script src="asset/js/index.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-            $('.year').html((new Date(jQuery.now())).getFullYear())
-            $("header").load("asset/html/header.html");
-            $("footer").load("asset/html/footer.html");
-        });
-    </script>
 
 
 </body>
