@@ -41,7 +41,7 @@
             <div class="category_price_option">
                 <ul class="category_price_option_list category_option_list">
                     <li class="category_price_option_item category_option_item">
-                        <p class="category_price_option_default">Theo mức giá</p>
+                        Theo mức giá
                         <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
                         <ul>
                             <li>Từ thấp đến cao</li>
@@ -58,34 +58,41 @@
             <div class="category_price_option">
                 <ul class="category_brand_option_list category_option_list">
                     <li class="category_brand_option_item category_option_item">
-                        <p class="category_brand_option_default">Theo thương hiệu</p>
+                        Theo thương hiệu
                         <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
                         <ul>
                             <li>
                                 <label for="lg">
-                                    <input type="checkbox" name="LG" id="lg">
+                                    <input type="checkbox" name="" id="lg">
                                     <span>LG</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label for="samsung">
-                                    <input type="checkbox" name="Samsung" id="samsung">
+                                    <input type="checkbox" name="" id="samsung">
                                     <span>Samsung</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label for="xiaomi">
-                                    <input type="checkbox" name="Xiaomi" id="xiaomi">
+                                    <input type="checkbox" name="" id="xiaomi">
                                     <span>Xiaomi</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label for="kanguroo">
-                                    <input type="checkbox" name="Kanguroo" id="kanguroo">
+                                    <input type="checkbox" name="" id="kanguroo">
                                     <span>Kanguroo</span>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label for="aoMaLazada">
+                                    <input type="checkbox" name="" id="aoMaLazada">
+                                    <span>AoMaLazada</span>
                                 </label>
                             </li>
                         </ul>
@@ -98,6 +105,7 @@
     </div>
 
     <div class="product_list container">
+        <h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm nổi bật</h2>
         <div class="row mb-3">
             <div class="col-lg-3 col-sm-6 col-md-4 product">
                 <i class="fa-solid fa-bag-shopping fly_to_card"></i>
@@ -732,11 +740,6 @@
 <script>
     $("header").load("header.html");
     $("footer").load("footer.html");
-    _clickPrice();
-    _clickBrand();
-    _chooseOptionPrice();
-    _chooseOptionBrand();
-
     _hoverChangeProductImg();
     _addToCard();
     _addWishList();

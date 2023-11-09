@@ -65,7 +65,7 @@
     position: absolute;
     font-size: 20px;
     top: calc(50% - 12px);
-    left: calc(25% - 6px);
+    left: calc(25% - 3px);
 }
 
 .access_group input {
