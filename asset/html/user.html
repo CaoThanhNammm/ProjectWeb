@@ -58,7 +58,7 @@
             </form>
         </div>
         <div id="password" class="tabcontent">
-            <h3>Đổi mật khẩu</h3>
+            <h2>Đổi mật khẩu</h2>
             <form action="#" method="POST">
                 <div class="form-group">
                     <label for="oldPassword">Mật khẩu cũ:</label>
@@ -82,46 +82,57 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ID Đơn hàng</th>
+                        <th>Mã đơn</th>
+                        <th>Tổng giá</th>
                         <th>Ngày tạo</th>
-                        <th>Ngày giao hàng</th>
-                        <th>Giá tiền tổng</th>
-                        <th>Trạng thái đơn hàng</th>
-                        <th>Chi tiết</th>
+                        <th>Trạng thái</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
-                        <td>2023-01-05</td>
-                        <td>2023-01-10</td>
-                        <td>$100.00</td>
-                        <td>Đã đặt</td>
-                        <td><a class="details-button" href="#">Chi tiết</a></td>
+                        <td>500.000</td>
+                        <td>2023-11-05</td>
+                        <td>
+                            <span class="status-box waiting">Chờ xử lý</span>
+                        </td>
+                        <td>
+                            <button class="details-btn">Chi tiết</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>2023-02-10</td>
-                        <td>2023-02-15</td>
-                        <td>$75.50</td>
-                        <td>Đang giao</td>
-                        <td><a class="details-button" href="#">Chi tiết</a></td>
+                        <td>1.200.000</td>
+                        <td>2023-11-06</td>
+                        <td>
+                            <span class="status-box shipping">Đang giao</span>
+                        </td>
+                        <td>
+                            <button class="details-btn">Chi tiết</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>2023-03-20</td>
-                        <td>2023-03-25</td>
-                        <td>$50.25</td>
-                        <td>Bị hủy</td>
-                        <td><a class="details-button" href="#">Chi tiết</a></td>
+                        <td>300.000</td>
+                        <td>2023-11-07</td>
+                        <td>
+                            <span class="status-box canceled">Đã hủy đơn</span>
+                        </td>
+                        <td>
+                            <button class="details-btn">Chi tiết</button>
+                        </td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>2023-04-15</td>
-                        <td>2023-04-20</td>
-                        <td>$120.75</td>
-                        <td>Hoàn thành</td>
-                        <td><a class="details-button" href="#">Chi tiết</a></td>
+                        <td>1.000.000</td>
+                        <td>2023-11-08</td>
+                        <td>
+                            <span class="status-box completed">Hoàn thành</span>
+                        </td>
+                        <td>
+                            <button class="details-btn">Chi tiết</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
