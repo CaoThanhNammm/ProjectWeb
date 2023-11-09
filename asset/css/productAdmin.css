@@ -151,6 +151,9 @@ img[class^='card-img'] {
 /* 
     Start: Phần thống kê sản phẩm
 */
+.statistic_admin {
+    width: 100%;
+}
 
 .statistic_admin .row {
     padding-right: 0;

@@ -241,8 +241,6 @@ h6 {
     z-index: 2;
 }
 
-<<<<<<< HEAD
-=======
 .animation_add_to_card {
     animation: flyIntoCart 0.8s ease-out;
     z-index: 999;
@@ -282,7 +280,6 @@ h6 {
 
 }
 
->>>>>>> master
 .product_img_hover {
     position: absolute;
     top: 0;

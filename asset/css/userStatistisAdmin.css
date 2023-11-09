@@ -7,30 +7,6 @@
     font-weight: 600;
 }
 
-
-#statistic_admin .table_user td,
-#statistic_admin .table_user th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: var(--gray-primary);
-}
-
-#statistic_admin .submit {
-    border: none;
-    background-color: var(--yellow-primary);
-    border-radius: 5px;
-    margin-left: 10px;
-    padding: 0px 20px;
-}
-
-#statistic_admin .submit:hover {
-    opacity: 0.8;
-}
-
 #statistic_admin .row {
     padding-right: 0;
     margin-right: 0;

@@ -1,0 +1,13 @@
+#overview {
+    width: 100%;
+    min-height: 100%;
+}
+
+.overview_avatar {
+    height: 200px;
+    border: 1px solid var(--gray-third);
+}
+
+.overview_info p {
+    font-size: 20px;
+}
