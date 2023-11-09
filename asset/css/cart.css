@@ -139,6 +139,7 @@ img[class^='card-img'] {
 }
 
 [class*='cart_body_bill_group_btn']:hover {
-    background-color: var(--black-primary) !important;
+    background-color: var(--yellow-primary) !important;
     color: var(--white-primary) !important;
+    border: none !important;
 }

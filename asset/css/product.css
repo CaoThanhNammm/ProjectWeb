@@ -41,10 +41,6 @@
     display: none;
 }
 
-.category_price_option_default, .category_brand_option_default{
-    margin-bottom: 0;
-    width: 250px;
-}
 
 .category_price_option_item ul li {
     padding: 5px 12px;
@@ -56,6 +52,7 @@
 }
 
 .category_price_option .category_all_item_icon {
+    margin-left: 80px;
     font-size: 17px;
 }
 
@@ -111,7 +108,6 @@
     display: block;
 }
 
-
 .border_option_list {
     border: none;
     padding-bottom: 1px;
@@ -120,7 +116,6 @@
 .rotate_icon {
     rotate: 180deg;
 }
-
 
 .new_page {
     display: flex;
@@ -178,8 +173,4 @@
 
 .padding_down{
     padding: 9px 0;
-}
-
-.cart_body-empty{
-    display: none;
 }
