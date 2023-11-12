@@ -1,12 +1,16 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   _hoverChangeProductImg();
   _addWishList();
-  _moveLeft();
-  _moveRight();
-  _clickDot();
-  _autoSlider();
+  if (elementSlider) {
+    _moveLeft();
+    _moveRight();
+    _clickDot();
+    _autoSlider();
+  }
   _addToCard();
-})
+});
+
+var elementSlider = document.querySelector(".slider");
 /*
 Create: Cao Thành Named
 Date: 20/10/2023
@@ -58,8 +62,7 @@ function _addWishList() {
 
       if (value.classList.contains("add_wish_list")) {
         quantity += 1;
-      }
-      else {
+      } else {
         quantity -= 1;
       }
 

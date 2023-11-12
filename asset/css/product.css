@@ -56,10 +56,6 @@
     font-size: 17px;
 }
 
-/* .category_brand{
-    margin-left: 20px;
-    margin-right: 50px;
-} */
 
 .category_brand span,
 .category_price span {
@@ -173,4 +169,12 @@
 
 .padding_down{
     padding: 9px 0;
+}
+
+.cart_body-empty{
+    display: none;
+}
+.category_price_option_default, .category_brand_option_default{
+    margin-bottom: 0;
+    width: 250px;
 }
