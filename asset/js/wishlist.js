@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   _continueBuyProduct();
 });
 
-var elementHeart = document.querySelectorAll(".product_in4_wishlist i");
+var elementHeart = document.querySelectorAll(".alway_wishlist");
 var elementProduct = document.querySelectorAll(".product");
 
 /*

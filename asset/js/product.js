@@ -12,22 +12,24 @@ var elementPriceOptionList = document.querySelector(
   ".category_price_option_list"
 );
 
-var elementPriceOptionListChild = elementPriceOptionList.querySelector(
-  ".category_price_option_item ul"
+var elementPriceOptionListChild = document.querySelector(
+  ".category_price_option_list .category_price_option_item ul"
 );
-var elementPriceIconDown = elementPriceOptionList.querySelector(
-  ".category_all_item_icon"
+
+var elementPriceIconDown = document.querySelector(
+  ".category_price_option_list .category_all_item_icon"
 );
 
 var elementBrandOptionList = document.querySelector(
   ".category_brand_option_list"
 );
 
-var elementBrandOptionListChild = elementBrandOptionList.querySelector(
-  ".category_brand_option_item ul"
+var elementBrandOptionListChild = document.querySelector(
+  ".category_brand_option_list .category_brand_option_item ul"
 );
-var elementBrandIconDown = elementBrandOptionList.querySelector(
-  ".category_all_item_icon"
+
+var elementBrandIconDown = document.querySelector(
+  ".category_brand_option_list .category_all_item_icon"
 );
 
 /* Create: Cao Thành Nam
@@ -143,10 +145,10 @@ function _chooseOptionPrice() {
 }
 
 var elementPriceOptionListChildItem =
-  elementPriceOptionListChild.querySelectorAll("li");
+  document.querySelectorAll(".category_price_option_list .category_price_option_item ul li");
 
-var elementBrandOptionListItem = elementBrandOptionListChild.querySelectorAll(
-  "input[type ='checkbox']"
+var elementBrandOptionListItem = document.querySelectorAll(
+  ".category_brand_option_list .category_brand_option_item ul label"
 );
 
 /* Create: Cao Thành Nam
@@ -154,11 +156,9 @@ phương thức set item cho bộ lọc theo thương hiệu
 */
 var re = [];
 function _chooseOptionBrand() {
-  elementBrandOptionListItem.forEach(function (value, index) {
-    var category_brand_option_default = document.querySelector(
-      ".category_brand_option_default"
-    );
-    value.onchange = function (e) {
+  elementBrandOptionListItem.forEach(function (value) {
+    value.onchange = function(e) {
+      elementBrandOptionListChild.classList.add("active")
       if (e.target.checked) {
         re.push(e.target.name);
       } else {
