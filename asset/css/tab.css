@@ -16,7 +16,7 @@
 }
 
 .tablinks:hover{
-    color: red;
+    color: var(--black-primary);
 }
 
 .tablinks.active{
