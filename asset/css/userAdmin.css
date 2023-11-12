@@ -1,3 +1,80 @@
+/* start: user_des_admin*/
+#user_des_admin {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px;
+}
+
+#user_des_admin .table_user {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#user_des_admin .table_user td, #user_des_admin .table_user th{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: var(--gray-primary);
+}
+
+#user_des_admin .submit{
+    float: right;
+    border: none;
+    background-color: var(--yellow-primary);
+    padding: 7px 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#user_des_admin .submit:hover{
+    opacity: 0.8;
+}
+
+#user_des_admin .header_search{
+    display: flex;
+    border-radius: 6px;
+    background-color: var(--white-primary);
+    padding: 8px 0 8px 12px;
+}
+
+#user_des_admin .header_search .search {
+    border-radius: 6px;
+    height: 40px;
+    background-color: var(--white-primary);
+    outline: none;
+    border: none;
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#user_des_admin  .header_search .search_logo {
+    width: 50px;
+    display: flex;
+    cursor: pointer;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: var(--yellow-primary);
+    transition: 0.3s ease;
+}
+
+#user_des_admin  .search_logo:hover {
+    background-color: var(--yellow-second);
+}
+/* end: user_des_admin*/
+
+/* start: statistic_admin*/
 #statistic_admin {
     width: 100%;
 }
@@ -111,3 +188,4 @@ div[class*="-stats"] span {
     width: 100%;
     height: 100%;
 }
+/* end: statistic_admin*/
