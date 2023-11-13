@@ -139,17 +139,29 @@
                 </ul>
 
                 <div>
-                    <button class="btn btn-warning">+ Thêm sản phẩm</button>
+                    <button class="btn btn-warning" onclick="addProduct()">+ Thêm sản phẩm</button>
                 </div>
             </div>
         </nav>
 
         <div class="row mt-5 ">
-            <div class="col ms-2 me-2">
+            <div class="card-products col ms-2 me-2">
                 <div class="card-deck">
                     <div class="card">
-                        <img class="card-img-top" src="../image/detail/img1.jpg" alt="Card image cap">
-                        <div class="card-body">
+                        <div class="card_img_top col-5">
+                            <div class="slider_main">
+                                <img src="../image/detail/img1.jpg" alt="img1">
+                            </div>
+                            <div class="slider_images">
+                                <img class="slider_image active" src="../image/detail/img1.jpg" alt="img1">
+                                <img class="slider_image" src="../image/detail/img2.jpg" alt="img2">
+                                <img class="slider_image" src="../image/detail/img3.jpg" alt="img3">
+                                <img class="slider_image" src="../image/detail/img4.jpg" alt="img4">
+                                <img class="slider_image" src="../image/detail/img5.jpg" alt="img5">
+                                <img class="slider_image" src="../image/detail/img6.jpg" alt="img6">
+                            </div>
+                        </div>
+                        <div class="card-body col-7">
                             <h5 class="card-title">Nồi điện đa năng, nồi lẩu mini đa năng kèm khay hấp, chất liệu
                                 chống
                                 dính, dung tích 1,8L tốc độ
@@ -174,11 +186,18 @@
                                 chảo
                                 nướng chống
                                 dính và nắp thủy tinh - cho những bữa ăn hoàn hảo mọi lúc.</p>
-                            <p class="card-text">Trị giá: 1.200.000.000 VND / 1 sản phẩm</p>
-                            <p class="card-text">Số lượng: 999</p>
+                            <p>Trị giá: <span class="card-text">1.200.000.000</span> VND / <span class="card-text"> 1
+                                </span> sản phẩm</p>
+                            <p>Thương hiệu: <span class="card-text">Aroma Housewares</span></p>
+                            <p>Màu: <span class="card-text">Trắng</span></p>
+                            <p>Chất liệu: <span class="card-text">Nhôm</span></p>
+                            <p>Kích thước (Dài x Rộng x Cao): <span class="card-text">3</span>cm x <span
+                                    class="card-text">3</span>cm x <span class="card-text">3</span>cm</p>
+                            <p>Dung tích: <span class="card-text">2</span>lít</p>
+                            <p>Số lượng: <span class="card-text">999</span></p>
                             <div>
-                                <button class="btn btn-danger">Loại bỏ</button>
-                                <button class="btn btn-warning">Điều chỉnh</button>
+                                <button class="btn btn-danger" onclick="hideProduct(this)">Ẩn đi</button>
+                                <button class="btn btn-warning" onclick="editProduct(this)">Điều chỉnh</button>
                             </div>
                         </div>
                     </div>
@@ -188,6 +207,7 @@
     </div>
 
     <script src="../js/headerAdmin.js"></script>
+    <script src="../js/productAdmin.js"></script>
 </body>
 
 </html>
