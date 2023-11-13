@@ -1,0 +1,49 @@
+#voucher{
+    width: 100%;
+}
+
+#voucher .header_search{
+    display: flex;
+    border-radius: 6px;
+    background-color: var(--white-primary);
+    padding: 8px 0 8px 12px;
+}
+
+#voucher .header_search .search {
+    border-radius: 6px;
+    height: 40px;
+    background-color: var(--white-primary);
+    outline: none;
+    border: none;
+    font-size: 16px;
+    padding: 0 10px;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#voucher  .header_search .search_logo {
+    width: 50px;
+    display: flex;
+    cursor: pointer;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: var(--yellow-primary);
+    transition: 0.3s ease;
+}
+
+
+#voucher .card{
+    display: flex;
+    flex-direction: row;
+}
+
+#voucher .card img{
+    width: 30%;
+    height: 30%;
+}
