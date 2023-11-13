@@ -45,14 +45,14 @@ var eProduct = `
 <div class="card-body col-7">
     <h5 class="card-title">Tiêu đề</h5>
     <p class="card-text">Nội dung</p>
-    <p>Trị giá: <span class="card-text">Giá</span> VND / <span class="card-text"> Số lượng 
+    <p>Trị giá: <span class="card-text">(Giá) </span> VND / <span class="card-text"> (Số lượng) 
         </span> sản phẩm</p>
     <p>Thương hiệu: <span class="card-text">Tên thương hiệu</span></p>
     <p>Màu: <span class="card-text">Màu sắc</span></p>
     <p>Chất liệu: <span class="card-text">Chất liệu</span></p>
     <p>Kích thước (Dài x Rộng x Cao): <span class="card-text"></span>cm x <span
             class="card-text"></span>cm x <span class="card-text"></span>cm</p>
-    <p>Dung tích: <span class="card-text">Số dung tích</span>lít</p>
+    <p>Dung tích: <span class="card-text">(Số dung tích)</span>lít</p>
     <p>Số lượng: <span class="card-text">Số lượng</span></p>
     <div>
         <button class="btn btn-danger" onclick="hideProduct(this)">Ẩn đi</button>
