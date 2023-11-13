@@ -18,7 +18,6 @@ Note: hiện ra 2 nút thêm vào giở hàng và xem chi tiết sản phẩm
 */
 function _hoverChangeProductImg() {
   var elementProduct = document.querySelectorAll(".product");
-  var elementProductFooter = document.querySelectorAll(".product_btn");
 
   elementProduct.forEach(function (value, index) {
     var elementProductBtn = value.querySelectorAll(".product_btn .a");
@@ -53,19 +52,22 @@ Date: 19/10/2023
 Note: nếu ấn vào wishlist thì sản phẩm được thêm vào wishlist
 */
 
-var elementHeartIcon = document.querySelectorAll(".product_in4_wishlist");
+var elementWishlisted = document.querySelectorAll(".wishlisted");
+var elementHeartIcon = document.querySelectorAll(".no_wishlist");
+
 function _addWishList() {
+  elementWishlisted = document.querySelectorAll(".wishlisted");
   elementHeartIcon.forEach(function (value) {
     value.onclick = function () {
-      value.classList.toggle("add_wish_list");
+      value.classList.toggle("wishlisted");
+      value.classList.toggle("no_wishlist");
+      
       var quantity = parseInt(elemmentQuantityWishList.innerText);
-
-      if (value.classList.contains("add_wish_list")) {
+      if (value.classList.contains("wishlisted")) {
         quantity += 1;
       } else {
         quantity -= 1;
       }
-
       elemmentQuantityWishList.innerHTML = quantity;
     };
   });
