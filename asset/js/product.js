@@ -144,8 +144,9 @@ function _chooseOptionPrice() {
   });
 }
 
-var elementPriceOptionListChildItem =
-  document.querySelectorAll(".category_price_option_list .category_price_option_item ul li");
+var elementPriceOptionListChildItem = document.querySelectorAll(
+  ".category_price_option_list .category_price_option_item ul li"
+);
 
 var elementBrandOptionListItem = document.querySelectorAll(
   ".category_brand_option_list .category_brand_option_item ul label"
@@ -157,8 +158,8 @@ phương thức set item cho bộ lọc theo thương hiệu
 var re = [];
 function _chooseOptionBrand() {
   elementBrandOptionListItem.forEach(function (value) {
-    value.onchange = function(e) {
-      elementBrandOptionListChild.classList.add("active")
+    value.onchange = function (e) {
+      elementBrandOptionListChild.classList.add("active");
       if (e.target.checked) {
         re.push(e.target.name);
       } else {

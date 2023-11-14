@@ -93,8 +93,8 @@ function editProduct(eBtn) {
         // Nội dung
         isEdit = true
         var node = findElement(eBtn, nProduct)
-        subEditProduct(node.querySelectorAll('.' + nTitle))
-        subEditProduct(node.querySelectorAll('.' + nText))
+        subEditProduct(node.querySelectorAll('.' + nTitle), nTitle)
+        subEditProduct(node.querySelectorAll('.' + nText), nText)
         var titles = ['Điều chỉnh', 'Hoàn tất']
         if (eBtn.innerText === titles[0]) {
             eBtn.innerText = titles[1]
@@ -116,7 +116,7 @@ function editProduct(eBtn) {
     }
 }
 
-function subEditProduct(nodes) {
+function subEditProduct(nodes, classname) {
     nodes.forEach(node => {
         var check = node.innerHTML.includes('input')
         if (check) {
@@ -124,7 +124,7 @@ function subEditProduct(nodes) {
             node.innerText = input.value
         } else {
             node.style = '-webkit-line-clamp: 0;'
-            node.innerHTML = `<input type='text' value='${node.innerText}' style="width: 100%;"/>`
+            node.innerHTML = `<input class = '${classname}' type='text' value='${node.innerText}' style="width: 100%;"/>`
         }
     })
 }
