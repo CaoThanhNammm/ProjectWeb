@@ -118,6 +118,7 @@ function _clickChildItem() {
         value.onclick = function () {
             value.classList.toggle("category_all_item_border-none");
             elementCategoryChildItem[index].classList.toggle('active');
+            elementCategoryChildItem[index].classList.remove('unactive');
             elementIconDown[index].classList.toggle('icon_up_rotate');
         }
     });
