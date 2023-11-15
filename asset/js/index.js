@@ -1,77 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
-  _hoverChangeProductImg();
-  _addWishList();
   if (elementSlider) {
     _moveLeft();
     _moveRight();
     _clickDot();
     _autoSlider();
   }
-  _addToCard();
 });
 
 var elementSlider = document.querySelector(".slider");
-/*
-Create: Cao Thành Named
-Date: 20/10/2023
-Note: hiện ra 2 nút thêm vào giở hàng và xem chi tiết sản phẩm
-*/
-function _hoverChangeProductImg() {
-  var elementProduct = document.querySelectorAll(".product");
-
-  elementProduct.forEach(function (value, index) {
-    var elementProductBtn = value.querySelectorAll(".product_btn .a");
-
-    value.onmouseover = function () {
-      elementProductBtn[0].classList.replace(
-        "product_btn-add_card_none",
-        "product_btn-add_card"
-      );
-      elementProductBtn[1].classList.replace(
-        "product_btn--product_detail_none",
-        "product_btn--product_detail"
-      );
-    };
-
-    value.onmouseout = function () {
-      elementProductBtn[0].classList.replace(
-        "product_btn-add_card",
-        "product_btn-add_card_none"
-      );
-      elementProductBtn[1].classList.replace(
-        "product_btn--product_detail",
-        "product_btn--product_detail_none"
-      );
-    };
-  });
-}
-
-/*
-Create: Cao Thành Named
-Date: 19/10/2023
-Note: nếu ấn vào wishlist thì sản phẩm được thêm vào wishlist
-*/
-
-var elementWishlisted = document.querySelectorAll(".wishlisted");
-var elementHeartIcon = document.querySelectorAll(".no_wishlist");
-
-function _addWishList() {
-  elementWishlisted = document.querySelectorAll(".wishlisted");
-  elementHeartIcon.forEach(function (value) {
-    value.onclick = function () {
-      value.classList.toggle("wishlisted");
-      value.classList.toggle("no_wishlist");
-      
-      var quantity = parseInt(elemmentQuantityWishList.innerText);
-      if (value.classList.contains("wishlisted")) {
-        quantity += 1;
-      } else {
-        quantity -= 1;
-      }
-      elemmentQuantityWishList.innerHTML = quantity;
-    };
-  });
-}
 
 var active = 0;
 var elementImgItem = document.querySelectorAll(".slider_img_item");
@@ -125,25 +61,5 @@ function _clickDot() {
       active = index;
       _reloadSlider();
     });
-  });
-}
-
-var elementAddCard = document.querySelectorAll(".product_btn button");
-var elemmentQuantity = document.querySelector(".header_cart_amount_product");
-
-function _addToCard() {
-  elementAddCard.forEach(function (value) {
-    value.onclick = function () {
-      var elementImgProduct =
-        value.parentElement.parentElement.querySelector(".fly_to_card");
-      elementImgProduct.classList.add("animation_add_to_card");
-
-      elemmentQuantity.innerHTML =
-        parseInt(elemmentQuantity.innerText) + 1 + "";
-
-      setTimeout(function () {
-        elementImgProduct.classList.remove("animation_add_to_card");
-      }, 800);
-    };
   });
 }
