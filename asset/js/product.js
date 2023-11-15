@@ -1,19 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
   if(document.querySelector("#home")){
-    _addProduct(nameOfBepDien, "bd", "asset/image/product/bepdien", 3000000, 1000000, 4);
-    _addProduct(nameOfBepGa, "bg", "asset/image/product/bepga", 3000000, 1000000, 3);
-    _addProduct(nameOfNoiCom, "nc", "asset/image/product/noicom", 3000000, 1000000, 5);
-    _addProduct(nameOfMayEpTraiCay, "me", "asset/image/product/mayeptraicay", 3000000, 1000000, 2);
-    _addProduct(nameOfMayXaySinhTo, "mx", "asset/image/product/mayxaysinhto", 3000000, 1000000, 3);
-    _addProduct(nameofBinhDun, "bd", "asset/image/product/binhdun", 3000000, 1000000, 3);
+    _addProduct(nameOfBepDien, "bd", "asset/image/product/bepdien", "asset/html/detail.html", 3000000, 1000000, 4);
+    _addProduct(nameOfBepGa, "bg", "asset/image/product/bepga", "asset/html/detail.html",3000000, 1000000, 3);
+    _addProduct(nameOfNoiCom, "nc", "asset/image/product/noicom", "asset/html/detail.html",3000000, 1000000, 5);
+    _addProduct(nameOfMayEpTraiCay, "me", "asset/image/product/mayeptraicay", "asset/html/detail.html",3000000, 1000000, 2);
+    _addProduct(nameOfMayXaySinhTo, "mx", "asset/image/product/mayxaysinhto", "asset/html/detail.html",3000000, 1000000, 3);
+    _addProduct(nameofBinhDun, "bd", "asset/image/product/binhdun", "asset/html/detail.html",3000000, 1000000, 3);
   }
-  if (document.querySelector(".product_list")) {
-    _addProduct(nameOfBepDien, "bd", "../image/product/bepdien", 3000000, 1000000, 20);
-    _addProduct(nameOfBepGa, "bg", "../image/product/bepga", 3000000, 1000000, 20);
-    _addProduct(nameOfNoiCom, "nc", "../image/product/noicom", 3000000, 1000000, 20);
-    _addProduct(nameOfMayEpTraiCay, "me", "../image/product/mayeptraicay", 3000000, 1000000, 20);
-    _addProduct(nameOfMayXaySinhTo, "mx", "../image/product/mayxaysinhto", 3000000, 1000000, 20);
-    _addProduct(nameofBinhDun, "bd", "../image/product/binhdun", 3000000, 1000000, 20);
+  else if(document.querySelector(".product_list")) {
+    _addProduct(nameOfBepDien, "bd", "../image/product/bepdien", "../html/detail.html",3000000, 1000000, 20);
+    _addProduct(nameOfBepGa, "bg", "../image/product/bepga",  "../html/detail.html",3000000, 1000000, 20);
+    _addProduct(nameOfNoiCom, "nc", "../image/product/noicom",  "../html/detail.html",3000000, 1000000, 20);
+    _addProduct(nameOfMayEpTraiCay, "me", "../image/product/mayeptraicay",  "../html/detail.html",3000000, 1000000, 20);
+    _addProduct(nameOfMayXaySinhTo, "mx", "../image/product/mayxaysinhto", "../html/detail.html", 3000000, 1000000, 20);
+    _addProduct(nameofBinhDun, "bd", "../image/product/binhdun",  "../html/detail.html",3000000, 1000000, 20);
   }
   
   if (document.querySelector(".category_product")){
@@ -438,6 +438,7 @@ function _addProduct(
   nameProduct,
   nameImg,
   nameFolderImg,
+  nameFolderDetail,
   maxPrice,
   minPrice,
   quantity
@@ -486,7 +487,7 @@ function _addProduct(
     
       <div class="product_btn">
           <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-          <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
+          <a href="${nameFolderDetail}" class=" product_btn--product_detail_none a">xem thêm</a>
       </div>
     </div>
     `;
