@@ -376,10 +376,14 @@ body{
     padding: 10px 0;
     padding-left: 50px;
     list-style-type: none;
-    font-size: 18px;
     font-weight: 600;
-    color: var(--gray-second);
     cursor: pointer;
+}
+
+.category_all_item_child_list li a{ 
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--gray-second);
 }
 
 
