@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "asset/html/detail.html",
       3000000,
       1000000,
-      3
+      30
     );
   } else if (document.querySelector(".product_list")) {
     _addProduct(
@@ -552,7 +552,7 @@ function _addProduct(
     );
     var randomPriceSale = parseInt(
       Math.random() * (randomPrice * 0.7 - randomPrice * 0.2) +
-        randomPrice * 0.2
+      randomPrice * 0.2
     );
 
     var eProduct = `<div class="col-lg-3 col-sm-6 col-md-4 product">
@@ -560,9 +560,8 @@ function _addProduct(
       <div class="product_img">
           <img src="${nameFolderImg}/${nameImg + randomImg}.jpg" alt="">
           <div class="product_img_hover">
-              <img src="${nameFolderImg}/${
-      nameImg + randomImgHover
-    }.jpg" alt="">
+              <img src="${nameFolderImg}/${nameImg + randomImgHover
+      }.jpg" alt="">
           </div>
       </div>
       <div class="product_in4">

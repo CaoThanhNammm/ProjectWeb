@@ -15,162 +15,80 @@
 
 <body class="d-flex">
     <header>
-        <div class="header">
-            <a href="../../index.html" class="logo_page"><img src="../image/general/logo.png" alt=""></a>
-            <!-- phần tìm kiếm sản phẩm của header -->
-            <div class="header_search">
-                <input type="text" class="search" placeholder="Tìm đồ gia dụng">
-                <i class="fa-solid fa-magnifying-glass search_logo"></i>
+        <div id="admin">
+            <div class="navbar">
+                <a href="#"> <img class="admin_logo" src="../image/general/logo.png" alt=""></a>
             </div>
-
-            <!-- phần đăng nhập hoặc đăng ký của header -->
-            <div class="header_login_signin">
-                <a href="../html/login.html" class="log_in">Đăng nhập</a>
-                <div class="line"></div>
-                <a href="../html/register.html" class="sign_in">Đăng ký</a>
-            </div>
-
-            <div class="list_wishList">
-                <i class="fa-regular fa-heart"></i>
-                <span class="amount_wishlist">0</span>
-            </div>
-
-            <div class="header_login_signin_mobile">
-                <a href="../html/login.html"><img src="../image/home/user.png" alt=""></a>
-            </div>
-
-            <!-- phần giỏ hàng của header -->
-            <div class="header_cart">
-                <div class="header_cart_info">
-                    <a href="../html/cart.html">
-                        <img src="../image/home/cart.png" class="header_cart_logo" alt="">
-                        <span class="header_cart_amount_product">0</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- phần danh mục sản phẩm của header -->
-        <div class="navigation">
-            <div class="all_list">
-                <i class="fa-solid fa-list all_list_logo"></i>
-                <span class="all_list_text">Tất cả danh mục</span>
-            </div>
-
-            <ul class="navigtion-list">
-                <li class="navigtion-item"><a href="../html/product.html">Máy lọc nước</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Nồi chiên</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bếp điện</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Nồi cơm</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Máy ép trái cây</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Máy xay sinh tố</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bếp ga</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bình đun</a></li>
-            </ul>
-
-            <div class="list_wishList--mobile">
-                <i class="fa-regular fa-heart"></i>
-                <span class="amount_wishlist">0</span>
-            </div>
-        </div>
-
-        <div class="modal_overlay"></div>
-        <div class="modal_body">
-            <i class="fa-solid fa-xmark modal_body_quit"></i>
-            <ul class="category_all_list">
-                <div>
-                    <li class="category_all_item">Nồi, Bếp Lò
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+            <div class="admin-menu">
+                <ul class="navbar-nav mr-auto mt-2">
+                    <li class="nav-item">
+                        <div class="nav-link active">
+                            <a href="../html/overviewAdmin.html">
+                                <i class="fa-solid fa-house icon_title"></i>
+                                Tổng quan
+                            </a>
+                        </div>
                     </li>
-                    <ul class="category_all_item_child_list">
-                        <li><a href="../html/product.html">Nồi chiên không dầu</a></li>
-                        <li><a href="../html/product.html">Nồi cơm điện</a></li>
-                        <li><a href="../html/product.html">Nồi áp suất</a></li>
-                        <li><a href="../html/product.html">Nồi nấu chậm</a></li>
-                        <li><a href="../html/product.html">Nồi, bộ nồi</a></li>
-                        <li><a href="../html/product.html">Chảo chống dính</a></li>
-                        <li><a href="../html/product.html">Bếp từ</a></li>
-                        <li><a href="../html/product.html">Bếp gà</a></li>
-                        <li><a href="../html/product.html">Bếp hồng ngoại</a></li>
-                        <li><a href="../html/product.html">Lò vi sóng</a></li>
-                        <li><a href="../html/product.html">Lò nướng</a></li>
-                        <li><a href="../html/product.html">Lẩu điện</a></li>
-                    </ul>
-                </div>
 
-                <div>
-                    <li class="category_all_item">Xay ép pha chế
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                    <li class="nav-item">
+                        <div class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-user-tie icon_title"></i>
+                                Người dùng
+                            </a>
+                            <i class="fa-solid fa-caret-down icon_down"></i>
+                        </div>
+
+                        <ul class="nav-item_list_child">
+                            <li class="nav-item_item_child"><a href="../html/userDecentralizationAdmin.html">Phân quyền
+                                    người dùng</a></li>
+                            <li class="nav-item_item_child"><a href="../html/userStatistisAdmin.html">Thống kê người
+                                    dùng</a></li>
+                        </ul>
                     </li>
-                    <ul class="category_all_item_child_list">
-                        <li><a href="../html/product.html">Máy xay sinh tố</a></li>
-                        <li><a href="../html/product.html">Máy ép trái cây</a></li>
-                        <li><a href="../html/product.html">Máy ép chậm</a></li>
-                        <li><a href="../html/product.html">Máy pha cà phê</a></li>
-                        <li><a href="../html/product.html">Máy xay cà phê</a></li>
-                    </ul>
-                </div>
 
-                <div>
-                    <li class="category_all_item">Gia dụng nhà bếp
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                    <li class="nav-item">
+                        <div class="nav-link">
+                            <a href="#">
+                                <i class="fa-brands fa-product-hunt icon_title"></i>
+                                Sản phẩm
+                            </a>
+                            <i class="fa-solid fa-caret-down icon_down"></i>
+
+                        </div>
+
+                        <ul class="nav-item_list_child">
+
+                            <li class="nav-item_item_child"><a href="../html/statisticsProductsAdmin.html">Thống kê sản
+                                    phẩm</a></li>
+                            <li class="nav-item_item_child"><a href="../html/editProductsAdmin.html">Chỉnh sửa sản
+                                    phẩm</a></li>
+                        </ul>
                     </li>
-                    <ul class="category_all_item_child_list">
-                        <li><a href="../html/product.html">Bình đun siêu tốc</a></li>
-                        <li><a href="../html/product.html">Bình thủy điện</a></li>
-                        <li><a href="../html/product.html">Chén bát</a></li>
-                        <li><a href="../html/product.html">dao, kéo</a></li>
-                        <li><a href="../html/product.html">thớt</a></li>
-                    </ul>
-                </div>
-            </ul>
-        </div>
 
-        <div class="modal_body_wishList">
-            <div class="wishlist_header">
-                <i class="fa-solid fa-xmark modal_body_quit_wishlist"></i>
-                <h3 class="wishlist_title" style="margin-bottom: 0; margin-left: 12px;">Wishlist</h3>
-                <h3 class="wishlist_amount" style="margin-bottom: 0;">3</h3>
-            </div>
+                    <li class="nav-item">
+                        <div class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-cart-shopping icon_title"></i>
+                                Đơn hàng
+                            </a>
+                            <i class="fa-solid fa-caret-down icon_down"></i>
+                        </div>
 
-            <div class="wishlist_product">
-                <img src="../image/product/mayxaysinhto/mx10.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Máy xay sinh tố Kangaroo KGBL1000X</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">1200000₫</span>
-                    </div>
-                </div>
-            </div>
+                        <ul class="nav-item_list_child">
+                            <li class="nav-item_item_child"><a href="../html/orderAdmin.html">Xem đơn hàng</a></li>
+                        </ul>
+                    </li>
 
-            <div class="wishlist_product">
-                <img src="../image/product/binhdun/bd11.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Bình đun siêu tốc Delites 1.8 lít ST18S05</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">1204303₫</span>
-                    </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/product/bepga/bg12.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Bếp ga đôi Electrolux ETG7256GKR</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">2987532₫</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="wishlist_product_footer">
-                <span>Tổng cộng</span>
-                <span class="wishlist_product_footer_total">5000000₫</span>
-            </div>
-
-            <div class="wishlist_product_detail">
-                <a href="../html/wishlistDetail.html">XEM WISHLIST</a>
+                    <li class="nav-item">
+                        <div class="nav-link">
+                            <a href="../html/editVoucherAdmin.html">
+                                <i class="fa-solid fa-ticket icon_title"></i>
+                                Voucher
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
