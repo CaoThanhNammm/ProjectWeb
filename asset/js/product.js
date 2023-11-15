@@ -1,22 +1,117 @@
 document.addEventListener("DOMContentLoaded", function () {
-  if(document.querySelector("#home")){
-    _addProduct(nameOfBepDien, "bd", "asset/image/product/bepdien", "asset/html/detail.html", 3000000, 1000000, 4);
-    _addProduct(nameOfBepGa, "bg", "asset/image/product/bepga", "asset/html/detail.html",3000000, 1000000, 3);
-    _addProduct(nameOfNoiCom, "nc", "asset/image/product/noicom", "asset/html/detail.html",3000000, 1000000, 5);
-    _addProduct(nameOfMayEpTraiCay, "me", "asset/image/product/mayeptraicay", "asset/html/detail.html",3000000, 1000000, 2);
-    _addProduct(nameOfMayXaySinhTo, "mx", "asset/image/product/mayxaysinhto", "asset/html/detail.html",3000000, 1000000, 3);
-    _addProduct(nameofBinhDun, "bd", "asset/image/product/binhdun", "asset/html/detail.html",3000000, 1000000, 3);
+  if (document.querySelector("#home")) {
+    _addProduct(
+      nameOfBepDien,
+      "bd",
+      "asset/image/product/bepdien",
+      "asset/html/detail.html",
+      3000000,
+      1000000,
+      4
+    );
+    _addProduct(
+      nameOfBepGa,
+      "bg",
+      "asset/image/product/bepga",
+      "asset/html/detail.html",
+      3000000,
+      1000000,
+      3
+    );
+    _addProduct(
+      nameOfNoiCom,
+      "nc",
+      "asset/image/product/noicom",
+      "asset/html/detail.html",
+      3000000,
+      1000000,
+      5
+    );
+    _addProduct(
+      nameOfMayEpTraiCay,
+      "me",
+      "asset/image/product/mayeptraicay",
+      "asset/html/detail.html",
+      3000000,
+      1000000,
+      2
+    );
+    _addProduct(
+      nameOfMayXaySinhTo,
+      "mx",
+      "asset/image/product/mayxaysinhto",
+      "asset/html/detail.html",
+      3000000,
+      1000000,
+      3
+    );
+    _addProduct(
+      nameofBinhDun,
+      "bd",
+      "asset/image/product/binhdun",
+      "asset/html/detail.html",
+      3000000,
+      1000000,
+      3
+    );
+  } else if (document.querySelector(".product_list")) {
+    _addProduct(
+      nameOfBepDien,
+      "bd",
+      "../image/product/bepdien",
+      "../html/detail.html",
+      3000000,
+      1000000,
+      20
+    );
+    _addProduct(
+      nameOfBepGa,
+      "bg",
+      "../image/product/bepga",
+      "../html/detail.html",
+      3000000,
+      1000000,
+      20
+    );
+    _addProduct(
+      nameOfNoiCom,
+      "nc",
+      "../image/product/noicom",
+      "../html/detail.html",
+      3000000,
+      1000000,
+      20
+    );
+    _addProduct(
+      nameOfMayEpTraiCay,
+      "me",
+      "../image/product/mayeptraicay",
+      "../html/detail.html",
+      3000000,
+      1000000,
+      20
+    );
+    _addProduct(
+      nameOfMayXaySinhTo,
+      "mx",
+      "../image/product/mayxaysinhto",
+      "../html/detail.html",
+      3000000,
+      1000000,
+      20
+    );
+    _addProduct(
+      nameofBinhDun,
+      "bd",
+      "../image/product/binhdun",
+      "../html/detail.html",
+      3000000,
+      1000000,
+      20
+    );
   }
-  else if(document.querySelector(".product_list")) {
-    _addProduct(nameOfBepDien, "bd", "../image/product/bepdien", "../html/detail.html",3000000, 1000000, 20);
-    _addProduct(nameOfBepGa, "bg", "../image/product/bepga",  "../html/detail.html",3000000, 1000000, 20);
-    _addProduct(nameOfNoiCom, "nc", "../image/product/noicom",  "../html/detail.html",3000000, 1000000, 20);
-    _addProduct(nameOfMayEpTraiCay, "me", "../image/product/mayeptraicay",  "../html/detail.html",3000000, 1000000, 20);
-    _addProduct(nameOfMayXaySinhTo, "mx", "../image/product/mayxaysinhto", "../html/detail.html", 3000000, 1000000, 20);
-    _addProduct(nameofBinhDun, "bd", "../image/product/binhdun",  "../html/detail.html",3000000, 1000000, 20);
-  }
-  
-  if (document.querySelector(".category_product")){
+
+  if (document.querySelector(".category_product")) {
     _clickPrice();
     _clickBrand();
     _chooseOptionBrand();
@@ -256,21 +351,23 @@ Note: nếu ấn vào wishlist thì sản phẩm được thêm vào wishlist
 */
 
 function _addWishList() {
-  var elementWishlisted = document.querySelectorAll(".wishlisted");
   var elementHeartIcon = document.querySelectorAll(".no_wishlist");
-  elementWishlisted = document.querySelectorAll(".wishlisted");
   elementHeartIcon.forEach(function (value) {
     value.onclick = function () {
       value.classList.toggle("wishlisted");
       value.classList.toggle("no_wishlist");
 
+      var quantityMobilt = parseInt(elemmentQuantityWishListMobile.innerText);
       var quantity = parseInt(elemmentQuantityWishList.innerText);
       if (value.classList.contains("wishlisted")) {
         quantity += 1;
+        quantityMobilt += 1;
       } else {
         quantity -= 1;
+        quantityMobilt -= 1;
       }
       elemmentQuantityWishList.innerHTML = quantity;
+      elemmentQuantityWishListMobile.innerHTML = quantity;
     };
   });
 }
@@ -308,7 +405,6 @@ var nameOfBepDien = [
   "Bếp từ đôi lắp âm Kangaroo KG855i",
   "Bếp từ đôi lắp âm BlueStone ICB-6818 ",
 ];
-
 
 var nameOfMayLocNuoc = [
   "Máy lọc nước RO nóng nguội lạnh Sunhouse UltraPURE SHA76210KL 10 lõi ",
@@ -462,9 +558,7 @@ function _addProduct(
     var eProduct = `<div class="col-lg-3 col-sm-6 col-md-4 product">
       <i class="fa-solid fa-bag-shopping fly_to_card"></i>
       <div class="product_img">
-          <img src="${nameFolderImg}/${
-      nameImg + randomImg
-    }.jpg" alt="">
+          <img src="${nameFolderImg}/${nameImg + randomImg}.jpg" alt="">
           <div class="product_img_hover">
               <img src="${nameFolderImg}/${
       nameImg + randomImgHover
@@ -496,4 +590,3 @@ function _addProduct(
     elementProductList.innerHTML += eProduct;
   }
 }
-
