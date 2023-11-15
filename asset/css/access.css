@@ -7,7 +7,8 @@
 }
 
 #register,
-#login {
+#login,
+#forget {
     background-color: var(--gray-primary);
 }
 
