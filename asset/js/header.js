@@ -118,6 +118,7 @@ function _clickChildItem() {
         value.onclick = function () {
             value.classList.toggle("category_all_item_border-none");
             elementCategoryChildItem[index].classList.toggle('active');
+            elementCategoryChildItem[index].classList.remove('unactive');
             elementIconDown[index].classList.toggle('icon_up_rotate');
         }
     });
@@ -130,4 +131,6 @@ var elementModalBodyWishList = document.querySelector(".modal_body_wishList");
 var elementQuitIconWishList = document.querySelector(".modal_body_quit_wishlist");
 
 var elemmentQuantity = document.querySelector(".header_cart_amount_product");
-var elemmentQuantityWishList = document.querySelector(".amount_wishlist");
+
+var elemmentQuantityWishListMobile = document.querySelector(".list_wishList--mobile .amount_wishlist");
+var elemmentQuantityWishList = document.querySelector(".list_wishList .amount_wishlist");

@@ -41,7 +41,18 @@
     .product_btn-add_card:hover,.product_btn--product_detail:hover{
         animation: none;
     }
+    .category_product{
+        display: flex;
+        flex-wrap: wrap;
+    }
 
+    .category_product_submit{
+        margin-top: 20px;
+    }
+
+    .category_brand{
+        margin-top: 20px;
+    }
     
 }
 
@@ -72,7 +83,18 @@
     .slider_dot_list {
         left: 35%;
     }
+    .category_product{
+        display: flex;
+        flex-wrap: wrap;
+    }
 
+    .category_product_submit{
+        margin-top: 20px;
+    }
+
+    .category_brand{
+        margin-top: 20px;
+    }
 }
 
 
@@ -146,8 +168,8 @@
 /* extra PC 1200px <= width < 1200px*/
 @media only screen and (min-width: 1500px) {
     .product_btn--product_detail, .product_btn-add_card{
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 25px;
+        padding-right: 25px;
     }
    
 }

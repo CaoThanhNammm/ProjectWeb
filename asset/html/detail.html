@@ -19,759 +19,456 @@
 </head>
 
 <body>
-    <header>
-        <div class="header">
-            <a href="../../index.html" class="logo_page"><img src="../image/general/logo.png" alt=""></a>
-            <!-- phần tìm kiếm sản phẩm của header -->
-            <div class="header_search">
-                <input type="text" class="search" placeholder="Tìm đồ gia dụng">
-                <i class="fa-solid fa-magnifying-glass search_logo"></i>
-            </div>
+    <div id="page">
 
-            <!-- phần đăng nhập hoặc đăng ký của header -->
-            <div class="header_login_signin">
-                <a href="../html/login.html" class="log_in">Đăng nhập</a>
-                <div class="line"></div>
-                <a href="../html/register.html" class="sign_in">Đăng ký</a>
-            </div>
-
-            <div class="list_wishList">
-                <i class="fa-regular fa-heart"></i>
-                <span class="amount_wishlist">0</span>
-            </div>
-
-            <div class="header_login_signin_mobile">
-                <a href="../html/login.html"><img src="../image/home/user.png" alt=""></a>
-            </div>
-
-            <!-- phần giỏ hàng của header -->
-            <div class="header_cart">
-                <div class="header_cart_info">
-                    <a href="../html/cart.html">
-                        <img src="../image/home/cart.png" class="header_cart_logo" alt="">
-                        <span class="header_cart_amount_product">0</span>
-                    </a>
+        <header>
+            <div class="header">
+                <a href="../../index.html" class="logo_page"><img src="../image/general/logo.png" alt=""></a>
+                <!-- phần tìm kiếm sản phẩm của header -->
+                <div class="header_search">
+                    <input type="text" class="search" placeholder="Tìm đồ gia dụng">
+                    <i class="fa-solid fa-magnifying-glass search_logo"></i>
                 </div>
-            </div>
-        </div>
-        <!-- phần danh mục sản phẩm của header -->
-        <div class="navigation">
-            <div class="all_list">
-                <i class="fa-solid fa-list all_list_logo"></i>
-                <span class="all_list_text">Tất cả danh mục</span>
-            </div>
-
-            <ul class="navigtion-list">
-                <li class="navigtion-item"><a href="../html/product.html">Máy lọc nước</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Nồi chiên</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bếp điện</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Nồi cơm</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Máy ép trái cây</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Máy xay sinh tố</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bếp ga</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bình đun</a></li>
-            </ul>
-
-            <div class="list_wishList--mobile">
-                <i class="fa-regular fa-heart"></i>
-                <span class="amount_wishlist">3</span>
-            </div>
-        </div>
-
-        <div class="modal_overlay"></div>
-        <div class="modal_body">
-            <i class="fa-solid fa-xmark modal_body_quit"></i>
-            <ul class="category_all_list">
-                <div>
-                    <li class="category_all_item">Nồi, Bếp Lò
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
-                    </li>
-                    <ul class="category_all_item_child_list">
-                        <li>Nồi chiên không dầu</li>
-                        <li>Nồi cơm điện</li>
-                        <li>Nồi áp suất</li>
-                        <li>Nồi nấu chậm</li>
-                        <li>Nồi, bộ nồi</li>
-                        <li>Chảo chống dính</li>
-                        <li>Bếp từ</li>
-                        <li>Bếp gà</li>
-                        <li>Bếp hồng ngoại</li>
-                        <li>Lò vi sóng</li>
-                        <li>Lò nướng</li>
-                        <li>Lẩu điện</li>
-                    </ul>
+    
+                <!-- phần đăng nhập hoặc đăng ký của header -->
+                <div class="header_login_signin">
+                    <a href="../html/login.html" class="log_in">Đăng nhập</a>
+                    <div class="line"></div>
+                    <a href="../html/register.html" class="sign_in">Đăng ký</a>
                 </div>
-
-                <div>
-                    <li class="category_all_item">Xay ép pha chế
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
-                    </li>
-                    <ul class="category_all_item_child_list">
-                        <li>Máy xay sinh tố</li>
-                        <li>Máy ép trái cây</li>
-                        <li>Máy ép chậm</li>
-                        <li>Máy pha cà phê</li>
-                        <li>Máy xay cà phê</li>
-                    </ul>
+    
+                <div class="list_wishList">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="amount_wishlist">0</span>
                 </div>
-
-                <div>
-                    <li class="category_all_item">Gia dụng nhà bếp
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
-                    </li>
-                    <ul class="category_all_item_child_list">
-                        <li>Bình đun siêu tốc</li>
-                        <li>Bình thủy điện</li>
-                        <li>Chén bát</li>
-                        <li>dao, kéo</li>
-                        <li>thớt</li>
-                    </ul>
+    
+                <div class="header_login_signin_mobile">
+                    <a href="../html/login.html"><img src="../image/home/user.png" alt=""></a>
                 </div>
-            </ul>
-        </div>
-
-        <div class="modal_body_wishList">
-            <div class="wishlist_header">
-                <i class="fa-solid fa-xmark modal_body_quit_wishlist"></i>
-                <h3 class="wishlist_title" style="margin-bottom: 0; margin-left: 12px;">Wishlist</h3>
-                <h3 class="wishlist_amount" style="margin-bottom: 0;">0</h3>
-            </div>
-
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
+    
+                <!-- phần giỏ hàng của header -->
+                <div class="header_cart">
+                    <div class="header_cart_info">
+                        <a href="../html/cart.html">
+                            <img src="../image/home/cart.png" class="header_cart_logo" alt="">
+                            <span class="header_cart_amount_product">0</span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
+            <!-- phần danh mục sản phẩm của header -->
+            <div class="navigation">
+                <div class="all_list">
+                    <i class="fa-solid fa-list all_list_logo"></i>
+                    <span class="all_list_text">Tất cả danh mục</span>
+                </div>
+    
+                <ul class="navigtion-list">
+                    <li class="navigtion-item"><a href="../html/product.html">Máy lọc nước</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Nồi chiên</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Bếp điện</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Nồi cơm</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Máy ép trái cây</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Máy xay sinh tố</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Bếp ga</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Bình đun</a></li>
+                </ul>
+    
+                <div class="list_wishList--mobile">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="amount_wishlist">0</span>
+                </div>
+            </div>
+    
+            <div class="modal_overlay"></div>
+            <div class="modal_body">
+                <i class="fa-solid fa-xmark modal_body_quit"></i>
+                <ul class="category_all_list">
+                    <div>
+                        <li class="category_all_item">Nồi, Bếp Lò
+                            <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                        </li>
+                        <ul class="category_all_item_child_list">
+                            <li><a href="../html/product.html">Nồi chiên không dầu</a></li>
+                            <li><a href="../html/product.html">Nồi cơm điện</a></li>
+                            <li><a href="../html/product.html">Nồi áp suất</a></li>
+                            <li><a href="../html/product.html">Nồi nấu chậm</a></li>
+                            <li><a href="../html/product.html">Nồi, bộ nồi</a></li>
+                            <li><a href="../html/product.html">Chảo chống dính</a></li>
+                            <li><a href="../html/product.html">Bếp từ</a></li>
+                            <li><a href="../html/product.html">Bếp gà</a></li>
+                            <li><a href="../html/product.html">Bếp hồng ngoại</a></li>
+                            <li><a href="../html/product.html">Lò vi sóng</a></li>
+                            <li><a href="../html/product.html">Lò nướng</a></li>
+                            <li><a href="../html/product.html">Lẩu điện</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
+    
+                    <div>
+                        <li class="category_all_item">Xay ép pha chế
+                            <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                        </li>
+                        <ul class="category_all_item_child_list">
+                            <li><a href="../html/product.html">Máy xay sinh tố</a></li>
+                            <li><a href="../html/product.html">Máy ép trái cây</a></li>
+                            <li><a href="../html/product.html">Máy ép chậm</a></li>
+                            <li><a href="../html/product.html">Máy pha cà phê</a></li>
+                            <li><a href="../html/product.html">Máy xay cà phê</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
+    
+                    <div>
+                        <li class="category_all_item">Gia dụng nhà bếp
+                            <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                        </li>
+                        <ul class="category_all_item_child_list">
+                            <li><a href="../html/product.html">Bình đun siêu tốc</a></li>
+                            <li><a href="../html/product.html">Bình thủy điện</a></li>
+                            <li><a href="../html/product.html">Chén bát</a></li>
+                            <li><a href="../html/product.html">dao, kéo</a></li>
+                            <li><a href="../html/product.html">thớt</a></li>
+                        </ul>
                     </div>
+                </ul>
+            </div>
+    
+            <div class="modal_body_wishList">
+                <div class="wishlist_header">
+                    <i class="fa-solid fa-xmark modal_body_quit_wishlist"></i>
+                    <h3 class="wishlist_title" style="margin-bottom: 0; margin-left: 12px;">Wishlist</h3>
+                    <h3 class="wishlist_amount" style="margin-bottom: 0;">3</h3>
                 </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
-                    </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
-                    </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="wishlist_product_footer">
-                <span>Tổng cộng</span>
-                <span class="wishlist_product_footer_total">300,000,000₫</span>
-            </div>
-
-            <div class="wishlist_product_detail">
-                <a href="../html/wishlistDetail.html">XEM WISHLIST</a>
-            </div>
-        </div>
-    </header>
-    <!-- 
-        Tạo bởi: Trần Minh Quân
-        Ngày: 24-10-2023
-        Chức năng: Chức năng detail
-     -->
-    <div class="detail container">
-        <div class="row detail_part">
-            <div class="col-5">
-                <div class="slider_main">
-                    <img src="../image/detail/img1.jpg" alt="img1">
-                </div>
-                <div class="slider_images">
-                    <img class="slider_image active" src="../image/detail/img1.jpg" alt="img1">
-                    <img class="slider_image" src="../image/detail/img2.jpg" alt="img2">
-                    <img class="slider_image" src="../image/detail/img3.jpg" alt="img3">
-                    <img class="slider_image" src="../image/detail/img4.jpg" alt="img4">
-                    <img class="slider_image" src="../image/detail/img5.jpg" alt="img5">
-                    <img class="slider_image" src="../image/detail/img6.jpg" alt="img6">
-                </div>
-            </div>
-            <div class="col-7">
-                <h2>Nồi điện đa năng, nồi lẩu mini đa năng kèm khay hấp, chất liệu chống dính, dung tích 1,8L tốc độ
-                    sôi cực nhanh</h2>
-                <a href="/index.html" class="brand">Thương hiệu: Aroma</a>
-                <div class="rate">
-                    <p class="starrate">5.0</p>
-                    <img class="star" src="../image/detail/star.png" alt="star">
-                    <img class="star" src="../image/detail/star.png" alt="star">
-                    <img class="star" src="../image/detail/star.png" alt="star">
-                    <img class="star" src="../image/detail/star.png" alt="star">
-                    <img class="star" src="../image/detail/star.png" alt="star">
-                </div>
-                <div class="line"></div>
-                <div class="price">
-                    <h3 class="final_price">1.100.000đ</h3>
-                    <h3 class="old_price">2.000.000đ</h3>
-                </div>
-                <table class="quickview">
-                    <tr>
-                        <td class="quickview_title">Thương hiệu:</td>
-                        <td>Aroma Housewares</td>
-                    </tr>
-                    <tr>
-                        <td class="quickview_title">Màu:</td>
-                        <td>Trắng</td>
-                    </tr>
-                    <tr>
-                        <td class="quickview_title">Chất liệu:</td>
-                        <td>Nhôm</td>
-                    </tr>
-                    <tr>
-                        <td class="quickview_title">Kích thước (Dài x Rộng x Cao):</td>
-                        <td>3cm x 3cm x 3cm</td>
-                    </tr>
-                    <tr>
-                        <td class="quickview_title">Dung tích</td>
-                        <td>2 lít</td>
-                    </tr>
-                </table>
-                <div>
-                    <button class="buy_button">Mua ngay!</button>
-                    <button class="addcart_button">Thêm vào giỏ</button>
-                </div>
-            </div>
-        </div>
-        <div class="row detail_part" style="margin-top: 30px;">
-            <div class="tab">
-                <button class="tablinks active" onclick="_switchTab(event, 'describe')">Giới thiệu</button>
-                <button class="tablinks" onclick="_switchTab(event, 'info')">Thông tin sản phẩm</button>
-                <button class="tablinks" onclick="_switchTab(event, 'rates')">Đánh giá</button>
-            </div>
-            <div id="describe" class="tabcontent active">
-                <h2 class="title">Giới thiệu</h2>
-                <p style="white-space: pre-line; font-size: 16px;">
-                    - BỀ MẶT NẤU DUAL: Nồi điện mới của chúng tôi vừa là NƯỚNG vừa là Lẩu, giúp nấu nướng linh hoạt hơn
-                    mà ít tốn công sức hơn - để chuẩn bị những bữa ăn ngon.
-                    - ĐA CHỨC NĂNG: Bạn có thể điều chỉnh nhiệt độ từ 300° đến 450° F, giúp bạn thoải mái chế biến các
-                    món súp thịnh soạn, nướng thịt và rau - và nhiều hơn thế nữa.
-                    - NẤU CHE: Nắp kính cường lực ngăn ngừa bắn tung tóe khi nướng và nấu. Nó có thể ngăn ngừa sự lộn
-                    xộn trong nhà bếp và vết bẩn trên quần áo của bạn.
-                    - RỘNG RÃI & DI ĐỘNG: Nồi nấu bằng thép không gỉ cực lớn của chúng tôi có dung tích 2,5 lít và đảm
-                    bảo phân phối nhiệt đều và dễ dàng làm sạch – đó là máy rửa chén an toàn.
-                    - PHỤ KIỆN: Nồi này đi kèm đế nhiệt có thể điều chỉnh, nồi nấu bằng thép không gỉ, chảo nướng chống
-                    dính và nắp thủy tinh - cho những bữa ăn hoàn hảo mọi lúc.
-                </p>
-            </div>
-            <div id="info" class="tabcontent">
-                <h2 class="title">Thông tin sản phẩm</h2>
-                <table class="table_full">
-                    <tr>
-                        <td class="table_title">Mã sản phẩm</td>
-                        <td>ND-123</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Thương hiệu</td>
-                        <td>Aroma Housewares</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Màu</td>
-                        <td>Trắng</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Chất liệu</td>
-                        <td>Nhôm</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Kích thước (Dài x Rộng x Cao)</td>
-                        <td>3cm x 3cm x 3cm</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Dung tích</td>
-                        <td>2 lít</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Công suất</td>
-                        <td>500 Wát</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Khối lượng</td>
-                        <td>3 Kg</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Dung tích</td>
-                        <td>5 Lít</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Vôn</td>
-                        <td>220 Vôn</td>
-                    </tr>
-                </table>
-            </div>
-            <div id="rates" class="tabcontent">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="user_review">
-                            <div class="user_info">
-                                <h4 class="name">Trần Minh Quân</h4>
-                                <small class="date">Ngày: 30/10/2023</small>
-                            </div>
-                            <div class="rate">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                            </div>
-                            <div class="review">
-                                <p>Từ ngày có cái nồi này, mỗi tối tôi ăn 3 bát cơm, gia đình êm ấm, mỗi sáng thức dậy
-                                    tôi cảm thấy như một người thành công. Hơi khói phả ra từ nồi cơm khiến tôi nhớ về
-                                    ngày bé khi còn bên bếp lửa với bà, cái quạt mo phe phẩy thổi gió vào lò củi, gạo
-                                    trắng ám mùi gỗ ấy là kỷ niệm về cái thời bao cấp đầy khốn khổ tại vùng quê Nam Kì.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="user_review">
-                            <div class="user_info">
-                                <h4 class="name">Cao Thành Nam</h4>
-                                <small class="date">Ngày: 29/10/2023</small>
-                            </div>
-                            <div class="rate">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                            </div>
-                            <div class="review">
-                                <p>Gạo nấu ghè tan, cực ngây, êm.</p>
-                            </div>
-                        </div>
-                        <div class="user_review">
-                            <div class="user_info">
-                                <h4 class="name">Nguyễn Khải Nam</h4>
-                                <small class="date">Ngày: 28/10/2023</small>
-                            </div>
-                            <div class="rate">
-                                <img class="star" src="../image/detail/star.png" alt="star">
-                            </div>
-                            <div class="review">
-                                <p>1 sao cho giống cờ Việt Nam.</p>
-                            </div>
+    
+                <div class="wishlist_product">
+                    <img src="../image/product/mayxaysinhto/mx10.jpg" alt="">
+                    <div class="wishlist_product_in4">
+                        <a class="wishlist_product_title">Máy xay sinh tố Kangaroo KGBL1000X</a>
+                        <div class="wishlist_product_right_under">
+                            <i class="fa-regular fa-trash-can"></i>
+                            <span class="wishlist_product_price">1200000₫</span>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <h2 class="title">Để lại đánh giá</h2>
-                        <br>
-                        <p style="color: gray; text-align: center;">Hãy đăng nhập để gửi đánh giá</p>
+                </div>
+    
+                <div class="wishlist_product">
+                    <img src="../image/product/binhdun/bd11.jpg" alt="">
+                    <div class="wishlist_product_in4">
+                        <a class="wishlist_product_title">Bình đun siêu tốc Delites 1.8 lít ST18S05</a>
+                        <div class="wishlist_product_right_under">
+                            <i class="fa-regular fa-trash-can"></i>
+                            <span class="wishlist_product_price">1204303₫</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wishlist_product">
+                    <img src="../image/product/bepga/bg12.jpg" alt="">
+                    <div class="wishlist_product_in4">
+                        <a class="wishlist_product_title">Bếp ga đôi Electrolux ETG7256GKR</a>
+                        <div class="wishlist_product_right_under">
+                            <i class="fa-regular fa-trash-can"></i>
+                            <span class="wishlist_product_price">2987532₫</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="wishlist_product_footer">
+                    <span>Tổng cộng</span>
+                    <span class="wishlist_product_footer_total">5000000₫</span>
+                </div>
+    
+                <div class="wishlist_product_detail">
+                    <a href="../html/wishlistDetail.html">XEM WISHLIST</a>
+                </div>
+            </div>
+        </header>
+        <!-- 
+            Tạo bởi: Trần Minh Quân
+            Ngày: 24-10-2023
+            Chức năng: Chức năng detail
+         -->
+        <div class="detail container">
+            <div class="row detail_part">
+                <div class="col-5">
+                    <div class="slider_main">
+                        <img src="../image/detail/img1.jpg" alt="img1">
+                    </div>
+                    <div class="slider_images">
+                        <img class="slider_image active" src="../image/detail/img1.jpg" alt="img1">
+                        <img class="slider_image" src="../image/detail/img2.jpg" alt="img2">
+                        <img class="slider_image" src="../image/detail/img3.jpg" alt="img3">
+                        <img class="slider_image" src="../image/detail/img4.jpg" alt="img4">
+                        <img class="slider_image" src="../image/detail/img5.jpg" alt="img5">
+                        <img class="slider_image" src="../image/detail/img6.jpg" alt="img6">
+                    </div>
+                </div>
+                <div class="col-7">
+                    <h2>Nồi điện đa năng, nồi lẩu mini đa năng kèm khay hấp, chất liệu chống dính, dung tích 1,8L tốc độ
+                        sôi cực nhanh</h2>
+                    <a href="/index.html" class="brand">Thương hiệu: Aroma</a>
+                    <div class="rate">
+                        <p class="starrate">5.0</p>
+                        <img class="star" src="../image/detail/star.png" alt="star">
+                        <img class="star" src="../image/detail/star.png" alt="star">
+                        <img class="star" src="../image/detail/star.png" alt="star">
+                        <img class="star" src="../image/detail/star.png" alt="star">
+                        <img class="star" src="../image/detail/star.png" alt="star">
+                    </div>
+                    <div class="line"></div>
+                    <div class="price">
+                        <h3 class="final_price">1.100.000đ</h3>
+                        <h3 class="old_price">2.000.000đ</h3>
+                    </div>
+                    <table class="quickview">
+                        <tr>
+                            <td class="quickview_title">Thương hiệu:</td>
+                            <td>Aroma Housewares</td>
+                        </tr>
+                        <tr>
+                            <td class="quickview_title">Màu:</td>
+                            <td>Trắng</td>
+                        </tr>
+                        <tr>
+                            <td class="quickview_title">Chất liệu:</td>
+                            <td>Nhôm</td>
+                        </tr>
+                        <tr>
+                            <td class="quickview_title">Kích thước (Dài x Rộng x Cao):</td>
+                            <td>3cm x 3cm x 3cm</td>
+                        </tr>
+                        <tr>
+                            <td class="quickview_title">Dung tích</td>
+                            <td>2 lít</td>
+                        </tr>
+                    </table>
+                    <div>
+                        <form action="checkout.html" style="display: inline;">
+                            <button class="buy_button">Mua ngay!</button>
+                        </form>
+                        <form action="cart.html" style="display: inline;">
+                            <button class="addcart_button">Thêm vào giỏ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="row detail_part" style="margin-top: 30px;">
+                <div class="tab">
+                    <button class="tablinks active" onclick="_switchTab(event, 'describe')">Giới thiệu</button>
+                    <button class="tablinks" onclick="_switchTab(event, 'info')">Thông tin sản phẩm</button>
+                    <button class="tablinks" onclick="_switchTab(event, 'rates')">Đánh giá</button>
+                </div>
+                <div id="describe" class="tabcontent active">
+                    <h2 class="title">Giới thiệu</h2>
+                    <p style="white-space: pre-line; font-size: 16px;">
+                        - BỀ MẶT NẤU DUAL: Nồi điện mới của chúng tôi vừa là NƯỚNG vừa là Lẩu, giúp nấu nướng linh hoạt hơn
+                        mà ít tốn công sức hơn - để chuẩn bị những bữa ăn ngon.
+                        - ĐA CHỨC NĂNG: Bạn có thể điều chỉnh nhiệt độ từ 300° đến 450° F, giúp bạn thoải mái chế biến các
+                        món súp thịnh soạn, nướng thịt và rau - và nhiều hơn thế nữa.
+                        - NẤU CHE: Nắp kính cường lực ngăn ngừa bắn tung tóe khi nướng và nấu. Nó có thể ngăn ngừa sự lộn
+                        xộn trong nhà bếp và vết bẩn trên quần áo của bạn.
+                        - RỘNG RÃI & DI ĐỘNG: Nồi nấu bằng thép không gỉ cực lớn của chúng tôi có dung tích 2,5 lít và đảm
+                        bảo phân phối nhiệt đều và dễ dàng làm sạch – đó là máy rửa chén an toàn.
+                        - PHỤ KIỆN: Nồi này đi kèm đế nhiệt có thể điều chỉnh, nồi nấu bằng thép không gỉ, chảo nướng chống
+                        dính và nắp thủy tinh - cho những bữa ăn hoàn hảo mọi lúc.
+                    </p>
+                </div>
+                <div id="info" class="tabcontent">
+                    <h2 class="title">Thông tin sản phẩm</h2>
+                    <table class="table_full">
+                        <tr>
+                            <td class="table_title">Mã sản phẩm</td>
+                            <td>ND-123</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Thương hiệu</td>
+                            <td>Aroma Housewares</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Màu</td>
+                            <td>Trắng</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Chất liệu</td>
+                            <td>Nhôm</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Kích thước (Dài x Rộng x Cao)</td>
+                            <td>3cm x 3cm x 3cm</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Dung tích</td>
+                            <td>2 lít</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Công suất</td>
+                            <td>500 Wát</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Khối lượng</td>
+                            <td>3 Kg</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Dung tích</td>
+                            <td>5 Lít</td>
+                        </tr>
+                        <tr>
+                            <td class="table_title">Vôn</td>
+                            <td>220 Vôn</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="rates" class="tabcontent">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="user_review">
+                                <div class="user_info">
+                                    <h4 class="name">Trần Minh Quân</h4>
+                                    <small class="date">Ngày: 30/10/2023</small>
+                                </div>
+                                <div class="rate">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                </div>
+                                <div class="review">
+                                    <p>Good
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="user_review">
+                                <div class="user_info">
+                                    <h4 class="name">Cao Thành Nam</h4>
+                                    <small class="date">Ngày: 29/10/2023</small>
+                                </div>
+                                <div class="rate">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                </div>
+                                <div class="review">
+                                    <p>Gạo nấu ghè tan, cực ngây, êm.</p>
+                                </div>
+                            </div>
+                            <div class="user_review">
+                                <div class="user_info">
+                                    <h4 class="name">Nguyễn Khải Nam</h4>
+                                    <small class="date">Ngày: 28/10/2023</small>
+                                </div>
+                                <div class="rate">
+                                    <img class="star" src="../image/detail/star.png" alt="star">
+                                </div>
+                                <div class="review">
+                                    <p>1 sao cho giống cờ Việt Nam.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h2 class="title">Để lại đánh giá</h2>
+                            <br>
+                            <p style="color: gray; text-align: center;">Hãy đăng nhập để gửi đánh giá</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row detail_part">
+                <h2 class="title" style="font-size: 28px; padding-bottom: 20px;">Các sản phẩm tương tự</h2>
+                <div class="product_list container">
+                    <div class="row mb-3">
+    
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row detail_part">
-            <h2 class="title" style="font-size: 28px; padding-bottom: 20px;">Các sản phẩm tương tự</h2>
-            <div class="product_list container">
-                <div class="row mb-3">
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
+        
+        <footer>
+            <div id="footer" class="container-fluid">
+                <div class="container pt-4">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <ul class="footer_list">
+                                <li class="footer_list_item">
+                                    <h5>Kết nối với chúng tôi</h5>
+                                </li>
+                                <li class="footer_list_item">
+                                    <a href="../../index.html">
+                                        <img class="footer_list_item_img" src="../image/general/logo.png"
+                                            alt="Logo cửa hàng">
+                                    </a>
+                                </li>
+                                <li class="footer_list_item">Địa chỉ email: <a href="mailto: dobanbietday@gmail.com"
+                                        type="email">nhom23@hcmuaf.edu.vn</a></li>
+                                <li class="footer_list_item">Số điện thoại: <a href="tel: +84 123 456 789">+84 123 456
+                                        789</a></li>
+                                <li class="footer_list_item">
+                                    <img class="footer_list_item_img" src="../image/general/qr.png" alt="Mã qr cửa hàng">
+                                </li>
+                            </ul>
                         </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
+    
+                        <div class="col-lg-3 col-md-6">
+                            <ul class="footer_list">
+                                <li class="footer_list_item">
+                                    <h5>N2Q</h5>
+                                </li>
+                                <li class="footer_list_item"><a href="../html/product.html">Sản phẩm</a></li>
+                                <li class="footer_list_item"><a href="../html/about.html">Giới thiệu</a></li>
+                                <li class="footer_list_item"><a href="../html/about.html">Liên hệ</a></li>
+                                <li class="footer_list_item"><a href="https://www.linkedin.com/">Tuyển dụng</a></li>
+                            </ul>
                         </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
+    
+                        <div class="col-lg-3 col-md-6">
+                            <ul class="footer_list">
+                                <li class="footer_list_item">
+                                    <h5>Theo dõi chúng tôi trên</h5>
+                                </li>
+                                <li class="footer_list_item"><a href="https://www.facebook.com/">
+                                        <i class="fa-brands fa-facebook"></i>
+                                        <span>Facebook</span>
+                                    </a></li>
+                                <li class="footer_list_item"><a href="https://www.instagram.com/">
+                                        <i class="fa-brands fa-instagram"></i>
+                                        <span>Instagram</span>
+                                    </a></li>
+                                <li class="footer_list_item"><a href="https://www.linkedin.com/">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                        <span>Linkedin</span>
+                                    </a></li>
+                            </ul>
                         </div>
-                    </div>
-
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
+    
+                        <div class="col-lg-3 col-md-6">
+                            <ul class="footer_list">
+                                <li class="footer_list_item">
+                                    <h5>Trợ giúp</h5>
+                                </li>
+                                <li class="footer_list_item"><a href="../html/about.html">Liên hệ người quản trị</a></li>
+                                <li class="footer_list_item"><a href="../html/policy.html" target="_blank">Chính sách</a>
+                                </li>
+                                <li class="footer_list_item"><a href="../html/about.html">Trả hàng</a></li>
+                                <li class="footer_list_item"><a href="../html/user.html">Tài khoản của bạn</a></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6 col-md-4 product">
-                        <i class="fa-solid fa-bag-shopping fly_to_card"></i>
-                        <div class="product_img">
-                            <img src="../image/home/product_img.jpg" alt="">
-                            <div class="product_img_hover">
-                                <img src="../image/home/product_img_hover.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="product_in4">
-                            <p class="product_in4_name_product">ngoi cao cap sieu vip pro vu tru</p>
-                            <div class="product_in4_bottom">
-                                <div>
-                                    <p class="product_in4_price">12,000,000₫</p>
-                                    <p class="product_in4_sale_price">6,000,000₫</p>
-                                </div>
-                                <div class="product_in4_wishlist no_wishlist">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span class="hint_wishlist">yêu thích</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product_btn">
-                            <button href="" class=" product_btn-add_card_none a">Thêm vào giỏ</button>
-                            <a href="../html/detail.html" class=" product_btn--product_detail_none a">xem thêm</a>
+    
+                    <div class="row mt-5">
+                        <div class="footer_coppyright col">
+                            @<span class="year"></span> - Bản quyền thuộc thương hiệu của N2Q - thương hiệu thuộc Nông Lâm
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
+        </footer>
     </div>
-    <footer>
-        <div id="footer" class="container-fluid">
-            <div class="container pt-4">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <ul class="footer_list">
-                            <li class="footer_list_item">
-                                <h5>Kết nối với chúng tôi</h5>
-                            </li>
-                            <li class="footer_list_item">
-                                <a href="../../index.html">
-                                    <img class="footer_list_item_img" src="../image/general/logo.png"
-                                        alt="Logo cửa hàng">
-                                </a>
-                            </li>
-                            <li class="footer_list_item">Địa chỉ email: <a href="mailto: dobanbietday@gmail.com"
-                                    type="email">nhom23@hcmuaf.edu.vn</a></li>
-                            <li class="footer_list_item">Số điện thoại: <a href="tel: +84 123 456 789">+84 123 456
-                                    789</a></li>
-                            <li class="footer_list_item">
-                                <img class="footer_list_item_img" src="../image/general/qr.png" alt="Mã qr cửa hàng">
-                            </li>
-                        </ul>
-                    </div>
 
-                    <div class="col-lg-3 col-md-6">
-                        <ul class="footer_list">
-                            <li class="footer_list_item">
-                                <h5>N2Q</h5>
-                            </li>
-                            <li class="footer_list_item"><a href="../html/product.html">Sản phẩm</a></li>
-                            <li class="footer_list_item"><a href="../html/about.html">Giới thiệu</a></li>
-                            <li class="footer_list_item"><a href="../html/about.html">Liên hệ</a></li>
-                            <li class="footer_list_item"><a href="https://www.linkedin.com/">Tuyển dụng</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <ul class="footer_list">
-                            <li class="footer_list_item">
-                                <h5>Theo dõi chúng tôi trên</h5>
-                            </li>
-                            <li class="footer_list_item"><a href="https://www.facebook.com/">
-                                    <i class="fa-brands fa-facebook"></i>
-                                    <span>Facebook</span>
-                                </a></li>
-                            <li class="footer_list_item"><a href="https://www.instagram.com/">
-                                    <i class="fa-brands fa-instagram"></i>
-                                    <span>Instagram</span>
-                                </a></li>
-                            <li class="footer_list_item"><a href="https://www.linkedin.com/">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                    <span>Linkedin</span>
-                                </a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <ul class="footer_list">
-                            <li class="footer_list_item">
-                                <h5>Trợ giúp</h5>
-                            </li>
-                            <li class="footer_list_item"><a href="../html/about.html">Liên hệ người quản trị</a></li>
-                            <li class="footer_list_item"><a href="../html/policy.html" target="_blank">Chính sách</a>
-                            </li>
-                            <li class="footer_list_item"><a href="../html/about.html">Trả hàng</a></li>
-                            <li class="footer_list_item"><a href="../html/user.html">Tài khoản của bạn</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row mt-5">
-                    <div class="footer_coppyright col">
-                        @<span class="year"></span> - Bản quyền thuộc thương hiệu của N2Q - thương hiệu thuộc Nông Lâm
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
     <script src="../js/detail.js"></script>
     <script src="../js/index.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/tab.js"></script>
+    <script src="../js/product.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"
         integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous">
         </script>

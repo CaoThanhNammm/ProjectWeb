@@ -41,7 +41,6 @@ phương thức hiện thông báo tiếp tục mua hàng sau khi đã xóa hế
 function _continueBuyProduct() {
   if (count == 0) {
     document.querySelector(".cart_body-empty").classList.add("active");
-    document.querySelector(".new_page").classList.add("unactive");
-    document.querySelector(".product_list h2").classList.add("unactive")
+    document.querySelector(".product_list_wishlist  h2").classList.add("unactive")
   }
 }

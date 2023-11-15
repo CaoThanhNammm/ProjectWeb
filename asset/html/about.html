@@ -16,404 +16,368 @@
 </head>
 
 <body>
-    <header>
-        <div class="header">
-            <a href="../../index.html" class="logo_page"><img src="../image/general/logo.png" alt=""></a>
-            <!-- phần tìm kiếm sản phẩm của header -->
-            <div class="header_search">
-                <input type="text" class="search" placeholder="Tìm đồ gia dụng">
-                <i class="fa-solid fa-magnifying-glass search_logo"></i>
-            </div>
+    <div id="page">
 
-            <!-- phần đăng nhập hoặc đăng ký của header -->
-            <div class="header_login_signin">
-                <a href="../html/login.html" class="log_in">Đăng nhập</a>
-                <div class="line"></div>
-                <a href="../html/register.html" class="sign_in">Đăng ký</a>
-            </div>
-
-            <div class="list_wishList">
-                <i class="fa-regular fa-heart"></i>
-                <span class="amount_wishlist">0</span>
-            </div>
-
-            <div class="header_login_signin_mobile">
-                <a href="../html/login.html"><img src="../image/home/user.png" alt=""></a>
-            </div>
-
-            <!-- phần giỏ hàng của header -->
-            <div class="header_cart">
-                <div class="header_cart_info">
-                    <a href="../html/cart.html">
-                        <img src="../image/home/cart.png" class="header_cart_logo" alt="">
-                        <span class="header_cart_amount_product">0</span>
-                    </a>
+        <header>
+            <div class="header">
+                <a href="../../index.html" class="logo_page"><img src="../image/general/logo.png" alt=""></a>
+                <!-- phần tìm kiếm sản phẩm của header -->
+                <div class="header_search">
+                    <input type="text" class="search" placeholder="Tìm đồ gia dụng">
+                    <i class="fa-solid fa-magnifying-glass search_logo"></i>
                 </div>
-            </div>
-        </div>
-        <!-- phần danh mục sản phẩm của header -->
-        <div class="navigation">
-            <div class="all_list">
-                <i class="fa-solid fa-list all_list_logo"></i>
-                <span class="all_list_text">Tất cả danh mục</span>
-            </div>
-
-            <ul class="navigtion-list">
-                <li class="navigtion-item"><a href="../html/product.html">Máy lọc nước</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Nồi chiên</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bếp điện</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Nồi cơm</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Máy ép trái cây</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Máy xay sinh tố</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bếp ga</a></li>
-                <li class="navigtion-item"><a href="../html/product.html">Bình đun</a></li>
-            </ul>
-
-            <div class="list_wishList--mobile">
-                <i class="fa-regular fa-heart"></i>
-                <span class="amount_wishlist">3</span>
-            </div>
-        </div>
-
-        <div class="modal_overlay"></div>
-        <div class="modal_body">
-            <i class="fa-solid fa-xmark modal_body_quit"></i>
-            <ul class="category_all_list">
-                <div>
-                    <li class="category_all_item">Nồi, Bếp Lò
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
-                    </li>
-                    <ul class="category_all_item_child_list">
-                        <li>Nồi chiên không dầu</li>
-                        <li>Nồi cơm điện</li>
-                        <li>Nồi áp suất</li>
-                        <li>Nồi nấu chậm</li>
-                        <li>Nồi, bộ nồi</li>
-                        <li>Chảo chống dính</li>
-                        <li>Bếp từ</li>
-                        <li>Bếp gà</li>
-                        <li>Bếp hồng ngoại</li>
-                        <li>Lò vi sóng</li>
-                        <li>Lò nướng</li>
-                        <li>Lẩu điện</li>
-                    </ul>
+    
+                <!-- phần đăng nhập hoặc đăng ký của header -->
+                <div class="header_login_signin">
+                    <a href="../html/login.html" class="log_in">Đăng nhập</a>
+                    <div class="line"></div>
+                    <a href="../html/register.html" class="sign_in">Đăng ký</a>
                 </div>
-
-                <div>
-                    <li class="category_all_item">Xay ép pha chế
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
-                    </li>
-                    <ul class="category_all_item_child_list">
-                        <li>Máy xay sinh tố</li>
-                        <li>Máy ép trái cây</li>
-                        <li>Máy ép chậm</li>
-                        <li>Máy pha cà phê</li>
-                        <li>Máy xay cà phê</li>
-                    </ul>
+    
+                <div class="list_wishList">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="amount_wishlist">0</span>
                 </div>
-
-                <div>
-                    <li class="category_all_item">Gia dụng nhà bếp
-                        <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
-                    </li>
-                    <ul class="category_all_item_child_list">
-                        <li>Bình đun siêu tốc</li>
-                        <li>Bình thủy điện</li>
-                        <li>Chén bát</li>
-                        <li>dao, kéo</li>
-                        <li>thớt</li>
-                    </ul>
+    
+                <div class="header_login_signin_mobile">
+                    <a href="../html/login.html"><img src="../image/home/user.png" alt=""></a>
                 </div>
-            </ul>
-        </div>
-
-        <div class="modal_body_wishList">
-            <div class="wishlist_header">
-                <i class="fa-solid fa-xmark modal_body_quit_wishlist"></i>
-                <h3 class="wishlist_title" style="margin-bottom: 0; margin-left: 12px;">Wishlist</h3>
-                <h3 class="wishlist_amount" style="margin-bottom: 0;">0</h3>
-            </div>
-
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
+    
+                <!-- phần giỏ hàng của header -->
+                <div class="header_cart">
+                    <div class="header_cart_info">
+                        <a href="../html/cart.html">
+                            <img src="../image/home/cart.png" class="header_cart_logo" alt="">
+                            <span class="header_cart_amount_product">0</span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
+            <!-- phần danh mục sản phẩm của header -->
+            <div class="navigation">
+                <div class="all_list">
+                    <i class="fa-solid fa-list all_list_logo"></i>
+                    <span class="all_list_text">Tất cả danh mục</span>
+                </div>
+    
+                <ul class="navigtion-list">
+                    <li class="navigtion-item"><a href="../html/product.html">Máy lọc nước</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Nồi chiên</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Bếp điện</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Nồi cơm</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Máy ép trái cây</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Máy xay sinh tố</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Bếp ga</a></li>
+                    <li class="navigtion-item"><a href="../html/product.html">Bình đun</a></li>
+                </ul>
+    
+                <div class="list_wishList--mobile">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="amount_wishlist">0</span>
+                </div>
+            </div>
+    
+            <div class="modal_overlay"></div>
+            <div class="modal_body">
+                <i class="fa-solid fa-xmark modal_body_quit"></i>
+                <ul class="category_all_list">
+                    <div>
+                        <li class="category_all_item">Nồi, Bếp Lò
+                            <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                        </li>
+                        <ul class="category_all_item_child_list">
+                            <li><a href="../html/product.html">Nồi chiên không dầu</a></li>
+                            <li><a href="../html/product.html">Nồi cơm điện</a></li>
+                            <li><a href="../html/product.html">Nồi áp suất</a></li>
+                            <li><a href="../html/product.html">Nồi nấu chậm</a></li>
+                            <li><a href="../html/product.html">Nồi, bộ nồi</a></li>
+                            <li><a href="../html/product.html">Chảo chống dính</a></li>
+                            <li><a href="../html/product.html">Bếp từ</a></li>
+                            <li><a href="../html/product.html">Bếp gà</a></li>
+                            <li><a href="../html/product.html">Bếp hồng ngoại</a></li>
+                            <li><a href="../html/product.html">Lò vi sóng</a></li>
+                            <li><a href="../html/product.html">Lò nướng</a></li>
+                            <li><a href="../html/product.html">Lẩu điện</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
+    
+                    <div>
+                        <li class="category_all_item">Xay ép pha chế
+                            <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                        </li>
+                        <ul class="category_all_item_child_list">
+                            <li><a href="../html/product.html">Máy xay sinh tố</a></li>
+                            <li><a href="../html/product.html">Máy ép trái cây</a></li>
+                            <li><a href="../html/product.html">Máy ép chậm</a></li>
+                            <li><a href="../html/product.html">Máy pha cà phê</a></li>
+                            <li><a href="../html/product.html">Máy xay cà phê</a></li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
+    
+                    <div>
+                        <li class="category_all_item">Gia dụng nhà bếp
+                            <i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+                        </li>
+                        <ul class="category_all_item_child_list">
+                            <li><a href="../html/product.html">Bình đun siêu tốc</a></li>
+                            <li><a href="../html/product.html">Bình thủy điện</a></li>
+                            <li><a href="../html/product.html">Chén bát</a></li>
+                            <li><a href="../html/product.html">dao, kéo</a></li>
+                            <li><a href="../html/product.html">thớt</a></li>
+                        </ul>
                     </div>
+                </ul>
+            </div>
+    
+            <div class="modal_body_wishList">
+                <div class="wishlist_header">
+                    <i class="fa-solid fa-xmark modal_body_quit_wishlist"></i>
+                    <h3 class="wishlist_title" style="margin-bottom: 0; margin-left: 12px;">Wishlist</h3>
+                    <h3 class="wishlist_amount" style="margin-bottom: 0;">3</h3>
                 </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
-                    </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
-                    </div>
-                </div>
-            </div>
-            <div class="wishlist_product">
-                <img src="../image/home/product_img.jpg" alt="">
-                <div class="wishlist_product_in4">
-                    <a class="wishlist_product_title">Ghế</a>
-                    <div class="wishlist_product_right_under">
-                        <i class="fa-regular fa-trash-can"></i>
-                        <span class="wishlist_product_price">100,000,000,000₫</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="wishlist_product_footer">
-                <span>Tổng cộng</span>
-                <span class="wishlist_product_footer_total">300,000,000₫</span>
-            </div>
-
-            <div class="wishlist_product_detail">
-                <a href="../html/wishlistDetail.html">XEM WISHLIST</a>
-            </div>
-        </div>
-    </header>
-
-    <div id="root">
-        <div class="about_img">
-            <img src="../image/about/about_img.jpg" alt="">
-
-            <div class="about_img_slogan">
-                <h1 style="margin-bottom: 10px;">SẢN PHẨM TỐT</h1>
-                <h1 style="margin-bottom: 10px;">CUỘC SỐNG TỐT</h1>
-                <p>Cuộc sống với sản phẩm tốt là một trải nghiệm đáng trân trọng. Sản phẩm tốt không chỉ mang lại hạnh
-                    phúc và sự tiện ích, mà còn thể hiện sự chăm sóc và quan tâm đến chất lượng cuộc sống của chúng ta.
-                </p>
-            </div>
-        </div>
-
-        <div class="introduce container">
-            <h2>GIỚI THIỆU</h2>
-            <p>Trang web bán đồ gia dụng là điểm đến lý tưởng cho những người đang
-                tìm kiếm các sản phẩm gia đình đa dạng và chất lượng. Chúng tôi cung
-                cấp một bộ sưu tập đa dạng gồm các sản phẩm từ đồ nội thất, thiết bị
-                nhà bếp, đồ trang trí cho đến các thiết bị điện tử, giúp bạn tạo nên
-                không gian sống hoàn hảo theo phong cách riêng của bạn. Hãy tham gia
-                cùng chúng tôi để biến ngôi nhà của bạn thành nơi đáng sống!</p>
-        </div>
-
-        <div class="container">
-            <div class="row about_history about_us">
-                <div class="col-lg-6">
-                    <img src="../image/about/history.jpg" alt="">
-                </div>
-                <div class="col-lg-6 mt-3">
-                    <div class="history_estab">
-                        <h2 style="text-align: center;">HÌNH THÀNH</h2>
-                        <p>
-                            Chúng tôi là một nhóm đam mê và chuyên nghiệp trong lĩnh vực phát triển web, đã tổng hợp
-                            kiến thức và kinh nghiệm của mình để tạo ra một dự án đầy tham vọng.
-                        </p>
-                        <p>
-                            Chúng tôi hiểu rằng việc mua sắm trực tuyến là một xu hướng phổ biến và quan trọng trong
-                            thời đại số
-                            hóa. Chúng tôi đã nhận thấy nhu cầu của người tiêu dùng và doanh nghiệp trong việc cung cấp
-                            một nền tảng
-                            trực tuyến hiệu quả và thuận tiện để mua sắm các sản phẩm đồ gia dụng chất lượng. Với mục
-                            tiêu này,
-                            chúng tôi đã tự hào giới thiệu dự án của mình</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row about_value about_us">
-                <div class="col-lg-6">
-                    <img src="../image/about/value.jpg" alt="">
-                </div>
-                <div class="col-lg-6 mt-3">
-                    <div class="value_webpage">
-                        <h2 style="text-align: center;">GIÁ TRỊ CHÚNG TÔI MANG LẠI</h2>
-                        <p class="value_webpage_first">Sản phẩm chất lượng:</p>
-                        <p class="value_webpage_second"> Chúng tôi cam kết cung cấp đồ gia dụng cao cấp và uy tín, chọn
-                            lọc từ các nhà
-                            cung cấp đáng tin cậy. Chất lượng sản phẩm là ưu tiên hàng đầu của chúng tôi.</p>
-
-                        <p class="value_webpage_first">Trải nghiệm mua sắm trực tuyến thuận tiện:</p>
-                        <p class="value_webpage_second"> Chúng tôi hiểu rằng mua sắm trực tuyến cần phải
-                            dễ dàng
-                            và thoải mái. Trang web của chúng tôi được thiết kế để đảm bảo người dùng có trải nghiệm mua
-                            sắm
-                            trực tuyến trơn tru và an toàn.</p>
-
-                        <p class="value_webpage_first">Sự đa dạng và lựa chọn:</p>
-                        <p class="value_webpage_second">Trang web của chúng tôi cung cấp một loạt các sản phẩm đồ gia
-                            dụng
-                            từ bát
-                            đĩa, nồi chảo đến thiết bị gia đình thông minh. Chúng tôi tin rằng bạn sẽ tìm thấy sản phẩm
-                            phù hợp
-                            với nhu cầu và sở thích của mình.</p>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="contact container" style="margin-bottom: 7%; margin-top: 7%;">
-            <div class="row">
-                <div class="col">
-                    <form action="#" id="form">
-                        <thead>
-                            <th>
-                                <h1 class="text-center">Liên lạc với chúng tôi</h1>
-                            </th>
-                        </thead>
-                        <div class="mb-3 mt-3">
-                            <input type="text" class="form-control" id="name" placeholder="Nhập tên của bạn" name="name"
-                                required>
+    
+                <div class="wishlist_product">
+                    <img src="../image/product/mayxaysinhto/mx10.jpg" alt="">
+                    <div class="wishlist_product_in4">
+                        <a class="wishlist_product_title">Máy xay sinh tố Kangaroo KGBL1000X</a>
+                        <div class="wishlist_product_right_under">
+                            <i class="fa-regular fa-trash-can"></i>
+                            <span class="wishlist_product_price">1200000₫</span>
                         </div>
-                        <div class="mb-3 mt-3">
-                            <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn"
-                                name="email" required>
-                        </div>
-                        <div class="mb-3 mt-3">
-                            <input type="text" class="form-control" id="subject" placeholder="Nhập tiêu đề"
-                                name="subject" required>
-                        </div>
-                        <div class="mt-3 mb-2">
-                            <textarea name="content" class="form-control" placeholder="Nhập nội dung" id="content"
-                                cols="30" rows="7"></textarea required>
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary rounded-9" style="background-color: var(--yellow-primary); border: none;">Gửi email</button>
-                        </div>
-                        
-                    </form>
+                    </div>
                 </div>
-
-                <div class="col mt-3">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.2257143843904!2d106.78732442480627!3d10.870429689284114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276398969f7b%3A0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRQLiBI4buTIENow60gTWluaA!5e0!3m2!1svi!2s!4v1698550669366!5m2!1svi!2s"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    
+                <div class="wishlist_product">
+                    <img src="../image/product/binhdun/bd11.jpg" alt="">
+                    <div class="wishlist_product_in4">
+                        <a class="wishlist_product_title">Bình đun siêu tốc Delites 1.8 lít ST18S05</a>
+                        <div class="wishlist_product_right_under">
+                            <i class="fa-regular fa-trash-can"></i>
+                            <span class="wishlist_product_price">1204303₫</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wishlist_product">
+                    <img src="../image/product/bepga/bg12.jpg" alt="">
+                    <div class="wishlist_product_in4">
+                        <a class="wishlist_product_title">Bếp ga đôi Electrolux ETG7256GKR</a>
+                        <div class="wishlist_product_right_under">
+                            <i class="fa-regular fa-trash-can"></i>
+                            <span class="wishlist_product_price">2987532₫</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="wishlist_product_footer">
+                    <span>Tổng cộng</span>
+                    <span class="wishlist_product_footer_total">5000000₫</span>
+                </div>
+    
+                <div class="wishlist_product_detail">
+                    <a href="../html/wishlistDetail.html">XEM WISHLIST</a>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <footer>
-        <div id="footer" class="container-fluid">
-            <div class="container pt-4">
+        </header>
+    
+        <div id="root">
+            <div class="about_img">
+                <img src="../image/about/about_img.jpg" alt="">
+    
+                <div class="about_img_slogan">
+                    <h1 style="margin-bottom: 10px;">SẢN PHẨM TỐT</h1>
+                    <h1 style="margin-bottom: 10px;">CUỘC SỐNG TỐT</h1>
+                    <p>Cuộc sống với sản phẩm tốt là một trải nghiệm đáng trân trọng. Sản phẩm tốt không chỉ mang lại hạnh
+                        phúc và sự tiện ích, mà còn thể hiện sự chăm sóc và quan tâm đến chất lượng cuộc sống của chúng ta.
+                    </p>
+                </div>
+            </div>
+    
+            <div class="introduce container">
+                <h2>GIỚI THIỆU</h2>
+                <p>Trang web bán đồ gia dụng là điểm đến lý tưởng cho những người đang
+                    tìm kiếm các sản phẩm gia đình đa dạng và chất lượng. Chúng tôi cung
+                    cấp một bộ sưu tập đa dạng gồm các sản phẩm từ đồ nội thất, thiết bị
+                    nhà bếp, đồ trang trí cho đến các thiết bị điện tử, giúp bạn tạo nên
+                    không gian sống hoàn hảo theo phong cách riêng của bạn. Hãy tham gia
+                    cùng chúng tôi để biến ngôi nhà của bạn thành nơi đáng sống!</p>
+            </div>
+    
+            <div class="container">
+                <div class="row about_history about_us">
+                    <div class="col-lg-6">
+                        <img src="../image/about/history.jpg" alt="">
+                    </div>
+                    <div class="col-lg-6 mt-3">
+                        <div class="history_estab">
+                            <h2 style="text-align: center;">HÌNH THÀNH</h2>
+                            <p>
+                                Chúng tôi là một nhóm đam mê và chuyên nghiệp trong lĩnh vực phát triển web, đã tổng hợp
+                                kiến thức và kinh nghiệm của mình để tạo ra một dự án đầy tham vọng.
+                            </p>
+                            <p>
+                                Chúng tôi hiểu rằng việc mua sắm trực tuyến là một xu hướng phổ biến và quan trọng trong
+                                thời đại số
+                                hóa. Chúng tôi đã nhận thấy nhu cầu của người tiêu dùng và doanh nghiệp trong việc cung cấp
+                                một nền tảng
+                                trực tuyến hiệu quả và thuận tiện để mua sắm các sản phẩm đồ gia dụng chất lượng. Với mục
+                                tiêu này,
+                                chúng tôi đã tự hào giới thiệu dự án của mình</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="row about_value about_us">
+                    <div class="col-lg-6">
+                        <img src="../image/about/value.jpg" alt="">
+                    </div>
+                    <div class="col-lg-6 mt-3">
+                        <div class="value_webpage">
+                            <h2 style="text-align: center;">GIÁ TRỊ CHÚNG TÔI MANG LẠI</h2>
+                            <p class="value_webpage_first">Sản phẩm chất lượng:</p>
+                            <p class="value_webpage_second"> Chúng tôi cam kết cung cấp đồ gia dụng cao cấp và uy tín, chọn
+                                lọc từ các nhà
+                                cung cấp đáng tin cậy. Chất lượng sản phẩm là ưu tiên hàng đầu của chúng tôi.</p>
+    
+                            <p class="value_webpage_first">Trải nghiệm mua sắm trực tuyến thuận tiện:</p>
+                            <p class="value_webpage_second"> Chúng tôi hiểu rằng mua sắm trực tuyến cần phải
+                                dễ dàng
+                                và thoải mái. Trang web của chúng tôi được thiết kế để đảm bảo người dùng có trải nghiệm mua
+                                sắm
+                                trực tuyến trơn tru và an toàn.</p>
+    
+                            <p class="value_webpage_first">Sự đa dạng và lựa chọn:</p>
+                            <p class="value_webpage_second">Trang web của chúng tôi cung cấp một loạt các sản phẩm đồ gia
+                                dụng
+                                từ bát
+                                đĩa, nồi chảo đến thiết bị gia đình thông minh. Chúng tôi tin rằng bạn sẽ tìm thấy sản phẩm
+                                phù hợp
+                                với nhu cầu và sở thích của mình.</p>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="contact container" style="margin-bottom: 7%; margin-top: 7%;">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <ul class="footer_list">
-                            <li class="footer_list_item">
-                                <h5>Kết nối với chúng tôi</h5>
-                            </li>
-                            <li class="footer_list_item">
-                                <a href="../../index.html">
-                                    <img class="footer_list_item_img" src="../image/general/logo.png" alt="Logo cửa hàng">
-                                </a>
-                            </li>
-                            <li class="footer_list_item">Địa chỉ email: <a href="mailto: dobanbietday@gmail.com"
-                                    type="email">nhom23@hcmuaf.edu.vn</a></li>
-                            <li class="footer_list_item">Số điện thoại: <a href="tel: +84 123 456 789">+84 123 456
-                                    789</a></li>
-                            <li class="footer_list_item">
-                                <img class="footer_list_item_img" src="../image/general/qr.png" alt="Mã qr cửa hàng">
-                            </li>
-                        </ul>
+                    <div class="col">
+                        <form action="#" id="form">
+                            <thead>
+                                <th>
+                                    <h1 class="text-center">Liên lạc với chúng tôi</h1>
+                                </th>
+                            </thead>
+                            <div class="mb-3 mt-3">
+                                <input type="text" class="form-control" id="name" placeholder="Nhập tên của bạn" name="name"
+                                    required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn"
+                                    name="email" required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <input type="text" class="form-control" id="subject" placeholder="Nhập tiêu đề"
+                                    name="subject" required>
+                            </div>
+                            <div class="mt-3 mb-2">
+                                <textarea name="content" class="form-control" placeholder="Nhập nội dung" id="content"
+                                    cols="30" rows="7"></textarea required>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary rounded-9" style="background-color: var(--yellow-primary); border: none;">Gửi email</button>
+                            </div>
+                            
+                        </form>
                     </div>
     
-                    <div class="col-lg-3 col-md-6">
-                        <ul class="footer_list">
-                            <li class="footer_list_item">
-                                <h5>N2Q</h5>
-                            </li>
-                            <li class="footer_list_item"><a href="../html/product.html">Sản phẩm</a></li>
-                            <li class="footer_list_item"><a href="../html/about.html">Giới thiệu</a></li>
-                            <li class="footer_list_item"><a href="../html/about.html">Liên hệ</a></li>
-                            <li class="footer_list_item"><a href="https://www.linkedin.com/">Tuyển dụng</a></li>
-                        </ul>
-                    </div>
-    
-                    <div class="col-lg-3 col-md-6">
-                        <ul class="footer_list">
-                            <li class="footer_list_item">
-                                <h5>Theo dõi chúng tôi trên</h5>
-                            </li>
-                            <li class="footer_list_item"><a href="https://www.facebook.com/">
-                                    <i class="fa-brands fa-facebook"></i>
-                                    <span>Facebook</span>
-                                </a></li>
-                            <li class="footer_list_item"><a href="https://www.instagram.com/">
-                                    <i class="fa-brands fa-instagram"></i>
-                                    <span>Instagram</span>
-                                </a></li>
-                            <li class="footer_list_item"><a href="https://www.linkedin.com/">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                    <span>Linkedin</span>
-                                </a></li>
-                        </ul>
-                    </div>
-    
-                    <div class="col-lg-3 col-md-6">
-                        <ul class="footer_list">
-                            <li class="footer_list_item">
-                                <h5>Trợ giúp</h5>
-                            </li>
-                            <li class="footer_list_item"><a href="../html/about.html">Liên hệ người quản trị</a></li>
-                            <li class="footer_list_item"><a href="../html/policy.html" target="_blank">Chính sách</a></li>
-                            <li class="footer_list_item"><a href="../html/about.html">Trả hàng</a></li>
-                            <li class="footer_list_item"><a href="../html/user.html">Tài khoản của bạn</a></li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <div class="row mt-5">
-                    <div class="footer_coppyright col">
-                        @<span class="year"></span> - Bản quyền thuộc thương hiệu của N2Q - thương hiệu thuộc Nông Lâm
+                    <div class="col mt-3">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.2257143843904!2d106.78732442480627!3d10.870429689284114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276398969f7b%3A0x9672b7efd0893fc4!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBOw7RuZyBMw6JtIFRQLiBI4buTIENow60gTWluaA!5e0!3m2!1svi!2s!4v1698550669366!5m2!1svi!2s"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+    
+        <footer>
+            <div id="footer" class="container-fluid">
+                <div class="container pt-4">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <ul class="footer_list">
+                                <li class="footer_list_item">
+                                    <h5>Kết nối với chúng tôi</h5>
+                                </li>
+                                <li class="footer_list_item">
+                                    <a href="../../index.html">
+                                        <img class="footer_list_item_img" src="../image/general/logo.png" alt="Logo cửa hàng">
+                                    </a>
+                                </li>
+                                <li class="footer_list_item">Địa chỉ email: <a href="mailto: dobanbietday@gmail.com"
+                                        type="email">nhom23@hcmuaf.edu.vn</a></li>
+                                <li class="footer_list_item">Số điện thoại: <a href="tel: +84 123 456 789">+84 123 456
+                                        789</a></li>
+                                <li class="footer_list_item">
+                                    <img class="footer_list_item_img" src="../image/general/qr.png" alt="Mã qr cửa hàng">
+                                </li>
+                            </ul>
+                        </div>
+        
+                        <div class="col-lg-3 col-md-6">
+                            <ul class="footer_list">
+                                <li class="footer_list_item">
+                                    <h5>N2Q</h5>
+                                </li>
+                                <li class="footer_list_item"><a href="../html/product.html">Sản phẩm</a></li>
+                                <li class="footer_list_item"><a href="../html/about.html">Giới thiệu</a></li>
+                                <li class="footer_list_item"><a href="../html/about.html">Liên hệ</a></li>
+                                <li class="footer_list_item"><a href="https://www.linkedin.com/">Tuyển dụng</a></li>
+                            </ul>
+                        </div>
+        
+                        <div class="col-lg-3 col-md-6">
+                            <ul class="footer_list">
+                                <li class="footer_list_item">
+                                    <h5>Theo dõi chúng tôi trên</h5>
+                                </li>
+                                <li class="footer_list_item"><a href="https://www.facebook.com/">
+                                        <i class="fa-brands fa-facebook"></i>
+                                        <span>Facebook</span>
+                                    </a></li>
+                                <li class="footer_list_item"><a href="https://www.instagram.com/">
+                                        <i class="fa-brands fa-instagram"></i>
+                                        <span>Instagram</span>
+                                    </a></li>
+                                <li class="footer_list_item"><a href="https://www.linkedin.com/">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                        <span>Linkedin</span>
+                                    </a></li>
+                            </ul>
+                        </div>
+        
+                        <div class="col-lg-3 col-md-6">
+                            <ul class="footer_list">
+                                <li class="footer_list_item">
+                                    <h5>Trợ giúp</h5>
+                                </li>
+                                <li class="footer_list_item"><a href="../html/about.html">Liên hệ người quản trị</a></li>
+                                <li class="footer_list_item"><a href="../html/policy.html" target="_blank">Chính sách</a></li>
+                                <li class="footer_list_item"><a href="../html/about.html">Trả hàng</a></li>
+                                <li class="footer_list_item"><a href="../html/user.html">Tài khoản của bạn</a></li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                    <div class="row mt-5">
+                        <div class="footer_coppyright col">
+                            @<span class="year"></span> - Bản quyền thuộc thương hiệu của N2Q - thương hiệu thuộc Nông Lâm
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 </body>
 
 <script src="../js/header.js"></script>

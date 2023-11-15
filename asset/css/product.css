@@ -330,7 +330,7 @@
 .product_btn-add_card {
     border: 1px solid var(--black-primary);
     font-weight: 600;
-    padding: 7px 20px;
+    padding: 7px 16px;
     border-radius: 5px;
     float: left;
 }
@@ -360,7 +360,7 @@
 .product_btn--product_detail {
     color: var(--white-primary);
     background-color: var(--black-primary);
-    padding: 8px 20px;
+    padding: 8px 16px;
     float: right;
     border-radius: 5px;
 }
