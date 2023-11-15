@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="../image/general/logo.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -16,15 +17,17 @@
     <header>
         <div id="admin">
             <div class="navbar">
-                <a href="../../index.html"> <img class="admin_logo" src="../image/general/logo.png" alt=""></a>
+                <a href="/"> <img class="admin_logo" src="../image/general/logo.png" alt=""></a>
             </div>
             <div class="admin-menu">
                 <ul class="navbar-nav mr-auto mt-2">
                     <li class="nav-item">
-                        <a style="display: block;" href="../html/overviewAdmin.html" class="nav-link">
-                            <i class="fa-solid fa-house icon_title"></i>
-                            Tổng quan
-                        </a>
+                        <div class="nav-link active">
+                            <a href="../html/overviewAdmin.html">
+                                <i class="fa-solid fa-house icon_title"></i>
+                                Tổng quan
+                            </a>
+                        </div>
                     </li>
 
                     <li class="nav-item">
@@ -56,10 +59,9 @@
 
                         <ul class="nav-item_list_child">
 
-                            <li class="nav-item_item_child active"><a href="../html/statisticsProductsAdmin.html">Thống kê sản
+                            <li class="nav-item_item_child"><a href="../html/statisticsProductsAdmin.html">Thống kê sản
                                     phẩm</a></li>
-                            <li class="nav-item_item_child"><a href="../html/editProductsAdmin.html">Chỉnh sửa
-                                    sản
+                            <li class="nav-item_item_child"><a href="../html/editProductsAdmin.html">Chỉnh sửa sản
                                     phẩm</a></li>
                         </ul>
                     </li>
@@ -88,7 +90,9 @@
                         </div>
 
                         <ul class="nav-item_list_child">
-                            <li class="nav-item_item_child"><a href="../html/EditVoucher.html">Sửa voucher</a></li>
+                            <li class="nav-item_item_child"><a href="../html/editVoucherAdmin.html">Thêm voucher</a>
+                            </li>
+
                         </ul>
                     </li>
                 </ul>
