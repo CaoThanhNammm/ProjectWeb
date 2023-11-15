@@ -73,6 +73,10 @@ h6 {
     font-weight: 550;
 }
 
+#page{
+    position: relative;
+    overflow-x: hidden;
+}
 /* start: content */
 .slider {
     height: 356px;
