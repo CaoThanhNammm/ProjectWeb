@@ -7,14 +7,16 @@ document.addEventListener("DOMContentLoaded", function () {
     _addProduct(nameOfMayXaySinhTo, "mx", "asset/image/product/mayxaysinhto", 3000000, 1000000, 3);
     _addProduct(nameofBinhDun, "bd", "asset/image/product/binhdun", 3000000, 1000000, 3);
   }
-  if (document.querySelector(".category_product")) {
+  if (document.querySelector(".product_list")) {
     _addProduct(nameOfBepDien, "bd", "../image/product/bepdien", 3000000, 1000000, 20);
     _addProduct(nameOfBepGa, "bg", "../image/product/bepga", 3000000, 1000000, 20);
     _addProduct(nameOfNoiCom, "nc", "../image/product/noicom", 3000000, 1000000, 20);
     _addProduct(nameOfMayEpTraiCay, "me", "../image/product/mayeptraicay", 3000000, 1000000, 20);
     _addProduct(nameOfMayXaySinhTo, "mx", "../image/product/mayxaysinhto", 3000000, 1000000, 20);
     _addProduct(nameofBinhDun, "bd", "../image/product/binhdun", 3000000, 1000000, 20);
-    
+  }
+  
+  if (document.querySelector(".category_product")){
     _clickPrice();
     _clickBrand();
     _chooseOptionBrand();
