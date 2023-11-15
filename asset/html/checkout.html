@@ -218,7 +218,7 @@
     </header>
 
     <div class="checkout">
-        <form class="checkout-form">
+        <form class="checkout-form" action="user.html">
             <h2>Thông tin khách hàng</h2>
             <label>Tên khách hàng:</label>
             <input type="text" name="username" placeholder="Nhập tên" value="Trần Minh Quân" required>
@@ -233,8 +233,8 @@
             <input type="text" name="address" placeholder="Địa chỉ..." required>
 
             <div style="display: flex; justify-content: space-between;">
-                <button>Trở về giỏ hàng</button>
-                <button type="submit">Đặt hàng</button>
+                <a href="cart.html" class="button">Trở về giỏ hàng</a>
+                <button>Đặt hàng</button>
             </div>
         </form>
 
@@ -355,6 +355,11 @@
     <script>$(document).ready(function () {
             $('.year').html((new Date(jQuery.now())).getFullYear())
         });
+    </script>
+    <script>
+        function redirect(page){
+            window.location.href = 'https://www.example.com';
+        }
     </script>
 
     <script src="../js/index.js"></script>
