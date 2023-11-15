@@ -168,8 +168,8 @@
 /* extra PC 1200px <= width < 1200px*/
 @media only screen and (min-width: 1500px) {
     .product_btn--product_detail, .product_btn-add_card{
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 25px;
+        padding-right: 25px;
     }
    
 }
