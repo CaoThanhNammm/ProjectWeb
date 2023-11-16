@@ -21,6 +21,7 @@
 
 #admin a {
     text-decoration: none;
+    width: 100%;
     color: var(--white-primary) !important;
 }
 
