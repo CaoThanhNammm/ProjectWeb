@@ -26,4 +26,6 @@
 -- 26. Cập nhật thông tin sản phẩm
 -- 27. Lấy đơn hàng theo mã khách hàng
 -- 28. Lấy đơn hàng theo mã đơn hàng
--- 29. Lấy ra hình ảnh banner
+-- 29. Lấy thống kê theo người dùng thời gian
+-- 30. Lấy thông kê theo sản phẩm thời gian
+
