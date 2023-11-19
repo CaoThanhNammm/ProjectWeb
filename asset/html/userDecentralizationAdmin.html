@@ -22,7 +22,7 @@
             <div class="admin-menu">
                 <ul class="navbar-nav mr-auto mt-2">
                     <li class="nav-item">
-                        <div class="nav-link active">
+                        <div class="nav-link">
                             <a href="../html/overviewAdmin.html">
                                 <i class="fa-solid fa-house icon_title"></i>
                                 Tổng quan
@@ -39,8 +39,8 @@
                             <i class="fa-solid fa-caret-down icon_down"></i>
                         </div>
 
-                        <ul class="nav-item_list_child">
-                            <li class="nav-item_item_child"><a href="../html/userDecentralizationAdmin.html">Phân quyền
+                        <ul class="nav-item_list_child" style="display: block;">
+                            <li class="nav-item_item_child active"><a href="../html/userDecentralizationAdmin.html">Phân quyền
                                     người dùng</a></li>
                             <li class="nav-item_item_child"><a href="../html/userStatisticsAdmin.html">Thống kê người
                                     dùng</a></li>
@@ -103,14 +103,17 @@
         </nav>
 
         <div class="header_search bg-light">
-            <input type="text" class="search" placeholder="Tìm người dùng">
+            <input type="text" class="search" placeholder="Tìm người dùng theo tên đăng nhập">
+            <i class="fa-solid fa-magnifying-glass search_logo"></i>
+            <input style="margin-left: 20px;" type="text" class="search" placeholder="Tìm người dùng theo họ tên">
             <i class="fa-solid fa-magnifying-glass search_logo"></i>
         </div>
+        
 
         <table class="table_user">
             <tr>
                 <th><input type="checkbox" name="" id=""></th>
-                <th>ID</th>
+                <th>STT</th>
                 <th>Tên đăng nhập</th>
                 <th>Email</th>
                 <th>Số điện thoại</th>
@@ -128,17 +131,12 @@
                 <td>0908263287</td>
                 <td>Nguyễn Văn Huy</td>
                 <td>TPHCM</td>
+                <td>User</td>
                 <td>
                     <select name="" id="">
-                        <option value="">Admin</option>
-                        <option value="">User</option>
-                    </select>
-                </td>
-                <td>
-                    <select name="" id="">
-                        <option value="">0</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
+                        <option value="">Khả dụng</option>
+                        <option value="">Không khả dụng</option>
+                        <option value="">Chặn</option>
                     </select>
                 </td>
             </tr>
@@ -150,17 +148,12 @@
                 <td>0143433232</td>
                 <td>Nguyễn Danh Quyền</td>
                 <td>Đồng Nai</td>
+                <td>User</td>
                 <td>
                     <select name="" id="">
-                        <option value="">Admin</option>
-                        <option value="">User</option>
-                    </select>
-                </td>
-                <td>
-                    <select name="" id="">
-                        <option value="">0</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
+                        <option value="">Khả dụng</option>
+                        <option value="">Không khả dụng</option>
+                        <option value="">Chặn</option>
                     </select>
                 </td>
             </tr>
@@ -173,17 +166,12 @@
                 <td>0907768787</td>
                 <td>Đặng Thanh Tèo</td>
                 <td>Đồng Tháp</td>
+                <td>User</td>
                 <td>
                     <select name="" id="">
-                        <option value="">Admin</option>
-                        <option value="">User</option>
-                    </select>
-                </td>
-                <td>
-                    <select name="" id="">
-                        <option value="">0</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
+                        <option value="">Khả dụng</option>
+                        <option value="">Không khả dụng</option>
+                        <option value="">Chặn</option>
                     </select>
                 </td>
             </tr>
@@ -196,17 +184,12 @@
                 <td>0933354667</td>
                 <td>Cao Thiên Ngọc Quốc Tý</td>
                 <td>TPHCM</td>
+                <td>User</td>
                 <td>
                     <select name="" id="">
-                        <option value="">Admin</option>
-                        <option value="">User</option>
-                    </select>
-                </td>
-                <td>
-                    <select name="" id="">
-                        <option value="">0</option>
-                        <option value="">1</option>
-                        <option value="">2</option>
+                        <option value="">Khả dụng</option>
+                        <option value="">Không khả dụng</option>
+                        <option value="">Chặn</option>
                     </select>
                 </td>
             </tr>

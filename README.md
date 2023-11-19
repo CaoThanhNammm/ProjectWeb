@@ -1,7 +1,7 @@
-# LTW
-Đồ án bán hàng gia dụng
+# Lập trình Web nhóm 23
+Đồ án: bán hàng gia dụng
 
-Sử dụng: Boostrap, Jquery, JDK 8, JDBC, SQL Server, Font awesome, 
+Sử dụng: Boostrap, Jquery, JDK 8, JDBC, MySQL, Font awesome, Tomcat 9, Servlet
 
 ---------------------------------------------------------------------------------------------
 
