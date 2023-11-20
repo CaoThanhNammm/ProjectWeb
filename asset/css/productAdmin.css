@@ -16,83 +16,6 @@
     color: var(--yellow-primary);
 }
 
-.card {
-    text-align: left;
-    flex-direction: row !important;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-img[class^='card-img'] {
-    width: 25%;
-    object-fit: cover;
-}
-
-.card_amount_input {
-    text-align: center;
-    border: none;
-    background-color: transparent;
-    cursor: default;
-}
-
-.card_amount_input:focus {
-    outline: none;
-}
-
-.card_amount_input::-webkit-outer-spin-button,
-.card_amount_input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-
-.card_amount-minus,
-.card_amount-plus {
-    color: var(--black-primary);
-    background-color: var(--gray-primary);
-    border: none;
-    font-size: 20px;
-    padding: 0 5px;
-}
-
-.card_amount-minus:hover,
-.card_amount-plus:hover {
-    background-color: var(--gray-second);
-}
-
-.card_abate-empty {
-    border: 1px solid var(--gray-primary);
-    border-radius: 2px;
-    background-color: transparent;
-    padding: 3px 10px;
-    margin-right: 5px;
-}
-
-.card_abate-check,
-.card_abate-empty:hover {
-    background-color: var(--yellow-primary);
-    position: relative;
-}
-
-.card_abate-check::after,
-.card_abate-empty:hover::after {
-    content: '\21C3';
-    display: block;
-    position: absolute;
-    top: -50%;
-    left: 50%;
-    font-size: 25px;
-    rotate: 40deg;
-}
-
-.card-body p {
-    display: flex;
-}
-
-.card-body_footer {
-    display: flex;
-    height: 100%;
-    justify-content: space-between;
-}
-
 .header_search {
     display: flex;
     justify-content: space-between;
@@ -234,6 +157,24 @@ span[class*="os"] {
     margin-right: 5px;
     margin-left: 5px;
     color: black;
+}
+
+#product .card-products .card {
+    width: 350px;
+    flex: auto 0;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+#product .card-products .card card-img-top {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#product .card-products .card .card-body {
+    border: 2px solid var(--gray-primary);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 span[class*="os"] span {
