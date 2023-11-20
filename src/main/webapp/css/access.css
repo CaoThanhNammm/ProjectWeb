@@ -1,0 +1,234 @@
+@charset "UTF-8";
+#root {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    height: fit-content;
+}
+
+#register,
+#login,
+#forget {
+    background-color: var(--gray-primary);
+}
+
+/* Start: Access - Qui định cho các khu vực truy cập */
+.access {
+    background-color: var(--white-primary);
+    text-align: center;
+    padding: 40px 0;
+    border-radius: 8px;
+    position: relative;
+}
+
+[class^="access_group_logo_img"] {
+    width: 20%;
+    object-fit: cover;
+}
+
+.access_group_logo_img-white {
+    display: none;
+}
+
+.access_group i[class^='fa'] {
+    color: var(--gray-second);
+}
+
+.access_img {
+    border-radius: 10%;
+    width: 94%;
+    object-fit: cover;
+}
+
+.access_group_gender {
+    width: 55%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.access_group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.access_group_h1 {
+    font-size: 5rem;
+    font-weight: 750;
+}
+
+.access_group_h5 {
+    font-size: 1.3rem;
+    font-weight: 350;
+}
+
+.access_group_icon {
+    position: absolute;
+    font-size: 20px;
+    top: calc(50% - 12px);
+    left: calc(25% - 3px);
+}
+
+.access_group input {
+    width: 55%;
+    padding: 12px 40px;
+    border-radius: 10px;
+    border: 1px solid var(--gray-second);
+    font-size: 17px;
+}
+
+.access_group input:focus {
+    outline: none;
+}
+
+.access .access_btn {
+    width: 55%;
+    margin: auto;
+    border: 1px solid var(--black-primary);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.access .access_btn:hover {
+    background-color: var(--yellow-primary);
+    color: var(--white-primary);
+}
+
+.access .access_btn_submit {
+    background-color: var(--black-primary);
+    color: var(--white-primary);
+    border: none;
+    font-weight: 600;
+}
+
+.access_group_clause {
+    width: 55%;
+    margin: 0 auto;
+    color: var(--color-gray);
+    text-align: left;
+}
+
+.access_group_clause,
+.access_group_clause * {
+    font-size: 12px;
+}
+
+.access_group_head::after,
+.access_group_head::before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: 1px;
+    width: 18%;
+    background-color: var(--black-primary);
+    top: 6.25%;
+}
+
+.access_group_head::after {
+    left: 22.5%;
+}
+
+.access_group_head::before {
+    right: 22.5%;
+}
+
+.access_btn_focus {
+    font-weight: 700;
+    color: var(--black-primary);
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .access_group_h1 {
+        font-size: 3rem;
+    }
+
+    .access_group_h5 {
+        font-size: 1rem;
+    }
+
+    .access_group_head::after,
+    .access_group_head::before {
+        width: 10%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #root {
+        height: fit-content;
+    }
+
+    .access_btn_focus {
+        color: var(--white-primary);
+    }
+
+    .access_mb {
+        position: absolute;
+        top: 10%;
+    }
+
+    .access,
+    .access_group_clause {
+        color: var(--white-primary);
+    }
+
+    .access_group_icon {
+        color: var(--black-primary);
+    }
+
+    .access .access_btn {
+        color: var(--white-primary);
+        border-color: var(--white-primary);
+    }
+
+    .access_group_head::after,
+    .access_group_head::before {
+        width: 10%;
+        background-color: var(--color-gray);
+    }
+
+    .access_group_h1 {
+        font-size: 3rem;
+    }
+
+    .access_group_h5 {
+        font-size: 1rem;
+    }
+
+    #login .access_img {
+        height: 800px;
+    }
+
+    #register .access_img {
+        height: 1400px;
+    }
+
+    .access_img {
+        border-radius: 0;
+        object-fit: cover;
+    }
+
+    .access_group_logo_img-white {
+        display: inline;
+    }
+
+    .access_group_logo_img-black {
+        display: none;
+    }
+}
+
+/* End: Access */
+
+/* Start: Register */
+.access_group_regulation::after {
+    content: "Ít nhất 6 ký tự";
+    display: block;
+    width: fit-content;
+    font-size: 14px;
+    position: absolute;
+    top: 100%;
+    text-align: left;
+    left: 25%;
+}
+
+/* End: Register */
