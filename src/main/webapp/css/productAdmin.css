@@ -5,6 +5,10 @@
     Date: 30/10/2023
     Note: Phần điều chỉnh sản phẩm của admin
 */
+input[type="file"] {
+	display: none;
+}
+
 #product {
     width: 100%;
 }

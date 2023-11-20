@@ -57,6 +57,7 @@
 				</ul>
 
 				<div>
+					<label class="btn btn-warning"><input type="file" accept=".xlsx, .xls">+ Tải file lên</label>
 					<button class="btn btn-warning" onclick="addProduct()">+
 						Thêm sản phẩm</button>
 				</div>
@@ -65,7 +66,7 @@
 
 		<div class="row mt-5 ">
 			<div class="card-products col ms-2 me-2">
-				<div class="card-deck">
+			<!-- <div class="card-deck">
 					<div class="card">
 						<div class="card_img_top col-5">
 							<div class="slider_main">
@@ -131,7 +132,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
