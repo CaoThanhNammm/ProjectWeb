@@ -38,7 +38,7 @@
 				<!-- Nếu không có sản phẩm -->
 				<div class="cart_body-empty">
 					<h3>Hiện giỏ hàng của bạn đang trống</h3>
-					<a class="cart_body_btn btn" href="index.jsp">Quay lại
+					<a class="cart_body_btn btn" href="../../../../index.jsp">Quay lại
 						cửa hàng</a>
 				</div>
 
@@ -131,7 +131,7 @@
 							<div class="cart_body_bill_group">
 								<a
 									class="button cart_body_bill_group_btn cart_body_bill_group_btn-back"
-									href="index.jsp">Tiếp tục mua hàng</a> <a
+									href="../../../../index.jsp">Tiếp tục mua hàng</a> <a
 									class="button cart_body_bill_group_btn"
 									href="checkout.jsp">Thanh toán</a>
 							</div>
@@ -172,7 +172,7 @@
 						<div class="cart_body_bill_group">
 							<a
 								class="button cart_body_bill_group_btn cart_body_bill_group_btn-back"
-								href="index.jsp">Tiếp tục mua hàng</a> <a
+								href="../../../../index.jsp">Tiếp tục mua hàng</a> <a
 								class="button cart_body_bill_group_btn"
 								href="checkout.jsp">Thanh toán</a>
 						</div>

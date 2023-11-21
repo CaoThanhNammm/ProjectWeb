@@ -22,7 +22,7 @@
         Note: header của trang web 
     -->
 	<div class="header">
-		<a href="index.jsp" class="logo_page"><img
+		<a href="../../../../index.jsp" class="logo_page"><img
 			src="../image/general/logo.png" alt=""></a>
 		<!-- phần tìm kiếm sản phẩm của header -->
 		<div class="header_search">
