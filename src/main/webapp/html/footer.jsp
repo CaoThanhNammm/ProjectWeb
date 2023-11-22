@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="../image/general/logo.png" type="image/x-icon">
+<link rel="icon" href="./image/general/logo.png" type="image/x-icon">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="../css/index.css">
-<link rel="stylesheet" href="../css/footer.css">
+<style>
+	<%@include file="../css/footer.css"%>
+</style>
 <title>Footer</title>
 </head>
 <body>
@@ -47,10 +49,10 @@
 							<h5>N2Q</h5>
 						</li>
 						<li class="footer_list_item"><a
-							href="product.jsp">Sản phẩm</a></li>
-						<li class="footer_list_item"><a href="about.jsp">Giới
+							href="../html/product.jsp">Sản phẩm</a></li>
+						<li class="footer_list_item"><a href="../html/about.jsp">Giới
 								thiệu</a></li>
-						<li class="footer_list_item"><a href="about.jsp">Liên
+						<li class="footer_list_item"><a href="../html/about.jsp">Liên
 								hệ</a></li>
 						<li class="footer_list_item"><a href="">Tuyển dụng</a></li>
 					</ul>
@@ -78,11 +80,11 @@
 						<li class="footer_list_item">
 							<h5>Trợ giúp</h5>
 						</li>
-						<li class="footer_list_item"><a href="about.jsp">Liên hệ người
+						<li class="footer_list_item"><a href="../html/about.jsp">Liên hệ người
 								quản trị</a></li>
-						<li class="footer_list_item"><a href="policy.jsp">Chính sách</a></li>
+						<li class="footer_list_item"><a href="../html/policy.jsp">Chính sách</a></li>
 						<li class="footer_list_item"><a href="">Trả hàng</a></li>
-						<li class="footer_list_item"><a href="user.jsp">Tài khoản của bạn</a></li>
+						<li class="footer_list_item"><a href="../html/user.jsp">Tài khoản của bạn</a></li>
 					</ul>
 				</div>
 			</div>

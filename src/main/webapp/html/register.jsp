@@ -29,7 +29,7 @@
                         <div class="access_group">
                             <h1 class="access_group_h1">Xin chào</h1>
                             <h5 class="access_group_h5">Cảm ơn bạn vì lựa chọn chúng tôi</h5>
-                            <a href="index.jsp">
+                            <a href="../../../../index.jsp">
                                 <img class="access_group_logo_img-black" src="../image/general/logo-black.png"
                                     alt="Logo của N2Q trên nền trắng">
                                 <img class="access_group_logo_img-white" src="../image/general/logo.png"
