@@ -57,83 +57,119 @@
 				</ul>
 
 				<div>
+					<label class="btn btn-warning"><input type="file" accept=".xlsx, .xls">+ Tải file lên</label>
 					<button class="btn btn-warning" onclick="addProduct()">+
 						Thêm sản phẩm</button>
 				</div>
 			</div>
 		</nav>
 
-		<div class="row mt-5 ">
-			<div class="card-products col ms-2 me-2">
-				<div class="card-deck">
-					<div class="card">
-						<div class="card_img_top col-5">
-							<div class="slider_main">
-								<img src="../image/detail/img1.jpg" alt="img1">
-							</div>
-							<div class="slider_images">
-								<img class="slider_image active" src="../image/detail/img1.jpg"
-									alt="img1"> <img class="slider_image"
-									src="../image/detail/img2.jpg" alt="img2"> <img
-									class="slider_image" src="../image/detail/img3.jpg" alt="img3">
-								<img class="slider_image" src="../image/detail/img4.jpg"
-									alt="img4"> <img class="slider_image"
-									src="../image/detail/img5.jpg" alt="img5"> <img
-									class="slider_image" src="../image/detail/img6.jpg" alt="img6">
-							</div>
-						</div>
-						<div class="card-body col-7">
-							<h5 class="card-title">Nồi điện đa năng, nồi lẩu mini đa
-								năng kèm khay hấp, chất liệu chống dính, dung tích 1,8L tốc độ
-								sôi cực nhanh</h5>
-							<p class="card-text">- BỀ MẶT NẤU DUAL: Nồi điện mới của
-								chúng tôi vừa là NƯỚNG vừa là Lẩu, giúp nấu nướng linh hoạt hơn
-								mà ít tốn công sức hơn - để chuẩn bị những bữa ăn ngon. - ĐA
-								CHỨC NĂNG: Bạn có thể điều chỉnh nhiệt độ từ 300° đến 450° F,
-								giúp bạn thoải mái chế biến các món súp thịnh soạn, nướng thịt
-								và rau - và nhiều hơn thế nữa. - NẤU CHE: Nắp kính cường lực
-								ngăn ngừa bắn tung tóe khi nướng và nấu. Nó có thể ngăn ngừa sự
-								lộn xộn trong nhà bếp và vết bẩn trên quần áo của bạn. - RỘNG
-								RÃI & DI ĐỘNG: Nồi nấu bằng thép không gỉ cực lớn của chúng tôi
-								có dung tích 2,5 lít và đảm bảo phân phối nhiệt đều và dễ dàng
-								làm sạch – đó là máy rửa chén an toàn. - PHỤ KIỆN: Nồi này đi
-								kèm đế nhiệt có thể điều chỉnh, nồi nấu bằng thép không gỉ, chảo
-								nướng chống dính và nắp thủy tinh - cho những bữa ăn hoàn hảo
-								mọi lúc.</p>
-							<p>
-								Trị giá: <span class="card-text">1.200.000.000</span> VND / <span
-									class="card-text"> 1 </span> sản phẩm
-							</p>
-							<p>
-								Thương hiệu: <span class="card-text">Aroma Housewares</span>
-							</p>
-							<p>
-								Màu: <span class="card-text">Trắng</span>
-							</p>
-							<p>
-								Chất liệu: <span class="card-text">Nhôm</span>
-							</p>
-							<p>
-								Kích thước (Dài x Rộng x Cao): <span class="card-text">3</span>cm
-								x <span class="card-text">3</span>cm x <span class="card-text">3</span>cm
-							</p>
-							<p>
-								Dung tích: <span class="card-text">2</span>lít
-							</p>
-							<p>
-								Số lượng: <span class="card-text">999</span>
-							</p>
-							<div>
-								<button class="btn btn-danger" onclick="hideProduct(this)">Ẩn
-									đi</button>
-								<button class="btn btn-warning" onclick="editProduct(this)">Điều
-									chỉnh</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="mt-5 ">
+            <div class="card-products ms-2 me-2">
+                <div class="card-group">
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
+                                content.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img-top" src="../image/product/bepdien/bd1.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This card has even longer content than the first to show that equal
+                                height action.</p>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 
 	<script src="../js/productAdmin.js"></script>

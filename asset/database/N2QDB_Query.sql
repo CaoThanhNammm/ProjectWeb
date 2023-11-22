@@ -21,7 +21,6 @@ CREATE TABLE users(
 	encrypted_password VARCHAR(30) NOT NULL,
 	full_name VARCHAR(50) NOT NULL,
 	gender_id INT NOT NULL,
-	dob DATE,
 	address VARCHAR(255) NOT NULL,
 	status_id INT NOT NULL,
 	
@@ -68,7 +67,7 @@ CREATE TABLE products(
 	`name` VARCHAR(255) NOT NULL,
 	brand_id INT NOT NULL,
 	category_id INT NOT NULL,
-	description VARCHAR(255) NOT NULL,
+	`description` VARCHAR(255) NOT NULL,
 	price BIGINT NOT NULL,
 	discount BIGINT NOT NULL,
 	last_updated DATE NOT NULL,
@@ -84,7 +83,7 @@ CREATE TABLE products(
 CREATE TABLE productDetails(
 	product_id INT,
 	attribute_id INT,
-	`value` VARCHAR(50),
+	`value` VARCHAR(50) NOT NULL,
 	
 	PRIMARY KEY (product_id, attribute_id),
 	FOREIGN KEY (product_id) REFERENCES products(id),
@@ -135,7 +134,7 @@ CREATE TABLE wishlists(
 
 CREATE TABLE orderStatus(
 	id INT AUTO_INCREMENT,
-	`name` VARCHAR(10),
+	`name` VARCHAR(10) NOT NULL,
 	PRIMARY KEY (id)
 );
 
@@ -143,6 +142,7 @@ CREATE TABLE orders(
 	id INT AUTO_INCREMENT,
 	user_id VARCHAR(20),
 	date_created DATE NOT NULL,
+	last_updated DATE NOT NULL,
 	phone VARCHAR(15) NOT NULL,
 	address VARCHAR(255) NOT NULL,
 	status_id INT NOT NULL,
