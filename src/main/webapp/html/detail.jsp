@@ -45,7 +45,7 @@
                 <div class="col-7">
                     <h2>Nồi điện đa năng, nồi lẩu mini đa năng kèm khay hấp, chất liệu chống dính, dung tích 1,8L tốc độ
                         sôi cực nhanh</h2>
-                    <a href="../../../../index.jsp" class="brand">Thương hiệu: Aroma</a>
+                    <a href="../index/index.jsp" class="brand">Thương hiệu: Aroma</a>
                     <div class="rate">
                         <p class="starrate">5.0</p>
                         <img class="star" src="../image/detail/star.png" alt="star">
@@ -82,7 +82,7 @@
                         </tr>
                     </table>
                     <div>
-                        <form action="checkout.jsp" style="display: inline;">
+                        <form action="../hmtl/checkout.jsp" style="display: inline;">
                             <button class="buy_button">Mua ngay!</button>
                         </form>
                         <form action="cart.jsp" style="display: inline;">
