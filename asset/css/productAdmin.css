@@ -64,38 +64,15 @@
     height: 100%;
 }
 
-#product input[type="file"] {
-    display: none;
-}
-
 #product select:focus {
     outline: none;
 }
 
-#product .card-products .card {
-    width: 250px;
-    height: 100px;
-    flex: auto 0;
-    margin-right: 20px;
-    margin-bottom: 30px;
-}
-
-#product .card-products .card .card-img-top {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-#product .card-products .card .card-title {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+#product .card-text {
     overflow: hidden;
-    -webkit-line-clamp: 3;
-}
-
-#product .card-products .card .card-body {
-    border: 2px solid var(--gray-primary);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .slider_main {
