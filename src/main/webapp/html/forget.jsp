@@ -31,7 +31,7 @@
 							<h1 class="access_group_h1">Quên mật khẩu</h1>
 							<h5 class="access_group_h5">Hãy nhập email để chúng tôi giúp
 								bạn</h5>
-							<a href="index.jsp"> <img
+							<a href="../../../../index.jsp"> <img
 								class="access_group_logo_img-black"
 								src="../image/general/logo-black.png"
 								alt="Logo của N2Q trên nền trắng"> <img
