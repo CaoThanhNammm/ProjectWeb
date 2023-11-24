@@ -1,5 +1,5 @@
 CREATE DATABASE n2q CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
+drop database n2q
 USE n2q;
 
 CREATE TABLE genders(
@@ -8,37 +8,46 @@ CREATE TABLE genders(
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE userStatus(
+CREATE TABLE user_status(
 	id INT AUTO_INCREMENT,
 	`name` VARCHAR(50) NOT NULL,
 	PRIMARY KEY (id)
 );
 
+CREATE TABLE role(
+	id INT AUTO_INCREMENT,
+	`name` varchar(10) NOT NULL,
+	PRIMARY KEY (id)
+)
+
 CREATE TABLE users(
 	id VARCHAR(20),
 	email VARCHAR(100) UNIQUE NOT NULL,
 	phone VARCHAR(15) UNIQUE NOT NULL,
-	encrypted_password VARCHAR(30) NOT NULL,
-	full_name VARCHAR(50) NOT NULL,
-	gender_id INT NOT NULL,
+	encryptedPassword VARCHAR(30) NOT NULL,
+	fullName VARCHAR(50) NOT NULL,
+	genderID INT NOT NULL,
+	dob date,
+	roleID INT NOT NULL,
 	address VARCHAR(255) NOT NULL,
-	status_id INT NOT NULL,
+	statusID INT NOT NULL,
 	
 	PRIMARY KEY (id),
-	FOREIGN KEY (status_id) REFERENCES userStatus(id),
-	FOREIGN KEY (gender_id) REFERENCES genders(id)
+	FOREIGN KEY (statusID) REFERENCES user_status(id),
+	FOREIGN KEY (genderID) REFERENCES genders(id),
+	FOREIGN KEY (roleID) REFERENCES role(id)
 );
 
-CREATE TABLE verifyingUsers(
-	user_id VARCHAR(20),
-	verify_code CHAR(8) NOT NULL,
-	expired_time DATETIME NOT NULL,
+CREATE TABLE verifying_users(
+	userID VARCHAR(20),
+	verifyCode CHAR(8) NOT NULL,
+	expiredTime DATETIME NOT NULL,
 	
-	PRIMARY KEY (user_id),
-	FOREIGN KEY (user_id) REFERENCES users(id)
+	PRIMARY KEY (userID),
+	FOREIGN KEY (userID) REFERENCES users(id)
 );
 
-CREATE TABLE productStatus(
+CREATE TABLE product_status(
 	id INT AUTO_INCREMENT,
 	`name` VARCHAR(10) NOT NULL,
 	PRIMARY KEY (id)
@@ -65,74 +74,74 @@ CREATE TABLE attributes(
 CREATE TABLE products(
 	id INT AUTO_INCREMENT,
 	`name` VARCHAR(255) NOT NULL,
-	brand_id INT NOT NULL,
-	category_id INT NOT NULL,
+	brandID INT NOT NULL,
 	`description` VARCHAR(255) NOT NULL,
+	categoryID INT NOT NULL,
 	price BIGINT NOT NULL,
 	discount BIGINT NOT NULL,
-	last_updated DATE NOT NULL,
-	amount_sold INT NOT NULL DEFAULT 0,
-	status_id INT NOT NULL,
+	lastUpdated DATE NOT NULL DEFAULT CURRENT_DATE(),
+	amountSold INT NOT NULL DEFAULT 0,
+	statusID INT NOT NULL,
 	
 	PRIMARY KEY (id),
-	FOREIGN KEY (brand_id) REFERENCES brands(id),
-	FOREIGN KEY (category_id) REFERENCES categories(id),
-	FOREIGN KEY (status_id) REFERENCES productStatus(id)
+	FOREIGN KEY (brandID) REFERENCES brands(id),
+	FOREIGN KEY (categoryID) REFERENCES categories(id),
+	FOREIGN KEY (statusID) REFERENCES product_status(id)
 );
 
-CREATE TABLE productDetails(
-	product_id INT,
-	attribute_id INT,
+CREATE TABLE product_details(
+	productID INT,
+	attributeID INT,
 	`value` VARCHAR(50) NOT NULL,
 	
-	PRIMARY KEY (product_id, attribute_id),
-	FOREIGN KEY (product_id) REFERENCES products(id),
-	FOREIGN KEY (attribute_id) REFERENCES attributes(id)
+	PRIMARY KEY (productID, attributeID),
+	FOREIGN KEY (productID) REFERENCES products(id),
+	FOREIGN KEY (attributeID) REFERENCES attributes(id)
 );
 
-CREATE TABLE productModels(
+CREATE TABLE product_models(
 	id INT AUTO_INCREMENT,
-	product_id INT NOT NULL,
-	option_value VARCHAR(50) NOT NULL,
-	status_id INT NOT NULL,
+	productID INT NOT NULL,
+	optionValue VARCHAR(50) NOT NULL,
+	statusID INT NOT NULL,
 
 	PRIMARY KEY (id),
-	FOREIGN KEY (product_id) REFERENCES products(id),
-	FOREIGN KEY (status_id) REFERENCES productStatus(id)
+	FOREIGN KEY (productID) REFERENCES products(id),
+	FOREIGN KEY (statusID) REFERENCES product_status(id)
 );
 
 CREATE TABLE rates(
-	user_id VARCHAR(20),
-	product_id INT,
-	last_updated DATE NOT NULL,
-	rate_point INT NOT NULL,
-	rate_comment VARCHAR(100),
+	userID VARCHAR(20),
+	productID INT,
+	lastUpdated DATE NOT NULL,
+	ratePoint INT NOT NULL,
+	rateComment VARCHAR(100),
 	
-	PRIMARY KEY (user_id, product_id),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (product_id) REFERENCES products(id)
+	PRIMARY KEY (userID, productID),
+	FOREIGN KEY (userID) REFERENCES users(id),
+	FOREIGN KEY (productID) REFERENCES products(id)
 );
 
 CREATE TABLE carts(
-	user_id VARCHAR(20),
-	model_id INT,
+	userID VARCHAR(20),
+	modelID INT,
 	quantity INT NOT NULL DEFAULT 1,
 	
-	PRIMARY KEY (user_id, model_id),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (model_id) REFERENCES productModels(id)
+	PRIMARY KEY (userID, modelID),
+	FOREIGN KEY (userID) REFERENCES users(id),
+	FOREIGN KEY (modelID) REFERENCES product_models(id)
 );
 
 CREATE TABLE wishlists(
-	user_id VARCHAR(20),
-	model_id INT,
+	userID VARCHAR(20),
+	modelID INT,
 	
-	PRIMARY KEY (user_id, model_id),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (model_id) REFERENCES productModels(id)
+	PRIMARY KEY (userID, modelID),
+	FOREIGN KEY (userID) REFERENCES users(id),
+	FOREIGN KEY (modelID) REFERENCES product_models(id)
 );
 
-CREATE TABLE orderStatus(
+CREATE TABLE order_status(
 	id INT AUTO_INCREMENT,
 	`name` VARCHAR(10) NOT NULL,
 	PRIMARY KEY (id)
@@ -140,43 +149,43 @@ CREATE TABLE orderStatus(
 
 CREATE TABLE orders(
 	id INT AUTO_INCREMENT,
-	user_id VARCHAR(20),
-	date_created DATE NOT NULL,
-	last_updated DATE NOT NULL,
+	userID VARCHAR(20),
+	dateCreated DATE NOT NULL,
+	lastUpdated DATE NOT NULL,
 	phone VARCHAR(15) NOT NULL,
 	address VARCHAR(255) NOT NULL,
-	status_id INT NOT NULL,
+	statusID INT NOT NULL,
 	
 	PRIMARY KEY (id),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (status_id) REFERENCES orderStatus(id)
+	FOREIGN KEY (userID) REFERENCES users(id),
+	FOREIGN KEY (statusID) REFERENCES order_status(id)
 );
 
-CREATE TABLE orderDetails(
-	order_id INT,
-	model_id INT,
+CREATE TABLE order_details(
+	orderID INT,
+	modelID INT,
 	price BIGINT NOT NULL,
 	discount BIGINT NOT NULL,
 	quantity INT NOT NULL,
 	
-	PRIMARY KEY (order_id, model_id),
-	FOREIGN KEY (order_id) REFERENCES orders(id),
-	FOREIGN KEY (model_id) REFERENCES productModels(id)
+	PRIMARY KEY (orderID, modelID),
+	FOREIGN KEY (orderID) REFERENCES orders(id),
+	FOREIGN KEY (modelID) REFERENCES product_models(id)
 );
 
-CREATE TABLE voucherType(
+CREATE TABLE voucher_type(
 	id INT AUTO_INCREMENT,
 	`name` VARCHAR(20) NOT NULL,
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE voucherScope(
+CREATE TABLE voucher_scope(
 	id INT AUTO_INCREMENT,
 	`name` VARCHAR(20) NOT NULL,
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE voucherStatus(
+CREATE TABLE voucher_status(
 	id INT AUTO_INCREMENT,
 	`name` VARCHAR(20) NOT NULL,
 	PRIMARY KEY (id)
@@ -184,72 +193,153 @@ CREATE TABLE voucherStatus(
 
 CREATE TABLE vouchers(
 	id INT AUTO_INCREMENT,
-	voucher_code VARCHAR(20) NOT NULL,
-	date_start DATE NOT NULL,
-	date_end DATE NOT NULL,
+	voucherCode VARCHAR(20) NOT NULL,
+	dateStart DATE NOT NULL,
+	dateEnd DATE NOT NULL,
 	discount BIGINT NOT NULL DEFAULT 0,
-	type_id INT NOT NULL,
-	scope_id INT NOT NULL,
-	status_id INT NOT NULL,
+	typeID INT NOT NULL,
+	scopeID INT NOT NULL,
+	statusID INT NOT NULL,
 	
 	PRIMARY KEY (id),
-	FOREIGN KEY (status_id) REFERENCES voucherStatus(id),
-	FOREIGN KEY (type_id) REFERENCES voucherType(id),
-	FOREIGN KEY (scope_id) REFERENCES voucherScope(id)
+	FOREIGN KEY (statusID) REFERENCES voucher_status(id),
+	FOREIGN KEY (typeID) REFERENCES voucher_type(id),
+	FOREIGN KEY (scopeID) REFERENCES voucher_scope(id)
 );
 
-CREATE TABLE personalVouchers(
-	voucher_id INT,
-	user_id VARCHAR(20) NOT NULL,
+CREATE TABLE personal_vouchers(
+	voucherID INT,
+	userID VARCHAR(20) NOT NULL,
 	
-	PRIMARY KEY(voucher_id),
-	FOREIGN KEY (voucher_id) REFERENCES vouchers(id),
-	FOREIGN KEY (user_id) REFERENCES users(id)
+	PRIMARY KEY(voucherID),
+	FOREIGN KEY (voucherID) REFERENCES vouchers(id),
+	FOREIGN KEY (userID) REFERENCES users(id)
 );
 
-CREATE TABLE unknownVouchers(
-	voucher_id INT,
+CREATE TABLE unknown_vouchers(
+	voucherID INT,
 	remain INT NOT NULL DEFAULT 0,
 	
-	PRIMARY KEY(voucher_id),
-	FOREIGN KEY (voucher_id) REFERENCES vouchers(id)
+	PRIMARY KEY(voucherID),
+	FOREIGN KEY (voucherID) REFERENCES vouchers(id)
 );
 
-CREATE TABLE productVouchers(
-	voucher_id INT,
-	product_id INT,
+CREATE TABLE product_vouchers(
+	voucherID INT,
+	productID INT,
 
-	PRIMARY KEY(voucher_id, product_id),
-	FOREIGN KEY (voucher_id) REFERENCES vouchers(id),
-	FOREIGN KEY (product_id) REFERENCES products(id)
+	PRIMARY KEY(voucherID, productID),
+	FOREIGN KEY (voucherID) REFERENCES vouchers(id),
+	FOREIGN KEY (productID) REFERENCES products(id)
 );
 
-CREATE TABLE categoryVouchers(
-	voucher_id INT,
-	category_id INT,
+CREATE TABLE category_vouchers(
+	voucherID INT,
+	categoryID INT,
 
-	PRIMARY KEY(voucher_id, category_id),
-	FOREIGN KEY (voucher_id) REFERENCES vouchers(id),
-	FOREIGN KEY (category_id) REFERENCES categories(id)
+	PRIMARY KEY(voucherID, categoryID),
+	FOREIGN KEY (voucherID) REFERENCES vouchers(id),
+	FOREIGN KEY (categoryID) REFERENCES categories(id)
 );
 
-CREATE TABLE brandVouchers(
-	voucher_id INT,
-	brand_id INT,
+CREATE TABLE brand_vouchers(
+	voucherID INT,
+	brandID INT,
 
-	PRIMARY KEY(voucher_id, brand_id),
-	FOREIGN KEY (voucher_id) REFERENCES vouchers(id),
-	FOREIGN KEY (brand_id) REFERENCES brands(id)
+	PRIMARY KEY(voucherID, brandID),
+	FOREIGN KEY (voucherID) REFERENCES vouchers(id),
+	FOREIGN KEY (brandID) REFERENCES brands(id)
 );
 
-CREATE TABLE usedVouchers(
-	user_id VARCHAR(20),
-	voucher_id INT NOT NULL,
-	order_id INT NOT NULL,
+CREATE TABLE used_vouchers(
+	userID VARCHAR(20),
+	voucherID INT NOT NULL,
+	orderID INT NOT NULL,
 	
-	PRIMARY KEY (user_id, voucher_id),
-	FOREIGN KEY (user_id) REFERENCES users(id),
-	FOREIGN KEY (voucher_id) REFERENCES vouchers(id),
-	FOREIGN KEY (order_id) REFERENCES orders(id)
+	PRIMARY KEY (userID, voucherID),
+	FOREIGN KEY (userID) REFERENCES users(id),
+	FOREIGN KEY (voucherID) REFERENCES vouchers(id),
+	FOREIGN KEY (orderID) REFERENCES orders(id)
 );
+
+select * from role
+insert into role(name) values
+("User"),
+("Admin")
+
+select * from users
+-- users
+insert into users values
+("ABCD", "nam123@gmail.com", 0901123254, "JK^%!HJHJ", "Nguyễn Nhật Nam", 1, "2003-01-03", 2, "BH", 3) ,
+("AHDJ", "quan123@gmail.com", 0821431247, "IOPHJ78#!S", "Nguyễn Hoàng Khánh Quân", 1, "2003-12-02", 1, "TPHCM", 3),
+("KLSL", "knam123@gmail.com", 0761324312, "HJ%HJ&^!7J", "Cao Khải Nam", 1, "2003-01-03", 2,"TPHCM" ,3)
+
+-- userstatus
+select * from user_status
+insert into user_status(name) values 
+("Chưa xác minh"), 
+("Khóa tài khoản"), 
+("Hoạt động")
+
+-- genders
+select * from genders
+insert into genders(name) values("Nam"), ("Nữ")
+
+-- productstatus
+select * from product_status
+insert into product_status(name) values("Ẩn"),("Khả dụng"),("Hết hàng")
+
+-- brands
+select * from brands
+insert into brands(name) values
+("Sunhouse"),
+("Kangaroo"),
+("Ava"),
+("BlueStone"),
+("Panasonic"),
+("Toshiba"),
+("Philips"),
+("Pramie"),
+("Delites"),
+("Electronux"),
+("Apex"),
+("Duxton"),
+("Namilux"),
+("Rinnai"),
+("Sharp"),
+("Tefal"),
+("Cystal"),
+("Hafele")
+
+-- categories
+select * from categories
+insert into categories(name) values
+("Máy lọc nước"),
+("Nồi chiên"),
+("Bếp điện"),
+("Nồi cơm"),
+("Máy ép trái cây"),
+("Máy xay sinh tố"),
+("Bếp ga"),
+("Bình Đun")
+
+-- attributes
+insert into attributes(`name`) values
+("Màu"),
+("Số lượng vòi nước"),
+("Thể tích"),
+("Công suất"),
+("Nút chỉnh tốc độ"),
+("Kiểu lắp đặt")
+
+
+select * from product_models
+select * from products
+
+-- order_status
+insert into order_status(`name`) values
+("Chờ xử lý"),
+("Đang giao"),
+("Đã hủy"),
+("Thành công")
 
