@@ -1,20 +1,20 @@
-package ConnectDB;
+package controller;
 
 import java.sql.SQLException;
-
 import org.jdbi.v3.core.Jdbi;
-
 import com.mysql.cj.jdbc.MysqlDataSource;
+import database.IInfoDatabase;
+import static database.IInfoDatabase.*;
 
 public class JDBIConnector {
 	private static Jdbi jdbi;
 
 	private static void makeConnect() {
 		MysqlDataSource dataSource = new MysqlDataSource();
-		dataSource.setURL("jdbc:mysql://localhost:3306/login");
+		dataSource.setURL("jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME);
 
-		dataSource.setUser("root");
-		dataSource.setPassword("");
+		dataSource.setUser(USER);
+		dataSource.setPassword(PASS);
 		try {
 			dataSource.setUseCompression(true);
 			dataSource.setAutoReconnect(true);

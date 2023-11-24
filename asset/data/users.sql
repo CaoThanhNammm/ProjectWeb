@@ -1,3 +1,0 @@
-INSERT INTO `users` (`id`, `email`, `phone`, `encryptedPassword`, `fullName`, `genderID`, `dob`, `roleID`, `address`, `statusID`) VALUES ('ABCD', 'nam123@gmail.com', '901123254', 'JK^%!HJHJ', 'Nguyễn Nhật Nam', 1, '2003-01-03', 2, 'BH', 3);
-INSERT INTO `users` (`id`, `email`, `phone`, `encryptedPassword`, `fullName`, `genderID`, `dob`, `roleID`, `address`, `statusID`) VALUES ('AHDJ', 'quan123@gmail.com', '821431247', 'IOPHJ78#!S', 'Nguyễn Hoàng Khánh Quân', 1, '2003-12-02', 1, 'TPHCM', 3);
-INSERT INTO `users` (`id`, `email`, `phone`, `encryptedPassword`, `fullName`, `genderID`, `dob`, `roleID`, `address`, `statusID`) VALUES ('KLSL', 'knam123@gmail.com', '761324312', 'HJ%HJ&^!7J', 'Cao Khải Nam', 1, '2003-01-03', 2, 'TPHCM', 3);
