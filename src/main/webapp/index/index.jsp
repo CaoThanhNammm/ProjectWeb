@@ -29,10 +29,9 @@
 	<div class="slider container">
 		<div class="slider_img_list">
 			<img class="slider_img_item" src="../image/home/trian2011.jpg" alt="">
-			<img class="slider_img_item" src="../image/home/content_introduce1.png"
-				alt=""> <img class="slider_img_item"
-				src="../image/home/content_introduce.jpg" alt=""> <img
-				class="slider_img_item" src="../image/home/lọakeokeo.jpg" alt="">
+			<img class="slider_img_item" src="../image/home/content_introduce1.png" alt=""> 
+			<img class="slider_img_item" src="../image/home/content_introduce.jpg" alt=""> 
+			<img class="slider_img_item" src="../image/home/lọakeokeo.jpg" alt="">
 		</div>
 
 		<div class="slider_dot_list">
