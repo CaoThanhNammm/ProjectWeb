@@ -128,7 +128,8 @@ CREATE TABLE IF NOT EXISTS `genders` (
 -- Dumping data for table n2q.genders: ~2 rows (approximately)
 INSERT INTO `genders` (`id`, `name`) VALUES
 	(1, 'Nam'),
-	(2, 'Nữ');
+	(2, 'Nữ'),
+	(3, 'Khác');
 
 -- Dumping structure for table n2q.orders
 CREATE TABLE IF NOT EXISTS `orders` (

@@ -14,6 +14,11 @@
 <link rel="stylesheet" href="../css/headerRes.css">
 <title>Header</title>
 </head>
+<%@ page import="model.Account"%>
+<%
+Account ac = (Account) session.getAttribute("account");
+%>
+
 <body>
 	<!-- 
         Create: Cao Thành Nam
@@ -32,8 +37,7 @@
 		<!-- phần đăng nhập hoặc đăng ký của header -->
 		<div class="header_login_signin">
 			<%
-			String name = (String) session.getAttribute("name");
-			if (name == null) {
+			if (ac == null) {
 			%>
 			<a href='../html/login.jsp' class='log_in'>Đăng nhập</a>
 			<div class='line'></div>
@@ -41,7 +45,7 @@
 			<%
 			} else {
 			%>
-			<div class='log_in'><%=name%></div>
+			<a href='../hmtl/user.jsp' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
 			<%
 			}
 			%>
