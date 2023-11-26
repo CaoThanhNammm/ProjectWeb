@@ -45,6 +45,7 @@ if (note != null && !note.isBlank()) {
         Date: 19/10/2003
         Note: Đây là nơi đăng ký tài khoản cho khách hàng
      -->
+<<<<<<< HEAD
 	<div id="root">
 		<div id="register" class="container access">
 			<div class="row">
@@ -104,6 +105,60 @@ if (note != null && !note.isBlank()) {
 									type="password" placeholder="*Nhập lại mật khẩu" name="rePass"
 									minlength="6" required>
 							</div>
+=======
+    <div id="root">
+        <div id="register" class="container access">
+            <div class="row">
+                <div class="col access_mb">
+                    <form id="form_register" method="post" action="../access">
+                       	<input type="hidden" name = "access" value="register">
+                        <div class="access_group">
+                            <h1 class="access_group_h1">Xin chào</h1>
+                            <h5 class="access_group_h5">Cảm ơn bạn vì lựa chọn chúng tôi</h5>
+                            <a href="../../../../index.jsp">
+                                <img class="access_group_logo_img-black" src="../image/general/logo-black.png"
+                                    alt="Logo của N2Q trên nền trắng">
+                                <img class="access_group_logo_img-white" src="../image/general/logo.png"
+                                    alt="Logo của N2Q trên nền đen">
+                            </a>
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="access_group">
+                                <i class="fa-solid fa-user-tie access_group_icon"></i> <input id="name" type="text"
+									placeholder="*Tên đăng nhập" maxlength="20" name="name" required>
+							</div>
+                            <div class="access_group">
+                                <i class="fa-solid fa-phone access_group_icon"></i>
+                                <input type="number" placeholder="*Số điện thoại" name="phone" required>
+                            </div>
+                            <div class="access_group">
+                                <i class="fa-solid fa-envelope access_group_icon"></i>
+                                <input type="email" placeholder="*Địa chỉ email" name="email" required>
+                            </div>
+                            <div class="access_group">
+                                <i class="fa-solid fa-address-book access_group_icon"></i>
+                                <input type="text" placeholder="Địa chỉ" name="address" required>
+                            </div>
+                            <div class="access_group">
+                                <i class="fa-solid fa-calendar-days access_group_icon"></i>
+                                <input type="date" name="date" required>
+                            </div>
+                            <div class="access_group access_group_gender">
+                                <span>Giới tính:</span>
+                                <span><input name="gender" type="radio" value="male" checked>Nam</span>
+                                <span><input name="gender" type="radio" value="freeMale">Nữ</span>
+                                <span><input name="gender" type="radio" value="other">Khác</span>
+                            </div>
+                            <div class="access_group access_group_regulation">
+                                <i class="fa-solid fa-lock access_group_icon"></i>
+                                <input type="password" placeholder="*Mật khẩu" name="pass" minlength="6" required>
+                            </div>
+                            <div class="access_group">
+                                <i class="fa-solid fa-lock-open access_group_icon"></i>
+                                <input type="password" placeholder="*Nhập lại mật khẩu" name="rePass" minlength="6" required>
+                            </div>
+>>>>>>> master
 
 							<button type="submit" class="btn access_btn access_btn_submit">Tiếp
 								tục</button>

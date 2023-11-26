@@ -1,4 +1,17 @@
+<<<<<<<< HEAD:src/main/java/controller/JDBIConnector.java
 package controller;
+========
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/main/java/controller/JDBIConnector.java
+package controller;
+========
+package database;
+>>>>>>>> master:src/main/java/database/JDBIConnector.java
+>>>>>>>> master:src/main/java/database/JDBIConnector.java
+=======
+package database;
+>>>>>>>> master:src/main/java/database/JDBIConnector.java
+>>>>>>> master
 
 import java.sql.SQLException;
 import org.jdbi.v3.core.Jdbi;

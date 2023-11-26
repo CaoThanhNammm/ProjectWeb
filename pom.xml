@@ -4,6 +4,7 @@
 	xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+<<<<<<< HEAD
 	<groupId>com.project</groupId>
 	<artifactId>
 		project-web</artifactId>
@@ -16,11 +17,25 @@
 	<url>http://www.example.com</url>
 
 	<properties>
+=======
+<groupId>com.project</groupId>
+<artifactId>
+	project-web</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<packaging>war</packaging>
+
+<name>project-web
+	Maven Webapp</name>
+	<!-- FIXME change it to the project's website -->
+<url>http://www.example.com</url>
+
+<properties>
+>>>>>>> master
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
-	<dependencies>
+	>>>>>>> master <dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

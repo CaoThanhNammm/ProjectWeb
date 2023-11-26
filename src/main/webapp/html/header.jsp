@@ -37,7 +37,12 @@ Account ac = (Account) session.getAttribute("account");
 		<!-- phần đăng nhập hoặc đăng ký của header -->
 		<div class="header_login_signin">
 			<%
+<<<<<<< HEAD
 			if (ac == null) {
+=======
+			String name = (String) session.getAttribute("name");
+			if (name == null) {
+>>>>>>> master
 			%>
 			<a href='../html/login.jsp' class='log_in'>Đăng nhập</a>
 			<div class='line'></div>
@@ -45,7 +50,11 @@ Account ac = (Account) session.getAttribute("account");
 			<%
 			} else {
 			%>
+<<<<<<< HEAD
 			<a href='../hmtl/user.jsp' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
+=======
+			<div class='log_in'><%=name%></div>
+>>>>>>> master
 			<%
 			}
 			%>

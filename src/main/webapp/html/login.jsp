@@ -41,6 +41,7 @@ if (note != null && !note.isBlank()) {
         Date: 18/10/2003
         Note: Nơi đăng nhập của những khách hàng đã có tài khoản
      -->
+<<<<<<< HEAD
 	<div id="root">
 		<div id="login" class="container access">
 			<div class="row">
@@ -71,6 +72,34 @@ if (note != null && !note.isBlank()) {
 								<i class="fa-solid fa-lock access_group_icon"></i> <input
 									type="password" placeholder="Mật khẩu" name="password" required>
 							</div>
+=======
+    <div id="root">
+        <div id="login" class="container access">
+            <div class="row">
+                <div class="col access_mb">
+                    <form id="form_login" action="../access" method="post">
+                    <input type="hidden" name="access" value="login">
+                        <div class="access_group">
+                            <h1 class="access_group_h1">Chào mừng</h1>
+                            <h5 class="access_group_h5">Rất vui vì bạn quay lại với chúng tôi</h5>
+                            <a href="../index/index.jsp">
+                                <img class="access_group_logo_img-black" src="../image/general/logo-black.png"
+                                    alt="Logo của N2Q trên nền trắng">
+                                <img class="access_group_logo_img-white" src="../image/general/logo.png"
+                                    alt="Logo của N2Q trên nền đen">
+                            </a>
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="access_group">
+                                <i class="fa-solid fa-user-tie access_group_icon"></i>
+                                <input type="text" placeholder="Email hoặc Số điện thoại" name="name" required>
+                            </div>
+                            <div class="access_group">
+                                <i class="fa-solid fa-lock access_group_icon"></i>
+                                <input type="password" placeholder="Mật khẩu" name="password" required>
+                            </div>
+>>>>>>> master
 
 							<button type="submit" class="btn access_btn access_btn_submit">Tiếp
 								tục</button>
