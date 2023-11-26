@@ -21,7 +21,7 @@
 <body>
 	<div id="page">
 
-		<%@include file="header.jsp"%>
+
 
 		<!-- 
             Create: Nguyễn Khải Nam

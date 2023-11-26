@@ -25,8 +25,6 @@
 <body>
 	<div id="page">
 
-		<%@include file="header.jsp"%>
-
 		<div class="product_list_wishlist container mt-5">
 			<h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm yêu
 				thích</h2>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<%@include file="/html/header.jsp"%>
+	
 	<!-- 
             Create: Cao Thành Nam
             Date: 18/10/2023

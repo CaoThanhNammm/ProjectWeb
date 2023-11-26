@@ -14,6 +14,11 @@
 <link rel="stylesheet" href="../css/headerRes.css">
 <title>Header</title>
 </head>
+<%@ page import="model.Account"%>
+<%
+Account ac = (Account) session.getAttribute("account");
+%>
+
 <body>
 	<!-- 
         Create: Cao Thành Nam
@@ -31,9 +36,27 @@
 
 		<!-- phần đăng nhập hoặc đăng ký của header -->
 		<div class="header_login_signin">
-			<a href="login.jsp" class="log_in">Đăng nhập</a>
-			<div class="line"></div>
-			<a href="register.jsp" class="sign_in">Đăng ký</a>
+			<%
+
+			if (ac == null) {
+
+			String name = (String) session.getAttribute("name");
+			if (name == null) {
+
+			%>
+			<a href='../html/login.jsp' class='log_in'>Đăng nhập</a>
+			<div class='line'></div>
+			<a href='../html/register.jsp' class='sign_in'>Đăng ký</a>
+			<%
+			} else {
+			%>
+
+			<a href='../hmtl/user.jsp' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
+
+			<div class='log_in'><%=name%></div>
+			<% }%>
+
+
 		</div>
 
 		<div class="list_wishList">
@@ -62,17 +85,22 @@
 		</div>
 
 		<ul class="navigtion-list">
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy lọc
-					nước</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Nồi chiên</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bếp điện</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Nồi cơm</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy ép trái
-					cây</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy xay
-					sinh tố</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bếp ga</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bình đun</a></li>
+			<li class="navigtion-item"><a href="../html/product.jsp">Máy
+					lọc nước</a></li>
+			<li class="navigtion-item"><a href="../html/product.jsp">Nồi
+					chiên</a></li>
+			<li class="navigtion-item"><a href="../html/product.jsp">Bếp
+					điện</a></li>
+			<li class="navigtion-item"><a href="../html/product.jsp">Nồi
+					cơm</a></li>
+			<li class="navigtion-item"><a href="../html/product.jsp">Máy
+					ép trái cây</a></li>
+			<li class="navigtion-item"><a href="../html/product.jsp">Máy
+					xay sinh tố</a></li>
+			<li class="navigtion-item"><a href="../html/product.jsp">Bếp
+					ga</a></li>
+			<li class="navigtion-item"><a href="../html/product.jsp">Bình
+					đun</a></li>
 		</ul>
 
 		<div class="list_wishList--mobile">

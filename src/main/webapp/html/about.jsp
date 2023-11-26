@@ -18,8 +18,7 @@
 
 <body>
 	<div id="page">
-		<%@include file="/html/header.jsp"%>
-
+	
 		<div id="root">
 			<div class="about_img">
 				<img src="../image/about/about_img.jpg" alt="">

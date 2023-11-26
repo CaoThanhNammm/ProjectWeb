@@ -25,8 +25,6 @@
 <body>
 	<div id="page">
 
-		<%@include file="header.jsp"%>
-
 		<div class="slider container">
 			<div class="slider_img_list">
 				<img class="slider_img_item" src="../image/home/trian2011.jpg"
