@@ -25,11 +25,12 @@
         <div id="login" class="container access">
             <div class="row">
                 <div class="col access_mb">
-                    <form id="form_login" action="overviewAdmin.jsp">
+                    <form id="form_login" action="../access" method="post">
+                    <input type="hidden" name="access" value="login">
                         <div class="access_group">
                             <h1 class="access_group_h1">Chào mừng</h1>
                             <h5 class="access_group_h5">Rất vui vì bạn quay lại với chúng tôi</h5>
-                            <a href="../../../../index.jsp">
+                            <a href="../index/index.jsp">
                                 <img class="access_group_logo_img-black" src="../image/general/logo-black.png"
                                     alt="Logo của N2Q trên nền trắng">
                                 <img class="access_group_logo_img-white" src="../image/general/logo.png"
@@ -40,11 +41,11 @@
                         <div class="mt-4">
                             <div class="access_group">
                                 <i class="fa-solid fa-user-tie access_group_icon"></i>
-                                <input type="text" placeholder="Tên đăng nhập hoặc số điện thoại" required>
+                                <input type="text" placeholder="Email hoặc Số điện thoại" name="name" required>
                             </div>
                             <div class="access_group">
                                 <i class="fa-solid fa-lock access_group_icon"></i>
-                                <input type="password" placeholder="Mật khẩu" required>
+                                <input type="password" placeholder="Mật khẩu" name="password" required>
                             </div>
 
                             <button type="submit" class="btn access_btn access_btn_submit">Tiếp tục</button>
