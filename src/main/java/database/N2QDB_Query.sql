@@ -128,12 +128,8 @@ CREATE TABLE IF NOT EXISTS `genders` (
 -- Dumping data for table n2q.genders: ~2 rows (approximately)
 INSERT INTO `genders` (`id`, `name`) VALUES
 	(1, 'Nam'),
-<<<<<<< HEAD
 	(2, 'Nữ'),
 	(3, 'Khác');
-=======
-	(2, 'Nữ');
->>>>>>> master
 
 -- Dumping structure for table n2q.orders
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -918,9 +914,8 @@ CREATE TABLE IF NOT EXISTS `user_status` (
 
 -- Dumping data for table n2q.user_status: ~3 rows (approximately)
 INSERT INTO `user_status` (`id`, `name`) VALUES
-	(1, 'Chưa xác minh'),
-	(2, 'Khóa tài khoản'),
-	(3, 'Hoạt động');
+	(1, 'Khóa tài khoản'),
+	(2, 'Hoạt động');
 
 -- Dumping structure for table n2q.verifying_users
 CREATE TABLE IF NOT EXISTS `verifying_users` (
