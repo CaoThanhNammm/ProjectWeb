@@ -61,6 +61,14 @@ public class Account {
 	}
 
 	/**
+	 * @param email
+	 */
+	public Account(String email) {
+		super();
+		this.email = email;
+	}
+
+	/**
 	 * @param id
 	 * @param email
 	 * @param phone
