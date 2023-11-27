@@ -2,25 +2,20 @@ package model;
 
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.Random;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-<<<<<<< HEAD
 /**
  * Create: Nguyễn Khải Nam Note: Dùng để mã hóa mật khẩu Date: 24/11/2023
  */
-=======
->>>>>>> master
 public class Encrypt {
 	private static final String SECRET_KEY = "ThisIsASecretKey";
 	private static final String ALGORITHM_AES = "AES";
 	private static final String ALGORITHM_SHA256 = "SHA-256";
-<<<<<<< HEAD
 	private static final int MAX_LENGHT = 30;
-=======
->>>>>>> master
 
 	public static String encrypt(String input) {
 		try {
@@ -33,19 +28,30 @@ public class Encrypt {
 			// Step 2: SHA-256 Hashing
 			MessageDigest sha256 = MessageDigest.getInstance(ALGORITHM_SHA256);
 			byte[] hashBytes = sha256.digest(encryptedBytes);
-
-<<<<<<< HEAD
 			return Base64.getEncoder().encodeToString(hashBytes).substring(0, MAX_LENGHT);
-=======
-			return Base64.getEncoder().encodeToString(hashBytes);
->>>>>>> master
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> master
+	public static String generateCode(int length) {
+		String characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		if (length <= 0 || characterSet.isEmpty()) {
+			throw new IllegalArgumentException("Invalid input parameters");
+		}
+
+		Random random = new Random();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		for (int i = 0; i < length; i++) {
+			int randomIndex = random.nextInt(characterSet.length());
+			char randomChar = characterSet.charAt(randomIndex);
+			stringBuilder.append(randomChar);
+		}
+
+		return stringBuilder.toString();
+	}
+
 }

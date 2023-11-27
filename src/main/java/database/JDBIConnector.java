@@ -1,23 +1,16 @@
-<<<<<<<< HEAD:src/main/java/controller/JDBIConnector.java
-package controller;
-========
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/main/java/controller/JDBIConnector.java
-package controller;
-========
 package database;
->>>>>>>> master:src/main/java/database/JDBIConnector.java
->>>>>>>> master:src/main/java/database/JDBIConnector.java
-=======
-package database;
->>>>>>>> master:src/main/java/database/JDBIConnector.java
->>>>>>> master
+
+import static database.IInfoDatabase.DB_NAME;
+import static database.IInfoDatabase.HOST;
+import static database.IInfoDatabase.PASS;
+import static database.IInfoDatabase.PORT;
+import static database.IInfoDatabase.USER;
 
 import java.sql.SQLException;
+
 import org.jdbi.v3.core.Jdbi;
+
 import com.mysql.cj.jdbc.MysqlDataSource;
-import database.IInfoDatabase;
-import static database.IInfoDatabase.*;
 
 public class JDBIConnector {
 	private static Jdbi jdbi;

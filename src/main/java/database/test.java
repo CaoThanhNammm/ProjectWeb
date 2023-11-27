@@ -5,8 +5,6 @@ import java.util.List;
 import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.HandleCallback;
 
-import controller.JDBIConnector;
-
 public class test {
 
 	public static void main(String[] args) throws Exception {
