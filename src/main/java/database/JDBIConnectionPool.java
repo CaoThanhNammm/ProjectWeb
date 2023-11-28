@@ -60,8 +60,8 @@ public class JDBIConnectionPool{
                 dataSource.setPassword(PASS);
                 dataSource.setUseCompression(true);
                 dataSource.setAutoReconnect(true);
-                //Mặc định 10 connection đồng thời, chờ kết nối tối đa 3 giây
-                connectionPool = new JDBIConnectionPool(dataSource, 10, 3000);
+                //Mặc định 10 connection đồng thời, chờ kết nối tối đa 2 giây
+                connectionPool = new JDBIConnectionPool(dataSource, 10, 2000);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
                 System.out.println("[JDBIConnectionPool]: Chạy Database trước!!!!");
@@ -97,10 +97,9 @@ public class JDBIConnectionPool{
                 }
             }
             else{
-                //Trường hợp này chỉ xảy ra khi đã đợi quá thời gian quy định
-                //Buộc lòng trả về null
-                System.out.println("Ran out connection");
-                return null;
+                System.out.println("Create new connection");
+                this.numConnections++;
+                return jdbi.open();
             }
         }
         catch (InterruptedException ie){
@@ -147,14 +146,12 @@ public class JDBIConnectionPool{
         }
     }
 
-    public static void main(String[] args) {
-        for(int i = 0; i < 1000; i++){
-            //Bước 1: Lấy connection
-            Handle connection = JDBIConnectionPool.get().getConnection();
-            //Bước 2: Query gì gì đó
-            System.out.println(connection.select("SELECT 1").mapTo(Integer.class).first());
-            //Bước 3: Trả connection
-            JDBIConnectionPool.get().releaseConnection(connection);
-        }
+    public static void main(String[] args) throws InterruptedException {
+        //Bước 1: Lấy connection
+        Handle connection = JDBIConnectionPool.get().getConnection();
+        //Bước 2: Query gì gì đó
+        System.out.println(connection.select("SELECT 1").mapTo(Integer.class).first());
+        //Bước 3: Trả connection
+        JDBIConnectionPool.get().releaseConnection(connection);
     }
 }
