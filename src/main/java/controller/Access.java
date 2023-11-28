@@ -27,7 +27,7 @@ import org.jdbi.v3.core.HandleCallback;
 import org.jdbi.v3.core.Jdbi;
 
 import model.Account;
-import model.AccountDAO;
+import dao.AccountDAO;
 import model.Encrypt;
 import model.IRoleUser;
 
@@ -110,7 +110,7 @@ public class Access extends HttpServlet {
 			HttpSession session = request.getSession();
 			if (isNull(name, phone, email, pass, rePass, dob, gender)) {
 				if (pass.equals(rePass) && isEmail(email) && isPhoneNumber(phone)) {
-					if (AccountDAO.hasAccount(email, phone)) {
+					if (AccountDAO.hasAccount("",email, phone)) {
 						session.setAttribute("status", "failed-1");
 						response.sendRedirect("html/register.jsp");
 					} else {
