@@ -52,23 +52,16 @@ public class JDBIConnectionPool{
      * Phương thức này trả về instance Connection Pool
      */
     public static JDBIConnectionPool get(){
-        if(connectionPool == null){
-            try {
-                MysqlDataSource dataSource = new MysqlDataSource();
-                dataSource.setURL("jdbc:mysql://" + HOST + ":" + PORT + "/" + DB_NAME);
-                dataSource.setUser(USER);
-                dataSource.setPassword(PASS);
-                dataSource.setUseCompression(true);
-                dataSource.setAutoReconnect(true);
-                //Mặc định 10 connection đồng thời, chờ kết nối tối đa 2 giây
-                connectionPool = new JDBIConnectionPool(dataSource, 10, 2000);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-                System.out.println("[JDBIConnectionPool]: Chạy Database trước!!!!");
-                throw new RuntimeException(throwables);
-            }
-        }
         return connectionPool;
+    }
+
+    /**
+     * Khởi tạo Connection Pool
+     */
+    public static void init(DataSource dataSource, int numConnections, int waitingTimeMilis){
+        if(connectionPool == null){
+            connectionPool = new JDBIConnectionPool(dataSource, numConnections, waitingTimeMilis);
+        }
     }
 
     /**
@@ -81,7 +74,6 @@ public class JDBIConnectionPool{
         try{
             if(connections.isEmpty()){
                 //Khi không có kết nối khả dụng thì đợi
-                System.out.println("Waiting connection");
                 wait(waitingTimeMilis);
             }
             if(!connections.isEmpty()){
@@ -97,7 +89,7 @@ public class JDBIConnectionPool{
                 }
             }
             else{
-                System.out.println("Create new connection");
+                //Tạo Connection mới khi không còn connection khả dụng
                 this.numConnections++;
                 return jdbi.open();
             }
@@ -117,11 +109,16 @@ public class JDBIConnectionPool{
             notify(); //Báo thức cho một Thread bất kỳ đang đợi để thread đó lấy connection
         }
         else{
+            handle.close();
             numDebtConnections--;
         }
     }
 
-    public void setNumConnections(int numConnections){
+    public int getNumConnections(){
+        return numConnections;
+    }
+
+    public synchronized void setNumConnections(int numConnections){
         if(numConnections > 0){
             if(numConnections <= this.numConnections){
                 //Trong trường hợp muốn giảm connection, thì các connection dư thừa sẽ là connection "nợ"
