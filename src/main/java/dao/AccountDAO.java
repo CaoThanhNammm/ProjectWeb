@@ -11,6 +11,8 @@ import org.jdbi.v3.core.Jdbi;
 
 import database.JDBIConnector;
 import model.Account;
+import model.AccountRole;
+import model.AccountStatus;
 import model.Encrypt;
 
 /**
@@ -36,8 +38,8 @@ public class AccountDAO {
 				return h.createQuery("SELECT " + ID + ", " + FULL_NAME + ", " + ROLE + ", " + STATUS + " FROM "
 						+ NAME_TABLE + " WHERE " + prefix + "=:name" + " AND " + PASSWORD + "=:password")
 						.bind("name", name2).bind("password", Encrypt.encrypt(password))
-						.map((rs, ctx) -> new Account(rs.getString(ID), rs.getString(FULL_NAME), rs.getInt(ROLE),
-								rs.getInt(STATUS)))
+						.map((rs, ctx) -> new Account(rs.getString(ID), rs.getString(FULL_NAME),
+								AccountRole.getRole(rs.getInt(ROLE)), AccountStatus.getStatus(rs.getInt(STATUS))))
 						.findOne().orElse(null);
 			});
 		} catch (Exception e) {
@@ -69,24 +71,6 @@ public class AccountDAO {
 					ac.getPhone(), Encrypt.encrypt(ac.getPass()), ac.getFullName(), ac.getGender(), ac.getDob(),
 					ac.getRole(), ac.getAddress(), ac.getStatus());
 		});
-		return count;
-	}
-
-	// Kiểm tra giới tính
-	public static int isGender(String gender) {
-		// TODO Auto-generated method stub
-		int count = 1;
-		switch (gender) {
-		case "freeMale":
-			count = 2;
-			break;
-		case "other":
-			count = 3;
-			break;
-		default:
-			count = 1;
-			break;
-		}
 		return count;
 	}
 

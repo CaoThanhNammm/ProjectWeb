@@ -14,9 +14,10 @@ import javax.servlet.http.HttpSession;
 import dao.AccountDAO;
 import database.TableUsers;
 import model.Account;
+import model.AccountRole;
+import model.AccountStatus;
 import model.Encrypt;
-import model.IRoleUser;
-import model.IStatusUser;
+import model.Gender;
 import model.VerifyEmail;
 import service.MailService;
 
@@ -74,17 +75,12 @@ public class Access extends HttpServlet {
 				String prefix = (isPhoneNumber(name) ? "phone" : "email") + "-";
 				Account ac = AccountDAO.getAccount(prefix + name, request.getParameter("password"));
 				if (ac != null) {
-					if (ac.getStatus() == IStatusUser.ACTION) {
+					if (ac.getStatus().isAction()) {
 						session.setAttribute("account", ac);
-						switch (ac.getRole()) {
-						case IRoleUser.ADMIN:
+						if (ac.getRole().isAdmin()) {
 							response.sendRedirect("html/overviewAdmin.jsp");
-							break;
-						case IRoleUser.USER:
+						} else if (ac.getRole().isUser()) {
 							response.sendRedirect("index/index.jsp");
-							break;
-						default:
-							break;
 						}
 					} else {
 						session.setAttribute("status", "failed-0");
@@ -118,8 +114,8 @@ public class Access extends HttpServlet {
 					} else {
 						String code = MailService.sendEmail(email, subject[0], mess[0], null);
 						String id = AccountDAO.generateID(email, phone);
-						Account ac = new Account(id, email, phone, pass, name, AccountDAO.isGender(gender[0]),
-								LocalDate.parse(dob), IRoleUser.USER, address, IStatusUser.ACTION);
+						Account ac = new Account(id, email, phone, pass, name, Gender.getGender(gender[0]),
+								LocalDate.parse(dob), AccountRole.getRole(1), address, AccountStatus.getStatus(2));
 						verify = new VerifyEmail(Encrypt.encrypt(code), ac);
 
 						if (code != null && !code.isBlank()) {
