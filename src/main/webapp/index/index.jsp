@@ -20,7 +20,6 @@
 </head>
 
 <body>
-
 	<%@include file="/html/header.jsp"%>
 
 	<!-- 
