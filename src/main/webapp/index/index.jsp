@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,9 @@
 </head>
 
 <body>
-	
+
+	<%@include file="/html/header.jsp"%>
+
 	<!-- 
             Create: Cao Thành Nam
             Date: 18/10/2023
@@ -29,9 +31,11 @@
 	<div class="slider container">
 		<div class="slider_img_list">
 			<img class="slider_img_item" src="../image/home/trian2011.jpg" alt="">
-			<img class="slider_img_item" src="../image/home/content_introduce1.png" alt=""> 
-			<img class="slider_img_item" src="../image/home/content_introduce.jpg" alt=""> 
-			<img class="slider_img_item" src="../image/home/lọakeokeo.jpg" alt="">
+			<img class="slider_img_item"
+				src="../image/home/content_introduce1.png" alt=""> <img
+				class="slider_img_item" src="../image/home/content_introduce.jpg"
+				alt=""> <img class="slider_img_item"
+				src="../image/home/lọakeokeo.jpg" alt="">
 		</div>
 
 		<div class="slider_dot_list">
@@ -44,7 +48,7 @@
 		<i class="fa-solid fa-angle-left left"></i> <i
 			class="fa-solid fa-angle-right right"></i>
 	</div>
-
+	
 	<div class="content container">
 		<div class="content_event_product">
 			<a href="../../html/product.jsp" class="product_event"> <img
@@ -66,8 +70,8 @@
 			<div class="row">
 				<div class="col-lg-6 introduce_product_item">
 					<img src="../image/home/introduce_product1.jpg" alt=""> <a
-						href="../html/product.jsp" class="introduce_product_name">Máy lọc
-						nước</a>
+						href="../html/product.jsp" class="introduce_product_name">Máy
+						lọc nước</a>
 				</div>
 
 				<div class="col-lg-6">
@@ -108,7 +112,7 @@
 	</div>
 
 	<%@include file="/html/footer.jsp"%>
-	
+
 	<script src="../js/index.js" type="text/javascript"></script>
 	<script src="../js/product.js" type="text/javascript"></script>
 

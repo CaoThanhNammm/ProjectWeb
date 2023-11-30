@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .category_product {
     display: flex;
     justify-content: space-between;
@@ -124,8 +125,6 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
-    border: 1px solid var(--gray-third);
-    border-radius: 10px;
     padding-left: 0;
 }
 
@@ -140,11 +139,12 @@
 .new_page_item {
     padding: 10px 0;
     cursor: pointer;
+    border: 1px solid var(--white-primary);
 }
 
-.new_page_item:hover {
+.new_page_item:hover{
     color: var(--black-primary);
-    background-color: var(--gray-third);
+    border: 1px solid var(--black-primary);
 }
 
 .new_page_item:hover a{
@@ -262,13 +262,6 @@
     opacity: 1;
 }
 
-.product_btn-add_card_none,
-.product_btn--product_detail_none {
-    color: var(--white-primary);
-    background-color: var(--white-primary);
-    border: none;
-}
-
 .active {
     display: block;
 }
@@ -318,62 +311,10 @@
     padding: 10px 0;
     font-weight: 600;
     margin: 0;
-}
-
-.product_btn-add_card,
-.product_btn--product_detail {
-    text-decoration: none;
     color: var(--black-primary);
-    background-color: var(--white-primary);
+    text-decoration: none;
 }
 
-.product_btn-add_card {
-    border: 1px solid var(--black-primary);
-    font-weight: 600;
-    padding: 7px 16px;
-    border-radius: 5px;
-    float: left;
-}
-
-.product_btn-add_card:hover {
-    color: var(--white-primary);
-    background-color: var(--black-primary);
-    font-weight: 600;
-    transition: 0.2s ease-in;
-    animation: zoom 0.8s ease;
-}
-
-@keyframes zoom {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.2);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.product_btn--product_detail {
-    color: var(--white-primary);
-    background-color: var(--black-primary);
-    padding: 8px 16px;
-    float: right;
-    border-radius: 5px;
-}
-
-.product_btn--product_detail:hover {
-    color: var(--white-primary);
-    animation: zoom 0.8s ease;
-}
-
-.product_btn {
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
 
 .wishlisted {
     color: var(--red-second);

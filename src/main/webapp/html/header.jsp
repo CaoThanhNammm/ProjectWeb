@@ -1,3 +1,7 @@
+<%@page import="dao.ProductDAO"%>
+<%@page import="model.Product"%>
+<%@ page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,35 +33,26 @@ Account ac = (Account) session.getAttribute("account");
 		<a href="../index/index.jsp" class="logo_page"><img
 			src="../image/general/logo.png" alt=""></a>
 		<!-- phần tìm kiếm sản phẩm của header -->
+
 		<div class="header_search">
-			<input type="text" class="search" placeholder="Tìm đồ gia dụng">
-			<i class="fa-solid fa-magnifying-glass search_logo"></i>
+			<input type="text" name="nameProduct" class="search"
+				placeholder="Tìm đồ gia dụng" oninput="searchProduct(this.value)">
+			<button class="search_logo">
+				<i class="fa-solid fa-magnifying-glass searchIcon"
+					style="font-size: 20px;"></i>
+			</button>
+
+			<!-- phần hiên thị ra danh sách sản phẩm đang tìm kiếm -->
+			
+			<div class="tab_suggestion_products unactive">
+				<c:forEach items="${productsLitmitN}" var="product">
+					<a class="products_suggestion_item">${product.name}</a>
+				</c:forEach>
+			</div>
 		</div>
 
 		<!-- phần đăng nhập hoặc đăng ký của header -->
-		<div class="header_login_signin">
-			<%
-
-			if (ac == null) {
-
-			String name = (String) session.getAttribute("name");
-			if (name == null) {
-
-			%>
-			<a href='../html/login.jsp' class='log_in'>Đăng nhập</a>
-			<div class='line'></div>
-			<a href='../html/register.jsp' class='sign_in'>Đăng ký</a>
-			<%
-			} else {
-			%>
-
-			<a href='../hmtl/user.jsp' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
-
-			<div class='log_in'><%=name%></div>
-			<% }%>
-
-
-		</div>
+		<div class="header_login_signin"></div>
 
 		<div class="list_wishList">
 			<i class="fa-regular fa-heart"></i> <span class="amount_wishlist">0</span>

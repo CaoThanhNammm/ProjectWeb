@@ -1,3 +1,7 @@
+<%@page import="controller.FindProduct"%>
+<%@page import="model.Product"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,8 +12,8 @@
 <link rel="icon" href="../image/general/logo.png" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../css/index.css">
-<link rel="stylesheet" href="../css/product.css">
 <link rel="stylesheet" href="../css/indexRes.css">
+<link rel="stylesheet" href="../css/product.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet"
@@ -106,33 +110,61 @@
 		<div class="product_list container">
 			<h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm nổi
 				bật</h2>
-			<div class="row mb-3"></div>
 
-			<div class="new_page">
-				<div class="row">
-					<div class="col-lg-12">
-						<ul class="new_page_list">
-							<li class="new_page_item new_page_item_previous"><a> <i
-									class="fa-solid fa-angle-left"
-									style="margin-right: 3px; text-align: center;"></i> Previous
-							</a></li>
-							<li class="new_page_item"><a>1</a></li>
-							<li class="new_page_item"><a>2</a></li>
-							<li class="new_page_item"><a>3</a></li>
-							<li class="new_page_item"><a>4</a></li>
-							<li class="new_page_item"><a>5</a></li>
-							<li class="new_page_item"><a>6</a></li>
-							<li class="new_page_item new_page_item_next"><a> Next <i
-									class="fa-solid fa-angle-right"
-									style="margin-left: 3px; text-align: center;"></i>
-							</a></li>
-						</ul>
+			<div class="row">
+				<c:forEach items="${products}" var="product">
+					<div class="col-lg-3 col-sm-6 col-md-4 product">
+						<i class="fa-solid fa-bag-shopping fly_to_card"></i>
+
+						<div class="product_in4">
+							<a href="../html/detail.jsp" class="product_in4_name_product">${product.name}</a>
+							<div class="product_in4_bottom">
+								<div>
+									<p class="product_in4_price">
+									<fmt:formatNumber type="number" value="${product.price}"/>₫
+									</p>
+									
+									<p class="product_in4_sale_price">
+									<fmt:formatNumber type="number" value="${product.price - product.discount}"/>₫
+									</p>
+								</div>
+								<div class="product_in4_wishlist no_wishlist">
+									<i class="fa-solid fa-heart"></i> <span class="hint_wishlist">yêu
+										thích</span>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
+
+				</c:forEach>
 			</div>
 		</div>
 
-		<%@include file="footer.jsp"%>
+		<div class="new_page">
+			<div class="row">
+				<div class="col-lg-12">
+					<span> <%
+						 String notify = (String) request.getAttribute("notify");
+						 if (notify != null)
+						 	out.println(request.getAttribute("notify"));
+						 %>
+					</span>
+
+					<ul class="new_page_list">
+						<c:forEach var="i" begin="1" end="${totalPage}">
+							<li class="new_page_item">
+								<form action="../html/FindProduct" method="GET">
+									<a href="../html/FindProduct?currentPage=${i}">${i}</a>
+								</form>
+							</li>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%@include file="footer.jsp"%>
 	</div>
 </body>
 
