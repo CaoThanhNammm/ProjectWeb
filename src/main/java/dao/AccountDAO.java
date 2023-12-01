@@ -1,16 +1,20 @@
 package dao;
 
 import static database.TableUsers.EMAIL;
-import static database.TableUsers.*;
+import static database.TableUsers.FULL_NAME;
+import static database.TableUsers.ID;
+import static database.TableUsers.NAME_TABLE;
 import static database.TableUsers.PASSWORD;
-
-import java.time.LocalDate;
-import java.util.List;
+import static database.TableUsers.PHONE;
+import static database.TableUsers.ROLE;
+import static database.TableUsers.STATUS;
 
 import org.jdbi.v3.core.Jdbi;
 
 import database.JDBIConnector;
 import model.Account;
+import model.AccountRole;
+import model.AccountStatus;
 import model.Encrypt;
 
 /**
@@ -36,8 +40,8 @@ public class AccountDAO {
 				return h.createQuery("SELECT " + ID + ", " + FULL_NAME + ", " + ROLE + ", " + STATUS + " FROM "
 						+ NAME_TABLE + " WHERE " + prefix + "=:name" + " AND " + PASSWORD + "=:password")
 						.bind("name", name2).bind("password", Encrypt.encrypt(password))
-						.map((rs, ctx) -> new Account(rs.getString(ID), rs.getString(FULL_NAME), rs.getInt(ROLE),
-								rs.getInt(STATUS)))
+						.map((rs, ctx) -> new Account(rs.getString(ID), rs.getString(FULL_NAME),
+								AccountRole.getRole(rs.getInt(ROLE)), AccountStatus.getStatus(rs.getInt(STATUS))))
 						.findOne().orElse(null);
 			});
 		} catch (Exception e) {
@@ -66,27 +70,9 @@ public class AccountDAO {
 		// TODO Auto-generated method stub
 		int count = connect.withHandle(h -> {
 			return h.execute("INSERT INTO " + NAME_TABLE + " VALUES (?,?,?,?,?,?,?,?,?,?)", ac.getId(), ac.getEmail(),
-					ac.getPhone(), Encrypt.encrypt(ac.getPass()), ac.getFullName(), ac.getGender(), ac.getDob(),
-					ac.getRole(), ac.getAddress(), ac.getStatus());
+					ac.getPhone(), Encrypt.encrypt(ac.getPass()), ac.getFullName(), ac.getGender().getId(), ac.getDob(),
+					ac.getRole().getId(), ac.getAddress(), ac.getStatus().getId());
 		});
-		return count;
-	}
-
-	// Kiểm tra giới tính
-	public static int isGender(String gender) {
-		// TODO Auto-generated method stub
-		int count = 1;
-		switch (gender) {
-		case "freeMale":
-			count = 2;
-			break;
-		case "other":
-			count = 3;
-			break;
-		default:
-			count = 1;
-			break;
-		}
 		return count;
 	}
 
