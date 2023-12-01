@@ -54,4 +54,5 @@ public class Encrypt {
 
 		return stringBuilder.toString();
 	}
+
 }

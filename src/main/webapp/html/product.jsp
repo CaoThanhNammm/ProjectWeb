@@ -1,7 +1,7 @@
 <%@page import="controller.FindProduct"%>
+<%@page import="model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@page import="model.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -28,8 +28,8 @@
 
 <body>
 	<%@include file="header.jsp"%>
-	
 	<div id="page">
+
 		<div class="slider container">
 			<div class="slider_img_list">
 				<img class="slider_img_item" src="../image/home/trian2011.jpg"
@@ -122,11 +122,14 @@
 							<div class="product_in4_bottom">
 								<div>
 									<p class="product_in4_price">
-									<fmt:formatNumber type="number" value="${product.price}"/>₫
+										<fmt:formatNumber type="number" value="${product.price}" />
+										₫
 									</p>
-									
+
 									<p class="product_in4_sale_price">
-									<fmt:formatNumber type="number" value="${product.price - product.discount}"/>₫
+										<fmt:formatNumber type="number"
+											value="${product.price - product.discount}" />
+										₫
 									</p>
 								</div>
 								<div class="product_in4_wishlist no_wishlist">
@@ -153,24 +156,27 @@
 
 					<ul class="new_page_list">
 						<%
-							int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-							
-							for(int i = 1; i <= (Integer)request.getAttribute("totalPage"); i++){
-							if(currentPage == i){
-								
-							%>
-							<li class="new_page_item choose_page_item">
-								<form action="../html/FindProduct" method="GET">
-									<a href="../html/FindProduct?currentPage=<%=i %>"><%=i %></a>
-								</form>
-							</li>
-							<%} else{%>
-							<li class="new_page_item">
-								<form action="../html/FindProduct" method="GET">
-									<a href="../html/FindProduct?currentPage=<%=i %>"><%=i %></a>
-								</form>
-							</li>
-							<% }}%>
+						int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+						for (int i = 1; i <= (Integer) request.getAttribute("totalPage"); i++) {
+							if (currentPage == i) {
+						%>
+						<li class="new_page_item choose_page_item">
+							<form action="../html/FindProduct" method="GET">
+								<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
+							</form>
+						</li>
+						<%
+						} else {
+						%>
+						<li class="new_page_item">
+							<form action="../html/FindProduct" method="GET">
+								<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
+							</form>
+						</li>
+						<%
+						}
+						}
+						%>
 					</ul>
 				</div>
 			</div>
@@ -178,7 +184,7 @@
 	</div>
 
 	<%@include file="footer.jsp"%>
-	
+
 </body>
 
 <script src="../js/product.js"></script>

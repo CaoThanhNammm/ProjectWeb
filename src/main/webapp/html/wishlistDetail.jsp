@@ -23,8 +23,9 @@
 </head>
 
 <body>
-	<%@include file="header.jsp"%>
 	<div id="page">
+
+		<%@include file="header.jsp"%>
 
 		<div class="product_list_wishlist container mt-5">
 			<h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm yêu
@@ -57,8 +58,8 @@
 					<div class="product_btn">
 						<button href="" class=" product_btn-add_card_none a">Thêm
 							vào giỏ</button>
-						<a href="detail.jsp" class=" product_btn--product_detail_none a">xem
-							thêm</a>
+						<a href="detail.jsp"
+							class=" product_btn--product_detail_none a">xem thêm</a>
 					</div>
 				</div>
 
@@ -88,8 +89,8 @@
 					<div class="product_btn">
 						<button href="" class=" product_btn-add_card_none a">Thêm
 							vào giỏ</button>
-						<a href="detail.jsp" class=" product_btn--product_detail_none a">xem
-							thêm</a>
+						<a href="detail.jsp"
+							class=" product_btn--product_detail_none a">xem thêm</a>
 					</div>
 				</div>
 
@@ -119,8 +120,8 @@
 					<div class="product_btn">
 						<button href="" class=" product_btn-add_card_none a">Thêm
 							vào giỏ</button>
-						<a href="detail.jsp" class=" product_btn--product_detail_none a">xem
-							thêm</a>
+						<a href="detail.jsp"
+							class=" product_btn--product_detail_none a">xem thêm</a>
 					</div>
 				</div>
 			</div>

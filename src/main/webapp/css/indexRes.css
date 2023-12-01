@@ -35,8 +35,7 @@
     .slider_dot_list{
         display: none;
     }
-   
-   
+
     .category_product{
         display: flex;
         flex-wrap: wrap;
@@ -55,7 +54,6 @@
 /* TABLET 768px <= width < 992px*/
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 
- 
     .introduce_product_item{
         padding-top: 30px;
     }
@@ -86,7 +84,6 @@
 /* extra PC 1200px <= width < 1200px*/
 @media only screen and (max-width: 1200px) {
 
-
     .hint_wishlist{
         display: none;
     }
@@ -116,6 +113,5 @@
 
 /* extra PC 1200px <= width < 1200px*/
 @media only screen and (min-width: 1500px) {
-    
-   
+
 }

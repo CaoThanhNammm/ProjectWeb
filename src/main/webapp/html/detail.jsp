@@ -19,10 +19,9 @@
 </head>
 
 <body>
-	<%@include file="header.jsp"%>
     <div id="page">
 
-      
+       <%@include file="header.jsp"%>
         <!-- 
             Tạo bởi: Trần Minh Quân
             Ngày: 24-10-2023
