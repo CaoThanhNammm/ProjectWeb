@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import database.JDBIConnector;
-
 public class Product {
 	private int id;
 	private String name;

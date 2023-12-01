@@ -30,7 +30,6 @@ public class FindProduct extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
 		response.setContentType("text/html");
 
 		// lấy ra số trang hiện tại
@@ -50,7 +49,7 @@ public class FindProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		
+
 		// khởi tạo dao product
 		ProductDAO productDAO = new ProductDAO();
 
@@ -114,12 +113,11 @@ public class FindProduct extends HttpServlet {
 		for (int i = (currentPage - 1) * perPage; i < (currentPage - 1) * perPage + perPage; i++) {
 			if (i == products.size())
 				return perProduct;
-			
+
 			perProduct.add(products.get(i));
 		}
 
 		return perProduct;
 	}
-	
 
 }

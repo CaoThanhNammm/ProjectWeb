@@ -16,12 +16,13 @@
 <link rel="stylesheet" href="../css/indexRes.css">
 <link rel="stylesheet" href="../css/product.css">
 <link rel="stylesheet" href="../font/Roboto/Roboto-Medium.ttf">
+
 <title>Home</title>
+
 </head>
 
 <body>
-	<%@include file="/html/header.jsp"%>
-
+	<%@include file="../html/header.jsp"%>
 	<!-- 
             Create: Cao Thành Nam
             Date: 18/10/2023
@@ -47,7 +48,7 @@
 		<i class="fa-solid fa-angle-left left"></i> <i
 			class="fa-solid fa-angle-right right"></i>
 	</div>
-	
+
 	<div class="content container">
 		<div class="content_event_product">
 			<a href="../../html/product.jsp" class="product_event"> <img
@@ -108,9 +109,9 @@
 				bật</h2>
 			<div class="row mb-3"></div>
 		</div>
-	</div>
 
-	<%@include file="/html/footer.jsp"%>
+	</div>
+	<%@include file="../html/footer.jsp"%>
 
 	<script src="../js/index.js" type="text/javascript"></script>
 	<script src="../js/product.js" type="text/javascript"></script>

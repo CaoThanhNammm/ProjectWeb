@@ -19,8 +19,8 @@
 </head>
 
 <body>
-	<%@include file="header.jsp"%>
 	<div id="page">
+		<%@include file="header.jsp"%>
 
 		<!-- 
             Create: Nguyễn Khải Nam

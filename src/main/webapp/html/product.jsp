@@ -1,11 +1,7 @@
 <%@page import="controller.FindProduct"%>
 <%@page import="model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
-<<<<<<< HEAD
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-=======
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
->>>>>>> main
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -31,8 +27,8 @@
  -->
 
 <body>
-	<%@include file="header.jsp"%>
 	<div id="page">
+		<%@include file="header.jsp"%>
 
 		<div class="slider container">
 			<div class="slider_img_list">
@@ -126,13 +122,6 @@
 							<div class="product_in4_bottom">
 								<div>
 									<p class="product_in4_price">
-<<<<<<< HEAD
-									<fmt:formatNumber type="number" value="${product.price}"/>₫
-									</p>
-									
-									<p class="product_in4_sale_price">
-									<fmt:formatNumber type="number" value="${product.price - product.discount}"/>₫
-=======
 										<fmt:formatNumber type="number" value="${product.price}" />
 										₫
 									</p>
@@ -141,7 +130,6 @@
 										<fmt:formatNumber type="number"
 											value="${product.price - product.discount}" />
 										₫
->>>>>>> main
 									</p>
 								</div>
 								<div class="product_in4_wishlist no_wishlist">
@@ -160,22 +148,13 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<span> <%
-						 String notify = (String) request.getAttribute("notify");
-						 if (notify != null)
-						 	out.println(request.getAttribute("notify"));
-						 %>
+ String notify = (String) request.getAttribute("notify");
+ if (notify != null)
+ 	out.println(request.getAttribute("notify"));
+ %>
 					</span>
 
 					<ul class="new_page_list">
-<<<<<<< HEAD
-						<c:forEach var="i" begin="1" end="${totalPage}">
-							<li class="new_page_item">
-								<form action="../html/FindProduct" method="GET">
-									<a href="../html/FindProduct?currentPage=${i}">${i}</a>
-								</form>
-							</li>
-						</c:forEach>
-=======
 						<%
 						int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 						for (int i = 1; i <= (Integer) request.getAttribute("totalPage"); i++) {
@@ -198,20 +177,13 @@
 						}
 						}
 						%>
->>>>>>> main
 					</ul>
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
+		<%@include file="footer.jsp"%>
 	</div>
 
-	<%@include file="footer.jsp"%>
-=======
->>>>>>> main
-	</div>
-
-	<%@include file="footer.jsp"%>
 
 </body>
 
