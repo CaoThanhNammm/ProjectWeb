@@ -16,9 +16,9 @@ public class Gender {
 	static {
 		int i = 0;
 		// Start 1
-		sexs.put(++i, new Gender(1, "NAM"));
-		sexs.put(++i, new Gender(2, "NỮ"));
-		sexs.put(++i, new Gender(3, "KHÁC"));
+		sexs.put(++i, new Gender(1, "Nam"));
+		sexs.put(++i, new Gender(2, "Nữ"));
+		sexs.put(++i, new Gender(3, "Khác"));
 	}
 
 	// Chỉ là hàm khởi tạo

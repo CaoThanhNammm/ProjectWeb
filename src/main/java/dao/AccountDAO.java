@@ -1,11 +1,13 @@
 package dao;
 
 import static database.TableUsers.EMAIL;
-import static database.TableUsers.*;
+import static database.TableUsers.FULL_NAME;
+import static database.TableUsers.ID;
+import static database.TableUsers.NAME_TABLE;
 import static database.TableUsers.PASSWORD;
-
-import java.time.LocalDate;
-import java.util.List;
+import static database.TableUsers.PHONE;
+import static database.TableUsers.ROLE;
+import static database.TableUsers.STATUS;
 
 import org.jdbi.v3.core.Jdbi;
 
@@ -68,8 +70,8 @@ public class AccountDAO {
 		// TODO Auto-generated method stub
 		int count = connect.withHandle(h -> {
 			return h.execute("INSERT INTO " + NAME_TABLE + " VALUES (?,?,?,?,?,?,?,?,?,?)", ac.getId(), ac.getEmail(),
-					ac.getPhone(), Encrypt.encrypt(ac.getPass()), ac.getFullName(), ac.getGender(), ac.getDob(),
-					ac.getRole(), ac.getAddress(), ac.getStatus());
+					ac.getPhone(), Encrypt.encrypt(ac.getPass()), ac.getFullName(), ac.getGender().getId(), ac.getDob(),
+					ac.getRole().getId(), ac.getAddress(), ac.getStatus().getId());
 		});
 		return count;
 	}
