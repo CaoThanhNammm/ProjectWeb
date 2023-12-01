@@ -32,19 +32,19 @@ public class Account {
 	private String fullName;
 
 	@ColumnName(GENDER)
-	private int gender;
+	private Gender gender;
 
 	@ColumnName(DOB)
 	private LocalDate dob;
 
 	@ColumnName(ROLE)
-	private int role;
+	private AccountRole role;
 
 	@ColumnName(ADDRESS)
 	private String address;
 
 	@ColumnName(STATUS)
-	private int status;
+	private AccountStatus status;
 
 	/**
 	 * @param id
@@ -52,7 +52,7 @@ public class Account {
 	 * @param role
 	 * @param status
 	 */
-	public Account(String id, String fullName, int role, int status) {
+	public Account(String id, String fullName, AccountRole role, AccountStatus status) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
@@ -80,8 +80,8 @@ public class Account {
 	 * @param address
 	 * @param status
 	 */
-	public Account(String id, String email, String phone, String pass, String fullName, int gender, LocalDate dob,
-			int role, String address, int status) {
+	public Account(String id, String email, String phone, String pass, String fullName, Gender gender, LocalDate dob,
+			AccountRole role, String address, AccountStatus status) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -173,20 +173,6 @@ public class Account {
 	}
 
 	/**
-	 * @return the gender
-	 */
-	public int getGender() {
-		return gender;
-	}
-
-	/**
-	 * @param gender the gender to set
-	 */
-	public void setGender(int gender) {
-		this.gender = gender;
-	}
-
-	/**
 	 * @return the dob
 	 */
 	public LocalDate getDob() {
@@ -198,20 +184,6 @@ public class Account {
 	 */
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
-	}
-
-	/**
-	 * @return the role
-	 */
-	public int getRole() {
-		return role;
-	}
-
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(int role) {
-		this.role = role;
 	}
 
 	/**
@@ -229,16 +201,44 @@ public class Account {
 	}
 
 	/**
+	 * @return the gender
+	 */
+	public Gender getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the role
+	 */
+	public AccountRole getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(AccountRole role) {
+		this.role = role;
+	}
+
+	/**
 	 * @return the status
 	 */
-	public int getStatus() {
+	public AccountStatus getStatus() {
 		return status;
 	}
 
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(int status) {
+	public void setStatus(AccountStatus status) {
 		this.status = status;
 	}
 

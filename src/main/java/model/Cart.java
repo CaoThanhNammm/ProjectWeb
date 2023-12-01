@@ -6,6 +6,7 @@ import java.util.Map;
 public class Cart {
 	private Account account;
 	private Map<ProductModel, Integer> cartItems;
+	private Voucher voucher;
 
 	public Cart(Account account) {
 		super();

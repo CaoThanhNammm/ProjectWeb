@@ -19,6 +19,10 @@
 
 
 <body>
+	<%@ page import="model.Account"%>
+	<%
+	Account ac = (Account) session.getAttribute("account");
+	%>
 	<!-- 
         Create: Cao Thành Nam
         Date: 18/10/2023
@@ -30,7 +34,7 @@
 		<!-- phần tìm kiếm sản phẩm của header -->
 		<div class="header_search">
 			<input type="text" name="nameProduct" class="search"
-				placeholder="Tìm đồ gia dụng" oninput="searchProduct(this.value)">
+				placeholder="Tìm đồ gia dụng">
 			<button class="search_logo">
 				<i class="fa-solid fa-magnifying-glass searchIcon"
 					style="font-size: 20px;"></i>
@@ -42,7 +46,22 @@
 
 
 		<!-- phần đăng nhập hoặc đăng ký của header -->
-		<div class="header_login_signin"></div>
+		<div class="header_login_signin">
+			<%
+			if (ac == null) {
+			%>
+			<a href='../html/login.jsp' class='log_in'>Đăng nhập</a>
+			<div class='line'></div>
+			<a href='../html/register.jsp' class='sign_in'>Đăng ký</a>
+			<%
+			} else {
+			%>
+			<a href='../hmtl/user.jsp' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
+			<%
+			}
+			%>
+
+		</div>
 
 		<div class="list_wishList">
 			<i class="fa-regular fa-heart"></i> <span class="amount_wishlist">0</span>

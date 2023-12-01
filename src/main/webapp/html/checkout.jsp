@@ -16,6 +16,10 @@
 <link rel="stylesheet" href="../css/checkout.css">
 <title>Thanh toán</title>
 </head>
+<%@ page import="model.Cart"%>
+<%
+Cart cart = (Cart) session.getAttribute("cart");
+%>
 
 <body>
 	<div id="page">
