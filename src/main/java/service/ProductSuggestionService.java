@@ -55,7 +55,5 @@ public class ProductSuggestionService extends HttpServlet {
 			throws ServletException, IOException {
 
 	}
-	
-	
 
 }

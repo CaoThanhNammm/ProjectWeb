@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,37 +9,40 @@ import database.JDBIConnector;
 public class Product {
 	private int id;
 	private String name;
-	private int brandID;
+	private Brand brand;
 	private String description;
-	private int categoryID;
+	private Category category;
 	private int price;
 	private int discount;
-	private String lastUpdated;
+	private LocalDate lastUpdated;
 	private int amountSold;
-	private int statusID;
+	private Status status;
+	private List<ProductModel> models;
+	private List<String> imgs;
+	private List<Attribute> attributes;
+	private List<Rate> rates;
 
-	public Product(int id, String name, int brandID, String description, int categoryID, int price, int discount,
-			String lastUpdated, int amountSold, int statusID) {
+	public Product() {
+	}
+
+	public Product(int id, String name, Brand brand, String description, Category category, int price, int discount,
+			LocalDate lastUpdated, int amountSold, Status status, List<ProductModel> models, List<String> imgs,
+			List<Attribute> attributes, List<Rate> rates) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.brandID = brandID;
+		this.brand = brand;
 		this.description = description;
-		this.categoryID = categoryID;
+		this.category = category;
 		this.price = price;
 		this.discount = discount;
 		this.lastUpdated = lastUpdated;
 		this.amountSold = amountSold;
-		this.statusID = statusID;
-	}
-
-	public void a() {
-		List<Product> products = JDBIConnector.getConnection()
-				.withHandle(h -> h.createQuery("SELECT * FROM products").mapToBean(Product.class).list());
-	}
-
-	public Product() {
-
+		this.status = status;
+		this.models = models;
+		this.imgs = imgs;
+		this.attributes = attributes;
+		this.rates = rates;
 	}
 
 	public int getId() {
@@ -57,12 +61,12 @@ public class Product {
 		this.name = name;
 	}
 
-	public int getBrandID() {
-		return brandID;
+	public Brand getBrand() {
+		return brand;
 	}
 
-	public void setBrandID(int brandID) {
-		this.brandID = brandID;
+	public void setBrand(Brand brand) {
+		this.brand = brand;
 	}
 
 	public String getDescription() {
@@ -73,12 +77,12 @@ public class Product {
 		this.description = description;
 	}
 
-	public int getCategoryID() {
-		return categoryID;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setCategoryID(int categoryID) {
-		this.categoryID = categoryID;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public int getPrice() {
@@ -97,11 +101,11 @@ public class Product {
 		this.discount = discount;
 	}
 
-	public String getLastUpdated() {
+	public LocalDate getLastUpdated() {
 		return lastUpdated;
 	}
 
-	public void setLastUpdated(String lastUpdated) {
+	public void setLastUpdated(LocalDate lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
 
@@ -113,19 +117,44 @@ public class Product {
 		this.amountSold = amountSold;
 	}
 
-	public int getStatusID() {
-		return statusID;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setStatusID(int statusID) {
-		this.statusID = statusID;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", brandID=" + brandID + ", description=" + description
-				+ ", categoryID=" + categoryID + ", price=" + price + ", discount=" + discount + ", lastUpdated="
-				+ lastUpdated + ", amountSold=" + amountSold + ", statusID=" + statusID + "]";
+	public List<ProductModel> getModels() {
+		return models;
+	}
+
+	public void setModels(List<ProductModel> models) {
+		this.models = models;
+	}
+
+	public List<String> getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(List<String> imgs) {
+		this.imgs = imgs;
+	}
+
+	public List<Attribute> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(List<Attribute> attributes) {
+		this.attributes = attributes;
+	}
+
+	public List<Rate> getRates() {
+		return rates;
+	}
+
+	public void setRates(List<Rate> rates) {
+		this.rates = rates;
 	}
 
 }

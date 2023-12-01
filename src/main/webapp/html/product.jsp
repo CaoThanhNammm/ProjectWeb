@@ -1,7 +1,11 @@
 <%@page import="controller.FindProduct"%>
 <%@page import="model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+=======
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+>>>>>>> main
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,6 +31,7 @@
  -->
 
 <body>
+	<%@include file="header.jsp"%>
 	<div id="page">
 
 		<div class="slider container">
@@ -121,11 +126,22 @@
 							<div class="product_in4_bottom">
 								<div>
 									<p class="product_in4_price">
+<<<<<<< HEAD
 									<fmt:formatNumber type="number" value="${product.price}"/>₫
 									</p>
 									
 									<p class="product_in4_sale_price">
 									<fmt:formatNumber type="number" value="${product.price - product.discount}"/>₫
+=======
+										<fmt:formatNumber type="number" value="${product.price}" />
+										₫
+									</p>
+
+									<p class="product_in4_sale_price">
+										<fmt:formatNumber type="number"
+											value="${product.price - product.discount}" />
+										₫
+>>>>>>> main
 									</p>
 								</div>
 								<div class="product_in4_wishlist no_wishlist">
@@ -151,6 +167,7 @@
 					</span>
 
 					<ul class="new_page_list">
+<<<<<<< HEAD
 						<c:forEach var="i" begin="1" end="${totalPage}">
 							<li class="new_page_item">
 								<form action="../html/FindProduct" method="GET">
@@ -158,14 +175,44 @@
 								</form>
 							</li>
 						</c:forEach>
+=======
+						<%
+						int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+						for (int i = 1; i <= (Integer) request.getAttribute("totalPage"); i++) {
+							if (currentPage == i) {
+						%>
+						<li class="new_page_item choose_page_item">
+							<form action="../html/FindProduct" method="GET">
+								<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
+							</form>
+						</li>
+						<%
+						} else {
+						%>
+						<li class="new_page_item">
+							<form action="../html/FindProduct" method="GET">
+								<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
+							</form>
+						</li>
+						<%
+						}
+						}
+						%>
+>>>>>>> main
 					</ul>
 				</div>
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 
 	<%@include file="footer.jsp"%>
+=======
+>>>>>>> main
 	</div>
+
+	<%@include file="footer.jsp"%>
+
 </body>
 
 <script src="../js/product.js"></script>
