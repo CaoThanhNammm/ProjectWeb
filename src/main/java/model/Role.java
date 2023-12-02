@@ -1,13 +1,10 @@
 package model;
 
-/**
- * Create: Nguyễn Khải Nam Date: 30/11/2023 Note: Dành cho các thương hiệu
- */
-public class Category {
+public class Role {
 	private int id;
 	private String name;
 
-	public Category(int id, String name) {
+	public Role(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;

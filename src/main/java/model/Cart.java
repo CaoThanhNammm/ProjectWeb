@@ -1,14 +1,33 @@
 package model;
 
-import java.awt.Point;
+import java.util.HashMap;
 import java.util.Map;
-/**
- * Create: Nguyễn Khải Nam
- * Date: 30/11/2023
- * Note: Dành cho các giỏ hàng
- */
+
 public class Cart {
 	private Account account;
-	private Map<ProductModel, Integer> products;
+	private Map<ProductModel, Integer> cartItems;
 	private Voucher voucher;
+
+	public Cart(Account account) {
+		super();
+		this.account = account;
+		this.cartItems = new HashMap<ProductModel, Integer>();
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public Map<ProductModel, Integer> getCartItems() {
+		return cartItems;
+	}
+
+	public void setCartItems(Map<ProductModel, Integer> cartItems) {
+		this.cartItems = cartItems;
+	}
+
 }

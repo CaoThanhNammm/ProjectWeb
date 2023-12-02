@@ -9,9 +9,6 @@
     .new_page{
         display: none;
     }
-    .product_btn-add_card:hover,.product_btn--product_detail:hover{
-        animation: none;
-    }
 
     .category_product{
         display: flex;
@@ -38,9 +35,7 @@
     .slider_dot_list{
         display: none;
     }
-    .product_btn-add_card:hover,.product_btn--product_detail:hover{
-        animation: none;
-    }
+    
     .category_product{
         display: flex;
         flex-wrap: wrap;
@@ -58,24 +53,7 @@
 
 /* TABLET 768px <= width < 992px*/
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .product_btn-add_card,
-    .product_btn--product_detail {
-        width: 100%;
-        text-align: center;
-        margin: 5px 0;
-    }
-    
-    .product_btn-add_card:hover,.product_btn--product_detail:hover{
-        animation: none;
-    }
 
-    .product_btn {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-content: center;
-    }
-    
     .introduce_product_item{
         padding-top: 30px;
     }
@@ -105,38 +83,7 @@
 
 /* extra PC 1200px <= width < 1200px*/
 @media only screen and (max-width: 1200px) {
-    .product_btn-add_card,
-    .product_btn--product_detail,
-    .product_btn-add_card_none,
-    .product_btn--product_detail_none {
-        border: 1px solid var(--black-primary);
-        font-weight: 600;
-        text-decoration: none;
-        color: var(--white-primary);
-        background-color: var(--black-primary);
-        width: 100%;
-        text-align: center;
-        margin: 5px 0;
-        padding: 7px 20px;
-        border-radius: 5px;
-    }
 
-    .product_btn-add_card:hover,.product_btn--product_detail:hover{
-        animation: none;
-    }
-
-    .product_btn-add_card, .product_btn-add_card_none{
-        background-color: var(--white-primary);
-        color: var(--black-primary);
-        border-radius: 5px;
-    }
-
-    .product_btn {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-content: center;
-    }
 
     .hint_wishlist{
         display: none;
@@ -167,9 +114,5 @@
 
 /* extra PC 1200px <= width < 1200px*/
 @media only screen and (min-width: 1500px) {
-    .product_btn--product_detail, .product_btn-add_card{
-        padding-left: 25px;
-        padding-right: 25px;
-    }
-   
+
 }
