@@ -1,28 +1,15 @@
 package model;
 
 import java.time.LocalDate;
-<<<<<<< HEAD
-/**
- * Create: Nguyễn Khải Nam
- * Date: 30/11/2023
- * Note: Dành cho các phiếu giảm giá
-=======
 
 /**
  * Create: Nguyễn Khải Nam Date: 30/11/2023 Note: Dành cho các phiếu giảm giá
->>>>>>> master
  */
 public class Voucher {
 	private int id;
 	private String voucherCode;
 	private LocalDate dateStart;
 	private LocalDate dateEnd;
-<<<<<<< HEAD
-	private long discount;
-	private VoucherType type;
-	private VoucherScope scope;
-	private VoucherStatus status;
-=======
 	private int discount;
 	private VoucherTypeStrategy voucherTypeStrategy;
 	private VoucherScopeStrategy voucherScopeStrategy;
@@ -105,5 +92,4 @@ public class Voucher {
 		this.status = status;
 	}
 
->>>>>>> master
 }

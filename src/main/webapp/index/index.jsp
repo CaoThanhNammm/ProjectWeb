@@ -16,9 +16,7 @@
 <link rel="stylesheet" href="../css/indexRes.css">
 <link rel="stylesheet" href="../css/product.css">
 <link rel="stylesheet" href="../font/Roboto/Roboto-Medium.ttf">
-
 <title>Home</title>
-mi
 </head>
 
 <body>

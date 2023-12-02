@@ -58,7 +58,7 @@ public class Gender {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * @return the sex
 	 */

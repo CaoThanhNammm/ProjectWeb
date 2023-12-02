@@ -4,9 +4,6 @@ public class ProductModel {
 	private int id;
 	private Product product;
 	private String optionValue;
-<<<<<<< HEAD
-	private ProductStatus status;
-=======
 	private Status status;
 
 	public ProductModel(int id, Product product, String optionValue, Status status) {
@@ -49,5 +46,4 @@ public class ProductModel {
 		this.status = status;
 	}
 
->>>>>>> master
 }

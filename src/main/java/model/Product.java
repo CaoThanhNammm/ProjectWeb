@@ -154,4 +154,5 @@ public class Product {
 	public void setRates(List<Rate> rates) {
 		this.rates = rates;
 	}
+
 }
