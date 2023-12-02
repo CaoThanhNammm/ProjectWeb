@@ -16,11 +16,13 @@
 <link rel="stylesheet" href="../css/indexRes.css">
 <link rel="stylesheet" href="../css/product.css">
 <link rel="stylesheet" href="../font/Roboto/Roboto-Medium.ttf">
+
 <title>Home</title>
+mi
 </head>
 
 <body>
-	<%@include file="/html/header.jsp"%>
+	<%@include file="../html/header.jsp"%>
 	<!-- 
             Create: Cao Thành Nam
             Date: 18/10/2023
@@ -29,10 +31,11 @@
 	<div class="slider container">
 		<div class="slider_img_list">
 			<img class="slider_img_item" src="../image/home/trian2011.jpg" alt="">
-			<img class="slider_img_item" src="../image/home/content_introduce1.png"
+			<img class="slider_img_item"
+				src="../image/home/content_introduce1.png" alt=""> <img
+				class="slider_img_item" src="../image/home/content_introduce.jpg"
 				alt=""> <img class="slider_img_item"
-				src="../image/home/content_introduce.jpg" alt=""> <img
-				class="slider_img_item" src="../image/home/lọakeokeo.jpg" alt="">
+				src="../image/home/lọakeokeo.jpg" alt="">
 		</div>
 
 		<div class="slider_dot_list">
@@ -67,8 +70,8 @@
 			<div class="row">
 				<div class="col-lg-6 introduce_product_item">
 					<img src="../image/home/introduce_product1.jpg" alt=""> <a
-						href="../html/product.jsp" class="introduce_product_name">Máy lọc
-						nước</a>
+						href="../html/product.jsp" class="introduce_product_name">Máy
+						lọc nước</a>
 				</div>
 
 				<div class="col-lg-6">
@@ -106,10 +109,10 @@
 				bật</h2>
 			<div class="row mb-3"></div>
 		</div>
-	</div>
 
-	<%@include file="/html/footer.jsp"%>
-	
+	</div>
+	<%@include file="../html/footer.jsp"%>
+
 	<script src="../js/index.js" type="text/javascript"></script>
 	<script src="../js/product.js" type="text/javascript"></script>
 

@@ -1,10 +1,10 @@
 package model;
 
-public class Category {
+public class Status {
 	private int id;
 	private String name;
 
-	public Category(int id, String name) {
+	public Status(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,4 +25,5 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }

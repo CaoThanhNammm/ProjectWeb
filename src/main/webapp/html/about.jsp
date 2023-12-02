@@ -18,7 +18,7 @@
 
 <body>
 	<div id="page">
-		<%@include file="/html/header.jsp"%>
+		<%@include file="header.jsp"%>
 
 		<div id="root">
 			<div class="about_img">
@@ -139,9 +139,8 @@
 					</div>
 				</div>
 			</div>
+			<%@include file="footer.jsp"%>
 		</div>
-
-		<%@include file="footer.jsp"%>
 	</div>
 </body>
 

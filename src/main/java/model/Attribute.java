@@ -1,13 +1,15 @@
 package model;
 
-public class Category {
+public class Attribute {
 	private int id;
 	private String name;
+	private String value;
 
-	public Category(int id, String name) {
+	public Attribute(int id, String name, String value) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.value = value;
 	}
 
 	public int getId() {
@@ -25,4 +27,5 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 }
