@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="dao.CategoriesDAO"%>
+<%@page import="database.JDBIConnectionPool"%>
+<%@page import="org.jdbi.v3.core.Handle"%>
 <%@page import="model.Category"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -90,18 +94,16 @@
 				class="all_list_text">Tất cả danh mục</span>
 		</div>
 
-		<ul class="navigtion-list">
-			<%
-
-			%>
-			<%
-			out.println(request.getParameter("categories"));
-			%>
 			
-			<%@include file="../html/ShowCategories"%>
+		<ul class="navigtion-list">
 			<c:forEach items="${categories}" var="c">
-				<li class="navigtion-item"><a
-					href="../html/FindProduct?nameProduct=${c.name}">${c.name} </a></li>
+				<li class="navigtion-item">
+					<form
+						action="../html/FindProduct?nameProduct=${c.name}&&currentPage=1"
+						method="POST">
+						<button>${c.name}</button>
+					</form>
+				</li>
 			</c:forEach>
 		</ul>
 
