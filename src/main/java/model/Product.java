@@ -47,6 +47,22 @@ public class Product {
 		return id;
 	}
 
+	public Product(int id, String name, int brandID, String brandName, String description, int categoryID,
+			String categoryName, int price, int discount, LocalDate lastUpdated, int amountSold, int statusID,
+			String statusName) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.brand = new Brand(statusID, statusName);
+		this.description = description;
+		this.category = new Category(categoryID, categoryName);
+		this.price = price;
+		this.discount = discount;
+		this.lastUpdated = lastUpdated;
+		this.amountSold = amountSold;
+		this.status = new Status(statusID, statusName);
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -153,6 +169,14 @@ public class Product {
 
 	public void setRates(List<Rate> rates) {
 		this.rates = rates;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", brand=" + brand + ", description=" + description
+				+ ", category=" + category + ", price=" + price + ", discount=" + discount + ", lastUpdated="
+				+ lastUpdated + ", amountSold=" + amountSold + ", status=" + status + ", models=" + models + ", imgs="
+				+ imgs + ", attributes=" + attributes + ", rates=" + rates + "]";
 	}
 
 }

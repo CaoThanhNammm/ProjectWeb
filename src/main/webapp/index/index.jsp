@@ -76,7 +76,7 @@
 					<div class="row introduce_product_left">
 						<div class="col-lg-6 introduce_product_item">
 							<img src="../image/home/introduce_product2.jpg" alt=""> <a
-								href="../html/product.jsp" class="introduce_product_name">Nồi
+								href="/html/product.jsp" class="introduce_product_name">Nồi
 								chiên</a>
 						</div>
 

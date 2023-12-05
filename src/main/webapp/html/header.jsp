@@ -1,3 +1,5 @@
+<%@page import="model.Category"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -89,22 +91,18 @@
 		</div>
 
 		<ul class="navigtion-list">
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy
-					lọc nước</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Nồi
-					chiên</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bếp
-					điện</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Nồi
-					cơm</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy
-					ép trái cây</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy
-					xay sinh tố</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bếp
-					ga</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bình
-					đun</a></li>
+			<%
+
+			%>
+			<%
+			out.println(request.getParameter("categories"));
+			%>
+			
+			<%@include file="../html/ShowCategories"%>
+			<c:forEach items="${categories}" var="c">
+				<li class="navigtion-item"><a
+					href="../html/FindProduct?nameProduct=${c.name}">${c.name} </a></li>
+			</c:forEach>
 		</ul>
 
 		<div class="list_wishList--mobile">
