@@ -1,3 +1,9 @@
+<%@page import="java.util.List"%>
+<%@page import="dao.CategoriesDAO"%>
+<%@page import="database.JDBIConnectionPool"%>
+<%@page import="org.jdbi.v3.core.Handle"%>
+<%@page import="model.Category"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -88,23 +94,17 @@
 				class="all_list_text">Tất cả danh mục</span>
 		</div>
 
+			
 		<ul class="navigtion-list">
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy
-					lọc nước</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Nồi
-					chiên</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bếp
-					điện</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Nồi
-					cơm</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy
-					ép trái cây</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Máy
-					xay sinh tố</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bếp
-					ga</a></li>
-			<li class="navigtion-item"><a href="../html/product.jsp">Bình
-					đun</a></li>
+			<c:forEach items="${categories}" var="c">
+				<li class="navigtion-item">
+					<form
+						action="../html/FindProduct?nameProduct=${c.name}&&currentPage=1"
+						method="POST">
+						<button>${c.name}</button>
+					</form>
+				</li>
+			</c:forEach>
 		</ul>
 
 		<div class="list_wishList--mobile">

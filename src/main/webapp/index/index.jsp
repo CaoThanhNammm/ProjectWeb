@@ -28,19 +28,27 @@
         -->
 	<div class="slider container">
 		<div class="slider_img_list">
-			<img class="slider_img_item" src="../image/home/trian2011.jpg" alt="">
-			<img class="slider_img_item"
-				src="../image/home/content_introduce1.png" alt=""> <img
-				class="slider_img_item" src="../image/home/content_introduce.jpg"
-				alt=""> <img class="slider_img_item"
-				src="../image/home/lọakeokeo.jpg" alt="">
+			<c:forEach items="${imgSliderShow}" var="img">
+				<img class="slider_img_item" src="../image/home/sliderShow/${img}"
+					alt="">
+			</c:forEach>
 		</div>
-
-		<div class="slider_dot_list">
+		
+		<% int totalDot = (Integer) request.getAttribute("totalDot");%>
+		<div class="slider_dot_list" style="left: calc(50% + (var(--marginLeftWidthDotSliderShow) + var(--widthDotSliderShow)/2)*<%=-totalDot%>)">
+			<%
+			for (int i = 0; i < totalDot; i++) {
+				if (i == 0) {
+			%>
 			<div class="slider_dot_item background_dot_slider-active"></div>
-			<div class="slider_dot_item"></div>
-			<div class="slider_dot_item"></div>
-			<div class="slider_dot_item"></div>
+			<%
+			} else {
+			%>
+			<div class="slider_dot_item "></div>
+			<%
+			}
+			}
+			%>
 		</div>
 
 		<i class="fa-solid fa-angle-left left"></i> <i
@@ -76,7 +84,7 @@
 					<div class="row introduce_product_left">
 						<div class="col-lg-6 introduce_product_item">
 							<img src="../image/home/introduce_product2.jpg" alt=""> <a
-								href="../html/product.jsp" class="introduce_product_name">Nồi
+								href="/html/product.jsp" class="introduce_product_name">Nồi
 								chiên</a>
 						</div>
 

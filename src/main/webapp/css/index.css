@@ -14,6 +14,9 @@
 	--white-second: rgba(229, 229, 229, 0.7);
 
 	--fsize-normal: 16px;
+	
+	--marginLeftWidthDotSliderShow: 20px;
+	--widthDotSliderShow: 10px;
 }
 
 * {
@@ -130,7 +133,6 @@ h6 {
 .slider_dot_list {
 	position: absolute;
 	bottom: 7%;
-	left: 44%;
 	display: flex;
 }
 
@@ -139,9 +141,9 @@ h6 {
 	background-color: var(--gray-primary);
 	color: var(--gray-primary);
 	border-radius: 50px;
-	width: 10px;
+	width: var(--widthDotSliderShow);
 	height: 10px;
-	margin: 0 20px;
+	margin: 0 var(--marginLeftWidthDotSliderShow);
 	cursor: pointer;
 	transition: 0.3s ease;
 }
