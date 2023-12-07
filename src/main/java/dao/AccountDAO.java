@@ -1,6 +1,6 @@
 package dao;
 
-import static database.TableUsers.EMAIL;
+import static database.TableUsers.*;
 import static database.TableUsers.FULL_NAME;
 import static database.TableUsers.ID;
 import static database.TableUsers.NAME_TABLE;
@@ -82,6 +82,21 @@ public class AccountDAO {
 		return connect.withHandle(h -> {
 			return h.execute("UPDATE " + NAME_TABLE + " SET " + field + "=? WHERE " + EMAIL + "=?", pass, email) > 0;
 		});
+	}
+
+	public static Account getMoreInfo(Account ac) {
+		// TODO Auto-generated method stub
+		Account acInfo = null;
+		if (ac != null) {
+			acInfo = connect.withHandle(h -> {
+				return h.createQuery("SELECT " + EMAIL + ", " + PHONE + ", " + FULL_NAME + ", " + ADDRESS + " FROM "
+						+ NAME_TABLE + " WHERE " + ID + "=:id").bind("id", ac.getId())
+						.map((rs, ctx) -> new Account(rs.getString(EMAIL), rs.getString(PHONE), rs.getString(FULL_NAME),
+								rs.getString(ADDRESS)))
+						.findOne().orElse(null);
+			});
+		}
+		return acInfo;
 	}
 
 }

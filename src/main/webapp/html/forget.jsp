@@ -17,9 +17,12 @@
 </head>
 
 <%
-String note = (String) session.getAttribute("status");
+String note = (String) request.getParameter("status");
 if (note != null && !note.isBlank()) {
 	switch (note) {
+	case "failed-0":
+		note = "Không thể gửi";
+		break;
 	case "failed":
 		note = "Sai tài khoản";
 		break;

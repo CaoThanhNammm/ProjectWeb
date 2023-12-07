@@ -29,8 +29,10 @@ import service.MailService;
 public class Access extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static String[] subject = { "MÃ BẢO MẬT - ĐĂNG KÝ", "MÃ BẢO MẬT - ĐẶT LẠI MẬT KHẨU",
-			"THIẾT LẬP MẬT KHẨU MỚI" };
+	private static long exist = 60 * 3;
+
+	private static String[] subject = { exist + " PHÚT - MÃ BẢO MẬT - ĐĂNG KÝ",
+			exist + " PHÚT - MÃ BẢO MẬT - ĐẶT LẠI MẬT KHẨU", exist + " PHÚT - THIẾT LẬP MẬT KHẨU MỚI" };
 	private static String[] mess = {
 			"Xin chào,\nChúng tôi là n2q, rất cảm ơn bạn đã lựa chọn chúng tôi.\nĐây là mã bảo mật của bạn: ",
 			"Chào mừng trở lại,\nCó vẻ như bạn gặp sự cố đăng nhập.\n Đây là mã bảo mật của bạn: ",
@@ -81,18 +83,17 @@ public class Access extends HttpServlet {
 							response.sendRedirect("html/overviewAdmin.jsp");
 						} else if (ac.getRole().isUser()) {
 							response.sendRedirect("index/index.jsp");
+						} else {
+							response.sendRedirect("html/login.jsp?status=failed");
 						}
 					} else {
-						session.setAttribute("status", "failed-0");
-						response.sendRedirect("html/login.jsp");
+						response.sendRedirect("html/login.jsp?status=failed-0");
 					}
 				} else {
-					session.setAttribute("status", "failed");
-					response.sendRedirect("html/login.jsp");
+					response.sendRedirect("html/login.jsp?status=failed");
 				}
 			} else if (isNotNull(name)) {
-				session.setAttribute("status", "failed");
-				response.sendRedirect("html/login.jsp");
+				response.sendRedirect("html/login.jsp?status=failed");
 			}
 		}
 			break;
@@ -109,34 +110,32 @@ public class Access extends HttpServlet {
 			if (isNotNull(name, phone, email, pass, rePass, dob, gender)) {
 				if (pass.equals(rePass) && isEmail(email) && isPhoneNumber(phone)) {
 					if (AccountDAO.hasAccount("", email, phone)) {
-						session.setAttribute("status", "failed-1");
-						response.sendRedirect("html/register.jsp");
+						response.sendRedirect("html/register.jsp?status=failed-1");
 					} else {
 						String code = MailService.sendEmail(email, subject[0], mess[0], null);
 						String id = AccountDAO.generateID(email, phone);
 						Account ac = new Account(id, email, phone, pass, name, Gender.getGender(gender[0]),
 								LocalDate.parse(dob), AccountRole.getRole(1), address, AccountStatus.getStatus(2));
-						verify = new VerifyEmail(Encrypt.encrypt(code), ac);
+						verify = new VerifyEmail(Encrypt.encrypt(code), ac, exist);
 
 						if (code != null && !code.isBlank()) {
-							session.setAttribute("status", "confirm");
+							request.getSession().setAttribute("status", "register");
 							response.sendRedirect("html/confirm.jsp");
 						}
 					}
 				} else {
-					session.setAttribute("status", "failed-0");
-					response.sendRedirect("html/register.jsp");
+					response.sendRedirect("html/register.jsp?status=failed-0");
 				}
 			}
 		}
 			break;
 		case "confirm":
 			if (verify == null) {
-				session.setAttribute("status", "failed-0");
-				response.sendRedirect("html/register.jsp");
+				response.sendRedirect("html/register.jsp?status=failed-0");
 			} else {
 				String input = Encrypt.encrypt(request.getParameter("verificationCode"));
-				String status = (String) session.getAttribute("status");
+				String status = (String) request.getSession().getAttribute("status");
+				System.out.println(status);
 				if (verify.isCode(input)) {
 					if (status.equals("forget")) {
 						String mainPass = Encrypt.generateCode(12);
@@ -144,33 +143,28 @@ public class Access extends HttpServlet {
 						String email = (String) session.getAttribute("email");
 						if (AccountDAO.updateAccount(email, TableUsers.PASSWORD, pass)) {
 							if (MailService.sendEmail(email, subject[2], mess[2], mainPass) != null) {
-								session.setAttribute("status", "success-1");
-								response.sendRedirect("html/login.jsp");
+								response.sendRedirect("html/login.jsp?status=success-1");
 							} else {
-								session.setAttribute("status", "failed");
-								response.sendRedirect("html/forget.jsp");
+								response.sendRedirect("html/forget.jsp?status=failed");
 							}
 						} else {
-							session.setAttribute("status", "failed");
-							response.sendRedirect("html/forget.jsp");
+							response.sendRedirect("html/forget.jsp?status=failed");
 						}
 					} else {
 						int count = AccountDAO.insertAccount(verify.getAc());
 						if (count > 0) {
-							session.setAttribute("status", "success");
-							response.sendRedirect("html/login.jsp");
+							response.sendRedirect("html/login.jsp?status=success");
 						} else {
-							session.setAttribute("status", "failed-1");
-							response.sendRedirect("html/register.jsp");
+							response.sendRedirect("html/register.jsp?status=failed-1");
 						}
 					}
 				} else if (status.equals("forget")) {
-					session.setAttribute("status", "failed");
-					response.sendRedirect("html/forget.jsp");
+					response.sendRedirect("html/forget.jsp?status=failed");
 				} else {
-					session.setAttribute("status", "failed-1");
-					response.sendRedirect("html/register.jsp");
+					response.sendRedirect("html/register.jsp?status=failed-1");
 				}
+				request.getSession().removeAttribute("email");
+				request.getSession().removeAttribute("status");
 			}
 			break;
 		case "forget":
@@ -178,15 +172,16 @@ public class Access extends HttpServlet {
 			if (AccountDAO.hasAccount("", email, "")) {
 				String code = MailService.sendEmail(email, subject[1], mess[1], null);
 				Account ac = new Account(email);
-				verify = new VerifyEmail(Encrypt.encrypt(code), ac);
+				verify = new VerifyEmail(Encrypt.encrypt(code), ac, exist);
 				if (code != null && !code.isBlank()) {
-					session.setAttribute("email", email);
-					session.setAttribute("status", "forget");
+					request.getSession().setAttribute("status", "forget");
+					request.getSession().setAttribute("email", email);
 					response.sendRedirect("html/confirm.jsp");
+				} else {
+					response.sendRedirect("html/forget.jsp?status=failed-0");
 				}
 			} else {
-				session.setAttribute("status", "failed");
-				response.sendRedirect("html/forget.jsp");
+				response.sendRedirect("html/forget.jsp?status=failed");
 			}
 			break;
 		default:
