@@ -29,7 +29,7 @@ Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 	<%@include file="header.jsp"%>
 	<div id="page">
 		<%
-		if (acInfo != null) {
+		if (ac != null) {
 		%>
 		<div class="checkout">
 			<form class="checkout-form" action="../checkout">
@@ -38,15 +38,12 @@ Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 				<label>Tên khách hàng:</label> <input type="text" name="username"
 					placeholder="Nhập tên" value="<%=acInfo.getFullName()%>" required>
 				<label>Email:</label> <input type="email" name="email"
-					placeholder="Nhập email..." value="<%=acInfo.getEmail()%>" required>
+					placeholder="Nhập email..." value="<%=acInfo.getEmail()%>" readonly>
 				<label>Số điện thoại:</label> <input type="text" name="phone"
 					placeholder="Số điện thoại..." value="<%=acInfo.getPhone()%>"
 					required> <label for="shipping">Địa chỉ:</label> <input
 					type="text" name="address" placeholder="Địa chỉ..."
 					value="<%=acInfo.getAddress()%>" required>
-				<%
-				request.getSession().removeAttribute("accountInfo");
-				%>
 				<div style="display: flex; justify-content: space-between;">
 					<a href="../html/cart.jsp" class="button">Trở về giỏ hàng</a>
 					<button>Đặt hàng</button>

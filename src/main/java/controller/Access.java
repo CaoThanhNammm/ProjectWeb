@@ -29,10 +29,11 @@ import service.MailService;
 public class Access extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static long exist = 60 * 3;
+	private static int minute = 3;
+	private static long exist = 60 * minute;
 
-	private static String[] subject = { exist + " PHÚT - MÃ BẢO MẬT - ĐĂNG KÝ",
-			exist + " PHÚT - MÃ BẢO MẬT - ĐẶT LẠI MẬT KHẨU", exist + " PHÚT - THIẾT LẬP MẬT KHẨU MỚI" };
+	private static String[] subject = { minute + " PHÚT - MÃ BẢO MẬT - ĐĂNG KÝ",
+			minute + " PHÚT - MÃ BẢO MẬT - ĐẶT LẠI MẬT KHẨU", minute + " PHÚT - THIẾT LẬP MẬT KHẨU MỚI" };
 	private static String[] mess = {
 			"Xin chào,\nChúng tôi là n2q, rất cảm ơn bạn đã lựa chọn chúng tôi.\nĐây là mã bảo mật của bạn: ",
 			"Chào mừng trở lại,\nCó vẻ như bạn gặp sự cố đăng nhập.\n Đây là mã bảo mật của bạn: ",
@@ -68,13 +69,15 @@ public class Access extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String access = request.getParameter("access");
-
 		HttpSession session = request.getSession();
+		if (access == null)
+			access = "";
+
 		switch (access) {
 		case "login": {
 			String name = request.getParameter("name");
-			if (isPhoneNumber(name) || isEmail(name)) {
-				String prefix = (isPhoneNumber(name) ? "phone" : "email") + "-";
+			if (AccountDAO.isPhoneNumber(name) || AccountDAO.isEmail(name)) {
+				String prefix = (AccountDAO.isPhoneNumber(name) ? "phone" : "email") + "-";
 				Account ac = AccountDAO.getAccount(prefix + name, request.getParameter("password"));
 				if (ac != null) {
 					if (ac.getStatus().isAction()) {
@@ -108,7 +111,7 @@ public class Access extends HttpServlet {
 			String rePass = request.getParameter("rePass");
 
 			if (isNotNull(name, phone, email, pass, rePass, dob, gender)) {
-				if (pass.equals(rePass) && isEmail(email) && isPhoneNumber(phone)) {
+				if (pass.equals(rePass) && AccountDAO.isEmail(email) && AccountDAO.isPhoneNumber(phone)) {
 					if (AccountDAO.hasAccount("", email, phone)) {
 						response.sendRedirect("html/register.jsp?status=failed-1");
 					} else {
@@ -141,7 +144,7 @@ public class Access extends HttpServlet {
 						String mainPass = Encrypt.generateCode(12);
 						String pass = Encrypt.encrypt(mainPass);
 						String email = (String) session.getAttribute("email");
-						if (AccountDAO.updateAccount(email, TableUsers.PASSWORD, pass)) {
+						if (AccountDAO.updateAccount(TableUsers.EMAIL, email, TableUsers.PASSWORD, pass)) {
 							if (MailService.sendEmail(email, subject[2], mess[2], mainPass) != null) {
 								response.sendRedirect("html/login.jsp?status=success-1");
 							} else {
@@ -185,6 +188,8 @@ public class Access extends HttpServlet {
 			}
 			break;
 		default:
+			session.removeAttribute("account");
+			response.sendRedirect("index/index.jsp");
 			break;
 		}
 	}
@@ -196,17 +201,6 @@ public class Access extends HttpServlet {
 				return false;
 		}
 		return true;
-	}
-
-	// Kiểm tra có là số điện thoại
-	public boolean isPhoneNumber(String phone) {
-		return Pattern.compile("^\\d{10}$").matcher(phone).matches();
-	}
-
-	// Kiểm tra có là email
-	public boolean isEmail(String email) {
-		return Pattern.compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-				.matcher(email).matches();
 	}
 
 }

@@ -55,11 +55,11 @@
 			<%
 			} else {
 			%>
-			<a href='../hmtl/user.jsp' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
+			<a href='../html/infoUser' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
+			<a href='../access'><i class="fa-solid fa-right-from-bracket"></i></a>
 			<%
 			}
 			%>
-
 		</div>
 
 		<div class="list_wishList">

@@ -9,6 +9,9 @@ import static database.TableUsers.PHONE;
 import static database.TableUsers.ROLE;
 import static database.TableUsers.STATUS;
 
+import java.time.LocalDate;
+import java.util.regex.Pattern;
+
 import org.jdbi.v3.core.Jdbi;
 
 import database.JDBIConnector;
@@ -16,6 +19,7 @@ import model.Account;
 import model.AccountRole;
 import model.AccountStatus;
 import model.Encrypt;
+import model.Gender;
 
 /**
  * Create: Nguyễn Khải Nam Note: Thực hiện các công việc liên quan đến user
@@ -77,26 +81,41 @@ public class AccountDAO {
 	}
 
 	// Cập nhật thông tin một cột bất kỳ
-	public static boolean updateAccount(String email, String field, String pass) {
+	public synchronized static boolean updateAccount(String field, String value, String fieldChange,
+			String valueChange) {
 		// TODO Auto-generated method stub
 		return connect.withHandle(h -> {
-			return h.execute("UPDATE " + NAME_TABLE + " SET " + field + "=? WHERE " + EMAIL + "=?", pass, email) > 0;
+			return h.execute("UPDATE " + NAME_TABLE + " SET " + fieldChange + "=? WHERE " + field + "=?", valueChange,
+					value) > 0;
 		});
 	}
 
-	public static Account getMoreInfo(Account ac) {
+	// Lấy thêm một số thông tin của người dùng
+	public synchronized static Account getMoreInfo(Account ac) {
 		// TODO Auto-generated method stub
 		Account acInfo = null;
 		if (ac != null) {
 			acInfo = connect.withHandle(h -> {
-				return h.createQuery("SELECT " + EMAIL + ", " + PHONE + ", " + FULL_NAME + ", " + ADDRESS + " FROM "
-						+ NAME_TABLE + " WHERE " + ID + "=:id").bind("id", ac.getId())
+				return h.createQuery("SELECT " + EMAIL + ", " + PHONE + ", " + FULL_NAME + ", " + GENDER + ", " + DOB
+						+ ", " + ADDRESS + " FROM " + NAME_TABLE + " WHERE " + ID + "=:id").bind("id", ac.getId())
 						.map((rs, ctx) -> new Account(rs.getString(EMAIL), rs.getString(PHONE), rs.getString(FULL_NAME),
+								Gender.getGender(rs.getInt(GENDER)), rs.getDate(DOB).toLocalDate(),
 								rs.getString(ADDRESS)))
 						.findOne().orElse(null);
 			});
 		}
 		return acInfo;
+	}
+
+	// Kiểm tra có là số điện thoại
+	public static boolean isPhoneNumber(String phone) {
+		return Pattern.compile("^\\d{10}$").matcher(phone).matches();
+	}
+
+	// Kiểm tra có là email
+	public static boolean isEmail(String email) {
+		return Pattern.compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+				.matcher(email).matches();
 	}
 
 }
