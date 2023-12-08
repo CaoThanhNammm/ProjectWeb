@@ -155,7 +155,6 @@ public class ProductDAO {
 		return products;
 	}
 
-	
 	private boolean isExistID(int id) {
 		return findProductByID(id).size() > 0;
 	}

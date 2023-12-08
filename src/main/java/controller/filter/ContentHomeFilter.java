@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -21,6 +22,7 @@ import database.JDBIConnectionPool;
 import model.Product;
 
 @WebFilter({ "/html/*", "/index/*" })
+
 public class ContentHomeFilter extends HttpFilter implements Filter {
 
 	public void destroy() {
@@ -29,6 +31,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+
 		showSliderShow(request, response);
 		
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
@@ -76,4 +79,5 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 		request.setAttribute("imgSliderShow", imgs);
 		request.setAttribute("totalDot", totalImg);
 	}
+
 }

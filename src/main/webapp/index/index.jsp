@@ -23,12 +23,13 @@
 <body>
 	<%@include file="../html/header.jsp"%>
 	<!-- 
+
          Create: Cao Thành Nam
          Date: 18/10/2023
          Note: phần body của trang
     -->
 	<%@include file="../html/sliderShow.jsp"%>
-
+ 
 	<div class="content container">
 		<div class="content_event_product">
 			<a href="../../html/product.jsp" class="product_event"> <img
