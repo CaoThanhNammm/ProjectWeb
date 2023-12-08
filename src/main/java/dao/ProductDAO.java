@@ -132,16 +132,30 @@ public class ProductDAO {
 		if (name.equals(""))
 			return new ArrayList<>();
 
-		Handle connection = JDBIConnectionPool.get().getConnection();
-
-		List<Product> products = connection
+		List<Product> products = handle
 				.select("SELECT id, name, price, discount FROM products where name like ? limit ?")
 				.bind(0, "%" + name + "%").bind(1, num).mapToBean(Product.class).list();
 
-		JDBIConnectionPool.get().releaseConnection(connection);
 		return products;
 	}
 
+	public List<Product> getProductBestDiscount(int limit){
+		List<Product> products = handle.select("SELECT id, name, price, discount FROM products ORDER BY discount/price DESC LIMIT ?")
+				.bind(0, limit)
+				.mapToBean(Product.class).list();
+		
+		return products;
+	}
+	
+	public List<Product> getProductRecommend(int limit){
+		List<Product> products = handle.select("SELECT * FROM products ORDER BY RAND() LIMIT ?")
+				.bind(0, limit)
+				.mapToBean(Product.class).list();
+		
+		return products;
+	}
+
+	
 	private boolean isExistID(int id) {
 		return findProductByID(id).size() > 0;
 	}

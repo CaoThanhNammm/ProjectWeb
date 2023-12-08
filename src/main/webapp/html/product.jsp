@@ -30,27 +30,7 @@
 	<div id="page">
 		<%@include file="header.jsp"%>
 
-		<div class="slider container">
-			<div class="slider_img_list">
-				<img class="slider_img_item" src="../image/home/trian2011.jpg"
-					alt=""> <img class="slider_img_item"
-					src="../image/home/content_introduce1.png" alt=""> <img
-					class="slider_img_item" src="../image/home/content_introduce.jpg"
-					alt=""> <img class="slider_img_item"
-					src="../image/home/lọakeokeo.jpg" alt="">
-			</div>
-
-			<div class="slider_dot_list">
-				<div class="slider_dot_item background_dot_slider-active"></div>
-				<div class="slider_dot_item"></div>
-				<div class="slider_dot_item"></div>
-				<div class="slider_dot_item"></div>
-			</div>
-
-			<i class="fa-solid fa-angle-left left"></i> <i
-				class="fa-solid fa-angle-right right"></i>
-		</div>
-
+		<%@include file="../html/sliderShow.jsp"%>
 
 		<!-- phần lọc -->
 		<div class="category_product container">
@@ -121,11 +101,16 @@
 							<a href="../html/detail.jsp" class="product_in4_name_product">${product.name}</a>
 							<div class="product_in4_bottom">
 								<div>
-									<p class="product_in4_price">
+									<span class="product_in4_price">
 										<fmt:formatNumber type="number" value="${product.price}" />
 										₫
-									</p>
+									</span>
 
+									<span style="font-size: 14px; padding-left: 5px"> 
+										<fmt:formatNumber var="roundedNumber" value="-${(product.discount/product.price) * 100}" type="number" pattern="#" />
+									${roundedNumber}%
+									</span>
+													
 									<p class="product_in4_sale_price">
 										<fmt:formatNumber type="number"
 											value="${product.price - product.discount}" />

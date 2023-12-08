@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,38 +23,11 @@
 <body>
 	<%@include file="../html/header.jsp"%>
 	<!-- 
-            Create: Cao Thành Nam
-            Date: 18/10/2023
-            Note: phần body của trang
-        -->
-	<div class="slider container">
-		<div class="slider_img_list">
-			<c:forEach items="${imgSliderShow}" var="img">
-				<img class="slider_img_item" src="../image/home/sliderShow/${img}"
-					alt="">
-			</c:forEach>
-		</div>
-		
-		<% int totalDot = (Integer) request.getAttribute("totalDot");%>
-		<div class="slider_dot_list" style="left: calc(50% + (var(--marginLeftWidthDotSliderShow) + var(--widthDotSliderShow)/2)*<%=-totalDot%>)">
-			<%
-			for (int i = 0; i < totalDot; i++) {
-				if (i == 0) {
-			%>
-			<div class="slider_dot_item background_dot_slider-active"></div>
-			<%
-			} else {
-			%>
-			<div class="slider_dot_item "></div>
-			<%
-			}
-			}
-			%>
-		</div>
-
-		<i class="fa-solid fa-angle-left left"></i> <i
-			class="fa-solid fa-angle-right right"></i>
-	</div>
+         Create: Cao Thành Nam
+         Date: 18/10/2023
+         Note: phần body của trang
+    -->
+	<%@include file="../html/sliderShow.jsp"%>
 
 	<div class="content container">
 		<div class="content_event_product">
@@ -111,9 +85,78 @@
 		</div>
 
 		<div class="product_list" id="home">
-			<h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm nổi
-				bật</h2>
-			<div class="row mb-3"></div>
+			<h2 style="margin-bottom: 20px; cursor: default;">FLASH SALE</h2>
+			<div class="row mb-3">
+				<c:forEach items="${getShowProductBestDiscount}" var="product">
+					<div class="col-lg-3 col-sm-6 col-md-4 product">
+						<i class="fa-solid fa-bag-shopping fly_to_card"></i>
+
+						<div class="product_in4">
+							<a href="../html/detail.jsp" class="product_in4_name_product">${product.name}</a>
+							<div class="product_in4_bottom">
+								<div>
+									<span class="product_in4_price">
+										<fmt:formatNumber type="number" value="${product.price}" /> ₫
+									</span>
+									
+									<span style="font-size: 14px; padding-left: 5px"> 
+										<fmt:formatNumber var="roundedNumber" value="-${(product.discount/product.price) * 100}" type="number" pattern="#" />
+									${roundedNumber}%
+									</span>
+
+									<p class="product_in4_sale_price">
+										<fmt:formatNumber type="number"
+											value="${product.price - product.discount}"/>
+										₫
+									</p>
+								</div>
+								<div class="product_in4_wishlist no_wishlist">
+									<i class="fa-solid fa-heart"></i> <span class="hint_wishlist">yêu
+										thích</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+		
+		<div class="product_list" id="home">
+			<h2 style="margin-bottom: 20px; cursor: default;">SẢN PHẨM GỢI Ý</h2>
+			<div class="row mb-3">
+				<c:forEach items="${getShowProductRecommend}" var="product">
+					<div class="col-lg-3 col-sm-6 col-md-4 product">
+						<i class="fa-solid fa-bag-shopping fly_to_card"></i>
+
+						<div class="product_in4">
+							<a href="../html/detail.jsp" class="product_in4_name_product">${product.name}</a>
+							<div class="product_in4_bottom">
+								<div>
+									<span class="product_in4_price">
+										<fmt:formatNumber type="number" value="${product.price}" />
+										₫
+									</span>
+									
+									<span style="font-size: 14px; padding-left: 5px"> 
+										<fmt:formatNumber var="roundedNumber" value="-${(product.discount/product.price) * 100}" type="number" pattern="#" />
+									${roundedNumber}%
+									</span>
+									
+									<p class="product_in4_sale_price">
+										<fmt:formatNumber type="number"
+											value="${product.price - product.discount}" />
+										₫
+									</p>
+								</div>
+								<div class="product_in4_wishlist no_wishlist">
+									<i class="fa-solid fa-heart"></i> <span class="hint_wishlist">yêu
+										thích</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 
 	</div>

@@ -191,10 +191,6 @@
 	margin: 15px 0;
 }
 
-.product_in4_name_product {
-	text-align: center;
-}
-
 .product:hover .product_in4_name_product {
 	color: var(--yellow-primary);
 	transition: 0.3s ease;
@@ -315,6 +311,10 @@
 	padding: 10px 0;
 	font-weight: 600;
 	margin: 0;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: var(--black-primary);
 	text-decoration: none;
 }
