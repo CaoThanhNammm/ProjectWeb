@@ -1,8 +1,11 @@
 package model;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Locale;
+import java.util.Objects;
 
 public class Product {
 	private int id;
@@ -169,6 +172,44 @@ public class Product {
 
 	public void setRates(List<Rate> rates) {
 		this.rates = rates;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(amountSold, attributes, brand, category, description, discount, id, imgs, lastUpdated,
+				models, name, price, rates, status);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return amountSold == other.amountSold && Objects.equals(attributes, other.attributes)
+				&& Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
+				&& Objects.equals(description, other.description) && discount == other.discount && id == other.id
+				&& Objects.equals(imgs, other.imgs) && Objects.equals(lastUpdated, other.lastUpdated)
+				&& Objects.equals(models, other.models) && Objects.equals(name, other.name) && price == other.price
+				&& Objects.equals(rates, other.rates) && Objects.equals(status, other.status);
+	}
+
+	public String formatNumber(int nums) {
+		Locale vietnameseLocale = new Locale("vi", "VN");
+		NumberFormat vietnameseFormat = NumberFormat.getInstance(vietnameseLocale);
+		String formattedNumberVietnamese = vietnameseFormat.format(nums);
+		return formattedNumberVietnamese;
+	}
+
+	public String percentSale(double price, double discount) {
+		double percent = (discount / price) * 100;
+		// Định dạng số với hai chữ số thập phân
+		DecimalFormat decimalFormat = new DecimalFormat("#.##");
+		String roundedNumber = decimalFormat.format(percent);
+		return roundedNumber;
 	}
 
 	@Override

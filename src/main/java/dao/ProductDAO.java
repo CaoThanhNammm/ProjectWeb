@@ -19,6 +19,7 @@ public class ProductDAO {
 		this.handle = handle;
 	}
 
+	// lấy ra tất cả sản phẩm
 	public List<Product> getAll() throws SQLException {
 		
 		List<Product> products = new ArrayList<>();
@@ -42,6 +43,7 @@ public class ProductDAO {
 		return products;
 	}
 
+	// thêm sản phẩm vào danh sách
 	public List<Product> save(Product product) throws SQLException {
 		BrandDAO brandDao = new BrandDAO(this.handle);
 		CategoriesDAO categoriesDAO = new CategoriesDAO(this.handle);
@@ -62,6 +64,7 @@ public class ProductDAO {
 		return getAll();
 	}
 
+	// cập nhập lại số lượng bán của sản phẩm, truyền vào id và số lượng bán mới
 	public List<Product> updateAmountSold(int productID, int quantity) throws SQLException {
 
 		if (isExistID(productID)) {
@@ -74,6 +77,7 @@ public class ProductDAO {
 		return getAll();
 	}
 
+	// cập nhập lại giá của sản phẩm, truyền vào id sản phẩm và giá mới
 	public List<Product> updatePrice(int productID, int newPrice) throws SQLException {
 
 		if (isExistID(productID)) {
@@ -85,6 +89,7 @@ public class ProductDAO {
 		return getAll();
 	}
 
+	// cập nhập lại giá khuyến mãi của sản phẩm, truyền vào id sản phẩm và giá mới
 	public List<Product> updateDiscount(int productID, int newDiscount) throws SQLException {
 
 		if (isExistID(productID)) {
@@ -96,6 +101,9 @@ public class ProductDAO {
 		return getAll();
 	}
 
+	/*
+	 *  ẩn sản phẩm, truyền vào id sản phẩm muốn ẩn
+	 */
 	public List<Product> hide(int productID) throws SQLException {
 
 		if (isExistID(productID)) {
@@ -107,27 +115,19 @@ public class ProductDAO {
 		return getAll();
 	}
 
-	public List<Product> findProductByID(int productID) {
+	// tìm sản phẩm theo id
+	public Product findProductByID(int productID) {
 		if (productID < 0)
-			return new ArrayList<>();
+			return null;
 
 
-		List<Product> products = handle.select("SELECT id, name, price, discount FROM products where id = ?")
-				.bind(0, productID).mapToBean(Product.class).list();
+		Product product = handle.select("SELECT id, name, price, discount FROM products where id = ?")
+				.bind(0, productID).mapToBean(Product.class).first();
 
-		return products;
+		return product;
 	}
 
-	public List<Product> findProductByName(String name) {
-		if (name.equals(""))
-			return new ArrayList<>();
-
-		List<Product> products = handle.select("SELECT name, price, discount FROM products where name like ?")
-				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
-
-		return products;
-	}
-
+	// tìm sản phẩm giống 1 phần tên, truyền vào tên sản phẩm và số lượng sản phẩm muốn lấy
 	public List<Product> findProductByNameLimitN(String name, int num) {
 		if (name.equals(""))
 			return new ArrayList<>();
@@ -139,6 +139,8 @@ public class ProductDAO {
 		return products;
 	}
 
+	// lấy ra sản phẩm giảm giá cao nhất, truyền vào số sản phẩm muốn lấy
+	// tính theo %
 	public List<Product> getProductBestDiscount(int limit){
 		List<Product> products = handle.select("SELECT id, name, price, discount FROM products ORDER BY discount/price DESC LIMIT ?")
 				.bind(0, limit)
@@ -147,6 +149,7 @@ public class ProductDAO {
 		return products;
 	}
 	
+	// lấy ra sản phẩm random, truyền vào số sản phẩm muốn lấy
 	public List<Product> getProductRecommend(int limit){
 		List<Product> products = handle.select("SELECT * FROM products ORDER BY RAND() LIMIT ?")
 				.bind(0, limit)
@@ -155,7 +158,8 @@ public class ProductDAO {
 		return products;
 	}
 
+	// kiểm tra id của sản phẩm có tồn tại hay không
 	private boolean isExistID(int id) {
-		return findProductByID(id).size() > 0;
+		return findProductByID(id) != null;
 	}
 }
