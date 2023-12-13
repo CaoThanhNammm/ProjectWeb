@@ -27,7 +27,7 @@ if (note != null && !note.isBlank()) {
 		note = "Nhập mật khẩu trong email";
 		break;
 	case "failed":
-		note = "Đăng nhập không thành công";
+		note = "Kiểm tra lại thông tin";
 		break;
 	case "failed-0":
 		note = "Tài khoản bị vô hiệu";
@@ -51,7 +51,7 @@ Note: Nơi đăng nhập của những khách hàng đã có tài khoản
 		<div id="login" class="container access">
 			<div class="row">
 				<div class="col access_mb">
-					<form id="form_login" action="../access" method="post">
+					<form id="form_login" action="access" method="post">
 						<input type="hidden" name="access" value="login">
 						<div class="access_group">
 							<h1 class="access_group_h1">Chào mừng</h1>
@@ -110,7 +110,7 @@ Note: Nơi đăng nhập của những khách hàng đã có tài khoản
 									href="register.jsp">Đăng ký ngay</a>
 							</h6>
 							<h6>
-								Quên mật khẩu <a class="color-yellow" href="register.jsp">Tìm
+								Quên mật khẩu <a class="color-yellow" href="forget.jsp">Tìm
 									lại ngay</a>
 							</h6>
 						</div>

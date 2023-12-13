@@ -21,10 +21,10 @@ String note = (String) request.getParameter("status");
 if (note != null && !note.isBlank()) {
 	switch (note) {
 	case "failed-0":
-		note = "Không thể gửi";
+		note = "Kiểm tra lại thông tin";
 		break;
 	case "failed":
-		note = "Sai tài khoản";
+		note = "Sai tài khoản hoặc không tồn tại";
 		break;
 	default:
 		note = "Có lỗi";
@@ -45,7 +45,7 @@ if (note != null && !note.isBlank()) {
 		<div id="forget" class="container access">
 			<div class="row">
 				<div class="col access_mb">
-					<form id="form_forget" action="../access">
+					<form id="form_forget" action="access">
 						<div class="access_group">
 							<input type="hidden" name="access" value="forget">
 							<h1 class="access_group_h1">Quên mật khẩu</h1>
@@ -61,7 +61,7 @@ if (note != null && !note.isBlank()) {
 						</div>
 
 						<div class="mt-4">
-							<span class="text-warning"><%=note%></span>
+							<span class="text-danger"><%=note%></span>
 							<div class="access_group">
 								<i class="fa-solid fa-envelope access_group_icon"></i> <input
 									type="email" name="email" placeholder="*Địa chỉ email" required>

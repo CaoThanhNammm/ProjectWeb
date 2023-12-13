@@ -16,6 +16,22 @@
 <title>Nhập mã xác nhận</title>
 </head>
 
+<%
+String note = (String) request.getParameter("status");
+if (note != null && !note.isBlank()) {
+	switch (note) {
+	case "failed":
+		note = "Mật mã không chính xác";
+		break;
+	default:
+		note = "Có lỗi";
+		break;
+	}
+} else {
+	note = "";
+}
+%>
+
 <body>
 	<!-- 
         Create: Nguyễn Khải Nam
@@ -26,11 +42,12 @@
 		<div id="forget" class="container access">
 			<div class="row">
 				<div class="col access_mb">
-					<form id="form_forget" action="../access">
+					<form id="form_forget" action="access">
 						<div class="access_group">
 							<input type="hidden" name="access" value="confirm">
 							<h1 class="access_group_h1">Nhập mã xác nhận</h1>
-							<h5 class="access_group_h5">Hãy nhập mã xác nhận chúng tôi đã gửi qua email</h5>
+							<h5 class="access_group_h5">Hãy nhập mã xác nhận chúng tôi
+								đã gửi qua email</h5>
 							<a href="../index/index.jsp"> <img
 								class="access_group_logo_img-black"
 								src="../image/general/logo-black.png"
@@ -38,12 +55,17 @@
 								class="access_group_logo_img-white"
 								src="../image/general/logo.png" alt="Logo của N2Q trên nền đen">
 							</a>
+							<p class="text-danger">
+								<%=note%>
+							</p>
 						</div>
 
 						<div class="mt-4">
 							<div class="access_group">
 								<i class="fa-solid fa-envelope access_group_icon"></i> <input
-									name="verificationCode" type="text" placeholder="*Đoạn mã gồm 6 sô" minlength="6" maxlength="6" required>
+									name="verificationCode" type="text"
+									placeholder="*Đoạn mã gồm 6 sô" minlength="6" maxlength="6"
+									required>
 							</div>
 							<button type="submit" class="btn access_btn access_btn_submit">Tiếp
 								tục</button>

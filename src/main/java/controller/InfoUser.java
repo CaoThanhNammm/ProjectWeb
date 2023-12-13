@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AccountDAO;
 import model.Account;
+import model.Encrypt;
 import model.Gender;
 
 import static database.TableUsers.*;
@@ -44,6 +47,7 @@ public class InfoUser extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String info = req.getParameter("info");
 		Account ac = (Account) req.getSession().getAttribute("account");
+		Account acInfo = AccountDAO.getMoreInfo(ac);
 		if (ac != null) {
 			if (info == null)
 				info = "";
@@ -64,19 +68,41 @@ public class InfoUser extends HttpServlet {
 							|| AccountDAO.updateAccount(ID, ac.getId(), ADDRESS, address)
 							|| AccountDAO.updateAccount(ID, ac.getId(), GENDER, Gender.getGender(gender).getId() + "")
 							|| AccountDAO.updateAccount(ID, ac.getId(), DOB, dob)) {
-						req.getRequestDispatcher("user.jsp?status=success").forward(req, resp);
+						acInfo.setFullName(name);
+						acInfo.setEmail(email);
+						acInfo.setPhone(phone);
+						acInfo.setAddress(address);
+						acInfo.setGender(Gender.getGender(gender));
+						acInfo.setDob(LocalDate.parse(dob));
+						req.getSession().setAttribute("accountInfo", acInfo);
+						req.getRequestDispatcher("user.jsp?status=success&field=info").forward(req, resp);
 					} else {
-						req.getRequestDispatcher("user.jsp?status=failed").forward(req, resp);
+						req.getRequestDispatcher("user.jsp?status=failed-2&field=info").forward(req, resp);
 					}
 				} else {
-					req.getRequestDispatcher("user.jsp?status=failed").forward(req, resp);
+					req.getRequestDispatcher("user.jsp?status=failed-0&field=info").forward(req, resp);
 				}
 				break;
 			case "pass":
 				// Xu ly
+				String oldPass = req.getParameter("oldPassword");
+				String newPass = req.getParameter("newPassword");
+				String confirmPass = req.getParameter("confirmPassword");
+				if (isNotNull(oldPass, newPass, confirmPass)) {
+					if (newPass.equals(confirmPass) && AccountDAO.getAccount(acInfo.getEmail(), oldPass) != null) {
+						if (AccountDAO.updateAccount(ID, ac.getId(), PASSWORD, Encrypt.encrypt(newPass))) {
+							req.getRequestDispatcher("user.jsp?status=success&field=pass").forward(req, resp);
+						} else {
+							req.getRequestDispatcher("user.jsp?status=failed-2&field=pass");
+						}
+					} else {
+						req.getRequestDispatcher("user.jsp?status=failed-1&field=pass");
+					}
+				} else {
+					req.getRequestDispatcher("user.jsp?status=failed-0&field=pass");
+				}
 				break;
 			default:
-				Account acInfo = AccountDAO.getMoreInfo(ac);
 				req.getSession().setAttribute("accountInfo", acInfo);
 				resp.sendRedirect("user.jsp");
 				break;

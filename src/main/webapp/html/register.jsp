@@ -24,6 +24,9 @@ if (note != null && !note.isBlank()) {
 	case "success":
 		note = "Đăng nhập thành công";
 		break;
+	case "failed":
+		note = "Vui lòng không để trống ô có đánh dấu *";
+		break;
 	case "failed-0":
 		note = "Vui lòng kiểm tra lại thông tin";
 		break;
@@ -50,7 +53,7 @@ if (note != null && !note.isBlank()) {
 		<div id="register" class="container access">
 			<div class="row">
 				<div class="col access_mb">
-					<form id="form_register" method="post" action="../access"
+					<form id="form_register" method="post" action="access"
 						accept-charset="UTF-8">
 						<input type="hidden" name="access" value="register">
 						<div class="access_group">

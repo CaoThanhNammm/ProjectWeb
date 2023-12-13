@@ -16,10 +16,10 @@
 
 <title>Header</title>
 </head>
-	<%@ page import="model.Account"%>
-	<%
-	Account ac = (Account) session.getAttribute("account");
-	%>
+<%@ page import="model.Account"%>
+<%
+Account ac = (Account) session.getAttribute("account");
+%>
 
 <body>
 	<!-- 
@@ -56,7 +56,8 @@
 			} else {
 			%>
 			<a href='../html/infoUser' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
-			<a href='../access'><i class="fa-solid fa-right-from-bracket"></i></a>
+			<a href='../html/access'><i
+				class="fa-solid fa-right-from-bracket"></i></a>
 			<%
 			}
 			%>

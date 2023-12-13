@@ -24,6 +24,9 @@
 <%
 Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 String status = request.getParameter("status");
+String field = request.getParameter("field");
+if(field == null) 
+	field = "";
 String note = "";
 if (status != null) {
 	switch (status) {
@@ -32,6 +35,12 @@ if (status != null) {
 	break;
 		case "failed" :
 	note = "Cập nhật thông tin không thành công";
+	break;
+		case "failed-0" :
+	note = "Lỗi thông tin nhập vào";
+	break;
+		case "failed-1" :
+	note = "Thông tin không khớp";
 	break;
 		default :
 	note = "Có lỗi";
@@ -68,8 +77,8 @@ if (status != null) {
 			<div id="form" class="tabcontent active">
 				<h2>Chỉnh sửa thông tin người dùng</h2>
 				<form action="../html/infoUser" method="POST">
-					<span class="text-warning "><%=note%></span> <input type="hidden"
-						name="info" value="info">
+					<span class="text-warning "><%=field.equals("info") ? note : ""%></span>
+					<input type="hidden" name="info" value="info">
 					<div class="form-group">
 						<label for="name">Tên:</label> <input type="text" id="name"
 							name="name" placeholder="Họ và tên"
@@ -115,7 +124,9 @@ if (status != null) {
 			</div>
 			<div id="password" class="tabcontent">
 				<h3>Đổi mật khẩu</h3>
-				<form action="#" method="POST">
+				<form action="../html/infoUser" method="POST">
+					<span class="text-warning "><%=field.equals("pass") ? note : ""%></span>
+					<input type="hidden" name="info" value="pass">
 					<div class="form-group">
 						<label for="oldPassword">Mật khẩu cũ:</label> <input
 							type="password" id="oldPassword" name="oldPassword"
