@@ -161,17 +161,13 @@
 							if (currentPage == i) {
 						%>
 						<li class="new_page_item choose_page_item">
-							<form action="../html/FindProduct" method="GET">
-								<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
-							</form>
+							<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
 						</li>
 						<%
 						} else {
 						%>
 						<li class="new_page_item">
-							<form action="../html/FindProduct" method="GET">
-								<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
-							</form>
+							<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
 						</li>
 						<%
 						}

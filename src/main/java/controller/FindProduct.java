@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jdbi.v3.core.Handle;
+
 import dao.ProductDAO;
+import database.JDBIConnectionPool;
 import model.Product;
 
 @WebServlet("/html/FindProduct")
@@ -29,11 +32,8 @@ public class FindProduct extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		response.setContentType("text/html");
-
-		// lấy ra số trang hiện tại
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		System.out.println("get");
 
 		// xuất ra sản phẩm dựa vào số trang hiện tại đang đứng
 		List<Product> perProduct = renderProduct(currentPage, perPage, products);
@@ -49,19 +49,23 @@ public class FindProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-
+		System.out.println("post");
+		
+		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
-		ProductDAO productDAO = new ProductDAO();
+		ProductDAO productDAO = new ProductDAO(connection);
 
 		// lấy ra tên sản phẩm mà người dùng nhập và xóa khoảng cách dư ở đầu cuối
 		nameProduct = request.getParameter("nameProduct").trim();
 
 		// lấy query ra những sản phẩm giống tên
 		products = productDAO.findProductByName(nameProduct);
+		JDBIConnectionPool.get().releaseConnection(connection);
 
 		// lấy trang hiện tại thông qua tham số currentPage trên url, mặc định là trang
 		// đầu tiên
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		String getCurrentPageOnUrl = request.getParameter("currentPage");
+		currentPage = Integer.parseInt(getCurrentPageOnUrl);
 
 		// lấy ra số sản phẩm
 		totalProduct = products.size();
@@ -82,14 +86,13 @@ public class FindProduct extends HttpServlet {
 			request.setAttribute("totalPage", totalPage);
 
 		} else {
-			String name = "Rất tiếc, N2Q không tìm thấy kết quả nào phù hợp với từ khóa " + nameProduct;
+			String name = "Rất tiếc, N2Q không tìm thấy kết quả nào phù hợp với từ khóa " + "\"" + nameProduct + "\"";
 			request.setAttribute("notify", name);
-
+			request.setAttribute("totalPage", 0);
 		}
 
-		// đẩy dữ liệu qua trang jsp và chuyển trang
-		request.getRequestDispatcher("/html/product.jsp").forward(request, response);
-
+		// sau khi lấy tất cả dữ liệu cần thiết thì dùng method doGet để xử lý dữ liệu
+		doGet(request, response);
 	}
 
 	// lấy ra tổng số trang, 2 tham số là tổng số sản phẩm và số sản phẩm trên 1
