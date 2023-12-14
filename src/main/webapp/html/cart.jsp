@@ -178,48 +178,7 @@
 					</div>
 				</div>
 			</div>
-			<%
-			List<Product> productBestDiscount = (List) request.getAttribute("getShowProductBestDiscount");
-			
-			%>
-			<!-- Các sản phẩm khác -->
-			<div class="product_list mt-5">
-				<h2 style="margin-bottom: 20px; cursor: default;">Các sản phẩm
-					khác</h2>
-				<div class="row mb-3">
-					<%
-					for (Product p : productBestDiscount) {
-					%>
-					<div class="col-lg-3 col-sm-6 col-md-4 product">
-						<i class="fa-solid fa-bag-shopping fly_to_card"></i>
-
-						<div class="product_in4">
-							<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
-							<div class="product_in4_bottom">
-								<div>
-									<span class="product_in4_price"><%=p.formatNumber(p.getPrice())%>
-										₫ </span> <span style="font-size: 5px; padding-left: 5px"> -<%=p.percentSale(p.getPrice(), p.getDiscount())%>%
-									</span>
-
-									<p class="product_in4_sale_price">
-										<%=p.formatNumber(p.getPrice() - p.getDiscount())%>
-										₫
-									</p>
-								</div>
-
-								<form action="../html/wishlist?id=<%=p.getId()%>" method="POST">
-									<button class="product_in4_wishlist no_wishlist" id="<%=p.getId()%>">
-										<i class="fa-solid fa-heart"></i>
-									</button>
-								</form>
-							</div>
-						</div>
-					</div>
-					<%
-					}
-					%>
-				</div>
-			</div>
+			<%@include file="../html/productSuggestion.jsp"%>
 		</div>
 
 		<%@include file="footer.jsp"%>
@@ -238,7 +197,6 @@
     Ngày: 20/10/2023
     Tác dụng: Xử lý cho phần sản phẩm -->
 	<script src="../js/cart.js"></script>
-	<script src="../js/product.js"></script>
 </body>
 
 </html>

@@ -10,6 +10,7 @@ import java.util.List;
 import org.jdbi.v3.core.Handle;
 
 import database.JDBIConnectionPool;
+import model.Category;
 import model.Product;
 
 public class ProductDAO {
@@ -162,4 +163,5 @@ public class ProductDAO {
 	private boolean isExistID(int id) {
 		return findProductByID(id) != null;
 	}
+
 }
