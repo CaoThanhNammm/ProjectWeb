@@ -1,15 +1,19 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Wishlist {
 	private Account account;
 	private List<Product> products;
 
-	public Wishlist(Account account, List<Product> products) {
+	public Wishlist(Account account) {
 		super();
 		this.account = account;
-		this.products = products;
+		products = new ArrayList<>();
+	}
+	public void add(Product p) {
+		products.add(p);
 	}
 
 	public Account getAccount() {
