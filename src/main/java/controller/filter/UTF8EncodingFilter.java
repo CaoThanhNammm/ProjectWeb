@@ -9,7 +9,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter({"/html/*", "/index/*"})
+@WebFilter("/")
 public class UTF8EncodingFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

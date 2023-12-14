@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * Create: Nguyễn Khải Nam Date: 30/11/2023 Note: Định nghĩa giới tính cho một
- * người dù
+ * người
  */
 public class Gender {
 	private int id;

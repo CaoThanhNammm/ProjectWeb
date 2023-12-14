@@ -17,54 +17,78 @@
 <title>Thanh toán</title>
 </head>
 <%@ page import="model.Cart"%>
+<%@ page import="model.ProductModel"%>
+<%@ page import="model.Account"%>
+<%@ page import="java.util.Map"%>
 <%
 Cart cart = (Cart) session.getAttribute("cart");
+Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 %>
 
 <body>
+	<%@include file="header.jsp"%>
 	<div id="page">
-
-		<%@include file="header.jsp"%>
-
+		<%
+		if (ac != null) {
+		%>
 		<div class="checkout">
-			<form class="checkout-form" action="user.jsp">
+			<form class="checkout-form" action="../checkout">
+				<input type="hidden" name="checkout" value="pay">
 				<h2>Thông tin khách hàng</h2>
 				<label>Tên khách hàng:</label> <input type="text" name="username"
-					placeholder="Nhập tên" value="Trần Minh Quân" required> <label>Email:</label>
-				<input type="email" name="email" placeholder="Nhập email..."
-					value="21130494@st.hcmuaf.edu.vn" required> <label>Số
-					điện thoại:</label> <input type="text" name="phone"
-					placeholder="Số điện thoại..." value="0123456789" required>
-
-				<label for="shipping">Địa chỉ:</label> <input type="text"
-					name="address" placeholder="Địa chỉ..." required>
-
+					placeholder="Nhập tên" value="<%=acInfo.getFullName()%>" required>
+				<label>Email:</label> <input type="email" name="email"
+					placeholder="Nhập email..." value="<%=acInfo.getEmail()%>" readonly>
+				<label>Số điện thoại:</label> <input type="text" name="phone"
+					placeholder="Số điện thoại..." value="<%=acInfo.getPhone()%>"
+					required> <label for="shipping">Địa chỉ:</label> <input
+					type="text" name="address" placeholder="Địa chỉ..."
+					value="<%=acInfo.getAddress()%>" required>
 				<div style="display: flex; justify-content: space-between;">
-					<a href="cart.jsp" class="button">Trở về giỏ hàng</a>
+					<a href="../html/cart.jsp" class="button">Trở về giỏ hàng</a>
 					<button>Đặt hàng</button>
 				</div>
 			</form>
 
 			<div class="summary">
 				<h2>Tóm tắt đơn hàng</h2>
+				<%
+				Map<ProductModel, Integer> map = cart.getCartItems();
+				long total = 0;
+				long voucher = 0;
+				%>
+				<%
+				for (Map.Entry<ProductModel, Integer> entry : map.entrySet()) {
+				%>
+				<%
+				ProductModel model = entry.getKey();
+				Integer amount = entry.getValue();
+				if (amount > 0) {
+				%>
 				<div class="summary-item">
-					<span>Nồi cơm không dính x1:</span> <span><strong>1.200.000đ</strong></span>
+					<span><%=model.getProduct().getName() + " x" + amount%></span> <span><strong><%=model.getProduct().getPrice() * amount%>đ</strong></span>
+					<%
+					total += model.getProduct().getPrice() * amount;
+					%>
 				</div>
+				<%
+				}
+				%>
+				<%
+				}
+				%>
+				<hr>
 				<div class="summary-item">
-					<span>Máy lọc nước x2:</span> <span><strong>2.400.000đ</strong></span>
+					<span>Giảm giá từ voucher:</span> <span><strong>- <%=voucher%>đ
+					</strong></span>
 				</div>
 				<hr>
 				<div class="summary-item">
-					<span>Giảm giá từ voucher:</span> <span><strong>-
-							300.000đ</strong></span>
+					<span>Phí vận chuyển:</span> <span><strong><%=total * 0.1%>đ</strong></span>
 				</div>
 				<hr>
 				<div class="summary-item">
-					<span>Phí vận chuyển:</span> <span><strong>0đ</strong></span>
-				</div>
-				<hr>
-				<div class="summary-item">
-					<span>Tổng</span> <span><strong>3.300.000đ</strong></span>
+					<span>Tổng</span> <span><strong><%=(total - voucher)%>đ</strong></span>
 				</div>
 				<div class="summary-item">
 					<span>Phương pháp thanh toán</span> <span><strong>Trả
@@ -72,10 +96,18 @@ Cart cart = (Cart) session.getAttribute("cart");
 				</div>
 			</div>
 		</div>
-
-
-		<%@include file="footer.jsp"%>
+		<%
+		} else {
+		%>
+		<div class="container d-flex flex-column">
+			<h3 class="text-center">Vui lòng đăng nhập trước khi thanh toán</h3>
+			<a href="login.jsp" class="btn checkout-btn">Đăng nhập</a>
+		</div>
+		<%
+		}
+		%>
 	</div>
+	<%@include file="footer.jsp"%>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.js"
 		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="

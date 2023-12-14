@@ -96,6 +96,24 @@ public class Account {
 	}
 
 	/**
+	 * @param email
+	 * @param phone
+	 * @param fullName
+	 * @param gender
+	 * @param dob
+	 * @param address
+	 */
+	public Account(String email, String phone, String fullName, Gender gender, LocalDate dob, String address) {
+		super();
+		this.email = email;
+		this.phone = phone;
+		this.fullName = fullName;
+		this.gender = gender;
+		this.dob = dob;
+		this.address = address;
+	}
+
+	/**
 	 * 
 	 */
 	public Account() {
