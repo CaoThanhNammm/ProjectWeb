@@ -132,7 +132,7 @@
 									class="button cart_body_bill_group_btn cart_body_bill_group_btn-back"
 									href="../index/index.jsp">Tiếp tục mua hàng</a> <a
 									class="button cart_body_bill_group_btn"
-									href="../html/checkout.jsp">Thanh toán</a>
+									href="../checkout?checkout=move">Thanh toán</a>
 							</div>
 						</div>
 					</div>
@@ -171,9 +171,9 @@
 						<div class="cart_body_bill_group">
 							<a
 								class="button cart_body_bill_group_btn cart_body_bill_group_btn-back"
-								href="../../../../index.jsp">Tiếp tục mua hàng</a> <a
+								href="../index/index.jsp">Tiếp tục mua hàng</a> <a
 								class="button cart_body_bill_group_btn"
-								href="../html/checkout.jsp">Thanh toán</a>
+								href="../checkout?checkout=move">Thanh toán</a>
 						</div>
 					</div>
 				</div>

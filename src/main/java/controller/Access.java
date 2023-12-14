@@ -25,12 +25,15 @@ import service.MailService;
  * Create: Nguyễn Khải Nam Note: Xử lý các tác vụ từ client đến db Date:
  * 24/11/2023 Servlet implementation class access
  */
-@WebServlet("/access")
+@WebServlet("/html/access")
 public class Access extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static String[] subject = { "MÃ BẢO MẬT - ĐĂNG KÝ", "MÃ BẢO MẬT - ĐẶT LẠI MẬT KHẨU",
-			"THIẾT LẬP MẬT KHẨU MỚI" };
+	private static int minute = 3;
+	private static long exist = 60 * minute;
+
+	private static String[] subject = { minute + " PHÚT - MÃ BẢO MẬT - ĐĂNG KÝ",
+			minute + " PHÚT - MÃ BẢO MẬT - ĐẶT LẠI MẬT KHẨU", minute + " PHÚT - THIẾT LẬP MẬT KHẨU MỚI" };
 	private static String[] mess = {
 			"Xin chào,\nChúng tôi là n2q, rất cảm ơn bạn đã lựa chọn chúng tôi.\nĐây là mã bảo mật của bạn: ",
 			"Chào mừng trở lại,\nCó vẻ như bạn gặp sự cố đăng nhập.\n Đây là mã bảo mật của bạn: ",
@@ -66,33 +69,32 @@ public class Access extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String access = request.getParameter("access");
-
 		HttpSession session = request.getSession();
+		if (access == null)
+			access = "";
+
 		switch (access) {
 		case "login": {
 			String name = request.getParameter("name");
-			if (isPhoneNumber(name) || isEmail(name)) {
-				String prefix = (isPhoneNumber(name) ? "phone" : "email") + "-";
+			if (AccountDAO.isPhoneNumber(name) || AccountDAO.isEmail(name)) {
+				String prefix = (AccountDAO.isPhoneNumber(name) ? "phone" : "email") + "-";
 				Account ac = AccountDAO.getAccount(prefix + name, request.getParameter("password"));
 				if (ac != null) {
 					if (ac.getStatus().isAction()) {
 						session.setAttribute("account", ac);
 						if (ac.getRole().isAdmin()) {
-							response.sendRedirect("html/overviewAdmin.jsp");
-						} else if (ac.getRole().isUser()) {
-							response.sendRedirect("index/index.jsp");
+							response.sendRedirect("overviewAdmin.jsp");
+						} else {
+							response.sendRedirect("../index/index.jsp");
 						}
 					} else {
-						session.setAttribute("status", "failed-0");
-						response.sendRedirect("html/login.jsp");
+						request.getRequestDispatcher("login.jsp?status=failed-0").forward(request, response);
 					}
 				} else {
-					session.setAttribute("status", "failed");
-					response.sendRedirect("html/login.jsp");
+					request.getRequestDispatcher("login.jsp?status=failed").forward(request, response);
 				}
-			} else if (isNotNull(name)) {
-				session.setAttribute("status", "failed");
-				response.sendRedirect("html/login.jsp");
+			} else {
+				request.getRequestDispatcher("login.jsp?status=failed").forward(request, response);
 			}
 		}
 			break;
@@ -107,69 +109,65 @@ public class Access extends HttpServlet {
 			String rePass = request.getParameter("rePass");
 
 			if (isNotNull(name, phone, email, pass, rePass, dob, gender)) {
-				if (pass.equals(rePass) && isEmail(email) && isPhoneNumber(phone)) {
+				if (pass.equals(rePass) && AccountDAO.isEmail(email) && AccountDAO.isPhoneNumber(phone)) {
 					if (AccountDAO.hasAccount("", email, phone)) {
-						session.setAttribute("status", "failed-1");
-						response.sendRedirect("html/register.jsp");
+						request.getRequestDispatcher("register.jsp?status=failed-1").forward(request, response);
 					} else {
 						String code = MailService.sendEmail(email, subject[0], mess[0], null);
 						String id = AccountDAO.generateID(email, phone);
 						Account ac = new Account(id, email, phone, pass, name, Gender.getGender(gender[0]),
 								LocalDate.parse(dob), AccountRole.getRole(1), address, AccountStatus.getStatus(2));
-						verify = new VerifyEmail(Encrypt.encrypt(code), ac);
+						verify = new VerifyEmail(Encrypt.encrypt(code), ac, exist);
 
 						if (code != null && !code.isBlank()) {
-							session.setAttribute("status", "confirm");
-							response.sendRedirect("html/confirm.jsp");
+							request.getSession().setAttribute("statusConfirm", "register");
+							response.sendRedirect("confirm.jsp");
+						} else {
+							// Không xác định được lỗi do email hay do server, tạm thời cứ xem là do client
+							request.getRequestDispatcher("register.jsp?status=failed-0").forward(request, response);
 						}
 					}
 				} else {
-					session.setAttribute("status", "failed-0");
-					response.sendRedirect("html/register.jsp");
+					request.getRequestDispatcher("register.jsp?status=failed-0").forward(request, response);
 				}
+			} else {
+				request.getRequestDispatcher("register.jsp?status=failed").forward(request, response);
 			}
 		}
 			break;
 		case "confirm":
 			if (verify == null) {
-				session.setAttribute("status", "failed-0");
-				response.sendRedirect("html/register.jsp");
+				request.getRequestDispatcher("login.jsp?status=failed").forward(request, response);
 			} else {
-				String input = Encrypt.encrypt(request.getParameter("verificationCode"));
-				String status = (String) session.getAttribute("status");
+				String input = Encrypt.encrypt((String) request.getParameter("verificationCode"));
+				String status = (String) request.getSession().getAttribute("statusConfirm");
 				if (verify.isCode(input)) {
 					if (status.equals("forget")) {
 						String mainPass = Encrypt.generateCode(12);
 						String pass = Encrypt.encrypt(mainPass);
-						String email = (String) session.getAttribute("email");
-						if (AccountDAO.updateAccount(email, TableUsers.PASSWORD, pass)) {
+						String email = (String) request.getSession().getAttribute("email");
+						if (AccountDAO.updateAccount(TableUsers.EMAIL, email, TableUsers.PASSWORD, pass)) {
 							if (MailService.sendEmail(email, subject[2], mess[2], mainPass) != null) {
-								session.setAttribute("status", "success-1");
-								response.sendRedirect("html/login.jsp");
+								request.getRequestDispatcher("login.jsp?status=success-1").forward(request, response);
 							} else {
-								session.setAttribute("status", "failed");
-								response.sendRedirect("html/forget.jsp");
+								request.getRequestDispatcher("forget.jsp?status=failed").forward(request, response);
 							}
 						} else {
-							session.setAttribute("status", "failed");
-							response.sendRedirect("html/forget.jsp");
+							request.getRequestDispatcher("forget.jsp?status=failed").forward(request, response);
 						}
 					} else {
+						// Đăng ký
 						int count = AccountDAO.insertAccount(verify.getAc());
 						if (count > 0) {
-							session.setAttribute("status", "success");
-							response.sendRedirect("html/login.jsp");
+							request.getRequestDispatcher("login.jsp?status=success").forward(request, response);
 						} else {
-							session.setAttribute("status", "failed-1");
-							response.sendRedirect("html/register.jsp");
+							request.getRequestDispatcher("register.jsp?status=failed").forward(request, response);
 						}
 					}
-				} else if (status.equals("forget")) {
-					session.setAttribute("status", "failed");
-					response.sendRedirect("html/forget.jsp");
+					request.getSession().removeAttribute("email");
+					request.getSession().removeAttribute("statusConfirm");
 				} else {
-					session.setAttribute("status", "failed-1");
-					response.sendRedirect("html/register.jsp");
+					request.getRequestDispatcher("confirm.jsp?statusConfirm=failed").forward(request, response);
 				}
 			}
 			break;
@@ -178,18 +176,17 @@ public class Access extends HttpServlet {
 			if (AccountDAO.hasAccount("", email, "")) {
 				String code = MailService.sendEmail(email, subject[1], mess[1], null);
 				Account ac = new Account(email);
-				verify = new VerifyEmail(Encrypt.encrypt(code), ac);
-				if (code != null && !code.isBlank()) {
-					session.setAttribute("email", email);
-					session.setAttribute("status", "forget");
-					response.sendRedirect("html/confirm.jsp");
-				}
+				verify = new VerifyEmail(Encrypt.encrypt(code), ac, exist);
+				request.getSession().setAttribute("email", email);
+				request.getSession().setAttribute("statusConfirm", "forget");
+				response.sendRedirect("confirm.jsp");
 			} else {
-				session.setAttribute("status", "failed");
-				response.sendRedirect("html/forget.jsp");
+				request.getRequestDispatcher("forget.jsp?status=failed").forward(request, response);
 			}
 			break;
 		default:
+			session.removeAttribute("account");
+			response.sendRedirect("../index/index.jsp");
 			break;
 		}
 	}
@@ -201,17 +198,6 @@ public class Access extends HttpServlet {
 				return false;
 		}
 		return true;
-	}
-
-	// Kiểm tra có là số điện thoại
-	public boolean isPhoneNumber(String phone) {
-		return Pattern.compile("^\\d{10}$").matcher(phone).matches();
-	}
-
-	// Kiểm tra có là email
-	public boolean isEmail(String email) {
-		return Pattern.compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
-				.matcher(email).matches();
 	}
 
 }

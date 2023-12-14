@@ -22,13 +22,12 @@
 
 <title>Header</title>
 </head>
-
+<%@ page import="model.Account"%>
+<%
+Account ac = (Account) session.getAttribute("account");
+%>
 
 <body>
-	<%@ page import="model.Account"%>
-	<%
-	Account ac = (Account) session.getAttribute("account");
-	%>
 	<!-- 
         Create: Cao Thành Nam
         Date: 18/10/2023
@@ -62,11 +61,12 @@
 			<%
 			} else {
 			%>
-			<a href='../hmtl/user.jsp' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
+			<a href='../html/infoUser' class='log_in'> Xin chào, <%=ac.getFullName()%></a>
+			<a href='../html/access'><i
+				class="fa-solid fa-right-from-bracket"></i></a>
 			<%
 			}
 			%>
-
 		</div>
 
 		<div class="list_wishList">
@@ -80,7 +80,7 @@
 		<!-- phần giỏ hàng của header -->
 		<div class="header_cart">
 			<div class="header_cart_info">
-				<a href="cart.jsp"> <img src="../image/home/cart.png"
+				<a href="../html/cart.jsp"> <img src="../image/home/cart.png"
 					class="header_cart_logo" alt=""> <span
 					class="header_cart_amount_product">0</span>
 				</a>
