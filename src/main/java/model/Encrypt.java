@@ -54,4 +54,9 @@ public class Encrypt {
 
 		return stringBuilder.toString();
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(encrypt("admin@admin.com0123456789"));
+		System.out.println(encrypt("admindeptraisieucapvutru"));
+	}
 }

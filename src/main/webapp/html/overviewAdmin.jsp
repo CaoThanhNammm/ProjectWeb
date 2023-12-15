@@ -17,6 +17,11 @@
 <title>Tổng quan</title>
 </head>
 
+<%@ page import="model.Account"%>
+<%
+Account ac = (Account) session.getAttribute("account");
+%>
+
 <body class="d-flex">
 	<%@include file="headerAdmin.jsp"%>
 	<div id="overview">
@@ -28,49 +33,58 @@
 					</div>
 				</nav>
 			</div>
-
-			<div class="d-flex">
-				<div>
-					<div class="card">
-						<img class="card-img-top" src="../image/avatar/admin.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<p class="card-text text-center">
-								<i class="fa-solid fa-star"></i>Quản trị viên
-							</p>
+			<form action="">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="card">
+							<img class="card-img-top" src="../image/avatar/admin.jpg"
+								alt="Card image cap">
+							<div class="card-body">
+								<p class="card-text text-center">
+									<i class="fa-solid fa-star"></i>Quản trị viên
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="ms-2">
-					<form action="">
+					<div class="ms-2 col-sm-8">
+
 						<div class="form-group">
-							<label for="fullName"><i class="fa-solid fa-envelope"></i>Địa chỉ email</label> <input type="email"
-								class="form-control" id="email" aria-describedby="email"
-								placeholder="Địa chỉ email"> <label for="tel"><i class="fa-solid fa-phone"></i>Số
-								điện thoại</label> <input type="tel" class="form-control" id="tel"
-								aria-describedby="tel" placeholder="Số điện thoại"> <label
-								for="fullName"><i class="fa-solid fa-user"></i>Họ và tên</label> <input type="text"
+							<label for="fullName"><i class="fa-solid fa-envelope"></i>Địa
+								chỉ email</label> <input type="email" class="form-control" id="email"
+								aria-describedby="email" placeholder="Địa chỉ email"
+								value="<%=ac.getEmail()%>" readonly> <label for="tel"><i
+								class="fa-solid fa-phone"></i>Số điện thoại</label> <input type="tel"
+								class="form-control" id="tel" aria-describedby="tel"
+								placeholder="Số điện thoại" value="<%=ac.getPhone()%>"
+								readonly> <label for="fullName"><i
+								class="fa-solid fa-user"></i>Họ và tên</label> <input type="text"
 								class="form-control" id="fullName" aria-describedby="fullName"
-								placeholder="Họ và tên"> <label for="address"><i class="fa-solid fa-location-dot"></i>Địa
+								placeholder="Họ và tên" readonly> <label for="address"><i
+								class="fa-solid fa-location-dot" value="<%=ac.getFullName()%>"></i>Địa
 								chỉ</label> <input type="text" class="form-control" id="address"
-								aria-describedby="address" placeholder="Địa chỉ"> <label
-								for="address-fb"><i class="fa-brands fa-facebook"></i>Địa chỉ liên kết Facebook</label> <input
+								aria-describedby="address" placeholder="Địa chỉ" readonly
+								value="<%=ac.getAddress()%>"> <label for="address-fb"><i
+								class="fa-brands fa-facebook"></i>Địa chỉ liên kết Facebook</label> <input
 								type="text" class="form-control" id="address-fb"
 								aria-describedby="address-fb"
-								placeholder="Địa chỉ liên kết Facebook"> <label
-								for="address-fb"><i class="fa-brands fa-linkedin"></i>Địa chỉ liên kết Linkedin</label> <input
-								type="text" class="form-control" id="address-linkedin"
-								aria-describedby="address-linkedin"
-								placeholder="Địa chỉ liên kết Linkedin"> <label
-								for="address-instagram"><i class="fa-brands fa-instagram"></i>Địa chỉ liên kết Instagram</label> <input
+								placeholder="Địa chỉ liên kết Facebook" readonly> <label
+								for="address-fb"><i class="fa-brands fa-linkedin"></i>Địa
+								chỉ liên kết Linkedin</label> <input type="text" class="form-control"
+								id="address-linkedin" aria-describedby="address-linkedin"
+								placeholder="Địa chỉ liên kết Linkedin" readonly> <label
+								for="address-instagram"><i
+								class="fa-brands fa-instagram"></i>Địa chỉ liên kết Instagram</label> <input
 								type="text" class="form-control" id="address-instagram"
 								aria-describedby="address-instagram"
-								placeholder="Địa chỉ liên kết Instagram">
+								placeholder="Địa chỉ liên kết Instagram" readonly>
+							<button class="btn btn-warning mt-2" style="width: 100%;">Chỉnh
+								sửa thông tin</button>
 						</div>
-					</form>
+					</div>
+
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 
