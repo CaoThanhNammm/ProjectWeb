@@ -1,14 +1,32 @@
 @charset "UTF-8";
+
 #overview {
-    width: 100%;
-    min-height: 100%;
+	width: 100%;
+	min-height: 100%;
 }
 
-.overview_avatar {
-    height: 200px;
-    border: 1px solid var(--gray-third);
+#overview .card {
+	width: 18rem;
 }
 
-.overview_info p {
-    font-size: 20px;
+#overview .fa-star {
+	color: yellow;
+}
+
+#overview .form-group {
+	width: 100%;
+}
+
+#overview .form-control {
+	width: 100%;
+	display: inline;
+}
+
+#overview label {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#overview label:first-child {
+	margin-top: 0;
 }
