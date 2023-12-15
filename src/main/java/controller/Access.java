@@ -83,6 +83,8 @@ public class Access extends HttpServlet {
 					if (ac.getStatus().isAction()) {
 						session.setAttribute("account", ac);
 						if (ac.getRole().isAdmin()) {
+							Account moreInfo = AccountDAO.getMoreInfo(ac);
+							request.getSession().setAttribute("moreInfo", moreInfo);
 							response.sendRedirect("overviewAdmin.jsp");
 						} else {
 							response.sendRedirect("../index/index.jsp");

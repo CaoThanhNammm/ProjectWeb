@@ -19,7 +19,7 @@
 
 <%@ page import="model.Account"%>
 <%
-Account ac = (Account) session.getAttribute("account");
+Account moreInfo = (Account) session.getAttribute("moreInfo");
 %>
 
 <body class="d-flex">
@@ -53,31 +53,32 @@ Account ac = (Account) session.getAttribute("account");
 							<label for="fullName"><i class="fa-solid fa-envelope"></i>Địa
 								chỉ email</label> <input type="email" class="form-control" id="email"
 								aria-describedby="email" placeholder="Địa chỉ email"
-								value="<%=ac.getEmail()%>" readonly> <label for="tel"><i
-								class="fa-solid fa-phone"></i>Số điện thoại</label> <input type="tel"
-								class="form-control" id="tel" aria-describedby="tel"
-								placeholder="Số điện thoại" value="<%=ac.getPhone()%>"
-								readonly> <label for="fullName"><i
-								class="fa-solid fa-user"></i>Họ và tên</label> <input type="text"
-								class="form-control" id="fullName" aria-describedby="fullName"
-								placeholder="Họ và tên" readonly> <label for="address"><i
-								class="fa-solid fa-location-dot" value="<%=ac.getFullName()%>"></i>Địa
+								value="<%=moreInfo.getEmail()%>" readonly> <label
+								for="tel"><i class="fa-solid fa-phone"></i>Số điện thoại</label>
+							<input type="tel" class="form-control" id="tel"
+								aria-describedby="tel" placeholder="Số điện thoại"
+								value="<%=moreInfo.getPhone()%>" readonly> <label
+								for="fullName"><i class="fa-solid fa-user"></i>Họ và tên</label>
+							<input type="text" class="form-control" id="fullName"
+								aria-describedby="fullName" placeholder="Họ và tên"
+								value="<%=moreInfo.getFullName()%>" readonly> <label
+								for="address"><i class="fa-solid fa-location-dot"></i>Địa
 								chỉ</label> <input type="text" class="form-control" id="address"
-								aria-describedby="address" placeholder="Địa chỉ" readonly
-								value="<%=ac.getAddress()%>"> <label for="address-fb"><i
-								class="fa-brands fa-facebook"></i>Địa chỉ liên kết Facebook</label> <input
-								type="text" class="form-control" id="address-fb"
-								aria-describedby="address-fb"
-								placeholder="Địa chỉ liên kết Facebook" readonly> <label
+								aria-describedby="address" placeholder="Địa chỉ"
+								value="<%=moreInfo.getAddress()%>" readonly> <label
+								for="address-fb"><i class="fa-brands fa-facebook"></i>Địa
+								chỉ liên kết Facebook</label> <input type="text" class="form-control"
+								id="address-fb" aria-describedby="address-fb"
+								placeholder="Địa chỉ liên kết Facebook" value="facebook" readonly> <label
 								for="address-fb"><i class="fa-brands fa-linkedin"></i>Địa
 								chỉ liên kết Linkedin</label> <input type="text" class="form-control"
 								id="address-linkedin" aria-describedby="address-linkedin"
-								placeholder="Địa chỉ liên kết Linkedin" readonly> <label
+								placeholder="Địa chỉ liên kết Linkedin" value="linkedin" readonly> <label
 								for="address-instagram"><i
 								class="fa-brands fa-instagram"></i>Địa chỉ liên kết Instagram</label> <input
 								type="text" class="form-control" id="address-instagram"
 								aria-describedby="address-instagram"
-								placeholder="Địa chỉ liên kết Instagram" readonly>
+								placeholder="Địa chỉ liên kết Instagram" value="instagram" readonly>
 							<button class="btn btn-warning mt-2" style="width: 100%;">Chỉnh
 								sửa thông tin</button>
 						</div>
@@ -88,6 +89,7 @@ Account ac = (Account) session.getAttribute("account");
 		</div>
 	</div>
 
+	<script src="../js/contact.js"></script>
 </body>
 
 </html>
