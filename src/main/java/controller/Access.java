@@ -40,7 +40,7 @@ public class Access extends HttpServlet {
 			"Xin chào, \nChúng tôi là n2q, đây là mật khẩu mới của bạn: " };
 
 	// Dùng cho việc đăng ký
-	private VerifyEmail verify;
+	private static VerifyEmail verify;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -74,6 +74,16 @@ public class Access extends HttpServlet {
 			access = "";
 
 		switch (access) {
+		case "admin": {
+			Account admin = (Account) request.getSession().getAttribute("account");
+			Account moreInfo = (Account) request.getSession().getAttribute("moreInfo");
+			String codeAdmin = MailService.sendEmail(moreInfo.getEmail(), subject[2], "Đây là mã bảo mật: ", null);
+			verify = new VerifyEmail(Encrypt.encrypt(codeAdmin), admin, exist);
+			request.getSession().setAttribute("email", moreInfo.getEmail());
+			request.getSession().setAttribute("statusConfirm", "resest-pass-admin");
+			response.sendRedirect("confirm.jsp");
+		}
+			break;
 		case "login": {
 			String name = request.getParameter("name");
 			if (AccountDAO.isPhoneNumber(name) || AccountDAO.isEmail(name)) {
@@ -157,7 +167,7 @@ public class Access extends HttpServlet {
 						} else {
 							request.getRequestDispatcher("forget.jsp?status=failed").forward(request, response);
 						}
-					} else {
+					} else if (status.equals("register")) {
 						// Đăng ký
 						int count = AccountDAO.insertAccount(verify.getAc());
 						if (count > 0) {
@@ -165,11 +175,14 @@ public class Access extends HttpServlet {
 						} else {
 							request.getRequestDispatcher("register.jsp?status=failed").forward(request, response);
 						}
+					} else {
+						// Đổi mk của admin
+						request.getRequestDispatcher("overview.jsp?status=change").forward(request, response);
 					}
 					request.getSession().removeAttribute("email");
 					request.getSession().removeAttribute("statusConfirm");
 				} else {
-					request.getRequestDispatcher("confirm.jsp?statusConfirm=failed").forward(request, response);
+					request.getRequestDispatcher("confirm.jsp?status=failed").forward(request, response);
 				}
 			}
 			break;
@@ -201,5 +214,4 @@ public class Access extends HttpServlet {
 		}
 		return true;
 	}
-
 }

@@ -31,19 +31,7 @@
 	margin-top: 0;
 }
 
-#overview .upload {
-	position: relative;
-	display: none;
-}
-
-#overview .upload input[type="file"] {
-	cursor: pointer;
-	position: absolute;
-	left: 0;
-	top: 0;
-	opacity: 0;
-}
-
 #overview .resest-password {
 	display: none;
+	width: 100%;
 }

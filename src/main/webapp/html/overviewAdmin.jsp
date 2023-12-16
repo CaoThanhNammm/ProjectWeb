@@ -20,6 +20,22 @@
 <%@ page import="model.Account"%>
 <%
 Account moreInfo = (Account) session.getAttribute("moreInfo");
+String note = (String) request.getParameter("status");
+if (note != null && !note.isBlank()) {
+	switch (note) {
+	case "success":
+		note = "Cập nhật thành công";
+		break;
+	case "failed":
+		note = "Kiểm tra lại thông tin";
+		break;
+	default:
+		note = "Có lỗi";
+		break;
+	}
+} else {
+	note = "";
+}
 %>
 
 <body class="d-flex">
@@ -35,27 +51,8 @@ Account moreInfo = (Account) session.getAttribute("moreInfo");
 			</div>
 			<div id="form">
 				<div class="row">
-					<div class="col-sm-3">
-						<div class="card">
-							<img class="card-img-top" src="../image/avatar/admin.jpg"
-								alt="Card image cap">
-							<div class="card-body">
-								<p class="card-text text-center">
-									<i class="fa-solid fa-star"></i>Quản trị viên
-								</p>
-								<button class="btn btn-warning upload mb-2">
-									<i class="fa-solid fa-upload"></i> Tải hình ảnh mới <input
-										type="file">
-								</button>
-								<button class="btn btn-warning resest-password">
-									<i class="fa-solid fa-lock"></i>Đổi mật khẩu
-								</button>
-							</div>
-						</div>
-					</div>
-
-					<div class="ms-2 col-sm-8">
-
+					<div class="ms-2 col">
+						<span class="text-warning"><%=note%></span>
 						<div class="form-group">
 							<label for="fullName"><i class="fa-solid fa-envelope"></i>Địa
 								chỉ email</label> <input type="email" class="form-control" id="email"
@@ -89,6 +86,10 @@ Account moreInfo = (Account) session.getAttribute("moreInfo");
 								aria-describedby="address-instagram"
 								placeholder="Địa chỉ liên kết Instagram" value="instagram"
 								readonly>
+							<button class="btn btn-warning resest-password mt-2" onclick="_changePass()">
+								<i class="fa-solid fa-lock"></i>
+								<span class="mt-1">Đổi mật khẩu</span>
+							</button>
 							<button type="submit" onclick="_control()"
 								class="btn btn-warning mt-2 submit" style="width: 100%;">Chỉnh
 								sửa thông tin</button>

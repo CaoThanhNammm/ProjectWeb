@@ -16,16 +16,16 @@ function _control() {
 			inputs.forEach(e => {
 				e.removeAttribute('readonly')
 			})
-			$('.upload').style.display = 'inline-block'
 			$('.resest-password').style.display = 'inline-block'
-			
-			isChange = false 
+
+			isChange = false
 		}
 	} else {
 		var check = confirm('Bạn có chắc muốn điều chỉnh thông tin')
 		if (check) {
 			_changeElement('#form', 'form')
 		}
+		isChange = true
 	}
 }
 
@@ -34,11 +34,18 @@ function _changeElement(name1, name2) {
 	var old = $(name1)
 	var e2 = document.createElement(name2);
 	e2.setAttribute("id", old.id)
-	e2.setAttribute("action", "infoAdmin")
+	e2.setAttribute("action", "infoAdmin?access=info")
 	e2.setAttribute("method", "post")
 
 	while (e1 != null && e1.firstChild) {
 		e2.appendChild(e1.firstChild);
 	}
 	old.parentNode.replaceChild(e2, old);
+}
+
+function _changePass() {
+	console.log(isChange)
+	if (!isChange) {
+		window.location.href = "infoAdmin?access=reset-pass";
+	}
 }

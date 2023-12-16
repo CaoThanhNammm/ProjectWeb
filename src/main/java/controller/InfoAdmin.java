@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AccountDAO;
 import model.Account;
+import model.Encrypt;
+import model.VerifyEmail;
+import service.MailService;
 
 import static database.TableUsers.*;
 
@@ -28,6 +31,12 @@ public class InfoAdmin extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(req, resp);
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -35,19 +44,51 @@ public class InfoAdmin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email = request.getParameter("email");
-		String tel = request.getParameter("tel");
-		String name = request.getParameter("fullName");
-		String address = request.getParameter("address");
-
 		Account ac = (Account) request.getSession().getAttribute("account");
+		Account moreInfo = (Account) request.getSession().getAttribute("moreInfo");
+		if (ac != null) {
+			String access = request.getParameter("access");
+			switch (access) {
+			case "info":
+				String email = request.getParameter("email");
+				String tel = request.getParameter("tel");
+				String name = request.getParameter("fullName");
+				String address = request.getParameter("address");
+				if (isNotNull(email, tel, name) && AccountDAO.isEmail(email) && AccountDAO.isPhoneNumber(tel)) {
+					if (AccountDAO.updateAccount(ID, ac.getId(), EMAIL, email)
+							&& AccountDAO.updateAccount(ID, ac.getId(), PHONE, tel)
+							&& AccountDAO.updateAccount(ID, ac.getId(), FULL_NAME, name)
+							&& AccountDAO.updateAccount(ID, ac.getId(), ADDRESS, address)) {
+						moreInfo.setEmail(email);
+						moreInfo.setPhone(tel);
+						moreInfo.setFullName(name);
+						moreInfo.setAddress(address);
+						request.getSession().setAttribute("moreInfo", moreInfo);
+						request.getRequestDispatcher("overviewAdmin.jsp?status=success").forward(request, response);
+					}
+				} else {
+					request.getRequestDispatcher("overviewAdmin.jsp?status=failed").forward(request, response);
+				}
+				break;
+			case "reset-pass":
+				response.sendRedirect("access?access=admin");
+				break;
 
-		if (AccountDAO.updateAccount(ID, ac.getId(), EMAIL, email)
-				&& AccountDAO.updateAccount(ID, ac.getId(), PHONE, tel)
-				&& AccountDAO.updateAccount(ID, ac.getId(), FULL_NAME, name)
-				&& AccountDAO.updateAccount(ID, ac.getId(), ADDRESS, address)) {
-
+			default:
+				break;
+			}
+		} else {
+			response.sendRedirect("login.jsp");
 		}
+	}
+
+	// Kiểm tra có trường null không
+	public boolean isNotNull(Object... objs) {
+		for (Object obj : objs) {
+			if (obj == null)
+				return false;
+		}
+		return true;
 	}
 
 }
