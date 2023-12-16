@@ -33,7 +33,7 @@ Account moreInfo = (Account) session.getAttribute("moreInfo");
 					</div>
 				</nav>
 			</div>
-			<form action="">
+			<div id="form">
 				<div class="row">
 					<div class="col-sm-3">
 						<div class="card">
@@ -43,6 +43,13 @@ Account moreInfo = (Account) session.getAttribute("moreInfo");
 								<p class="card-text text-center">
 									<i class="fa-solid fa-star"></i>Quản trị viên
 								</p>
+								<button class="btn btn-warning upload mb-2">
+									<i class="fa-solid fa-upload"></i> Tải hình ảnh mới <input
+										type="file">
+								</button>
+								<button class="btn btn-warning resest-password">
+									<i class="fa-solid fa-lock"></i>Đổi mật khẩu
+								</button>
 							</div>
 						</div>
 					</div>
@@ -53,43 +60,47 @@ Account moreInfo = (Account) session.getAttribute("moreInfo");
 							<label for="fullName"><i class="fa-solid fa-envelope"></i>Địa
 								chỉ email</label> <input type="email" class="form-control" id="email"
 								aria-describedby="email" placeholder="Địa chỉ email"
-								value="<%=moreInfo.getEmail()%>" readonly> <label
-								for="tel"><i class="fa-solid fa-phone"></i>Số điện thoại</label>
-							<input type="tel" class="form-control" id="tel"
+								name="email" value="<%=moreInfo.getEmail()%>" readonly>
+							<label for="tel"><i class="fa-solid fa-phone"></i>Số điện
+								thoại</label> <input type="tel" class="form-control" id="tel" name="tel"
 								aria-describedby="tel" placeholder="Số điện thoại"
 								value="<%=moreInfo.getPhone()%>" readonly> <label
 								for="fullName"><i class="fa-solid fa-user"></i>Họ và tên</label>
 							<input type="text" class="form-control" id="fullName"
-								aria-describedby="fullName" placeholder="Họ và tên"
-								value="<%=moreInfo.getFullName()%>" readonly> <label
-								for="address"><i class="fa-solid fa-location-dot"></i>Địa
-								chỉ</label> <input type="text" class="form-control" id="address"
-								aria-describedby="address" placeholder="Địa chỉ"
+								name="fullName" aria-describedby="fullName"
+								placeholder="Họ và tên" value="<%=moreInfo.getFullName()%>"
+								readonly> <label for="address"><i
+								class="fa-solid fa-location-dot"></i>Địa chỉ</label> <input type="text"
+								class="form-control" id="address" aria-describedby="address"
+								placeholder="Địa chỉ" name="address"
 								value="<%=moreInfo.getAddress()%>" readonly> <label
 								for="address-fb"><i class="fa-brands fa-facebook"></i>Địa
 								chỉ liên kết Facebook</label> <input type="text" class="form-control"
 								id="address-fb" aria-describedby="address-fb"
-								placeholder="Địa chỉ liên kết Facebook" value="facebook" readonly> <label
-								for="address-fb"><i class="fa-brands fa-linkedin"></i>Địa
-								chỉ liên kết Linkedin</label> <input type="text" class="form-control"
-								id="address-linkedin" aria-describedby="address-linkedin"
-								placeholder="Địa chỉ liên kết Linkedin" value="linkedin" readonly> <label
-								for="address-instagram"><i
+								placeholder="Địa chỉ liên kết Facebook" value="facebook"
+								readonly> <label for="address-fb"><i
+								class="fa-brands fa-linkedin"></i>Địa chỉ liên kết Linkedin</label> <input
+								type="text" class="form-control" id="address-linkedin"
+								aria-describedby="address-linkedin"
+								placeholder="Địa chỉ liên kết Linkedin" value="linkedin"
+								readonly> <label for="address-instagram"><i
 								class="fa-brands fa-instagram"></i>Địa chỉ liên kết Instagram</label> <input
 								type="text" class="form-control" id="address-instagram"
 								aria-describedby="address-instagram"
-								placeholder="Địa chỉ liên kết Instagram" value="instagram" readonly>
-							<button class="btn btn-warning mt-2" style="width: 100%;">Chỉnh
+								placeholder="Địa chỉ liên kết Instagram" value="instagram"
+								readonly>
+							<button type="submit" onclick="_control()"
+								class="btn btn-warning mt-2 submit" style="width: 100%;">Chỉnh
 								sửa thông tin</button>
 						</div>
 					</div>
-
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 
 	<script src="../js/contact.js"></script>
+	<script src="../js/editAdmin.js"></script>
 </body>
 
 </html>

@@ -20,7 +20,7 @@ var links = [
 	}
 ]
 
-function setLinks() {
+function _setLinks() {
 	const inputs = [$('#address-fb'), $('#address-linkedin'), $('#address-instagram')]
 	const linkInps = []
 	
@@ -38,4 +38,4 @@ function setLinks() {
 	}
 }
 
-setLinks()
+_setLinks()
