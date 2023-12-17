@@ -73,7 +73,18 @@ public class InfoAdmin extends HttpServlet {
 			case "reset-pass":
 				response.sendRedirect("access?access=admin");
 				break;
-
+			case "change-pass":
+				String pass = request.getParameter("pass");
+				String newPass = request.getParameter("newPass");
+				String confirmPass = request.getParameter("confirmPass");
+				if (isNotNull(pass, newPass, confirmPass) && newPass.equals(confirmPass)
+						&& AccountDAO.getAccount("email-" + moreInfo.getEmail(), pass) != null
+						&& AccountDAO.updateAccount(ID, ac.getId(), PASSWORD, Encrypt.encrypt(confirmPass))) {
+					request.getRequestDispatcher("overviewAdmin.jsp?status=success").forward(request, response);
+				} else {
+					request.getRequestDispatcher("overviewAdmin.jsp?status=failed").forward(request, response);
+				}
+				break;
 			default:
 				break;
 			}

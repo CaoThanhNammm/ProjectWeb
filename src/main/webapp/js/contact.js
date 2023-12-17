@@ -5,6 +5,13 @@
  */
 var $ = document.querySelector.bind(document)
 
+document.addEventListener('DOMContentLoaded', function() {
+	_setLinks()
+	_change()
+})
+
+const inputs = [$('#address-fb'), $('#address-linkedin'), $('#address-instagram')]
+
 var links = [
 	{
 		"name": "facebook",
@@ -20,22 +27,31 @@ var links = [
 	}
 ]
 
+const linkInps = []
+
+inputs.forEach(input => {
+	linkInps.push(input.value)
+})
+
 function _setLinks() {
-	const inputs = [$('#address-fb'), $('#address-linkedin'), $('#address-instagram')]
-	const linkInps = []
-	
-	inputs.forEach(input => {
-		linkInps.push(input.value)
-	})
-	
-	
-	for(let i = 0; i < linkInps.length; ++i) {
+	for (let i = 0; i < linkInps.length; ++i) {
 		links.forEach(e => {
-			if(e.name === linkInps[i]) {
+			if (e.name === linkInps[i]) {
 				inputs[i].value = e.link
 			}
 		})
 	}
 }
 
-_setLinks()
+function updateLink(index, value) {
+	links[index].link = value
+	_setLinks()
+}
+
+function _change() {
+	for (let i = 0; i < inputs.length; ++i) {
+		inputs[i].addEventListener("blur", e => {
+			updateLink(i, inputs[i].value)
+		})
+	}
+}

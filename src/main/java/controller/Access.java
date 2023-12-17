@@ -74,16 +74,6 @@ public class Access extends HttpServlet {
 			access = "";
 
 		switch (access) {
-		case "admin": {
-			Account admin = (Account) request.getSession().getAttribute("account");
-			Account moreInfo = (Account) request.getSession().getAttribute("moreInfo");
-			String codeAdmin = MailService.sendEmail(moreInfo.getEmail(), subject[2], "Đây là mã bảo mật: ", null);
-			verify = new VerifyEmail(Encrypt.encrypt(codeAdmin), admin, exist);
-			request.getSession().setAttribute("email", moreInfo.getEmail());
-			request.getSession().setAttribute("statusConfirm", "resest-pass-admin");
-			response.sendRedirect("confirm.jsp");
-		}
-			break;
 		case "login": {
 			String name = request.getParameter("name");
 			if (AccountDAO.isPhoneNumber(name) || AccountDAO.isEmail(name)) {
@@ -154,7 +144,10 @@ public class Access extends HttpServlet {
 				String input = Encrypt.encrypt((String) request.getParameter("verificationCode"));
 				String status = (String) request.getSession().getAttribute("statusConfirm");
 				if (verify.isCode(input)) {
-					if (status.equals("forget")) {
+					if (status == null) {
+						verify = null;
+						response.sendRedirect("login.jsp");
+					} else if (status.equals("forget")) {
 						String mainPass = Encrypt.generateCode(12);
 						String pass = Encrypt.encrypt(mainPass);
 						String email = (String) request.getSession().getAttribute("email");
@@ -177,7 +170,7 @@ public class Access extends HttpServlet {
 						}
 					} else {
 						// Đổi mk của admin
-						request.getRequestDispatcher("overview.jsp?status=change").forward(request, response);
+						request.getRequestDispatcher("overviewAdmin.jsp?status=change").forward(request, response);
 					}
 					request.getSession().removeAttribute("email");
 					request.getSession().removeAttribute("statusConfirm");
@@ -198,6 +191,16 @@ public class Access extends HttpServlet {
 			} else {
 				request.getRequestDispatcher("forget.jsp?status=failed").forward(request, response);
 			}
+			break;
+		case "admin": {
+			Account admin = (Account) request.getSession().getAttribute("account");
+			Account moreInfo = (Account) request.getSession().getAttribute("moreInfo");
+			String codeAdmin = MailService.sendEmail(moreInfo.getEmail(), subject[2], "Đây là mã bảo mật: ", null);
+			verify = new VerifyEmail(Encrypt.encrypt(codeAdmin), admin, exist);
+			request.getSession().setAttribute("email", moreInfo.getEmail());
+			request.getSession().setAttribute("statusConfirm", "resest-pass-admin");
+			response.sendRedirect("confirm.jsp");
+		}
 			break;
 		default:
 			session.removeAttribute("account");

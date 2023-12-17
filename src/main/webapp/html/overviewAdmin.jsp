@@ -21,6 +21,7 @@
 <%
 Account moreInfo = (Account) session.getAttribute("moreInfo");
 String note = (String) request.getParameter("status");
+boolean flag = true;
 if (note != null && !note.isBlank()) {
 	switch (note) {
 	case "success":
@@ -28,6 +29,10 @@ if (note != null && !note.isBlank()) {
 		break;
 	case "failed":
 		note = "Kiểm tra lại thông tin";
+		break;
+	case "change":
+		flag = false;
+		note = "";
 		break;
 	default:
 		note = "Có lỗi";
@@ -53,6 +58,9 @@ if (note != null && !note.isBlank()) {
 				<div class="row">
 					<div class="ms-2 col">
 						<span class="text-warning"><%=note%></span>
+						<%
+						if (flag) {
+						%>
 						<div class="form-group">
 							<label for="fullName"><i class="fa-solid fa-envelope"></i>Địa
 								chỉ email</label> <input type="email" class="form-control" id="email"
@@ -86,14 +94,40 @@ if (note != null && !note.isBlank()) {
 								aria-describedby="address-instagram"
 								placeholder="Địa chỉ liên kết Instagram" value="instagram"
 								readonly>
-							<button class="btn btn-warning resest-password mt-2" onclick="_changePass()">
-								<i class="fa-solid fa-lock"></i>
-								<span class="mt-1">Đổi mật khẩu</span>
+							<button class="btn btn-warning resest-password mt-2"
+								onclick="_changePass()">
+								<i class="fa-solid fa-lock"></i> <span class="mt-1">Đổi
+									mật khẩu</span>
 							</button>
 							<button type="submit" onclick="_control()"
 								class="btn btn-warning mt-2 submit" style="width: 100%;">Chỉnh
 								sửa thông tin</button>
 						</div>
+						<%
+						} else {
+						%>
+						<div class="form-group">
+							<form action="infoAdmin" method="post">
+								<input type="hidden" name="access" value="change-pass">
+								<label for="pass"><i class="fa-solid fa-envelope"></i>Nhập
+									mật khẩu cũ</label> <input type="text" class="form-control" id="pass"
+									aria-describedby="pass" placeholder="Nhập mật khẩu cũ"
+									name="pass" required> <label for="newPass"><i
+									class="fa-solid fa-envelope"></i>Nhập mật khẩu mới</label> <input
+									type="text" class="form-control" id="newPass"
+									aria-describedby="newPass" placeholder="Nhập mật khẩu mới"
+									name="newPass" required> <label for="confirmPass"><i
+									class="fa-solid fa-envelope"></i>Nhập lại mật khẩu mới</label> <input
+									type="text" class="form-control" id="confirmPass"
+									aria-describedby="confirmPass"
+									placeholder="Nhập lại mật khẩu mới" name="confirmPass" required>
+								<button class="btn btn-warning mt-2" style="width: 100%;">Hoàn
+									tất</button>
+							</form>
+						</div>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</div>
