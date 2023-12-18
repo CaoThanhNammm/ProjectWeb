@@ -33,7 +33,6 @@ public class FindProduct extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		System.out.println("get");
 
 		// xuất ra sản phẩm dựa vào số trang hiện tại đang đứng
 		List<Product> perProduct = renderProduct(currentPage, perPage, products);
@@ -49,7 +48,6 @@ public class FindProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		System.out.println("post");
 		
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
@@ -59,7 +57,7 @@ public class FindProduct extends HttpServlet {
 		nameProduct = request.getParameter("nameProduct").trim();
 
 		// lấy query ra những sản phẩm giống tên
-		products = productDAO.findProductByName(nameProduct);
+		products = productDAO.findProductByNameLimitN(nameProduct, 20);
 		JDBIConnectionPool.get().releaseConnection(connection);
 
 		// lấy trang hiện tại thông qua tham số currentPage trên url, mặc định là trang

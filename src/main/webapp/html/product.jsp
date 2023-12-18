@@ -30,27 +30,7 @@
 	<div id="page">
 		<%@include file="header.jsp"%>
 
-		<div class="slider container">
-			<div class="slider_img_list">
-				<img class="slider_img_item" src="../image/home/trian2011.jpg"
-					alt=""> <img class="slider_img_item"
-					src="../image/home/content_introduce1.png" alt=""> <img
-					class="slider_img_item" src="../image/home/content_introduce.jpg"
-					alt=""> <img class="slider_img_item"
-					src="../image/home/lọakeokeo.jpg" alt="">
-			</div>
-
-			<div class="slider_dot_list">
-				<div class="slider_dot_item background_dot_slider-active"></div>
-				<div class="slider_dot_item"></div>
-				<div class="slider_dot_item"></div>
-				<div class="slider_dot_item"></div>
-			</div>
-
-			<i class="fa-solid fa-angle-left left"></i> <i
-				class="fa-solid fa-angle-right right"></i>
-		</div>
-
+		<%@include file="../html/sliderShow.jsp"%>
 
 		<!-- phần lọc -->
 		<div class="category_product container">
@@ -113,34 +93,39 @@
 				bật</h2>
 
 			<div class="row">
-				<c:forEach items="${products}" var="product">
-					<div class="col-lg-3 col-sm-6 col-md-4 product">
-						<i class="fa-solid fa-bag-shopping fly_to_card"></i>
+				<%
+				List<Product> products = (List) request.getAttribute("products");
+				for (Product p : products) {
+				%>
+				<div class="col-lg-3 col-sm-6 col-md-4 product">
+					<i class="fa-solid fa-bag-shopping fly_to_card"></i>
 
-						<div class="product_in4">
-							<a href="../html/detail.jsp" class="product_in4_name_product">${product.name}</a>
-							<div class="product_in4_bottom">
-								<div>
-									<p class="product_in4_price">
-										<fmt:formatNumber type="number" value="${product.price}" />
-										₫
-									</p>
+					<div class="product_in4">
+						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
+						<div class="product_in4_bottom">
+							<div>
+								<span class="product_in4_price"><%=p.formatNumber(p.getPrice())%>₫
+								</span> <span style="font-size: 5px; padding-left: 5px">-<%=p.percentSale(p.getPrice(), p.getDiscount())%>%
+								</span>
 
-									<p class="product_in4_sale_price">
-										<fmt:formatNumber type="number"
-											value="${product.price - product.discount}" />
-										₫
-									</p>
-								</div>
-								<div class="product_in4_wishlist no_wishlist">
-									<i class="fa-solid fa-heart"></i> <span class="hint_wishlist">yêu
-										thích</span>
-								</div>
+								<p class="product_in4_sale_price">
+									<%=p.formatNumber(p.getPrice() - p.getDiscount())%>
+									₫
+								</p>
 							</div>
+							<form action="../html/wishlist?id=<%=p.getId()%>" method="POST">
+
+								<button class="product_in4_wishlist no_wishlist" id="<%=p.getId()%>">
+									<i class="fa-solid fa-heart"></i>
+								</button>
+							</form>
+
 						</div>
 					</div>
-
-				</c:forEach>
+				</div>
+				<%
+				}
+				%>
 			</div>
 		</div>
 
@@ -160,15 +145,13 @@
 						for (int i = 1; i <= (Integer) request.getAttribute("totalPage"); i++) {
 							if (currentPage == i) {
 						%>
-						<li class="new_page_item choose_page_item">
-							<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
-						</li>
+						<li class="new_page_item choose_page_item"><a
+							href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a></li>
 						<%
 						} else {
 						%>
-						<li class="new_page_item">
-							<a href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a>
-						</li>
+						<li class="new_page_item"><a
+							href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a></li>
 						<%
 						}
 						}

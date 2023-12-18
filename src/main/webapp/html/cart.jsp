@@ -178,13 +178,7 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- Các sản phẩm khác -->
-			<div class="product_list mt-5">
-				<h2 style="margin-bottom: 20px; cursor: default;">Các sản phẩm
-					khác</h2>
-				<div class="row mb-3"></div>
-			</div>
+			<%@include file="../html/productSuggestion.jsp"%>
 		</div>
 
 		<%@include file="footer.jsp"%>
@@ -203,7 +197,6 @@
     Ngày: 20/10/2023
     Tác dụng: Xử lý cho phần sản phẩm -->
 	<script src="../js/cart.js"></script>
-	<script src="../js/product.js"></script>
 </body>
 
 </html>

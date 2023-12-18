@@ -1,6 +1,10 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="model.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,38 +26,12 @@
 <body>
 	<%@include file="../html/header.jsp"%>
 	<!-- 
-            Create: Cao Thành Nam
-            Date: 18/10/2023
-            Note: phần body của trang
-        -->
-	<div class="slider container">
-		<div class="slider_img_list">
-			<c:forEach items="${imgSliderShow}" var="img">
-				<img class="slider_img_item" src="../image/home/sliderShow/${img}"
-					alt="">
-			</c:forEach>
-		</div>
-		
-		<% int totalDot = (Integer) request.getAttribute("totalDot");%>
-		<div class="slider_dot_list" style="left: calc(50% + (var(--marginLeftWidthDotSliderShow) + var(--widthDotSliderShow)/2)*<%=-totalDot%>)">
-			<%
-			for (int i = 0; i < totalDot; i++) {
-				if (i == 0) {
-			%>
-			<div class="slider_dot_item background_dot_slider-active"></div>
-			<%
-			} else {
-			%>
-			<div class="slider_dot_item "></div>
-			<%
-			}
-			}
-			%>
-		</div>
 
-		<i class="fa-solid fa-angle-left left"></i> <i
-			class="fa-solid fa-angle-right right"></i>
-	</div>
+         Create: Cao Thành Nam
+         Date: 18/10/2023
+         Note: phần body của trang
+    -->
+	<%@include file="../html/sliderShow.jsp"%>
 
 	<div class="content container">
 		<div class="content_event_product">
@@ -72,50 +50,99 @@
 			</a>
 		</div>
 
+		<%
+		Map<Category, String> categoryBanner = (Map<Category, String>) request.getAttribute("elementProductBanner");
+		Map<Category, String> categoryBannerFirst = (Map<Category, String>) request.getAttribute("elementProductBannerFirst");
+		%>
+
 		<div class="introduce_product">
 			<div class="row">
+				<%
+				for (Map.Entry<Category, String> entry : categoryBannerFirst.entrySet()) {
+				%>
 				<div class="col-lg-6 introduce_product_item">
-					<img src="../image/home/introduce_product1.jpg" alt=""> <a
-						href="../html/product.jsp" class="introduce_product_name">Máy
-						lọc nước</a>
+					<img
+						src="../image/home/banner/<%=entry.getKey().getName()%>/<%=entry.getValue()%>"
+						alt="">
+					<form
+						action="../html/FindProduct?currentPage=1&nameProduct=<%=entry.getKey().getName()%>"
+						method="POST">
+						<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
+					</form>
 				</div>
+
+				<%
+				break;
+				}
+				%>
 
 				<div class="col-lg-6">
 					<div class="row introduce_product_left">
+						<%
+						for (Map.Entry<Category, String> entry : categoryBanner.entrySet()) {
+						%>
 						<div class="col-lg-6 introduce_product_item">
-							<img src="../image/home/introduce_product2.jpg" alt=""> <a
-								href="/html/product.jsp" class="introduce_product_name">Nồi
-								chiên</a>
+							<img
+								src="../image/home/banner/<%=entry.getKey().getName()%>/<%=entry.getValue()%>"
+								alt="">
+							<form
+								action="../html/FindProduct?currentPage=1&nameProduct=<%=entry.getKey().getName()%>"
+								method="POST">
+								<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
+							</form>
 						</div>
 
-						<div class="col-lg-6 introduce_product_item">
-							<img src="../image/home/introduce_product3.jpg" alt=""> <a
-								href="../html/product.jsp" class="introduce_product_name">Bếp
-								điện</a>
-						</div>
-
-						<div class="col-lg-6 introduce_product_item">
-							<img src="../image/home/introduce_product4.jpg" alt=""> <a
-								href="../html/product.jsp" class="introduce_product_name">Máy
-								ép trái cây</a>
-						</div>
-
-						<div class="col-lg-6 introduce_product_item">
-							<img src="../image/home/introduce_product5.jpg" alt=""> <a
-								href="../html/product.jsp" class="introduce_product_name">Nồi
-								cơm điện</a>
-						</div>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</div>
 		</div>
 
+		<%
+		List<Product> productBestDiscount = (List) request.getAttribute("getShowProductBestDiscount");
+		%>
 		<div class="product_list" id="home">
-			<h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm nổi
-				bật</h2>
-			<div class="row mb-3"></div>
+			<h2 style="margin-bottom: 20px; cursor: default;">FLASH SALE</h2>
+			<div class="row mb-3">
+				<%
+				for (Product p : productBestDiscount) {
+				%>
+				<div class="col-lg-3 col-sm-6 col-md-4 product">
+					<i class="fa-solid fa-bag-shopping fly_to_card"></i>
+
+					<div class="product_in4">
+						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
+						<div class="product_in4_bottom">
+							<div>
+								<span class="product_in4_price"><%=p.formatNumber(p.getPrice())%>
+									₫ </span> <span style="font-size: 5px; padding-left: 5px"> -<%=p.percentSale(p.getPrice(), p.getDiscount())%>%
+								</span>
+
+								<p class="product_in4_sale_price">
+									<%=p.formatNumber(p.getPrice() - p.getDiscount())%>
+									₫
+								</p>
+							</div>
+
+							<form action="../html/wishlist?id=<%=p.getId()%>" method="POST">
+
+								<button class="product_in4_wishlist no_wishlist"
+									id="<%=p.getId()%>">
+									<i class="fa-solid fa-heart"></i>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<%
+				}
+				%>
+			</div>
 		</div>
 
+		<%@include file="../html/productSuggestion.jsp"%>
 	</div>
 	<%@include file="../html/footer.jsp"%>
 

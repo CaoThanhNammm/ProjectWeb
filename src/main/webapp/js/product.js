@@ -5,34 +5,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		_chooseOptionBrand();
 		_chooseOptionPrice();
 	}
-	_addWishList();
 	_addToCard();
+	_eventChangeStateIconheart();
 	_changePage();
+	_setStateWishlisted();
 });
 
-var elementPriceOptionList = document.querySelector(
-	".category_price_option_list"
-);
-
-var elementPriceOptionListChild = document.querySelector(
-	".category_price_option_list .category_price_option_item ul"
-);
-
-var elementPriceIconDown = document.querySelector(
-	".category_price_option_list .category_all_item_icon"
-);
-
-var elementBrandOptionList = document.querySelector(
-	".category_brand_option_list"
-);
-
-var elementBrandOptionListChild = document.querySelector(
-	".category_brand_option_list .category_brand_option_item ul"
-);
-
-var elementBrandIconDown = document.querySelector(
-	".category_brand_option_list .category_all_item_icon"
-);
 
 /* Create: Cao Thành Nam
 phương thức hiện bộ lọc cho giá khi ấn vào
@@ -111,7 +89,7 @@ function _turnOnBrand(brand, brandChild, icon) {
 /* Create: Cao Thành Nam
 phương thức này khi ấn vào trang mới thì trang cũ sẽ không đc avtive
 */
-var elementNewPageItem = document.querySelectorAll(".new_page_item");
+
 function _refreshPageItem() {
 	elementNewPageItem.forEach(function(value) {
 		value.classList.remove("padding_down");
@@ -146,13 +124,6 @@ function _chooseOptionPrice() {
 	});
 }
 
-var elementPriceOptionListChildItem = document.querySelectorAll(
-	".category_price_option_list .category_price_option_item ul li"
-);
-
-var elementBrandOptionListItem = document.querySelectorAll(
-	".category_brand_option_list .category_brand_option_item ul label"
-);
 
 /* Create: Cao Thành Nam
 phương thức set item cho bộ lọc theo thương hiệu
@@ -174,6 +145,10 @@ function _chooseOptionBrand() {
 	});
 }
 
+/*
+create: Cao Thành Nam
+phương thức lấy các thương hiệu khi ấn (bộ lọc)
+ */
 function _setChooseBrand(array) {
 	var elementSetBrand = document.querySelector(
 		".category_brand_option_default"
@@ -198,30 +173,17 @@ function _setChooseBrand(array) {
 /*
 Create: Cao Thành Nam
 Date: 19/10/2023
-Note: nếu ấn vào wishlist thì sản phẩm được thêm vào wishlist
+Note: nếu ấn vào icon yêu thích thì sẽ đổi sang màu đỏ
 */
-
-function _addWishList() {
-	var elementHeartIcon = document.querySelectorAll(".no_wishlist");
-	elementHeartIcon.forEach(function(value) {
+function _eventChangeStateIconheart() {
+	elementNoWishlist.forEach(function(value) {
 		value.onclick = function() {
 			value.classList.toggle("wishlisted");
 			value.classList.toggle("no_wishlist");
-
-			var quantityMobilt = parseInt(elemmentQuantityWishListMobile.innerText);
-			var quantity = parseInt(elemmentQuantityWishList.innerText);
-			if (value.classList.contains("wishlisted")) {
-				quantity += 1;
-				quantityMobilt += 1;
-			} else {
-				quantity -= 1;
-				quantityMobilt -= 1;
-			}
-			elemmentQuantityWishList.innerHTML = quantity;
-			elemmentQuantityWishListMobile.innerHTML = quantity;
-		};
-	});
+		}
+	})
 }
+
 
 function _addToCard() {
 	var elementAddCard = document.querySelectorAll(".product_btn button");
@@ -241,3 +203,55 @@ function _addToCard() {
 		};
 	});
 }
+
+/*
+create: Cao Thành Nam
+phương thức set trái tim màu đỏ khi thêm vào danh sách yêu thích
+ */
+function _setStateWishlisted() {
+	elementNoWishlist.forEach(function(valueNoWishlist) {
+		var idNoWishlist = valueNoWishlist.getAttribute("id");
+		elementWishlist.forEach(function(valueWishlisted) {
+			var idWishlist = valueWishlisted.getAttribute("id");
+
+			if (idNoWishlist === idWishlist) {
+				valueNoWishlist.classList.add("wishlisted");
+			}
+		})
+	})
+}
+
+var elementNoWishlist = document.querySelectorAll(".no_wishlist");
+var elementWishlist = document.querySelectorAll(".remove_one");
+var elementPriceOptionListChildItem = document.querySelectorAll(
+	".category_price_option_list .category_price_option_item ul li"
+);
+
+var elementBrandOptionListItem = document.querySelectorAll(
+	".category_brand_option_list .category_brand_option_item ul label"
+);
+
+var elementNewPageItem = document.querySelectorAll(".new_page_item");
+var elementPriceOptionList = document.querySelector(
+	".category_price_option_list"
+);
+
+var elementPriceOptionListChild = document.querySelector(
+	".category_price_option_list .category_price_option_item ul"
+);
+
+var elementPriceIconDown = document.querySelector(
+	".category_price_option_list .category_all_item_icon"
+);
+
+var elementBrandOptionList = document.querySelector(
+	".category_brand_option_list"
+);
+
+var elementBrandOptionListChild = document.querySelector(
+	".category_brand_option_list .category_brand_option_item ul"
+);
+
+var elementBrandIconDown = document.querySelector(
+	".category_brand_option_list .category_all_item_icon"
+);

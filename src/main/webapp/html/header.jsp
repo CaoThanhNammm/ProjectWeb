@@ -1,3 +1,4 @@
+<%@page import="model.Product"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.CategoriesDAO"%>
 <%@page import="database.JDBIConnectionPool"%>
@@ -70,7 +71,14 @@ Account ac = (Account) session.getAttribute("account");
 		</div>
 
 		<div class="list_wishList">
-			<i class="fa-regular fa-heart"></i> <span class="amount_wishlist">0</span>
+			<%
+			int quantityWishlist = 0;
+			if (session.getAttribute("quantityWishlist") != null) {
+				quantityWishlist = (int) session.getAttribute("quantityWishlist");
+			}
+			%>
+			<i class="fa-regular fa-heart"></i> <span class="amount_wishlist"><%=quantityWishlist%></span>
+
 		</div>
 
 		<div class="header_login_signin_mobile">
@@ -94,7 +102,7 @@ Account ac = (Account) session.getAttribute("account");
 				class="all_list_text">Tất cả danh mục</span>
 		</div>
 
-			
+
 		<ul class="navigtion-list">
 			<c:forEach items="${categories}" var="c">
 				<li class="navigtion-item">
@@ -108,7 +116,7 @@ Account ac = (Account) session.getAttribute("account");
 		</ul>
 
 		<div class="list_wishList--mobile">
-			<i class="fa-regular fa-heart"></i> <span class="amount_wishlist">0</span>
+			<i class="fa-regular fa-heart"></i> <span class="amount_wishlist"><%=quantityWishlist%></span>
 		</div>
 	</div>
 
@@ -169,50 +177,88 @@ Account ac = (Account) session.getAttribute("account");
 			<i class="fa-solid fa-xmark modal_body_quit_wishlist"></i>
 			<h3 class="wishlist_title"
 				style="margin-bottom: 0; margin-left: 12px;">Wishlist</h3>
-			<h3 class="wishlist_amount" style="margin-bottom: 0;">3</h3>
+			<h3 class="wishlist_amount" style="margin-bottom: 0;"><%=quantityWishlist%></h3>
 		</div>
 
-		<div class="wishlist_product">
-			<img src="../image/product/mayxaysinhto/mx10.jpg" alt="">
-			<div class="wishlist_product_in4">
-				<a class="wishlist_product_title">Máy xay sinh tố Kangaroo
-					KGBL1000X</a>
-				<div class="wishlist_product_right_under">
-					<i class="fa-regular fa-trash-can"></i> <span
-						class="wishlist_product_price">1200000₫</span>
-				</div>
-			</div>
-		</div>
+		<%
+		List<Product> productsWishlist = (List) session.getAttribute("productsWishlist");
+		if (productsWishlist != null) {
+			for (Product p : productsWishlist) {
+		%>
 
-		<div class="wishlist_product">
-			<img src="../image/product/binhdun/bd11.jpg" alt="">
-			<div class="wishlist_product_in4">
-				<a class="wishlist_product_title">Bình đun siêu tốc Delites 1.8
-					lít ST18S05</a>
-				<div class="wishlist_product_right_under">
-					<i class="fa-regular fa-trash-can"></i> <span
-						class="wishlist_product_price">1204303₫</span>
-				</div>
-			</div>
-		</div>
 		<div class="wishlist_product">
 			<img src="../image/product/bepga/bg12.jpg" alt="">
 			<div class="wishlist_product_in4">
-				<a class="wishlist_product_title">Bếp ga đôi Electrolux
-					ETG7256GKR</a>
+				<a class="wishlist_product_title"><%=p.getName()%></a>
 				<div class="wishlist_product_right_under">
-					<i class="fa-regular fa-trash-can"></i> <span
-						class="wishlist_product_price">2987532₫</span>
+					<button class="modal_wishlist_trash remove_one" id="<%=p.getId()%>">
+						<i class="fa-regular fa-trash-can"></i>
+					</button>
+					<div class="wishlist_product_sale">
+						<div>
+							<span class="wishlist_product_price" style="width: 100px"><%=p.formatNumber(p.getPrice())%>
+								₫</span> <span style="margin-left: 10%; font-size: 13px;">-<%=p.percentSale(p.getPrice(), p.getDiscount())%>%
+							</span>
+
+						</div>
+						<span class="wishlist_product_discount"><%=p.formatNumber(p.getPrice() - p.getDiscount())%>
+							₫</span>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="wishlist_product_footer">
-			<span>Tổng cộng</span> <span class="wishlist_product_footer_total">5000000₫</span>
-		</div>
+		<%
+		}
+		}
+		%>
 
-		<div class="wishlist_product_detail">
-			<a href="../html/wishlistDetail.jsp">XEM WISHLIST</a>
+		<div class="modal_wishlist_footer">
+
+			<div class="wishlist_product_footer">
+				<%
+				String totalPrice = "0";
+				if (session.getAttribute("totalPrice") != null) {
+					totalPrice = (String) session.getAttribute("totalPrice");
+				}
+				%>
+
+				<span>Tổng cộng</span> <span class="wishlist_product_footer_total"><%=totalPrice%>
+					₫</span>
+			</div>
+
+			<div class="modal_wishlist_trash_all">
+				<button class="modal_wishlist_trash_all_btn">Xóa tất cả</button>
+			</div>
+
+
+			<div class="wishlist_product_detail">
+				<a href="../html/wishlistDetail.jsp">XEM WISHLIST</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal_confirm_before_delete_overlay">
+		<div class="modal_confirm_before_delete">
+			<div class="confirm_before_detele_top">
+				<i class="fa-solid fa-triangle-exclamation"></i>
+				<h5 style="margin: 0" class="text_remove_all">
+					Có
+					<%=quantityWishlist%>
+					sản phẩm yêu thích. Chắc chắn xóa?
+				</h5>
+
+				<h5 style="margin: 0" class="text_remove_one">Chắc chắn xóa sản
+					phẩm này?</h5>
+			</div>
+
+			<div class="confirm_before_detele_bottom">
+				<button
+					class="confirm_before_delete_btn confirm_before_delete_btn-success">Có</button>
+
+				<button
+					class="confirm_before_delete_btn confirm_before_delete_btn-fail">Không</button>
+			</div>
 		</div>
 	</div>
 </body>
