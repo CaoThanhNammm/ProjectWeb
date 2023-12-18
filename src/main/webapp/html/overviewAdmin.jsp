@@ -17,79 +17,125 @@
 <title>Tổng quan</title>
 </head>
 
+<%@ page import="model.Account"%>
+<%
+Account moreInfo = (Account) session.getAttribute("moreInfo");
+String note = (String) request.getParameter("status");
+boolean flag = true;
+if (note != null && !note.isBlank()) {
+	switch (note) {
+	case "success":
+		note = "Cập nhật thành công";
+		break;
+	case "failed":
+		note = "Kiểm tra lại thông tin";
+		break;
+	case "change":
+		flag = false;
+		note = "";
+		break;
+	default:
+		note = "Có lỗi";
+		break;
+	}
+} else {
+	note = "";
+}
+%>
+
 <body class="d-flex">
 	<%@include file="headerAdmin.jsp"%>
 	<div id="overview">
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row mb-2">
 				<nav class="navbar navbar-expand-sm bg-dark navbar-dark container">
 					<div class="container-fluid">
-						<span class="navbar-brand">Admin</span>
+						<span class="navbar-brand">Quản trị viên</span>
 					</div>
 				</nav>
 			</div>
-
-			<div class="row ms-2 mt-2">
-				<div class="row mb-5">
-					<div class="col-2">
-						<img class="overview_avatar" src="../image/avatar/admin.jpg"
-							alt="Ảnh đại diện">
-					</div>
-
-					<div class="col-10">
-						<span class="overview_info">
-							<p>
-								Họ và tên: <b>Admin</b>
-							</p>
-						</span> <span class="overview_info">
-							<p>
-								Đại chỉ email: <b>nhom23@hcmuaf.edu.vn</b>
-							</p>
-						</span> <span class="overview_info">
-							<p>
-								Ngày sinh: <b>29 - 2 - 2003</b>
-							</p>
-						</span>
-					</div>
-				</div>
-
+			<div id="form">
 				<div class="row">
-					<span class="overview_info">
-						<p>
-							Tên công ty: <b>Tập đoàn Nông Lâm N2Q</b>
-						</p>
-					</span> <span class="overview_info">
-						<p>
-							Số điện thoại: <b>+84 123 456 789</b>
-						</p>
-					</span> <span class="overview_info">
-						<p>
-							Địa chỉ: <b>VQCR+GP6, Khu Phố 6, Thủ Đức, Thành phố Hồ Chí
-								Minh, Việt Nam</b>
-						</p>
-					</span> <span class="overview_info">
-						<p>
-							Liên kết Facebook: <b>https://www.facebook.com/</b>
-						</p>
-					</span> <span class="overview_info">
-						<p>
-							Liên kết Instagram: <b>https://www.instagram.com/</b>
-						</p>
-						<p></p>
-					</span> <span class="overview_info">
-						<p>
-							Linkedin: <b>https://www.linkedin.com/</b>
-						</p>
-					</span>
-				</div>
-
-				<div class="row mt-3">
-					<button class="btn btn-warning">Điều chỉnh</button>
+					<div class="ms-2 col">
+						<span class="text-warning"><%=note%></span>
+						<%
+						if (flag) {
+						%>
+						<div class="form-group">
+							<label for="fullName"><i class="fa-solid fa-envelope"></i>Địa
+								chỉ email</label> <input type="email" class="form-control" id="email"
+								aria-describedby="email" placeholder="Địa chỉ email"
+								name="email" value="<%=moreInfo.getEmail()%>" readonly>
+							<label for="tel"><i class="fa-solid fa-phone"></i>Số điện
+								thoại</label> <input type="tel" class="form-control" id="tel" name="tel"
+								aria-describedby="tel" placeholder="Số điện thoại"
+								value="<%=moreInfo.getPhone()%>" readonly> <label
+								for="fullName"><i class="fa-solid fa-user"></i>Họ và tên</label>
+							<input type="text" class="form-control" id="fullName"
+								name="fullName" aria-describedby="fullName"
+								placeholder="Họ và tên" value="<%=moreInfo.getFullName()%>"
+								readonly> <label for="address"><i
+								class="fa-solid fa-location-dot"></i>Địa chỉ</label> <input type="text"
+								class="form-control" id="address" aria-describedby="address"
+								placeholder="Địa chỉ" name="address"
+								value="<%=moreInfo.getAddress()%>" readonly> <label
+								for="address-fb"><i class="fa-brands fa-facebook"></i>Địa
+								chỉ liên kết Facebook</label> <input type="text" class="form-control"
+								id="address-fb" aria-describedby="address-fb"
+								placeholder="Địa chỉ liên kết Facebook" value="facebook"
+								readonly> <label for="address-fb"><i
+								class="fa-brands fa-linkedin"></i>Địa chỉ liên kết Linkedin</label> <input
+								type="text" class="form-control" id="address-linkedin"
+								aria-describedby="address-linkedin"
+								placeholder="Địa chỉ liên kết Linkedin" value="linkedin"
+								readonly> <label for="address-instagram"><i
+								class="fa-brands fa-instagram"></i>Địa chỉ liên kết Instagram</label> <input
+								type="text" class="form-control" id="address-instagram"
+								aria-describedby="address-instagram"
+								placeholder="Địa chỉ liên kết Instagram" value="instagram"
+								readonly>
+							<button class="btn btn-warning resest-password mt-2"
+								onclick="_changePass()">
+								<i class="fa-solid fa-lock"></i> <span class="mt-1">Đổi
+									mật khẩu</span>
+							</button>
+							<button type="submit" onclick="_control()"
+								class="btn btn-warning mt-2 submit" style="width: 100%;">Chỉnh
+								sửa thông tin</button>
+						</div>
+						<%
+						} else {
+						%>
+						<div class="form-group">
+							<form action="infoAdmin" method="post">
+								<input type="hidden" name="access" value="change-pass">
+								<label for="pass"><i class="fa-solid fa-envelope"></i>Nhập
+									mật khẩu cũ</label> <input type="text" class="form-control" id="pass"
+									aria-describedby="pass" placeholder="Nhập mật khẩu cũ"
+									name="pass" required> <label for="newPass"><i
+									class="fa-solid fa-envelope"></i>Nhập mật khẩu mới</label> <input
+									type="text" class="form-control" id="newPass"
+									aria-describedby="newPass" placeholder="Nhập mật khẩu mới"
+									name="newPass" required> <label for="confirmPass"><i
+									class="fa-solid fa-envelope"></i>Nhập lại mật khẩu mới</label> <input
+									type="text" class="form-control" id="confirmPass"
+									aria-describedby="confirmPass"
+									placeholder="Nhập lại mật khẩu mới" name="confirmPass" required>
+								<button class="btn btn-warning mt-2" style="width: 100%;">Hoàn
+									tất</button>
+							</form>
+						</div>
+						<%
+						}
+						%>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	<script src="../js/contact.js"></script>
+	<script src="../js/editAdmin.js"></script>
 </body>
 
 </html>

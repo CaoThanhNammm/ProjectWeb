@@ -40,7 +40,7 @@ public class Access extends HttpServlet {
 			"Xin chào, \nChúng tôi là n2q, đây là mật khẩu mới của bạn: " };
 
 	// Dùng cho việc đăng ký
-	private VerifyEmail verify;
+	private static VerifyEmail verify;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -83,6 +83,8 @@ public class Access extends HttpServlet {
 					if (ac.getStatus().isAction()) {
 						session.setAttribute("account", ac);
 						if (ac.getRole().isAdmin()) {
+							Account moreInfo = AccountDAO.getMoreInfo(ac);
+							request.getSession().setAttribute("moreInfo", moreInfo);
 							response.sendRedirect("overviewAdmin.jsp");
 						} else {
 							response.sendRedirect("../index/index.jsp");
@@ -142,7 +144,10 @@ public class Access extends HttpServlet {
 				String input = Encrypt.encrypt((String) request.getParameter("verificationCode"));
 				String status = (String) request.getSession().getAttribute("statusConfirm");
 				if (verify.isCode(input)) {
-					if (status.equals("forget")) {
+					if (status == null) {
+						verify = null;
+						response.sendRedirect("login.jsp");
+					} else if (status.equals("forget")) {
 						String mainPass = Encrypt.generateCode(12);
 						String pass = Encrypt.encrypt(mainPass);
 						String email = (String) request.getSession().getAttribute("email");
@@ -155,7 +160,7 @@ public class Access extends HttpServlet {
 						} else {
 							request.getRequestDispatcher("forget.jsp?status=failed").forward(request, response);
 						}
-					} else {
+					} else if (status.equals("register")) {
 						// Đăng ký
 						int count = AccountDAO.insertAccount(verify.getAc());
 						if (count > 0) {
@@ -163,11 +168,14 @@ public class Access extends HttpServlet {
 						} else {
 							request.getRequestDispatcher("register.jsp?status=failed").forward(request, response);
 						}
+					} else {
+						// Đổi mk của admin
+						request.getRequestDispatcher("overviewAdmin.jsp?status=change").forward(request, response);
 					}
 					request.getSession().removeAttribute("email");
 					request.getSession().removeAttribute("statusConfirm");
 				} else {
-					request.getRequestDispatcher("confirm.jsp?statusConfirm=failed").forward(request, response);
+					request.getRequestDispatcher("confirm.jsp?status=failed").forward(request, response);
 				}
 			}
 			break;
@@ -184,6 +192,16 @@ public class Access extends HttpServlet {
 				request.getRequestDispatcher("forget.jsp?status=failed").forward(request, response);
 			}
 			break;
+		case "admin": {
+			Account admin = (Account) request.getSession().getAttribute("account");
+			Account moreInfo = (Account) request.getSession().getAttribute("moreInfo");
+			String codeAdmin = MailService.sendEmail(moreInfo.getEmail(), subject[2], "Đây là mã bảo mật: ", null);
+			verify = new VerifyEmail(Encrypt.encrypt(codeAdmin), admin, exist);
+			request.getSession().setAttribute("email", moreInfo.getEmail());
+			request.getSession().setAttribute("statusConfirm", "resest-pass-admin");
+			response.sendRedirect("confirm.jsp");
+		}
+			break;
 		default:
 			session.removeAttribute("account");
 			response.sendRedirect("../index/index.jsp");
@@ -199,5 +217,4 @@ public class Access extends HttpServlet {
 		}
 		return true;
 	}
-
 }
