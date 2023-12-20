@@ -163,18 +163,19 @@
 					<ul class="new_page_list">
 						<%
 						int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-						for (int i = 1; i <= (Integer) request.getAttribute("totalPage"); i++) {
-							if (currentPage == i) {
+						List<Integer> listPage = (List) request.getAttribute("createPages");
+						for (Integer num : listPage) {
+							if (num == currentPage) {
 						%>
 						<li class="new_page_item choose_page_item"><a
-							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=i%>"><%=i%></a>
+							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=num%>"><%=num%></a>
 						</li>
 
 						<%
 						} else {
 						%>
 						<li class="new_page_item"><a
-							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=i%>"><%=i%></a>
+							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=num%>"><%=num%></a>
 						</li>
 						<%
 						}

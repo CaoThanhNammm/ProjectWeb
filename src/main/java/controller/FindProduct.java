@@ -28,6 +28,8 @@ public class FindProduct extends HttpServlet {
 	private int perPage = 20;
 	private int totalProduct;
 	private int totalPage;
+	private int pagesPerGroup = 5;
+	private List<Integer> createPages;
 	private String nameProduct;
 	private List<Product> products;
 	private List<Product> perProduct;
@@ -54,6 +56,7 @@ public class FindProduct extends HttpServlet {
 
 		currentPage = Integer.parseInt(getCurrentPageOnUrl);
 		perProduct = renderProduct(currentPage, perPage, products);
+		createPages = generatePagination(currentPage, pagesPerGroup);
 
 		// gán dữ liệu qua trang jsp
 		request.setAttribute("products", perProduct);
@@ -65,6 +68,7 @@ public class FindProduct extends HttpServlet {
 		request.setAttribute("uri", request.getRequestURI());
 		request.setAttribute("priceSortText", priceSortText);
 		request.setAttribute("brandSortText", brandSortText);
+		request.setAttribute("createPages", createPages);
 
 		if (totalProduct == 0) {
 			String name = "Rất tiếc, N2Q không tìm thấy kết quả nào phù hợp với từ khóa " + "\"" + nameProduct + "\"";
@@ -120,9 +124,9 @@ public class FindProduct extends HttpServlet {
 				brands.add(brand);
 			}
 
-			brandSortText = brandsOnUrl(brands);
+			brandSortText = brandsOnDefault(brands);
 		}
-		
+
 		if (brands.size() == 0) {
 			brandSortText = "Theo thương hiệu";
 		}
@@ -138,8 +142,6 @@ public class FindProduct extends HttpServlet {
 		// lấy ra số sản phẩm
 		totalProduct = products.size();
 
-		// lấy ra tổng số trang bằng cách lấy (tổng số sản phẩm / số sản phẩm trên 1
-		// trang)
 		totalPage = totalPage(totalProduct, perPage);
 
 		// nếu có sản phẩm thì mới bắt đầu hiện sản phẩm
@@ -154,6 +156,7 @@ public class FindProduct extends HttpServlet {
 		doGet(request, response);
 	}
 
+	// trả về object brand đã được chọn để filter
 	private Brand getBrandChoice(int id) {
 		for (Brand brand : brandsDefault) {
 			if (brand.getId() == id) {
@@ -190,8 +193,9 @@ public class FindProduct extends HttpServlet {
 
 		return perProduct;
 	}
-
-	private String brandsOnUrl(List<Brand> brands) {
+	
+	// biến danh sách thương hiệu thành chuỗi tên các thương hiệu
+	private String brandsOnDefault(List<Brand> brands) {
 		String res = "";
 
 		for (int i = 0; i < brands.size(); i++) {
@@ -205,8 +209,25 @@ public class FindProduct extends HttpServlet {
 		return res;
 	}
 
-	// trang tri lai phan thuong hieu giong dmx
-	// dieu chinh active block co important
-	// sau do cho nam ngang
+	// trả về danh sách chứa các trang mà hiển thị lên màn hình
+	// tham số là trang hiện tại và 1 lần hiển thị bao nhiêu trang
+	// ví dụ: trang hiện tại là 3 thì hiển thị là 1 2 3 4 5 6
+	// từ trang số 4 trở đi sẽ k hiện trang số 1 cho nên từ trang 4 trở đi thì có
+	// thêm trang số 1
 
+	public List<Integer> generatePagination(int currentPage, int pagesPerGroup) {
+		List<Integer> res = new ArrayList<>();
+
+		if (currentPage > 3) {
+			res.add(1);
+		}
+
+		pagesPerGroup = (pagesPerGroup - 1) / 2;
+		for (int i = currentPage - pagesPerGroup; i <= currentPage + pagesPerGroup; i++) {
+			if (i > 0 && i <= totalPage) {
+				res.add(i);
+			}
+		}
+		return res;
+	}
 }
