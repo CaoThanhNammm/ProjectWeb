@@ -65,8 +65,8 @@
 						src="../image/home/banner/<%=entry.getKey().getName()%>/<%=entry.getValue()%>"
 						alt="">
 					<form
-						action="../html/FindProduct?currentPage=1&nameProduct=<%=entry.getKey().getName()%>"
-						method="POST">
+						action="../html/FindProduct?nameProduct=<%=entry.getKey().getName()%>&&currentPage=1"
+						method="GET">
 						<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 					</form>
 				</div>
@@ -86,7 +86,7 @@
 								src="../image/home/banner/<%=entry.getKey().getName()%>/<%=entry.getValue()%>"
 								alt="">
 							<form
-								action="../html/FindProduct?currentPage=1&nameProduct=<%=entry.getKey().getName()%>"
+								action="../html/FindProduct?nameProduct=<%=entry.getKey().getName()%>&&currentPage=1"
 								method="POST">
 								<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 							</form>

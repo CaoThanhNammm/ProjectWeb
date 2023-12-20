@@ -43,6 +43,17 @@ body {
 	font-size: 16px;
 }
 
+.modal_overlay_search_opacity {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0);
+	z-index: 3;
+	display: none;
+}
+
 ::placeholder {
 	font-size: 14px;
 	font-weight: 600;
@@ -57,6 +68,8 @@ body {
 	background-color: white;
 	box-shadow: 0px 1px 6px gray;
 	flex-direction: column;
+	z-index: 4;
+	display: none;
 }
 
 .products_suggestion_item {
@@ -277,9 +290,10 @@ body {
 	justify-content: end;
 }
 
-.modal_wishlist_footer{
+.modal_wishlist_footer {
 	padding: 20px 20px;
 }
+
 .wishlist_product_footer_total {
 	margin-left: 6px;
 }
@@ -407,7 +421,7 @@ body {
 	bottom: 0;
 	background-color: rgba(46, 44, 44, 0.5);
 	display: none;
-	z-index: 3;
+	z-index: 4;
 }
 
 .modal_body {
@@ -419,7 +433,7 @@ body {
 	overflow-y: auto;
 	background-color: var(--white-primary);
 	transition: 0.3s ease-out;
-	z-index: 4;
+	z-index: 5;
 }
 
 .category_all_list {
@@ -523,7 +537,7 @@ body {
 
 
 /* start: modal confirm*/
-.modal_confirm_before_delete_overlay{
+.modal_confirm_before_delete_overlay {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -536,26 +550,26 @@ body {
 	z-index: 10;
 }
 
-.modal_confirm_before_delete{
+.modal_confirm_before_delete {
 	background-color: var(--white-primary);
 	border-radius: 10px;
 	padding: 20px 30px 10px 30px;
 }
 
-.confirm_before_detele_top{
+.confirm_before_detele_top {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
-.confirm_before_detele_bottom{
+.confirm_before_detele_bottom {
 	display: flex;
 	justify-content: end;
 	align-items: center;
 	margin-top: 20px;
 }
 
-.confirm_before_delete_btn{
+.confirm_before_delete_btn {
 	border: none;
 	padding: 4px 24px;
 	margin: 4px;
@@ -564,16 +578,18 @@ body {
 	background-color: var(--yellow-primary);
 }
 
-.confirm_before_delete_btn:hover{
+.confirm_before_delete_btn:hover {
 	opacity: 0.7;
 }
 
-.modal_confirm_before_delete i{
+.modal_confirm_before_delete i {
 	color: var(--red-second);
 	margin-right: 27px;
 	font-size: 37px;
 }
-.text_remove_all, .text_remove_one{
+
+.text_remove_all,
+.text_remove_one {
 	display: none;
 }
 

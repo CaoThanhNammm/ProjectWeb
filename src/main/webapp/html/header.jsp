@@ -34,6 +34,7 @@ Account ac = (Account) session.getAttribute("account");
         Date: 18/10/2023
         Note: header của trang web 
     -->
+	<div class="modal_overlay_search_opacity"></div>
 	<div class="header">
 		<a href="../index/index.jsp" class="logo_page"><img
 			src="../image/general/logo.png" alt=""></a>
@@ -47,7 +48,7 @@ Account ac = (Account) session.getAttribute("account");
 			</button>
 
 			<!-- phần hiên thị ra danh sách sản phẩm đang tìm kiếm -->
-			<div class="tab_suggestion_products unactive"></div>
+			<div class="tab_suggestion_products"></div>
 		</div>
 
 

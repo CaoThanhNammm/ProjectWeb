@@ -2,10 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	if (document.querySelector(".category_product")) {
 		_clickPrice();
 		_clickBrand();
-		_chooseOptionBrand();
-		_chooseOptionPrice();
+		_checkChoiceBrand();
+		_clickOutsideFilter();
 	}
-	_addToCard();
 	_eventChangeStateIconheart();
 	_changePage();
 	_setStateWishlisted();
@@ -23,11 +22,7 @@ function _clickPrice() {
 			elementPriceOptionListChild,
 			elementPriceIconDown
 		);
-		_turnOffBrand(
-			elementBrandOptionList,
-			elementBrandOptionListChild,
-			elementBrandIconDown
-		);
+
 	};
 }
 
@@ -41,11 +36,6 @@ function _clickBrand() {
 			elementBrandOptionList,
 			elementBrandOptionListChild,
 			elementBrandIconDown
-		);
-		_turnOffPrice(
-			elementPriceOptionList,
-			elementPriceOptionListChild,
-			elementPriceIconDown
 		);
 	};
 }
@@ -66,6 +56,8 @@ function _turnOnPrice(price, priceChild, icon) {
 	price.classList.toggle("border_option_list");
 	priceChild.classList.toggle("active");
 	icon.classList.toggle("rotate_icon");
+	elementModalOverlayOpacity.classList.toggle("active");
+	console.log("run")
 }
 
 /* Create: Cao Thành Nam
@@ -73,7 +65,7 @@ phương thức tắt sort theo brand
 */
 function _turnOffBrand(brand, brandChild, icon) {
 	brand.classList.remove("border_option_list");
-	brandChild.classList.remove("active");
+	brandChild.classList.remove("active_filter");
 	icon.classList.remove("rotate_icon");
 }
 
@@ -82,8 +74,28 @@ phương thức hiện sort theo brand
 */
 function _turnOnBrand(brand, brandChild, icon) {
 	brand.classList.toggle("border_option_list");
-	brandChild.classList.toggle("active");
+	brandChild.classList.toggle("active_filter");
 	icon.classList.toggle("rotate_icon");
+	elementModalOverlayOpacity.classList.toggle("active");
+}
+
+/* Create: Cao Thành Nam
+phương thức này khi ấn vào bất kỳ chỗ nào trên trang thì bộ lọc sẽ tắt
+*/
+function _clickOutsideFilter() {
+	elementModalOverlayOpacity.onclick = function() {
+		_turnOffBrand(
+			elementBrandOptionList,
+			elementBrandOptionListChild,
+			elementBrandIconDown
+		);
+		_turnOffPrice(
+			elementPriceOptionList,
+			elementPriceOptionListChild,
+			elementPriceIconDown
+		);
+		elementModalOverlayOpacity.classList.remove("active");
+	}
 }
 
 /* Create: Cao Thành Nam
@@ -110,65 +122,6 @@ function _changePage() {
 	});
 }
 
-/* Create: Cao Thành Nam
-phương thức set item cho bộ lọc theo giá
-*/
-function _chooseOptionPrice() {
-	elementPriceOptionListChildItem.forEach(function(value) {
-		var elementShowChoose = value.parentElement.parentElement.querySelector(
-			".category_price_option_default"
-		);
-		value.onclick = function() {
-			elementShowChoose.innerText = value.innerText;
-		};
-	});
-}
-
-
-/* Create: Cao Thành Nam
-phương thức set item cho bộ lọc theo thương hiệu
-*/
-var re = [];
-function _chooseOptionBrand() {
-	elementBrandOptionListItem.forEach(function(value) {
-		value.onchange = function(e) {
-			elementBrandOptionListChild.classList.add("active");
-			if (e.target.checked) {
-				re.push(e.target.name);
-			} else {
-				re = re.filter(function(value) {
-					return value !== e.target.name;
-				});
-			}
-			_setChooseBrand(re);
-		};
-	});
-}
-
-/*
-create: Cao Thành Nam
-phương thức lấy các thương hiệu khi ấn (bộ lọc)
- */
-function _setChooseBrand(array) {
-	var elementSetBrand = document.querySelector(
-		".category_brand_option_default"
-	);
-
-	if (array.length === 0) {
-		console.log("default");
-		elementSetBrand.innerText = "Theo thương hiệu";
-	} else {
-		elementSetBrand.innerText = "";
-	}
-
-	array.forEach(function(value, index) {
-		if (index === array.length - 1) {
-			elementSetBrand.innerText += value;
-		} else {
-			elementSetBrand.innerText += value + "-";
-		}
-	});
-}
 
 /*
 Create: Cao Thành Nam
@@ -184,25 +137,6 @@ function _eventChangeStateIconheart() {
 	})
 }
 
-
-function _addToCard() {
-	var elementAddCard = document.querySelectorAll(".product_btn button");
-	var elemmentQuantity = document.querySelector(".header_cart_amount_product");
-	elementAddCard.forEach(function(value) {
-		value.onclick = function() {
-			var elementImgProduct =
-				value.parentElement.parentElement.querySelector(".fly_to_card");
-			elementImgProduct.classList.add("animation_add_to_card");
-
-			elemmentQuantity.innerHTML =
-				parseInt(elemmentQuantity.innerText) + 1 + "";
-
-			setTimeout(function() {
-				elementImgProduct.classList.remove("animation_add_to_card");
-			}, 800);
-		};
-	});
-}
 
 /*
 create: Cao Thành Nam
@@ -221,12 +155,38 @@ function _setStateWishlisted() {
 	})
 }
 
+
+/* Create: Cao Thành Nam
+phương thức này khi chọn thương hiệu nào thì sẽ border hình ảnh của thương hiệu đó
+*/
+function _checkChoiceBrand() {
+	var brands = elementSetBrand.innerText.split(', ');
+	brands.forEach(function(nameBrand) {
+		elementBrandOptionListItemImg.forEach(function(brandImg) {
+			if (nameBrand === brandImg.getAttribute("id")) {
+				brandImg.classList.toggle("choose_page_item")
+			}
+		})
+	})
+}
+
+var elementModalOverlayOpacity = document.querySelector('.modal_overlay_filter_opacity');
+var elementSetBrand = document.querySelector(
+	".category_brand_option_default"
+);
+
 var elementNoWishlist = document.querySelectorAll(".no_wishlist");
 var elementWishlist = document.querySelectorAll(".remove_one");
 var elementPriceOptionListChildItem = document.querySelectorAll(
 	".category_price_option_list .category_price_option_item ul li"
 );
 
+var elementShowChoose = document.querySelector(
+	".category_price_option_default"
+);
+var elementBrandOptionListItemImg = document.querySelectorAll(
+	".category_brand_option_item_img"
+);
 var elementBrandOptionListItem = document.querySelectorAll(
 	".category_brand_option_list .category_brand_option_item ul label"
 );

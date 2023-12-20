@@ -1,5 +1,10 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
+
 /**
  * Create: Nguyễn Khải Nam Date: 30/11/2023 Note: Dành cho các nhãn hàng
  */
@@ -11,6 +16,17 @@ public class Brand {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+
+	public Brand() {
+	}
+
+	public String getImgbrand() throws IOException {
+		File folder = new File("Web\\ProjectWeb\\src\\main\\webapp\\image\\product\\filter\\" + this.id);
+		
+		File[] files = folder.listFiles();
+
+		return files[files.length - 1].getName();
 	}
 
 	public int getId() {
@@ -33,6 +49,22 @@ public class Brand {
 	public String toString() {
 		return "Brand [id=" + id + ", name=" + name + "]";
 	}
-	
-	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Brand other = (Brand) obj;
+		return id == other.id && Objects.equals(name, other.name);
+	}
+
 }

@@ -1,8 +1,11 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jdbi.v3.core.Handle;
 
+import dao.BrandDAO;
 import dao.ProductDAO;
 import database.JDBIConnectionPool;
+import model.Brand;
 import model.Product;
 
 @WebServlet("/html/FindProduct")
@@ -25,6 +30,16 @@ public class FindProduct extends HttpServlet {
 	private int totalPage;
 	private String nameProduct;
 	private List<Product> products;
+	private List<Product> perProduct;
+	private List<Brand> brandsDefault;
+	private FilterStrategy strategy;
+	private String priceSortText;
+	private String typeOfSort;
+	private String brandSortText;
+	private List<Brand> brands;
+	private IFilterByPrice iFilterByPrice;
+	private IFilterByBrand iFilterByBrand;
+	private int brandID;
 
 	public FindProduct() {
 		super();
@@ -35,11 +50,27 @@ public class FindProduct extends HttpServlet {
 		response.setContentType("text/html");
 
 		// xuất ra sản phẩm dựa vào số trang hiện tại đang đứng
-		List<Product> perProduct = renderProduct(currentPage, perPage, products);
+		String getCurrentPageOnUrl = request.getParameter("currentPage");
+
+		currentPage = Integer.parseInt(getCurrentPageOnUrl);
+		perProduct = renderProduct(currentPage, perPage, products);
 
 		// gán dữ liệu qua trang jsp
 		request.setAttribute("products", perProduct);
 		request.setAttribute("totalPage", totalPage);
+		request.setAttribute("brands", brandsDefault);
+		request.setAttribute("nameProduct", nameProduct);
+		request.setAttribute("typeOfSort", typeOfSort);
+		request.setAttribute("chooseBrands", brandSortText);
+		request.setAttribute("uri", request.getRequestURI());
+		request.setAttribute("priceSortText", priceSortText);
+		request.setAttribute("brandSortText", brandSortText);
+
+		if (totalProduct == 0) {
+			String name = "Rất tiếc, N2Q không tìm thấy kết quả nào phù hợp với từ khóa " + "\"" + nameProduct + "\"";
+			request.setAttribute("notify", name);
+			request.setAttribute("totalPage", 0);
+		}
 
 		// đẩy dữ liệu qua trang jsp và chuyển trang
 		request.getRequestDispatcher("/html/product.jsp").forward(request, response);
@@ -48,17 +79,55 @@ public class FindProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
-		
+
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
 		ProductDAO productDAO = new ProductDAO(connection);
+		BrandDAO brandDAO = new BrandDAO(connection);
 
 		// lấy ra tên sản phẩm mà người dùng nhập và xóa khoảng cách dư ở đầu cuối
 		nameProduct = request.getParameter("nameProduct").trim();
 
 		// lấy query ra những sản phẩm giống tên
-		products = productDAO.findProductByNameLimitN(nameProduct, 20);
+		products = productDAO.findProductByNameLimitN(nameProduct);
+		// lấy ra tất cả thương hiệu của sản phẩm
+		brandsDefault = brandDAO.getBrandOfProduct(nameProduct);
 		JDBIConnectionPool.get().releaseConnection(connection);
+
+		priceSortText = "Theo mức giá";
+
+		typeOfSort = request.getParameter("order");
+
+		if (typeOfSort == null && request.getParameter("brands") == null) {
+			brands = new ArrayList<>();
+			iFilterByPrice = new FilterEmpty();
+			iFilterByBrand = new FilterEmptyBrands();
+		} else if (typeOfSort.equals("0")) {
+			iFilterByPrice = new FilterPriceDESC();
+			priceSortText = "Từ cao đến thấp";
+		} else if (typeOfSort.equals("1")) {
+			iFilterByPrice = new FilterPriceASC();
+			priceSortText = "Từ thấp đến cao";
+		}
+
+		if (request.getParameter("brands") != null) {
+			iFilterByBrand = new FilterBrands();
+			brandID = Integer.parseInt(request.getParameter("brands"));
+			Brand brand = getBrandChoice(brandID);
+			if (brands.contains(brand)) {
+				brands.remove(brand);
+			} else {
+				brands.add(brand);
+			}
+
+			brandSortText = brandsOnUrl(brands);
+		}
+		if (brands.size() == 0) {
+			brandSortText = "Theo thương hiệu";
+		}
+
+		strategy = new FilterStrategy(iFilterByPrice, iFilterByBrand);
+		products = strategy.filter(nameProduct, brands);
 
 		// lấy trang hiện tại thông qua tham số currentPage trên url, mặc định là trang
 		// đầu tiên
@@ -71,26 +140,26 @@ public class FindProduct extends HttpServlet {
 		// lấy ra tổng số trang bằng cách lấy (tổng số sản phẩm / số sản phẩm trên 1
 		// trang)
 		totalPage = totalPage(totalProduct, perPage);
+
 		// nếu có sản phẩm thì mới bắt đầu hiện sản phẩm
-		if (totalProduct > 0) {
-			// lấy ra danh sách sản phẩm từ trang hiện tại
-			/*
-			 * vd: trang hiện tại là 1 thì lấy từ 0 đến 19 trang 2 thì lấy từ 20 đến 39
-			 */
-			List<Product> perProduct = renderProduct(currentPage, perPage, products);
 
-			// gán dữ liệu qua cho trang jsp
-			request.setAttribute("products", perProduct);
-			request.setAttribute("totalPage", totalPage);
-
-		} else {
-			String name = "Rất tiếc, N2Q không tìm thấy kết quả nào phù hợp với từ khóa " + "\"" + nameProduct + "\"";
-			request.setAttribute("notify", name);
-			request.setAttribute("totalPage", 0);
-		}
+		// lấy ra danh sách sản phẩm từ trang hiện tại
+		/*
+		 * vd: trang hiện tại là 1 thì lấy từ 0 đến 19 trang 2 thì lấy từ 20 đến 39
+		 */
+		perProduct = renderProduct(currentPage, perPage, products);
 
 		// sau khi lấy tất cả dữ liệu cần thiết thì dùng method doGet để xử lý dữ liệu
 		doGet(request, response);
+	}
+
+	private Brand getBrandChoice(int id) {
+		for (Brand brand : brandsDefault) {
+			if (brand.getId() == id) {
+				return brand;
+			}
+		}
+		return null;
 	}
 
 	// lấy ra tổng số trang, 2 tham số là tổng số sản phẩm và số sản phẩm trên 1
@@ -120,5 +189,24 @@ public class FindProduct extends HttpServlet {
 
 		return perProduct;
 	}
+
+	private String brandsOnUrl(List<Brand> brands) {
+		String res = "";
+
+		for (int i = 0; i < brands.size(); i++) {
+			if (i == brands.size() - 1) {
+				res += brands.get(i).getName();
+				break;
+			}
+
+			res += brands.get(i).getName() + ", ";
+		}
+		return res;
+	}
+	
+	// trang tri lai phan thuong hieu giong dmx
+	// dieu chinh active block co important
+	// sau do cho nam ngang
+
 
 }

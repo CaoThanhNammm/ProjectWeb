@@ -55,7 +55,8 @@
 								</p>
 							</div>
 
-							<button class="product_in4_wishlist wishlisted" id= "<%=p.getId()%>">
+							<button class="product_in4_wishlist wishlisted"
+								id="<%=p.getId()%>">
 								<i class="fa-solid fa-heart"></i>
 							</button>
 						</div>
@@ -105,7 +106,8 @@
 							</div>
 
 							<form action="../html/wishlist?id=<%=p.getId()%>" method="POST">
-								<button class="product_in4_wishlist no_wishlist" id="<%=p.getId() %>">
+								<button class="product_in4_wishlist no_wishlist"
+									id="<%=p.getId()%>">
 									<i class="fa-solid fa-heart"></i>
 								</button>
 							</form>
@@ -118,29 +120,7 @@
 			</div>
 		</div>
 
-		<!-- sang trang mới -->
-		<div class="new_page">
-			<div class="row">
-				<div class="col-lg-12">
-					<ul class="new_page_list">
-						<li class="new_page_item new_page_item_previous"><a> <i
-								class="fa-solid fa-angle-left"
-								style="margin-right: 3px; text-align: center;"></i> Previous
-						</a></li>
-						<li class="new_page_item"><a>1</a></li>
-						<li class="new_page_item"><a>2</a></li>
-						<li class="new_page_item"><a>3</a></li>
-						<li class="new_page_item"><a>4</a></li>
-						<li class="new_page_item"><a>5</a></li>
-						<li class="new_page_item"><a>6</a></li>
-						<li class="new_page_item new_page_item_next"><a> Next <i
-								class="fa-solid fa-angle-right"
-								style="margin-left: 3px; text-align: center;"></i>
-						</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+
 
 		<%@include file="footer.jsp"%>
 	</div>

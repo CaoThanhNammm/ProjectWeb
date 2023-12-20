@@ -66,6 +66,14 @@ public class Product {
 		this.status = new Status(statusID, statusName);
 	}
 
+	public Product(int id, String name, int price, int discount, Brand brand) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.discount = discount;
+		this.brand = brand;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -211,13 +219,12 @@ public class Product {
 		String roundedNumber = decimalFormat.format(percent);
 		return roundedNumber;
 	}
+	
+
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", brand=" + brand + ", description=" + description
-				+ ", category=" + category + ", price=" + price + ", discount=" + discount + ", lastUpdated="
-				+ lastUpdated + ", amountSold=" + amountSold + ", status=" + status + ", models=" + models + ", imgs="
-				+ imgs + ", attributes=" + attributes + ", rates=" + rates + "]";
+		return id + "";
 	}
 
 }
