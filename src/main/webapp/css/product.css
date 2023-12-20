@@ -61,9 +61,10 @@
 	font-size: 17px;
 }
 
-.category_brand{
+.category_brand {
 	margin-left: 10%;
 }
+
 .category_brand span,
 .category_price span {
 	font-size: 18px;
@@ -296,12 +297,10 @@
 .product_in4_wishlist i {
 	font-size: 20px;
 }
-
-.product_in4_wishlist {
+.product_in4_wishlist{
 	border: none;
 	background-color: var(--white-primary);
 }
-
 .product_in4_price {
 	text-decoration: line-through;
 }
@@ -325,6 +324,11 @@
 .wishlisted {
 	color: var(--red-second);
 	transition: 0.2s ease;
+}
+
+.add_wishlist {
+	border: none;
+	background-color: var(--white-primary);
 }
 
 .add_wishlist {

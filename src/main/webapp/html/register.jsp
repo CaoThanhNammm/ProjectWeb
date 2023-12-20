@@ -79,7 +79,7 @@ if (note != null && !note.isBlank()) {
 							</div>
 							<div class="access_group">
 								<i class="fa-solid fa-phone access_group_icon"></i> <input
-									type="number" placeholder="*Số điện thoại" name="phone"
+									type="tel" placeholder="*Số điện thoại" name="phone"
 									required>
 							</div>
 							<div class="access_group">

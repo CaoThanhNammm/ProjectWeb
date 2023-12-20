@@ -22,7 +22,6 @@ function _clickPrice() {
 			elementPriceOptionListChild,
 			elementPriceIconDown
 		);
-
 	};
 }
 
@@ -56,8 +55,9 @@ function _turnOnPrice(price, priceChild, icon) {
 	price.classList.toggle("border_option_list");
 	priceChild.classList.toggle("active");
 	icon.classList.toggle("rotate_icon");
+
 	elementModalOverlayOpacity.classList.toggle("active");
-	console.log("run")
+
 }
 
 /* Create: Cao Thành Nam
@@ -65,7 +65,9 @@ phương thức tắt sort theo brand
 */
 function _turnOffBrand(brand, brandChild, icon) {
 	brand.classList.remove("border_option_list");
+
 	brandChild.classList.remove("active_filter");
+
 	icon.classList.remove("rotate_icon");
 }
 
@@ -96,6 +98,7 @@ function _clickOutsideFilter() {
 		);
 		elementModalOverlayOpacity.classList.remove("active");
 	}
+
 }
 
 /* Create: Cao Thành Nam
@@ -122,7 +125,6 @@ function _changePage() {
 	});
 }
 
-
 /*
 Create: Cao Thành Nam
 Date: 19/10/2023
@@ -136,7 +138,6 @@ function _eventChangeStateIconheart() {
 		}
 	})
 }
-
 
 /*
 create: Cao Thành Nam

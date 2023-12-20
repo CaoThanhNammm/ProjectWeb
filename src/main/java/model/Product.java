@@ -219,8 +219,6 @@ public class Product {
 		String roundedNumber = decimalFormat.format(percent);
 		return roundedNumber;
 	}
-	
-
 
 	@Override
 	public String toString() {

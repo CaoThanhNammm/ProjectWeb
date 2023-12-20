@@ -80,13 +80,13 @@ public class FindProduct extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 
+		// lấy ra tên sản phẩm mà người dùng nhập và xóa khoảng cách dư ở đầu cuối
+		nameProduct = request.getParameter("nameProduct").trim();
+
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
 		ProductDAO productDAO = new ProductDAO(connection);
 		BrandDAO brandDAO = new BrandDAO(connection);
-
-		// lấy ra tên sản phẩm mà người dùng nhập và xóa khoảng cách dư ở đầu cuối
-		nameProduct = request.getParameter("nameProduct").trim();
 
 		// lấy query ra những sản phẩm giống tên
 		products = productDAO.findProductByNameLimitN(nameProduct);
@@ -122,6 +122,7 @@ public class FindProduct extends HttpServlet {
 
 			brandSortText = brandsOnUrl(brands);
 		}
+		
 		if (brands.size() == 0) {
 			brandSortText = "Theo thương hiệu";
 		}
@@ -203,10 +204,9 @@ public class FindProduct extends HttpServlet {
 		}
 		return res;
 	}
-	
+
 	// trang tri lai phan thuong hieu giong dmx
 	// dieu chinh active block co important
 	// sau do cho nam ngang
-
 
 }

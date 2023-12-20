@@ -67,6 +67,7 @@
 					<form
 						action="../html/FindProduct?nameProduct=<%=entry.getKey().getName()%>&&currentPage=1"
 						method="GET">
+
 						<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 					</form>
 				</div>
@@ -87,7 +88,7 @@
 								alt="">
 							<form
 								action="../html/FindProduct?nameProduct=<%=entry.getKey().getName()%>&&currentPage=1"
-								method="POST">
+								method="GET">
 								<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 							</form>
 						</div>

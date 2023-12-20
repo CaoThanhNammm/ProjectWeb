@@ -55,6 +55,7 @@
 								</p>
 							</div>
 
+
 							<button class="product_in4_wishlist wishlisted"
 								id="<%=p.getId()%>">
 								<i class="fa-solid fa-heart"></i>
@@ -120,10 +121,9 @@
 			</div>
 		</div>
 
-
-
 		<%@include file="footer.jsp"%>
 	</div>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"

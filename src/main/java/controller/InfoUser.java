@@ -63,11 +63,11 @@ public class InfoUser extends HttpServlet {
 				if (isNotNull(name, email, phone, gender, dob) && AccountDAO.isEmail(email)
 						&& AccountDAO.isPhoneNumber(phone)) {
 					if (AccountDAO.updateAccount(ID, ac.getId(), FULL_NAME, name)
-							|| AccountDAO.updateAccount(ID, ac.getId(), EMAIL, email)
-							|| AccountDAO.updateAccount(ID, ac.getId(), PHONE, phone)
-							|| AccountDAO.updateAccount(ID, ac.getId(), ADDRESS, address)
-							|| AccountDAO.updateAccount(ID, ac.getId(), GENDER, Gender.getGender(gender).getId() + "")
-							|| AccountDAO.updateAccount(ID, ac.getId(), DOB, dob)) {
+							&& AccountDAO.updateAccount(ID, ac.getId(), EMAIL, email)
+							&& AccountDAO.updateAccount(ID, ac.getId(), PHONE, phone)
+							&& AccountDAO.updateAccount(ID, ac.getId(), ADDRESS, address)
+							&& AccountDAO.updateAccount(ID, ac.getId(), GENDER, Gender.getGender(gender).getId() + "")
+							&& AccountDAO.updateAccount(ID, ac.getId(), DOB, dob)) {
 						acInfo.setFullName(name);
 						acInfo.setEmail(email);
 						acInfo.setPhone(phone);

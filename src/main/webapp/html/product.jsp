@@ -31,9 +31,11 @@
 <body>
 	<div id="page">
 		<%@include file="header.jsp"%>
+
 		<%@include file="../html/sliderShow.jsp"%>
-	
+
 		<div class="modal_overlay_filter_opacity"></div>
+
 		<!-- phần lọc -->
 		<div class="category_product container">
 			<div class="category_price">
@@ -65,8 +67,8 @@
 					</ul>
 				</div>
 			</div>
-			
-			
+
+
 			<div class="category_brand">
 				<span>Thương hiệu</span>
 
@@ -75,7 +77,7 @@
 						<li class="category_brand_option_item category_option_item">
 							<p class="category_brand_option_default"><%=request.getAttribute("brandSortText")%></p>
 							<i class="fa-solid fa-chevron-down category_all_item_icon"></i>
-							
+
 							<ul>
 								<%
 								List<Brand> brands = (List) request.getAttribute("brands");
@@ -88,7 +90,8 @@
 										<button>
 
 											<img class="category_brand_option_item_img" alt=""
-												src="../image/product/filter/<%=brand.getId()%>/<%=brand.getImgbrand()%>" id ="<%=brand.getName()%>">
+												src="../image/product/filter/<%=brand.getId()%>/<%=brand.getImgbrand()%>"
+												id="<%=brand.getName()%>">
 
 										</button>
 									</form>
@@ -131,6 +134,7 @@
 							</div>
 							<form action="../html/wishlist?id=<%=p.getId()%>" method="POST">
 
+
 								<button class="product_in4_wishlist no_wishlist"
 									id="<%=p.getId()%>">
 									<i class="fa-solid fa-heart"></i>
@@ -163,12 +167,15 @@
 							if (currentPage == i) {
 						%>
 						<li class="new_page_item choose_page_item"><a
-							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=i%>"><%=i%></a></li>
+							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=i%>"><%=i%></a>
+						</li>
+
 						<%
 						} else {
 						%>
 						<li class="new_page_item"><a
-							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=i%>"><%=i%></a></li>
+							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=i%>"><%=i%></a>
+						</li>
 						<%
 						}
 						}
