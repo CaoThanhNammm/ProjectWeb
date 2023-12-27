@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import org.jdbi.v3.core.Handle;
 
+import database.JDBIConnectionPool;
 import model.Brand;
 import model.Product;
 
@@ -210,12 +212,50 @@ public class ProductDAO {
 		return res;
 	}
 
-	public List<Product> getProductDefaultByBrand(String findNameProduct) {
+	// lấy tất cả thương hiệu của tất sản phẩm, tên sản phẩm là tham số
+	public List<Product> getProductDefaultByBrand(String name) {
 		List<Product> products = handle.select(
 				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ?)")
-				.bind(0, "%" + findNameProduct + "%").mapToBean(Product.class).list();
+				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
 
 		return products;
+	}
+
+	// lấy ra sản phẩm có giá trong khoảng giá cho phép
+	public List<Product> getProductsInRangePrice(String name, int from, int to) {
+		List<Product> products = handle.select(
+				"SELECT id, name, price, discount FROM products WHERE name LIKE ? and (price - discount) >= ? and (price - discount) <= ?")
+				.bind(0, "%" + name + "%").bind(1, from).bind(2, to).mapToBean(Product.class).list();
+		return products;
+	}
+
+	public int getMinPrice(String name) throws SQLException {
+		String sql = "SELECT MIN(price - discount) as price FROM products WHERE name LIKE ?";
+
+		PreparedStatement statement = handle.getConnection().prepareStatement(sql);
+		statement.setString(1, "%" + name + "%");
+		int res = 0;
+		ResultSet rs = statement.executeQuery();
+
+		while (rs.next()) {
+			res = rs.getInt("price");
+		}
+		return res;
+	}
+
+	public int getMaxPrice(String name) throws SQLException {
+
+		String sql = "SELECT MAX(price - discount) as price FROM products WHERE name LIKE ?";
+
+		PreparedStatement statement = handle.getConnection().prepareStatement(sql);
+		statement.setString(1, "%" + name + "%");
+		int res = 0;
+		ResultSet rs = statement.executeQuery();
+
+		while (rs.next()) {
+			res = rs.getInt("price");
+		}
+		return res;
 	}
 
 }

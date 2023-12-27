@@ -1,8 +1,11 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -72,6 +75,17 @@ public class Product {
 		this.price = price;
 		this.discount = discount;
 		this.brand = brand;
+	}
+
+	public List<String> getImgsProduct(String realPath) throws IOException {
+		File src = new File(realPath);
+		List<String> res = new ArrayList<>();
+
+		for (File file : src.listFiles()) {
+			res.add(file.getName());
+		}
+
+		return res;
 	}
 
 	public void setId(int id) {

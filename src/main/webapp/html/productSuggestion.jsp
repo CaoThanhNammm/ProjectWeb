@@ -26,8 +26,7 @@
 			for (Product p : productRecommend) {
 			%>
 			<div class="col-lg-3 col-sm-6 col-md-4 product">
-				<i class="fa-solid fa-bag-shopping fly_to_card"></i>
-
+				
 				<div class="product_in4">
 					<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
 					<div class="product_in4_bottom">

@@ -51,7 +51,7 @@
 									<form
 										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=1"
 										method="POST">
-										<button>Từ thấp đến cao</button>
+										<button class="filter_price_asc_btn">Từ thấp đến cao</button>
 									</form>
 								</li>
 
@@ -59,9 +59,52 @@
 									<form
 										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=0"
 										method="POST">
-										<button>Từ cao đến thấp</button>
+										<button class="filter_price_desc_btn">Từ cao đến thấp</button>
 									</form>
 								</li>
+
+								<li>
+									<form
+										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=2"
+										method="POST">
+										<div class="price_input">
+											<div class="price_input_left">
+												<input type="number" class="price_input_left-min"
+													value="<%=request.getAttribute("minPriceCurrent")%>"
+													name="range_min">
+											</div>
+
+											<div class="price_input_right">
+												<input type="number" class="price_input_right-max"
+													value="<%=request.getAttribute("maxPriceCurrent")%>"
+													name="range_max">
+											</div>
+										</div>
+
+										<div style="padding: 0 10%">
+											<div class="slider_price">
+												<div class="slider_price_progress"></div>
+											</div>
+											<div class="range_input">
+												<input type="range" class="range_min"
+													min="<%=request.getAttribute("minPrice")%>"
+													max="<%=request.getAttribute("maxPrice")%>"
+													value="<%=request.getAttribute("minPriceCurrent")%>">
+
+												<input type="range" class="range_max"
+													min="<%=request.getAttribute("minPrice")%>"
+													max="<%=request.getAttribute("maxPrice")%>"
+													value="<%=request.getAttribute("maxPriceCurrent")%>">
+											</div>
+										</div>
+
+										<div style="display: flex; justify-content: end">
+											<button class="filter_range_btn">Lọc</button>
+										</div>
+									</form>
+								</li>
+
+
 							</ul>
 						</li>
 					</ul>
@@ -83,7 +126,7 @@
 								List<Brand> brands = (List) request.getAttribute("brands");
 								for (Brand brand : brands) {
 								%>
-								<li>
+								<li id="<%=brand.getName()%>">
 									<form
 										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=<%=request.getAttribute("typeOfSort")%>&brands=<%=brand.getId()%>"
 										method="POST">
@@ -117,7 +160,13 @@
 				for (Product p : products) {
 				%>
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
-					<i class="fa-solid fa-bag-shopping fly_to_card"></i>
+					<div class="product_img">
+						<img src="" alt="">
+
+						<div class="product_img_hover">
+							<img src="" alt="">
+						</div>
+					</div>
 
 					<div class="product_in4">
 						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
@@ -130,11 +179,10 @@
 								<p class="product_in4_sale_price">
 									<%=p.formatNumber(p.getPrice() - p.getDiscount())%>
 									₫
+
 								</p>
 							</div>
 							<form action="../html/wishlist?id=<%=p.getId()%>" method="POST">
-
-
 								<button class="product_in4_wishlist no_wishlist"
 									id="<%=p.getId()%>">
 									<i class="fa-solid fa-heart"></i>

@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		_clickBrand();
 		_checkChoiceBrand();
 		_clickOutsideFilter();
+		_stateRangePrice();
+		_stateInputPrice();
 	}
 	_eventChangeStateIconheart();
 	_changePage();
@@ -52,11 +54,10 @@ function _turnOffPrice(price, priceChild, icon) {
 phương thức hiện sort theo giá
 */
 function _turnOnPrice(price, priceChild, icon) {
-	price.classList.toggle("border_option_list");
-	priceChild.classList.toggle("active");
-	icon.classList.toggle("rotate_icon");
-
-	elementModalOverlayOpacity.classList.toggle("active");
+	price.classList.add("border_option_list");
+	priceChild.classList.add("active");
+	icon.classList.add("rotate_icon");
+	elementModalOverlayOpacity.classList.add("active");
 
 }
 
@@ -75,10 +76,10 @@ function _turnOffBrand(brand, brandChild, icon) {
 phương thức hiện sort theo brand
 */
 function _turnOnBrand(brand, brandChild, icon) {
-	brand.classList.toggle("border_option_list");
-	brandChild.classList.toggle("active_filter");
-	icon.classList.toggle("rotate_icon");
-	elementModalOverlayOpacity.classList.toggle("active");
+	brand.classList.add("border_option_list");
+	brandChild.classList.add("active_filter");
+	icon.classList.add("rotate_icon");
+	elementModalOverlayOpacity.classList.add("active");
 }
 
 /* Create: Cao Thành Nam
@@ -163,13 +164,120 @@ phương thức này khi chọn thương hiệu nào thì sẽ border hình ản
 function _checkChoiceBrand() {
 	var brands = elementSetBrand.innerText.split(', ');
 	brands.forEach(function(nameBrand) {
-		elementBrandOptionListItemImg.forEach(function(brandImg) {
+		elementBrandOptionListItem.forEach(function(brandImg) {
 			if (nameBrand === brandImg.getAttribute("id")) {
 				brandImg.classList.toggle("choose_page_item")
 			}
 		})
 	})
 }
+
+
+/* Create: Cao Thành Nam
+phương thức này set giá trị của input min khi nút trượt min di chuyển đồng thời set trạng thái progess
+*/
+function _slideMin() {
+	var gap = parseInt(elementRangeMax.value) - parseInt(elementRangeMin.value);
+	if (gap <= minGap) {
+		elementRangeMin.value = parseInt(elementRangeMax.value) - minGap
+	}
+	elementPriceInputMin.value = elementRangeMin.value;
+	_setArea();
+}
+
+/* Create: Cao Thành Nam
+phương thức này set giá trị của input max khi nút trượt max di chuyển đồng thời set trạng thái progess
+*/
+function _slideMax() {
+	var gap = parseInt(elementRangeMax.value) - parseInt(elementRangeMin.value);
+
+	if (gap <= minGap) {
+		elementRangeMax.value = parseInt(elementRangeMin.value) + minGap
+	}
+
+	elementPriceInputMax.value = elementRangeMax.value;
+	_setArea();
+}
+
+/* Create: Cao Thành Nam
+phương thức này set thanh progress khi trượt
+*/
+function _setArea() {
+	var sliderMinValue = elementRangeMin.min;
+	var sliderMaxValue = elementRangeMax.max;
+	elementProgress.style.left = ((elementRangeMin.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100 + "%"
+	elementProgress.style.right = 100 - ((elementRangeMax.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100 + "%";
+}
+
+/* Create: Cao Thành Nam
+phương thức này thực hiện các thao tác khi trượt nút trượt
+*/
+function _stateRangePrice() {
+	var sliderMinValue = elementRangeMin.min;
+	var sliderMaxValue = elementRangeMax.max;
+	elementProgress.style.left = ((elementRangeMin.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100 + "%"
+	elementProgress.style.right = 100 - ((elementRangeMax.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100 + "%";
+	elementRangeMin.oninput = function() {
+		_slideMin();
+	}
+	elementRangeMax.oninput = function() {
+		_slideMax();
+	}
+}
+
+/* Create: Cao Thành Nam
+phương thức này set trạng thái cho nút trượt min khi input thay đổi
+*/
+function _slideMinInput() {
+	var maxPrice = parseInt(elementPriceInputMax.value);
+	var minPrice = parseInt(elementPriceInputMin.value);
+	if (minPrice > maxPrice) {
+		elementRangeMin.value = maxPrice;
+	}
+	else {
+		elementRangeMin.value = minPrice;
+	}
+	_setArea();
+}
+
+/* Create: Cao Thành Nam
+phương thức này set trạng thái cho nút trượt max khi input thay đổi
+*/
+function _slideMaxInput() {
+	var maxPrice = parseInt(elementPriceInputMax.value);
+	var minPrice = parseInt(elementPriceInputMin.value);
+
+	if (maxPrice < minPrice) {
+		elementRangeMax.value = minPrice;
+	}
+	else {
+		elementRangeMax.value = maxPrice;
+	}
+	_setArea();
+}
+
+
+
+/* Create: Cao Thành Nam
+phương thức này thực hiện các thao tác khi input thay đổi phần filter trong khoảng giá
+*/
+function _stateInputPrice() {
+	elementPriceInputMin.oninput = function() {
+		_slideMinInput();
+	}
+	elementPriceInputMax.oninput = function() {
+		_slideMaxInput();
+	}
+}
+
+var elementPriceInputMin = document.querySelector(".price_input_left-min");
+var elementPriceInputMax = document.querySelector(".price_input_right-max");
+var elementRangeMin = document.querySelector(".range_min");
+var elementRangeMax = document.querySelector(".range_max");
+
+var elementProgress = document.querySelector(".slider_price_progress");
+var minGap = 0;
+
 
 var elementModalOverlayOpacity = document.querySelector('.modal_overlay_filter_opacity');
 var elementSetBrand = document.querySelector(
@@ -185,11 +293,8 @@ var elementPriceOptionListChildItem = document.querySelectorAll(
 var elementShowChoose = document.querySelector(
 	".category_price_option_default"
 );
-var elementBrandOptionListItemImg = document.querySelectorAll(
-	".category_brand_option_item_img"
-);
 var elementBrandOptionListItem = document.querySelectorAll(
-	".category_brand_option_list .category_brand_option_item ul label"
+	".category_brand_option_list .category_brand_option_item ul li"
 );
 
 var elementNewPageItem = document.querySelectorAll(".new_page_item");

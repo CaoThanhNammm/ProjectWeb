@@ -62,10 +62,10 @@
 				%>
 				<div class="col-lg-6 introduce_product_item">
 					<img
-						src="../image/home/banner/<%=entry.getKey().getName()%>/<%=entry.getValue()%>"
+						src="../image/home/banner/<%=entry.getKey().getId()%>/<%=entry.getValue()%>"
 						alt="">
 					<form
-						action="../html/FindProduct?nameProduct=<%=entry.getKey().getName()%>&&currentPage=1"
+						action="../html/FindProduct?nameProduct=<%=entry.getKey().getId()%>&&currentPage=1"
 						method="GET">
 
 						<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
@@ -84,10 +84,10 @@
 						%>
 						<div class="col-lg-6 introduce_product_item">
 							<img
-								src="../image/home/banner/<%=entry.getKey().getName()%>/<%=entry.getValue()%>"
+								src="../image/home/banner/<%=entry.getKey().getId()%>/<%=entry.getValue()%>"
 								alt="">
 							<form
-								action="../html/FindProduct?nameProduct=<%=entry.getKey().getName()%>&&currentPage=1"
+								action="../html/FindProduct?nameProduct=<%=entry.getKey().getId()%>&&currentPage=1"
 								method="GET">
 								<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 							</form>
@@ -111,8 +111,17 @@
 				for (Product p : productBestDiscount) {
 				%>
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
-					<i class="fa-solid fa-bag-shopping fly_to_card"></i>
+					<div class="product_img">
+						<img
+							src="../image/product/118/<%=p.getImgsProduct(request.getServletContext().getRealPath("/image/product/118/")).get(0)%>"
+							alt="">
 
+						<div class="product_img_hover">
+							<img
+								src="../image/product/118/<%=p.getImgsProduct(request.getServletContext().getRealPath("/image/product/118/")).get(1)%>"
+								alt="">
+						</div>
+					</div>
 					<div class="product_in4">
 						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
 						<div class="product_in4_bottom">

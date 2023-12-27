@@ -22,7 +22,7 @@ public class Brand {
 	}
 
 	public String getImgbrand() throws IOException {
-		File folder = new File("Web\\ProjectWeb\\src\\main\\webapp\\image\\product\\filter\\" + this.id);
+		File folder = new File("Web/ProjectWeb/src/main/webapp/image/product/filter/" + this.id);
 		
 		File[] files = folder.listFiles();
 

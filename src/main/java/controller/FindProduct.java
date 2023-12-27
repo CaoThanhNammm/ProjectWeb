@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +43,12 @@ public class FindProduct extends HttpServlet {
 	private IFilterByPrice iFilterByPrice;
 	private IFilterByBrand iFilterByBrand;
 	private int brandID;
+	private int fromPrice;
+	private int toPrice;
+	private int minPrice;
+	private int maxPrice;
+	private int minPriceCurrent;
+	private int maxPriceCurrent;
 
 	public FindProduct() {
 		super();
@@ -59,9 +66,14 @@ public class FindProduct extends HttpServlet {
 		createPages = generatePagination(currentPage, pagesPerGroup);
 
 		// gán dữ liệu qua trang jsp
+
+		// dùng để load sản phẩm
 		request.setAttribute("products", perProduct);
+		// dùng để hiển thị tổng số trang
 		request.setAttribute("totalPage", totalPage);
+		// dùng để hiển thị những thương hiệu mặc định của tất cả sản phẩm
 		request.setAttribute("brands", brandsDefault);
+		// dùng để hiển thị những thương hiệu mặc định của tất cả sản phẩm
 		request.setAttribute("nameProduct", nameProduct);
 		request.setAttribute("typeOfSort", typeOfSort);
 		request.setAttribute("chooseBrands", brandSortText);
@@ -69,6 +81,10 @@ public class FindProduct extends HttpServlet {
 		request.setAttribute("priceSortText", priceSortText);
 		request.setAttribute("brandSortText", brandSortText);
 		request.setAttribute("createPages", createPages);
+		request.setAttribute("minPrice", minPrice);
+		request.setAttribute("maxPrice", maxPrice);
+		request.setAttribute("minPriceCurrent", minPriceCurrent);
+		request.setAttribute("maxPriceCurrent", maxPriceCurrent);
 
 		if (totalProduct == 0) {
 			String name = "Rất tiếc, N2Q không tìm thấy kết quả nào phù hợp với từ khóa " + "\"" + nameProduct + "\"";
@@ -96,13 +112,38 @@ public class FindProduct extends HttpServlet {
 		products = productDAO.findProductByNameLimitN(nameProduct);
 		// lấy ra tất cả thương hiệu của sản phẩm
 		brandsDefault = brandDAO.getBrandOfProduct(nameProduct);
+
+		try {
+			// lấy ra giá tiền thấp nhất của sản phẩm
+			minPrice = productDAO.getMinPrice(nameProduct);
+			// lấy ra giá cao thấp nhất của sản phẩm
+			maxPrice = productDAO.getMaxPrice(nameProduct);
+			/*
+			 * giá hiện tại của sản phẩm mặc định là giá thấp nhất và giá cao nhất biến này
+			 * dùng để giữ giá trị khi chọn
+			 */
+			minPriceCurrent = minPrice;
+			maxPriceCurrent = maxPrice;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// nếu chọn filter theo khoảng giá thì lấy ra giá trị từ đâu dến đâu
+		if (request.getParameter("range_min") != null) {
+			fromPrice = Integer.parseInt(request.getParameter("range_min"));
+			toPrice = Integer.parseInt(request.getParameter("range_max"));
+		}
+
 		JDBIConnectionPool.get().releaseConnection(connection);
 
 		priceSortText = "Theo mức giá";
 
+		// lấy ra loại lọc theo giá, từ thấp đến cao là 1, từ cao đến thấp là 0, khoảng
+		// giá là 2
 		typeOfSort = request.getParameter("order");
 
-		if (typeOfSort == null && request.getParameter("brands") == null) {
+		if (typeOfSort == null && request.getParameter("brands") == null && request.getParameter("range_min") == null) {
 			brands = new ArrayList<>();
 			iFilterByPrice = new FilterEmpty();
 			iFilterByBrand = new FilterEmptyBrands();
@@ -112,6 +153,21 @@ public class FindProduct extends HttpServlet {
 		} else if (typeOfSort.equals("1")) {
 			iFilterByPrice = new FilterPriceASC();
 			priceSortText = "Từ thấp đến cao";
+		} else if (typeOfSort.equals("2")) {
+			iFilterByPrice = new FilterPriceInRange(fromPrice, toPrice);
+
+			if (fromPrice < minPrice) {
+				// nếu giá trị từ đâu thấp hơn giá thấp nhất thì sẽ set giá hiện tại là thấp
+				// nhất
+				minPriceCurrent = minPrice;
+			} else if (toPrice > maxPrice) {
+				// nếu giá trị đến đâu cao hơn giá cao nhất thì sẽ set giá hiện tại là cao
+				// nhất
+				maxPriceCurrent = maxPrice;
+			} else {
+				minPriceCurrent = fromPrice;
+				maxPriceCurrent = toPrice;
+			}
 		}
 
 		if (request.getParameter("brands") != null) {
@@ -123,7 +179,6 @@ public class FindProduct extends HttpServlet {
 			} else {
 				brands.add(brand);
 			}
-
 			brandSortText = brandsOnDefault(brands);
 		}
 
@@ -193,7 +248,7 @@ public class FindProduct extends HttpServlet {
 
 		return perProduct;
 	}
-	
+
 	// biến danh sách thương hiệu thành chuỗi tên các thương hiệu
 	private String brandsOnDefault(List<Brand> brands) {
 		String res = "";
