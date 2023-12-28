@@ -22,7 +22,7 @@ public class Product {
 	private int amountSold;
 	private Status status;
 	private List<ProductModel> models;
-	private List<String> imgs;
+	private String imgs;
 	private List<Attribute> attributes;
 	private List<Rate> rates;
 
@@ -30,7 +30,7 @@ public class Product {
 	}
 
 	public Product(int id, String name, Brand brand, String description, Category category, int price, int discount,
-			LocalDate lastUpdated, int amountSold, Status status, List<ProductModel> models, List<String> imgs,
+			LocalDate lastUpdated, int amountSold, Status status, List<ProductModel> models, String imgs,
 			List<Attribute> attributes, List<Rate> rates) {
 		super();
 		this.id = id;
@@ -77,8 +77,8 @@ public class Product {
 		this.brand = brand;
 	}
 
-	public List<String> getImgsProduct(String realPath) throws IOException {
-		File src = new File(realPath);
+	public List<String> getImgsProduct() throws IOException {
+		File src = new File(imgs + "/image/product/" + id);
 		List<String> res = new ArrayList<>();
 
 		for (File file : src.listFiles()) {
@@ -172,11 +172,11 @@ public class Product {
 		this.models = models;
 	}
 
-	public List<String> getImgs() {
+	public String getImgs() {
 		return imgs;
 	}
 
-	public void setImgs(List<String> imgs) {
+	public void setImgs(String imgs) {
 		this.imgs = imgs;
 	}
 
@@ -211,12 +211,7 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return amountSold == other.amountSold && Objects.equals(attributes, other.attributes)
-				&& Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
-				&& Objects.equals(description, other.description) && discount == other.discount && id == other.id
-				&& Objects.equals(imgs, other.imgs) && Objects.equals(lastUpdated, other.lastUpdated)
-				&& Objects.equals(models, other.models) && Objects.equals(name, other.name) && price == other.price
-				&& Objects.equals(rates, other.rates) && Objects.equals(status, other.status);
+		return this.id == other.id;
 	}
 
 	public String formatNumber(int nums) {

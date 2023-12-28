@@ -113,12 +113,12 @@
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
 					<div class="product_img">
 						<img
-							src="../image/product/118/<%=p.getImgsProduct(request.getServletContext().getRealPath("/image/product/118/")).get(0)%>"
+							src="../image/product/<%=p.getId()%>/<%=p.getImgsProduct().get(0)%>"
 							alt="">
 
 						<div class="product_img_hover">
 							<img
-								src="../image/product/118/<%=p.getImgsProduct(request.getServletContext().getRealPath("/image/product/118/")).get(1)%>"
+								src="../image/product/<%=p.getId()%>/<%=p.getImgsProduct().get(1)%>"
 								alt="">
 						</div>
 					</div>

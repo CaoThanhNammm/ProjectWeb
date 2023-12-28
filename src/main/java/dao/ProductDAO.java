@@ -16,9 +16,11 @@ import model.Product;
 
 public class ProductDAO {
 	private Handle handle;
+	private String pathImg;
 
-	public ProductDAO(Handle handle) {
+	public ProductDAO(Handle handle, String pathImg) {
 		this.handle = handle;
+		this.pathImg = pathImg;
 	}
 
 	// lấy ra tất cả sản phẩm
@@ -47,7 +49,7 @@ public class ProductDAO {
 
 	// thêm sản phẩm vào danh sách
 	public List<Product> save(Product product) throws SQLException {
-		BrandDAO brandDao = new BrandDAO(this.handle);
+		BrandDAO brandDao = new BrandDAO(this.handle, pathImg);
 		CategoriesDAO categoriesDAO = new CategoriesDAO(this.handle);
 		StatusDAO statusDao = new StatusDAO(this.handle);
 
@@ -134,6 +136,10 @@ public class ProductDAO {
 				.select("SELECT id, name, price, discount FROM products where name like ? limit ?")
 				.bind(0, "%" + name + "%").bind(1, num).mapToBean(Product.class).list();
 
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
 		return products;
 	}
 
@@ -143,6 +149,10 @@ public class ProductDAO {
 			return new ArrayList<>();
 		List<Product> products = handle.select("SELECT id, name, price, discount FROM products where name like ?")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
 
 		return products;
 	}
@@ -154,6 +164,10 @@ public class ProductDAO {
 				.select("SELECT id, name, price, discount FROM products ORDER BY discount/price DESC LIMIT ?")
 				.bind(0, limit).mapToBean(Product.class).list();
 
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
 		return products;
 	}
 
@@ -161,6 +175,10 @@ public class ProductDAO {
 	public List<Product> getProductRecommend(int limit) {
 		List<Product> products = handle.select("SELECT * FROM products ORDER BY RAND() LIMIT ?").bind(0, limit)
 				.mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
 
 		return products;
 	}
@@ -178,6 +196,10 @@ public class ProductDAO {
 				"SELECT id, name, price, discount FROM products where name like ? ORDER BY price - discount DESC")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
 
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
 		return products;
 	}
 
@@ -189,6 +211,9 @@ public class ProductDAO {
 				"SELECT id, name, price, discount FROM products where name like ? ORDER BY price - discount ASC")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
 
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
 		return products;
 	}
 
@@ -218,6 +243,10 @@ public class ProductDAO {
 				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ?)")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
 
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
 		return products;
 	}
 
@@ -226,6 +255,10 @@ public class ProductDAO {
 		List<Product> products = handle.select(
 				"SELECT id, name, price, discount FROM products WHERE name LIKE ? and (price - discount) >= ? and (price - discount) <= ?")
 				.bind(0, "%" + name + "%").bind(1, from).bind(2, to).mapToBean(Product.class).list();
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
 		return products;
 	}
 

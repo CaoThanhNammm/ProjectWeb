@@ -49,7 +49,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 	private void getShowProductBestDiscount(ServletRequest request, ServletResponse response) {
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
-		ProductDAO productDAO = new ProductDAO(connection);
+		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
 		List<Product> products = productDAO.getProductBestDiscount(20);
 		JDBIConnectionPool.get().releaseConnection(connection);
 
@@ -62,7 +62,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 	private void getShowProductRecommend(ServletRequest request, ServletResponse response) {
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
-		ProductDAO productDAO = new ProductDAO(connection);
+		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
 		List<Product> products = productDAO.getProductRecommend(20);
 		JDBIConnectionPool.get().releaseConnection(connection);
 
@@ -102,7 +102,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 		for (int i = 1; i < categories.size(); i++) {
 			String realPath = request.getServletContext()
 					.getRealPath("/image/home/banner/" + categories.get(i).getId());
-			
+
 			File folderBanner = new File(realPath);
 			String[] name = folderBanner.list();
 
@@ -110,7 +110,8 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 		}
 
 		Category categoryFirst = categories.get(0);
-		File folderBanner = new File(request.getServletContext().getRealPath("/image/home/banner/" + categoryFirst.getId()));
+		File folderBanner = new File(
+				request.getServletContext().getRealPath("/image/home/banner/" + categoryFirst.getId()));
 		String[] name = folderBanner.list();
 		elementProductBannerFirst.put(categoryFirst, name[0]);
 

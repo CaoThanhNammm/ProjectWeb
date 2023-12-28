@@ -105,11 +105,9 @@ public class FindProduct extends HttpServlet {
 
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
-		ProductDAO productDAO = new ProductDAO(connection);
-		BrandDAO brandDAO = new BrandDAO(connection);
+		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
+		BrandDAO brandDAO = new BrandDAO(connection, request.getServletContext().getRealPath(""));
 
-		// lấy query ra những sản phẩm giống tên
-		products = productDAO.findProductByNameLimitN(nameProduct);
 		// lấy ra tất cả thương hiệu của sản phẩm
 		brandsDefault = brandDAO.getBrandOfProduct(nameProduct);
 
@@ -128,6 +126,7 @@ public class FindProduct extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		JDBIConnectionPool.get().releaseConnection(connection);
 
 		// nếu chọn filter theo khoảng giá thì lấy ra giá trị từ đâu dến đâu
 		if (request.getParameter("range_min") != null) {
@@ -135,7 +134,6 @@ public class FindProduct extends HttpServlet {
 			toPrice = Integer.parseInt(request.getParameter("range_max"));
 		}
 
-		JDBIConnectionPool.get().releaseConnection(connection);
 
 		priceSortText = "Theo mức giá";
 
@@ -179,16 +177,18 @@ public class FindProduct extends HttpServlet {
 			} else {
 				brands.add(brand);
 			}
+
 			brandSortText = brandsOnDefault(brands);
 		}
 
 		if (brands.size() == 0) {
 			brandSortText = "Theo thương hiệu";
 		}
-
+		
 		strategy = new FilterStrategy(iFilterByPrice, iFilterByBrand);
-		products = strategy.filter(nameProduct, brands);
-
+		
+		products = strategy.filter(nameProduct, brands, request.getServletContext().getRealPath(""));
+		
 		// lấy trang hiện tại thông qua tham số currentPage trên url, mặc định là trang
 		// đầu tiên
 		String getCurrentPageOnUrl = request.getParameter("currentPage");
