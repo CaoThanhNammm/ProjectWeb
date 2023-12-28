@@ -1,8 +1,9 @@
 package model;
 
+import java.io.File;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Product {
 	private int id;
@@ -148,7 +149,14 @@ public class Product {
 	}
 
 	public List<String> getImgs() {
-		return imgs;
+		File src = new File(imgs + "/image/product/" + id);
+		List<String> res = new ArrayList<>();
+
+		for (File file : src.listFiles()) {
+			res.add("../image/product" + file.getName());
+		}
+
+		return res;
 	}
 
 	public void setImgs(List<String> imgs) {

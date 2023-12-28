@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 
 import org.jdbi.v3.core.Jdbi;
 
+import database.JDBIConnectionPool;
 import database.JDBIConnector;
 import model.Account;
 import model.AccountRole;
@@ -26,7 +27,7 @@ import model.Gender;
  * Date: 25/11/2023
  */
 public class AccountDAO {
-	public static final Jdbi connect = JDBIConnector.getConnection();
+	public static final Jdbi connect = JDBIConnectionPool.get().getConnection().getJdbi();
 
 	// Tạo ra id của account
 	public synchronized static String generateID(String email, String phone) {

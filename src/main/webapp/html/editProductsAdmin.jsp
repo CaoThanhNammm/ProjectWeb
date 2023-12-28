@@ -16,6 +16,11 @@
 <link rel="stylesheet" href="../css/index.css">
 <title>Sửa sản phẩm</title>
 </head>
+<%@ page import="java.util.*"%>
+<%@ page import="model.Product"%>
+<%
+List<Product> products = (List<Product>) request.getAttribute("getShowProductRecommend");
+%>
 <!-- 
     Create: Nguyễn Khải Nam
     Date: 08/11/2023
@@ -68,24 +73,31 @@
 		<div class="mt-5 ">
 			<div class="card-products ms-2 me-2">
 				<div class="card-group">
-					<div class="card">
-						<img class="card-img-top" src="../image/product/bepdien/bd1.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</h5>
-							<p class="card-text">1.200.000.000 VND</p>
-							<div class="d-flex">
-								<button class="btn btn-secondary me-2">
-									<i class="fa-solid fa-eye-slash"></i> Ẩn
-								</button>
-								<button class="btn btn-warning">
-									<i class="fa-solid fa-pen-to-square"></i>Chỉnh sửa
-								</button>
+					<form action="editProduct"
+						<%for (int i = 0; i < products.size(); ++i) {%> method="post">
+						<div class="card">
+							<input type="hidden" name="hiddent"> <img
+								class="card-img-top" src="<%=products.get(i).getImgs().get(0)%>"
+								alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title"><%=products.get(i).getDescription()%></h5>
+								<p class="card-text"><%=products.get(i).getPrice()%>
+									VND
+								</p>
+								<div class="d-flex">
+									<button class="btn btn-secondary me-2">
+										<i class="fa-solid fa-eye-slash"></i> Ẩn
+									</button>
+									<button class="btn btn-warning">
+										<i class="fa-solid fa-pen-to-square"></i>Chỉnh sửa
+									</button>
+								</div>
 							</div>
 						</div>
-					</div>
+						<%
+						}
+						%>
+					</form>
 				</div>
 			</div>
 		</div>

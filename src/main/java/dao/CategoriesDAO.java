@@ -34,4 +34,13 @@ public class CategoriesDAO {
 		return exists == 1;
 	}
 
+	// lấy ra loại của sản phẩm random
+	public List<Category> getCategoryRandomLimitN(int limit) {
+		List<Category> categories = handle.select("SELECT * FROM categories ORDER BY RAND() LIMIT ?")
+				.bind(0, limit)
+				.mapToBean(Category.class).list();
+		
+		return categories;
+	}
+
 }
