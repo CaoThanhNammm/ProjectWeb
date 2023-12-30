@@ -82,7 +82,7 @@ public class Product {
 		List<String> res = new ArrayList<>();
 
 		for (File file : src.listFiles()) {
-			res.add(file.getName());
+			res.add("../image/product/" + id + "/" + file.getName());
 		}
 
 		return res;

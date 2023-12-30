@@ -1,16 +1,15 @@
 package dao;
 
-import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.jdbi.v3.core.Handle;
 
-import database.JDBIConnectionPool;
 import model.Brand;
 import model.Product;
 
@@ -133,7 +132,7 @@ public class ProductDAO {
 		if (name.equals(""))
 			return new ArrayList<>();
 		List<Product> products = handle
-				.select("SELECT id, name, price, discount FROM products where name like ? limit ?")
+				.select("SELECT id, name, price, discount FROM products WHERE name LIKE ? LIMIT ?")
 				.bind(0, "%" + name + "%").bind(1, num).mapToBean(Product.class).list();
 
 		for (Product product : products) {
@@ -147,8 +146,23 @@ public class ProductDAO {
 	public List<Product> findProductByNameLimitN(String name) {
 		if (name.equals(""))
 			return new ArrayList<>();
-		List<Product> products = handle.select("SELECT id, name, price, discount FROM products where name like ?")
+
+		List<Product> products = handle.select("SELECT id, name, price, discount FROM products WHERE name LIKE ?")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
+		return products;
+	}
+
+	public List<Product> findProductByCategoryId(int id) {
+		if (id < 0)
+			return new ArrayList<>();
+
+		List<Product> products = handle.select("SELECT id, name, price, discount FROM products WHERE categoryID = ?")
+				.bind(0, id).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);

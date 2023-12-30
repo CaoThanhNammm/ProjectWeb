@@ -133,7 +133,7 @@
 										<button>
 
 											<img class="category_brand_option_item_img" alt=""
-												src="../image/product/filter/<%=brand.getId()%>/<%=brand.getImgbrand()%>"
+												src="<%=brand.getImgbrand()%>"
 												id="<%=brand.getName()%>">
 
 										</button>
@@ -162,12 +162,12 @@
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
 					<div class="product_img">
 						<img
-							src="../image/product/<%=p.getId()%>/<%=p.getImgsProduct().get(0)%>"
+							src="<%=p.getImgsProduct().get(0)%>"
 							alt="">
 
 						<div class="product_img_hover">
 							<img
-								src="../image/product/<%=p.getId()%>/<%=p.getImgsProduct().get(1)%>"
+								src="<%=p.getImgsProduct().get(1)%>"
 								alt="">
 						</div>
 					</div>

@@ -25,6 +25,8 @@ import model.Product;
 @WebServlet("/html/FindProduct")
 public class FindProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ProductDAO productDAO;
+	private BrandDAO brandDAO;
 	private int currentPage;
 	private int perPage = 20;
 	private int totalProduct;
@@ -60,13 +62,12 @@ public class FindProduct extends HttpServlet {
 
 		// xuất ra sản phẩm dựa vào số trang hiện tại đang đứng
 		String getCurrentPageOnUrl = request.getParameter("currentPage");
-
 		currentPage = Integer.parseInt(getCurrentPageOnUrl);
+
 		perProduct = renderProduct(currentPage, perPage, products);
 		createPages = generatePagination(currentPage, pagesPerGroup);
 
 		// gán dữ liệu qua trang jsp
-
 		// dùng để load sản phẩm
 		request.setAttribute("products", perProduct);
 		// dùng để hiển thị tổng số trang
@@ -105,8 +106,8 @@ public class FindProduct extends HttpServlet {
 
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
-		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
-		BrandDAO brandDAO = new BrandDAO(connection, request.getServletContext().getRealPath(""));
+		productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
+		brandDAO = new BrandDAO(connection, request.getServletContext().getRealPath(""));
 
 		// lấy ra tất cả thương hiệu của sản phẩm
 		brandsDefault = brandDAO.getBrandOfProduct(nameProduct);
@@ -133,7 +134,6 @@ public class FindProduct extends HttpServlet {
 			fromPrice = Integer.parseInt(request.getParameter("range_min"));
 			toPrice = Integer.parseInt(request.getParameter("range_max"));
 		}
-
 
 		priceSortText = "Theo mức giá";
 
@@ -184,11 +184,11 @@ public class FindProduct extends HttpServlet {
 		if (brands.size() == 0) {
 			brandSortText = "Theo thương hiệu";
 		}
-		
+
 		strategy = new FilterStrategy(iFilterByPrice, iFilterByBrand);
-		
+
 		products = strategy.filter(nameProduct, brands, request.getServletContext().getRealPath(""));
-		
+
 		// lấy trang hiện tại thông qua tham số currentPage trên url, mặc định là trang
 		// đầu tiên
 		String getCurrentPageOnUrl = request.getParameter("currentPage");

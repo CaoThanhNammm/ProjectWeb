@@ -61,12 +61,10 @@
 				for (Map.Entry<Category, String> entry : categoryBannerFirst.entrySet()) {
 				%>
 				<div class="col-lg-6 introduce_product_item">
-					<img
-						src="../image/home/banner/<%=entry.getKey().getId()%>/<%=entry.getValue()%>"
-						alt="">
+					<img src="<%=entry.getValue()%>" alt="">
 					<form
-						action="../html/FindProduct?nameProduct=<%=entry.getKey().getId()%>&&currentPage=1"
-						method="GET">
+						action="../html/FindProduct?categoryId=<%=entry.getKey().getId()%>&currentPage=1"
+						method="POST">
 
 						<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 					</form>
@@ -83,12 +81,10 @@
 						for (Map.Entry<Category, String> entry : categoryBanner.entrySet()) {
 						%>
 						<div class="col-lg-6 introduce_product_item">
-							<img
-								src="../image/home/banner/<%=entry.getKey().getId()%>/<%=entry.getValue()%>"
-								alt="">
+							<img src="<%=entry.getValue()%>" alt="">
 							<form
-								action="../html/FindProduct?nameProduct=<%=entry.getKey().getId()%>&&currentPage=1"
-								method="GET">
+								action="../html/FindProduct?nameProduct=<%=entry.getKey().getId()%>&currentPage=1"
+								method="POST">
 								<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 							</form>
 						</div>
@@ -112,14 +108,10 @@
 				%>
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
 					<div class="product_img">
-						<img
-							src="../image/product/<%=p.getId()%>/<%=p.getImgsProduct().get(0)%>"
-							alt="">
+						<img src="<%=p.getImgsProduct().get(0)%>" alt="">
 
 						<div class="product_img_hover">
-							<img
-								src="../image/product/<%=p.getId()%>/<%=p.getImgsProduct().get(1)%>"
-								alt="">
+							<img src="<%=p.getImgsProduct().get(1)%>" alt="">
 						</div>
 					</div>
 					<div class="product_in4">

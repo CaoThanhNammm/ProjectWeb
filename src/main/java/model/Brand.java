@@ -33,8 +33,8 @@ public class Brand {
 		File folder = new File(pathImg + "/image/product/filter/" + this.id);
 
 		File[] files = folder.listFiles();
-
-		return files[files.length - 1].getName();
+		
+		return "../image/product/filter/" + id + "/" + files[files.length - 1].getName();
 	}
 
 	public int getId() {

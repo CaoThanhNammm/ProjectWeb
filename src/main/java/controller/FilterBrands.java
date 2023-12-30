@@ -17,7 +17,7 @@ public class FilterBrands implements IFilterByBrand {
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
 		List<Product> productsOfBrand = productDAO.getProductByBrand(name, brands);
 		JDBIConnectionPool.get().releaseConnection(conn);
-		
+
 		return productsOfBrand;
 	}
 

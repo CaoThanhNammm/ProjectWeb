@@ -100,20 +100,22 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 		JDBIConnectionPool.get().releaseConnection(connection);
 
 		for (int i = 1; i < categories.size(); i++) {
-			String realPath = request.getServletContext()
-					.getRealPath("/image/home/banner/" + categories.get(i).getId());
+			File folderBanner = new File(
+					request.getServletContext().getRealPath("") + "/image/home/banner/" + categories.get(i).getId());
+			
 
-			File folderBanner = new File(realPath);
 			String[] name = folderBanner.list();
 
-			elementProductBanner.put(categories.get(i), name[0]);
+			elementProductBanner.put(categories.get(i),
+					"../image/home/banner/" + categories.get(i).getId() + "/" + name[0]);
 		}
 
 		Category categoryFirst = categories.get(0);
 		File folderBanner = new File(
-				request.getServletContext().getRealPath("/image/home/banner/" + categoryFirst.getId()));
+				request.getServletContext().getRealPath("") + "/image/home/banner/" + categoryFirst.getId());
 		String[] name = folderBanner.list();
-		elementProductBannerFirst.put(categoryFirst, name[0]);
+
+		elementProductBannerFirst.put(categoryFirst, "../image/home/banner/" + categoryFirst.getId() + "/" + name[0]);
 
 		request.setAttribute("elementProductBannerFirst", elementProductBannerFirst);
 		request.setAttribute("elementProductBanner", elementProductBanner);
