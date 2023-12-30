@@ -1,8 +1,11 @@
 package model;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -19,7 +22,7 @@ public class Product {
 	private int amountSold;
 	private Status status;
 	private List<ProductModel> models;
-	private List<String> imgs;
+	private String imgs;
 	private List<Attribute> attributes;
 	private List<Rate> rates;
 
@@ -27,7 +30,7 @@ public class Product {
 	}
 
 	public Product(int id, String name, Brand brand, String description, Category category, int price, int discount,
-			LocalDate lastUpdated, int amountSold, Status status, List<ProductModel> models, List<String> imgs,
+			LocalDate lastUpdated, int amountSold, Status status, List<ProductModel> models, String imgs,
 			List<Attribute> attributes, List<Rate> rates) {
 		super();
 		this.id = id;
@@ -64,6 +67,25 @@ public class Product {
 		this.lastUpdated = lastUpdated;
 		this.amountSold = amountSold;
 		this.status = new Status(statusID, statusName);
+	}
+
+	public Product(int id, String name, int price, int discount, Brand brand) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.discount = discount;
+		this.brand = brand;
+	}
+
+	public List<String> getImgsProduct() throws IOException {
+		File src = new File(imgs + "/image/product/" + id);
+		List<String> res = new ArrayList<>();
+
+		for (File file : src.listFiles()) {
+			res.add("../image/product/" + id + "/" + file.getName());
+		}
+
+		return res;
 	}
 
 	public void setId(int id) {
@@ -150,11 +172,11 @@ public class Product {
 		this.models = models;
 	}
 
-	public List<String> getImgs() {
+	public String getImgs() {
 		return imgs;
 	}
 
-	public void setImgs(List<String> imgs) {
+	public void setImgs(String imgs) {
 		this.imgs = imgs;
 	}
 
@@ -189,12 +211,7 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return amountSold == other.amountSold && Objects.equals(attributes, other.attributes)
-				&& Objects.equals(brand, other.brand) && Objects.equals(category, other.category)
-				&& Objects.equals(description, other.description) && discount == other.discount && id == other.id
-				&& Objects.equals(imgs, other.imgs) && Objects.equals(lastUpdated, other.lastUpdated)
-				&& Objects.equals(models, other.models) && Objects.equals(name, other.name) && price == other.price
-				&& Objects.equals(rates, other.rates) && Objects.equals(status, other.status);
+		return this.id == other.id;
 	}
 
 	public String formatNumber(int nums) {
@@ -214,10 +231,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", brand=" + brand + ", description=" + description
-				+ ", category=" + category + ", price=" + price + ", discount=" + discount + ", lastUpdated="
-				+ lastUpdated + ", amountSold=" + amountSold + ", status=" + status + ", models=" + models + ", imgs="
-				+ imgs + ", attributes=" + attributes + ", rates=" + rates + "]";
+		return id + "";
 	}
 
 }

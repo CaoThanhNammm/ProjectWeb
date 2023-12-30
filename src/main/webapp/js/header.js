@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	_showTabProduct();
 	_showButtonRemoveAll();
 	_showWarningRemove();
+
+	_clickOutsideSearch();
 })
 
 var elementModal = document.querySelector('.modal_overlay');
@@ -96,10 +98,6 @@ function _quitSlide() {
 	}, 350);
 }
 
-var elementCategoryItem = document.querySelectorAll(".category_all_item");
-var elementCategoryChildItem = document.querySelectorAll(".category_all_item_child_list");
-var elementIconDown = document.querySelectorAll(".category_all_item_icon");
-
 /*
 	Create: Cao Thành Nam
 	Date: 22/10/2023
@@ -182,18 +180,35 @@ function _showTabProduct() {
 	elementInput.oninput = function(e) {
 		var data = e.target.value;
 		if (data !== "") {
-			elementTabProducts.classList.replace("unactive", "active_tab_product");
+			elementModalOverlaySearchOpacity.classList.add("active");
+			elementTabProducts.classList.add("active_tab_product");
 			_removeAllChild();
 			_showProductSuggestion(data);
 		}
 		else {
-			elementTabProducts.classList.replace("active_tab_product", "unactive");
+			elementModalOverlaySearchOpacity.classList.remove("active");
+			elementTabProducts.classList.remove("active_tab_product");
 		}
 	}
 }
 
 /*
 	Create: Cao Thành Nam
+<<<<<<< HEAD
+	Date: 20/12/2023
+	Note: phương thức tắt danh sách suggestion khi ấn vào bất kỳ chỗ nào trên trang
+*/
+function _clickOutsideSearch() {
+	elementModalOverlaySearchOpacity.onclick = function() {
+		elementTabProducts.classList.remove("active_tab_product");
+		elementModalOverlaySearchOpacity.classList.remove("active");
+	}
+}
+
+/*
+	Create: Cao Thành Nam
+=======
+>>>>>>> master
 	Date: 29/11/2023
 	Note: phương thức gửi request tới servlet khi truyền tên 
 	sản phẩm vào và gắn tên sản phẩm lên tham số của url
@@ -356,8 +371,10 @@ var elemmentQuantity = document.querySelector(".header_cart_amount_product");
 
 var elemmentQuantityWishListMobile = document.querySelector(".list_wishList--mobile .amount_wishlist");
 var elemmentQuantityWishList = document.querySelector(".list_wishList .amount_wishlist");
-
-
+var elementModalOverlaySearchOpacity = document.querySelector(".modal_overlay_search_opacity")
+var elementCategoryItem = document.querySelectorAll(".category_all_item");
+var elementCategoryChildItem = document.querySelectorAll(".category_all_item_child_list");
+var elementIconDown = document.querySelectorAll(".category_all_item_icon");
 
 
 

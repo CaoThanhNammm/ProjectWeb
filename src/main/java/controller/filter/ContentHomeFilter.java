@@ -49,7 +49,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 	private void getShowProductBestDiscount(ServletRequest request, ServletResponse response) {
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
-		ProductDAO productDAO = new ProductDAO(connection);
+		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
 		List<Product> products = productDAO.getProductBestDiscount(20);
 		JDBIConnectionPool.get().releaseConnection(connection);
 
@@ -62,7 +62,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 	private void getShowProductRecommend(ServletRequest request, ServletResponse response) {
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
-		ProductDAO productDAO = new ProductDAO(connection);
+		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
 		List<Product> products = productDAO.getProductRecommend(20);
 		JDBIConnectionPool.get().releaseConnection(connection);
 
@@ -74,7 +74,8 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 	 * vào list rồi truyền dữ liệu đi
 	 */
 	private void showSliderShow(ServletRequest request, ServletResponse response) {
-		File imgSliderShow = new File("Web/ProjectWeb/src/main/webapp/image/home/sliderShow");
+		String realPath = request.getServletContext().getRealPath("/image/home/sliderShow");
+		File imgSliderShow = new File(realPath);
 
 		List<String> imgs = new ArrayList<>();
 		int totalImg = 0;
@@ -91,7 +92,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 	public void showCategoryBanner(ServletRequest request, ServletResponse response) {
 		Map<Category, String> elementProductBanner = new HashMap<Category, String>();
 		Map<Category, String> elementProductBannerFirst = new HashMap<Category, String>();
-		
+
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		CategoriesDAO categoriesDAO = new CategoriesDAO(connection);
 
@@ -99,16 +100,23 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 		JDBIConnectionPool.get().releaseConnection(connection);
 
 		for (int i = 1; i < categories.size(); i++) {
-			File folderBanner = new File("Web/ProjectWeb/src/main/webapp/image/home/banner/" + categories.get(i).getName());
+			File folderBanner = new File(
+					request.getServletContext().getRealPath("") + "/image/home/banner/" + categories.get(i).getId());
+			
+
 			String[] name = folderBanner.list();
-			elementProductBanner.put(categories.get(i), name[0]);
+
+			elementProductBanner.put(categories.get(i),
+					"../image/home/banner/" + categories.get(i).getId() + "/" + name[0]);
 		}
-		
+
 		Category categoryFirst = categories.get(0);
-		File folderBanner = new File("Web/ProjectWeb/src/main/webapp/image/home/banner/" + categoryFirst.getName());
+		File folderBanner = new File(
+				request.getServletContext().getRealPath("") + "/image/home/banner/" + categoryFirst.getId());
 		String[] name = folderBanner.list();
-		elementProductBannerFirst.put(categoryFirst, name[0]);
-		
+
+		elementProductBannerFirst.put(categoryFirst, "../image/home/banner/" + categoryFirst.getId() + "/" + name[0]);
+
 		request.setAttribute("elementProductBannerFirst", elementProductBannerFirst);
 		request.setAttribute("elementProductBanner", elementProductBanner);
 	}
