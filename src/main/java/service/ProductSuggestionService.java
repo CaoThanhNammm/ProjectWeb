@@ -56,6 +56,7 @@ public class ProductSuggestionService extends HttpServlet {
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(jsonArray);
+		
 		out.print(json);
 	}
 

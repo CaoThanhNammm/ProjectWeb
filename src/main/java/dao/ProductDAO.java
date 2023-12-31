@@ -9,7 +9,12 @@ import java.util.List;
 
 import org.jdbi.v3.core.Handle;
 
+<<<<<<< HEAD
 import model.Brand;
+=======
+import database.JDBIConnectionPool;
+import model.Category;
+>>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 import model.Product;
 
 public class ProductDAO {
@@ -99,7 +104,11 @@ public class ProductDAO {
 	}
 
 	/*
+<<<<<<< HEAD
 	 * ẩn sản phẩm, truyền vào id sản phẩm muốn ẩn
+=======
+	 *  ẩn sản phẩm, truyền vào id sản phẩm muốn ẩn
+>>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 	 */
 	public List<Product> hide(int productID) throws SQLException {
 
@@ -117,6 +126,7 @@ public class ProductDAO {
 		if (productID < 0)
 			return null;
 
+<<<<<<< HEAD
 		Product product = handle.select("SELECT id, name, price, discount FROM products where id = ?")
 				.bind(0, productID).mapToBean(Product.class).first();
 
@@ -158,16 +168,55 @@ public class ProductDAO {
 	// lấy ra sản phẩm random, truyền vào số sản phẩm muốn lấy
 	public List<Product> getProductRecommend(int limit) {
 		List<Product> products = handle.select("SELECT * FROM products ORDER BY RAND() LIMIT ?").bind(0, limit)
+=======
+
+		Product product = handle.select("SELECT id, name, price, discount FROM products where id = ?")
+				.bind(0, productID).mapToBean(Product.class).first();
+
+		return product;
+	}
+
+	// tìm sản phẩm giống 1 phần tên, truyền vào tên sản phẩm và số lượng sản phẩm muốn lấy
+	public List<Product> findProductByNameLimitN(String name, int num) {
+		if (name.equals(""))
+			return new ArrayList<>();
+
+		List<Product> products = handle
+				.select("SELECT id, name, price, discount FROM products where name like ? limit ?")
+				.bind(0, "%" + name + "%").bind(1, num).mapToBean(Product.class).list();
+
+		return products;
+	}
+
+	// lấy ra sản phẩm giảm giá cao nhất, truyền vào số sản phẩm muốn lấy
+	// tính theo %
+	public List<Product> getProductBestDiscount(int limit){
+		List<Product> products = handle.select("SELECT id, name, price, discount FROM products ORDER BY discount/price DESC LIMIT ?")
+				.bind(0, limit)
+>>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 				.mapToBean(Product.class).list();
 		
 		return products;
 	}
+<<<<<<< HEAD
+=======
+	
+	// lấy ra sản phẩm random, truyền vào số sản phẩm muốn lấy
+	public List<Product> getProductRecommend(int limit){
+		List<Product> products = handle.select("SELECT * FROM products ORDER BY RAND() LIMIT ?")
+				.bind(0, limit)
+				.mapToBean(Product.class).list();
+		
+		return products;
+	}
+>>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 
 	// kiểm tra id của sản phẩm có tồn tại hay không
 	private boolean isExistID(int id) {
 		return findProductByID(id) != null;
 	}
 
+<<<<<<< HEAD
 	// sắp xếp giá từ cao đến thấp
 	public List<Product> sortByDiscountDESC(String name) {
 		if (name.equals(""))
@@ -218,4 +267,6 @@ public class ProductDAO {
 		return products;
 	}
 
+=======
+>>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 }

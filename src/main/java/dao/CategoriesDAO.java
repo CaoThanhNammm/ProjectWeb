@@ -43,4 +43,8 @@ public class CategoriesDAO {
 		return categories;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
