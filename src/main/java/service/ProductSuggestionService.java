@@ -32,31 +32,30 @@ public class ProductSuggestionService extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("application/json");
-	
+
 		PrintWriter out = response.getWriter();
-		
+
 		String nameProduct = request.getParameter("nameProduct");
-		
+
 		Handle connection = JDBIConnectionPool.get().getConnection();
-		ProductDAO dao = new ProductDAO(connection);
-		
+		ProductDAO dao = new ProductDAO(connection, request.getServletContext().getRealPath(""));
+
 		List<Product> products = dao.findProductByNameLimitN(nameProduct, 10);
 		JDBIConnectionPool.get().releaseConnection(connection);
-		
+
 		request.setAttribute("products", products);
 		JsonArray jsonArray = new JsonArray();
-		
-		
+
 		for (Product product : products) {
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("id", product.getId());
 			jsonObject.addProperty("name", product.getName());
 			jsonArray.add(jsonObject);
 		}
-		
+
 		Gson gson = new Gson();
 		String json = gson.toJson(jsonArray);
-		
+
 		out.print(json);
 	}
 

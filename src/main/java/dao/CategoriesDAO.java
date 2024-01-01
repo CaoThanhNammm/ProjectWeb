@@ -21,7 +21,7 @@ public class CategoriesDAO {
 	}
 
 	public List<Category> getCategoryLimitN(int num) {
-		List<Category> categories = handle.select("SELECT name FROM categories LIMIT ?").bind(0, num)
+		List<Category> categories = handle.select("SELECT id,name FROM categories LIMIT ?").bind(0, num)
 				.mapToBean(Category.class).list();
 
 		return categories;
@@ -36,15 +36,10 @@ public class CategoriesDAO {
 
 	// lấy ra loại của sản phẩm random
 	public List<Category> getCategoryRandomLimitN(int limit) {
-		List<Category> categories = handle.select("SELECT * FROM categories ORDER BY RAND() LIMIT ?")
-				.bind(0, limit)
-				.mapToBean(Category.class).list();
-		
+		List<Category> categories = handle.select("SELECT id, name FROM categories ORDER BY RAND() LIMIT ?")
+				.bind(0, limit).mapToBean(Category.class).list();
+
 		return categories;
 	}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a

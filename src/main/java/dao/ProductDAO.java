@@ -6,22 +6,20 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.jdbi.v3.core.Handle;
 
-<<<<<<< HEAD
 import model.Brand;
-=======
-import database.JDBIConnectionPool;
-import model.Category;
->>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 import model.Product;
 
 public class ProductDAO {
 	private Handle handle;
+	private String pathImg;
 
-	public ProductDAO(Handle handle) {
+	public ProductDAO(Handle handle, String pathImg) {
 		this.handle = handle;
+		this.pathImg = pathImg;
 	}
 
 	// lấy ra tất cả sản phẩm
@@ -50,7 +48,7 @@ public class ProductDAO {
 
 	// thêm sản phẩm vào danh sách
 	public List<Product> save(Product product) throws SQLException {
-		BrandDAO brandDao = new BrandDAO(this.handle);
+		BrandDAO brandDao = new BrandDAO(this.handle, pathImg);
 		CategoriesDAO categoriesDAO = new CategoriesDAO(this.handle);
 		StatusDAO statusDao = new StatusDAO(this.handle);
 
@@ -104,11 +102,7 @@ public class ProductDAO {
 	}
 
 	/*
-<<<<<<< HEAD
 	 * ẩn sản phẩm, truyền vào id sản phẩm muốn ẩn
-=======
-	 *  ẩn sản phẩm, truyền vào id sản phẩm muốn ẩn
->>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 	 */
 	public List<Product> hide(int productID) throws SQLException {
 
@@ -126,7 +120,6 @@ public class ProductDAO {
 		if (productID < 0)
 			return null;
 
-<<<<<<< HEAD
 		Product product = handle.select("SELECT id, name, price, discount FROM products where id = ?")
 				.bind(0, productID).mapToBean(Product.class).first();
 
@@ -139,8 +132,12 @@ public class ProductDAO {
 		if (name.equals(""))
 			return new ArrayList<>();
 		List<Product> products = handle
-				.select("SELECT id, name, price, discount FROM products where name like ? limit ?")
+				.select("SELECT id, name, price, discount FROM products WHERE name LIKE ? LIMIT ?")
 				.bind(0, "%" + name + "%").bind(1, num).mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
 
 		return products;
 	}
@@ -149,8 +146,27 @@ public class ProductDAO {
 	public List<Product> findProductByNameLimitN(String name) {
 		if (name.equals(""))
 			return new ArrayList<>();
-		List<Product> products = handle.select("SELECT id, name, price, discount FROM products where name like ?")
+
+		List<Product> products = handle.select("SELECT id, name, price, discount FROM products WHERE name LIKE ?")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
+		return products;
+	}
+
+	public List<Product> findProductByCategoryId(int id) {
+		if (id < 0)
+			return new ArrayList<>();
+
+		List<Product> products = handle.select("SELECT id, name, price, discount FROM products WHERE categoryID = ?")
+				.bind(0, id).mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
 
 		return products;
 	}
@@ -162,61 +178,30 @@ public class ProductDAO {
 				.select("SELECT id, name, price, discount FROM products ORDER BY discount/price DESC LIMIT ?")
 				.bind(0, limit).mapToBean(Product.class).list();
 
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
 		return products;
 	}
 
 	// lấy ra sản phẩm random, truyền vào số sản phẩm muốn lấy
 	public List<Product> getProductRecommend(int limit) {
 		List<Product> products = handle.select("SELECT * FROM products ORDER BY RAND() LIMIT ?").bind(0, limit)
-=======
-
-		Product product = handle.select("SELECT id, name, price, discount FROM products where id = ?")
-				.bind(0, productID).mapToBean(Product.class).first();
-
-		return product;
-	}
-
-	// tìm sản phẩm giống 1 phần tên, truyền vào tên sản phẩm và số lượng sản phẩm muốn lấy
-	public List<Product> findProductByNameLimitN(String name, int num) {
-		if (name.equals(""))
-			return new ArrayList<>();
-
-		List<Product> products = handle
-				.select("SELECT id, name, price, discount FROM products where name like ? limit ?")
-				.bind(0, "%" + name + "%").bind(1, num).mapToBean(Product.class).list();
-
-		return products;
-	}
-
-	// lấy ra sản phẩm giảm giá cao nhất, truyền vào số sản phẩm muốn lấy
-	// tính theo %
-	public List<Product> getProductBestDiscount(int limit){
-		List<Product> products = handle.select("SELECT id, name, price, discount FROM products ORDER BY discount/price DESC LIMIT ?")
-				.bind(0, limit)
->>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 				.mapToBean(Product.class).list();
-		
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
 		return products;
 	}
-<<<<<<< HEAD
-=======
-	
-	// lấy ra sản phẩm random, truyền vào số sản phẩm muốn lấy
-	public List<Product> getProductRecommend(int limit){
-		List<Product> products = handle.select("SELECT * FROM products ORDER BY RAND() LIMIT ?")
-				.bind(0, limit)
-				.mapToBean(Product.class).list();
-		
-		return products;
-	}
->>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
 
 	// kiểm tra id của sản phẩm có tồn tại hay không
 	private boolean isExistID(int id) {
 		return findProductByID(id) != null;
 	}
 
-<<<<<<< HEAD
 	// sắp xếp giá từ cao đến thấp
 	public List<Product> sortByDiscountDESC(String name) {
 		if (name.equals(""))
@@ -224,6 +209,10 @@ public class ProductDAO {
 		List<Product> products = handle.select(
 				"SELECT id, name, price, discount FROM products where name like ? ORDER BY price - discount DESC")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
 
 		return products;
 	}
@@ -236,6 +225,9 @@ public class ProductDAO {
 				"SELECT id, name, price, discount FROM products where name like ? ORDER BY price - discount ASC")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
 
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
 		return products;
 	}
 
@@ -259,14 +251,58 @@ public class ProductDAO {
 		return res;
 	}
 
-	public List<Product> getProductDefaultByBrand(String findNameProduct) {
+	// lấy tất cả thương hiệu của tất sản phẩm, tên sản phẩm là tham số
+	public List<Product> getProductDefaultByBrand(String name) {
 		List<Product> products = handle.select(
 				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ?)")
-				.bind(0, "%" + findNameProduct + "%").mapToBean(Product.class).list();
+				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
 
 		return products;
 	}
 
-=======
->>>>>>> 31a4803977017b05751f596eb9dfe85609d6d96a
+	// lấy ra sản phẩm có giá trong khoảng giá cho phép
+	public List<Product> getProductsInRangePrice(String name, int from, int to) {
+		List<Product> products = handle.select(
+				"SELECT id, name, price, discount FROM products WHERE name LIKE ? and (price - discount) >= ? and (price - discount) <= ?")
+				.bind(0, "%" + name + "%").bind(1, from).bind(2, to).mapToBean(Product.class).list();
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
+		return products;
+	}
+
+	public int getMinPrice(String name) throws SQLException {
+		String sql = "SELECT MIN(price - discount) as price FROM products WHERE name LIKE ?";
+
+		PreparedStatement statement = handle.getConnection().prepareStatement(sql);
+		statement.setString(1, "%" + name + "%");
+		int res = 0;
+		ResultSet rs = statement.executeQuery();
+
+		while (rs.next()) {
+			res = rs.getInt("price");
+		}
+		return res;
+	}
+
+	public int getMaxPrice(String name) throws SQLException {
+
+		String sql = "SELECT MAX(price - discount) as price FROM products WHERE name LIKE ?";
+
+		PreparedStatement statement = handle.getConnection().prepareStatement(sql);
+		statement.setString(1, "%" + name + "%");
+		int res = 0;
+		ResultSet rs = statement.executeQuery();
+
+		while (rs.next()) {
+			res = rs.getInt("price");
+		}
+		return res;
+	}
+
 }

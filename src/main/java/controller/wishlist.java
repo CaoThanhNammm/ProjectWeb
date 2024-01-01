@@ -63,7 +63,7 @@ public class wishlist extends HttpServlet {
 		String isRemove = request.getParameter("remove");
 
 		Handle connection = JDBIConnectionPool.get().getConnection();
-		ProductDAO productDAO = new ProductDAO(connection);
+		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
 		p = productDAO.findProductByID(productId);
 		JDBIConnectionPool.get().releaseConnection(connection);
 		List<Product> productsWishlist = wishlist.getProducts();
