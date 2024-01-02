@@ -1,99 +1,95 @@
 @charset "UTF-8";
-
 /* 
     Create: Nguyễn Khải Nam
     Date: 30/10/2023
     Note: Trang trí cho trang admin
 */
 #admin {
-	display: flex;
-	flex-direction: column;
-	background-color: var(--blue-second);
-	width: 280px;
-	padding: 0 20px;
-	min-height: 100vh;
-	height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--blue-second);
+    width: 280px;
+    min-width: 280px;
+    padding: 0 20px;
+    min-height: 100vh;
+    height: 100%;
 }
 
 .admin_head,
 .dropdown-menu {
-	background-color: var(--blue-second);
-	color: var(--white-primary) !important;
+    background-color: var(--blue-second);
+    color: var(--white-primary) !important;
 }
 
 #admin a {
-	text-decoration: none;
-	width: 100%;
-	color: var(--white-primary) !important;
+    text-decoration: none;
+    width: 100%;
+    color: var(--white-primary) !important;
 }
 
 #admin .dropdown-item:hover {
-	background-color: var(--yellow-second) !important;
+    background-color: var(--yellow-second) !important;
 }
 
 #admin .admin_logo {
-	width: 50%;
-	object-fit: cover;
+    width: 50%;
+    object-fit: cover;
 }
 
 #admin .admin-menu {
-	border-top: 1px solid var(--gray-third);
-	padding: 0;
-	margin: 0;
-	width: 100%;
+    border-top: 1px solid var(--gray-third);
+    padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
 #admin .nav-item {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 #admin .nav-item .nav-link,
 .nav-item_item_child a {
-	padding-left: 4%;
-	padding-right: 4%;
-	transition: 0.2s ease-in-out;
-	border-radius: 5px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-right: 0;
-	cursor: pointer;
+    padding-left: 4%;
+    padding-right: 4%;
+    transition: 0.2s ease-in-out;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 0;
+    cursor: pointer;
 }
 
 #admin .nav-link:hover,
 #admin .active,
 .nav-item_item_child:hover {
-	background-color: var(--yellow-primary);
-	border-radius: 5px;
-	color: var(--white-primary) !important;
+    background-color: var(--yellow-primary);
+    border-radius: 5px;
+    color: var(--white-primary) !important;
 }
 
 .icon_down {
-	color: var(--white-primary);
+    color: var(--white-primary);
 }
 
 .icon_title {
-	margin-right: 5px;
+    margin-right: 5px;
 }
 
 .nav-item_list_child {
-	padding: 0;
+    padding: 0;
 }
 
 .nav-item_item_child {
-	padding: 5px 0 5px 30px;
-	transition: 0.2s ease-in-out;
-	margin-top: 8px;
+    padding: 5px 0 5px 30px;
+    transition: 0.2s ease-in-out;
+    margin-top: 8px;
 }
 
 .nav-item_list_child {
-	display: none;
+    display: none;
 }
 
 .active_child {
-	display: block;
-}
-
-.active-choose {
-	background-color: var(--yellow-second) !important;
+    display: block;
 }

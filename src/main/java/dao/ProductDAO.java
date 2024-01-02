@@ -119,10 +119,9 @@ public class ProductDAO {
 	public Product findProductByID(int productID) {
 		if (productID < 0)
 			return null;
-
 		Product product = handle.select("SELECT id, name, price, discount FROM products where id = ?")
 				.bind(0, productID).mapToBean(Product.class).first();
-
+		product.setImgs(pathImg);
 		return product;
 	}
 

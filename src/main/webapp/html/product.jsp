@@ -1,3 +1,5 @@
+<%@page import="java.util.Arrays"%>
+<%@page import="model.Brand"%>
 <%@page import="controller.FindProduct"%>
 <%@page import="model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
@@ -32,6 +34,8 @@
 
 		<%@include file="../html/sliderShow.jsp"%>
 
+		<div class="modal_overlay_filter_opacity"></div>
+
 		<!-- phần lọc -->
 		<div class="category_product container">
 			<div class="category_price">
@@ -40,16 +44,73 @@
 				<div class="category_price_option">
 					<ul class="category_price_option_list category_option_list">
 						<li class="category_price_option_item category_option_item">
-							<p class="category_price_option_default">Theo mức giá</p> <i
-							class="fa-solid fa-chevron-down category_all_item_icon"></i>
+							<p class="category_price_option_default"><%=request.getAttribute("priceSortText")%></p>
+							<i class="fa-solid fa-chevron-down category_all_item_icon"></i>
 							<ul>
-								<li>Từ thấp đến cao</li>
-								<li>Từ cao đến thấp</li>
+								<li>
+									<form
+										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=1"
+										method="POST">
+										<button class="filter_price_asc_btn">Từ thấp đến cao</button>
+									</form>
+								</li>
+
+								<li>
+									<form
+										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=0"
+										method="POST">
+										<button class="filter_price_desc_btn">Từ cao đến thấp</button>
+									</form>
+								</li>
+
+								<li>
+									<form
+										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=2"
+										method="POST">
+										<div class="price_input">
+											<div class="price_input_left">
+												<input type="number" class="price_input_left-min"
+													value="<%=request.getAttribute("minPriceCurrent")%>"
+													name="range_min">
+											</div>
+
+											<div class="price_input_right">
+												<input type="number" class="price_input_right-max"
+													value="<%=request.getAttribute("maxPriceCurrent")%>"
+													name="range_max">
+											</div>
+										</div>
+
+										<div style="padding: 0 10%">
+											<div class="slider_price">
+												<div class="slider_price_progress"></div>
+											</div>
+											<div class="range_input">
+												<input type="range" class="range_min"
+													min="<%=request.getAttribute("minPrice")%>"
+													max="<%=request.getAttribute("maxPrice")%>"
+													value="<%=request.getAttribute("minPriceCurrent")%>">
+
+												<input type="range" class="range_max"
+													min="<%=request.getAttribute("minPrice")%>"
+													max="<%=request.getAttribute("maxPrice")%>"
+													value="<%=request.getAttribute("maxPriceCurrent")%>">
+											</div>
+										</div>
+
+										<div style="display: flex; justify-content: end">
+											<button class="filter_range_btn">Lọc</button>
+										</div>
+									</form>
+								</li>
+
+
 							</ul>
 						</li>
 					</ul>
 				</div>
 			</div>
+
 
 			<div class="category_brand">
 				<span>Thương hiệu</span>
@@ -57,34 +118,35 @@
 				<div class="category_price_option">
 					<ul class="category_brand_option_list category_option_list">
 						<li class="category_brand_option_item category_option_item">
-							<p class="category_brand_option_default">Theo thương hiệu</p> <i
-							class="fa-solid fa-chevron-down category_all_item_icon"></i>
+							<p class="category_brand_option_default"><%=request.getAttribute("brandSortText")%></p>
+							<i class="fa-solid fa-chevron-down category_all_item_icon"></i>
+
 							<ul>
-								<li><label for="Sunhouse"> <input type="checkbox"
-										name="Sunhouse" id="Sunhouse"> <span for="lg">Sunhouse</span>
-								</label></li>
+								<%
+								List<Brand> brands = (List) request.getAttribute("brands");
+								for (Brand brand : brands) {
+								%>
+								<li id="<%=brand.getName()%>">
+									<form
+										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=<%=request.getAttribute("typeOfSort")%>&brands=<%=brand.getId()%>"
+										method="POST">
+										<button>
 
-								<li><label for="Kanguroo"> <input type="checkbox"
-										name="Kanguroo" id="Kanguroo"> <span>Kanguroo</span>
-								</label></li>
+											<img class="category_brand_option_item_img" alt=""
+												src="<%=brand.getImgbrand()%>"
+												id="<%=brand.getName()%>">
 
-								<li><label for="Toshiba"> <input type="checkbox"
-										name="Toshiba" id="Toshiba"> <span>Toshiba</span>
-								</label></li>
-
-								<li><label for="BlueStone"> <input type="checkbox"
-										name="BlueStone" id="BlueStone"> <span>BlueStone</span>
-								</label></li>
-								<li><label for="Panasonic"> <input type="checkbox"
-										name="Panasonic" id="Panasonic"> <span>Panasonic</span>
-								</label></li>
+										</button>
+									</form>
+								</li>
+								<%
+								}
+								%>
 							</ul>
 						</li>
 					</ul>
 				</div>
 			</div>
-
-			<button href="" class="category_product_submit">ÁP DỤNG</button>
 		</div>
 
 		<!-- danh sách các sản phẩm -->
@@ -98,7 +160,17 @@
 				for (Product p : products) {
 				%>
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
-					<i class="fa-solid fa-bag-shopping fly_to_card"></i>
+					<div class="product_img">
+						<img
+							src="<%=p.getImgsProduct().get(0)%>"
+							alt="">
+
+						<div class="product_img_hover">
+							<img
+								src="<%=p.getImgsProduct().get(1)%>"
+								alt="">
+						</div>
+					</div>
 
 					<div class="product_in4">
 						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
@@ -111,11 +183,12 @@
 								<p class="product_in4_sale_price">
 									<%=p.formatNumber(p.getPrice() - p.getDiscount())%>
 									₫
+
 								</p>
 							</div>
 							<form action="../html/wishlist?id=<%=p.getId()%>" method="POST">
-
-								<button class="product_in4_wishlist no_wishlist" id="<%=p.getId()%>">
+								<button class="product_in4_wishlist no_wishlist"
+									id="<%=p.getId()%>">
 									<i class="fa-solid fa-heart"></i>
 								</button>
 							</form>
@@ -142,16 +215,20 @@
 					<ul class="new_page_list">
 						<%
 						int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-						for (int i = 1; i <= (Integer) request.getAttribute("totalPage"); i++) {
-							if (currentPage == i) {
+						List<Integer> listPage = (List) request.getAttribute("createPages");
+						for (Integer num : listPage) {
+							if (num == currentPage) {
 						%>
 						<li class="new_page_item choose_page_item"><a
-							href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a></li>
+							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=num%>"><%=num%></a>
+						</li>
+
 						<%
 						} else {
 						%>
 						<li class="new_page_item"><a
-							href="../html/FindProduct?currentPage=<%=i%>"><%=i%></a></li>
+							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=num%>"><%=num%></a>
+						</li>
 						<%
 						}
 						}

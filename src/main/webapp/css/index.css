@@ -12,9 +12,9 @@
 	--red-second: red;
 	--gray-third: #b6b5b5;
 	--white-second: rgba(229, 229, 229, 0.7);
-
+	--yellow-third: rgba(254, 189, 105, 0.7);
 	--fsize-normal: 16px;
-	
+
 	--marginLeftWidthDotSliderShow: 20px;
 	--widthDotSliderShow: 10px;
 }
@@ -30,7 +30,8 @@
 html {
 	position: fixed;
 	height: 100%;
-	overflow: hidden;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 body {
@@ -83,8 +84,8 @@ h5 {
 
 
 h6 {
-    font-size: 13px;
-    font-weight: 550;
+	font-size: 13px;
+	font-weight: 550;
 }
 
 #page {

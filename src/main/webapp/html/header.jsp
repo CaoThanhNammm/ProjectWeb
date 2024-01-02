@@ -34,6 +34,7 @@ Account ac = (Account) session.getAttribute("account");
         Date: 18/10/2023
         Note: header của trang web 
     -->
+	<div class="modal_overlay_search_opacity"></div>
 	<div class="header">
 		<a href="../index/index.jsp" class="logo_page"><img
 			src="../image/general/logo.png" alt=""></a>
@@ -47,7 +48,7 @@ Account ac = (Account) session.getAttribute("account");
 			</button>
 
 			<!-- phần hiên thị ra danh sách sản phẩm đang tìm kiếm -->
-			<div class="tab_suggestion_products unactive"></div>
+			<div class="tab_suggestion_products"></div>
 		</div>
 
 
@@ -107,7 +108,7 @@ Account ac = (Account) session.getAttribute("account");
 			<c:forEach items="${categories}" var="c">
 				<li class="navigtion-item">
 					<form
-						action="../html/FindProduct?nameProduct=${c.name}&&currentPage=1"
+						action="../html/FindProduct?nameProduct=${c.id}&currentPage=1"
 						method="POST">
 						<button>${c.name}</button>
 					</form>

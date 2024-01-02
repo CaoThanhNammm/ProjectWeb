@@ -2,10 +2,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	if (document.querySelector(".category_product")) {
 		_clickPrice();
 		_clickBrand();
-		_chooseOptionBrand();
-		_chooseOptionPrice();
+		_checkChoiceBrand();
+		_clickOutsideFilter();
+		_stateRangePrice();
+		_stateInputPrice();
 	}
-	_addToCard();
 	_eventChangeStateIconheart();
 	_changePage();
 	_setStateWishlisted();
@@ -23,11 +24,6 @@ function _clickPrice() {
 			elementPriceOptionListChild,
 			elementPriceIconDown
 		);
-		_turnOffBrand(
-			elementBrandOptionList,
-			elementBrandOptionListChild,
-			elementBrandIconDown
-		);
 	};
 }
 
@@ -41,11 +37,6 @@ function _clickBrand() {
 			elementBrandOptionList,
 			elementBrandOptionListChild,
 			elementBrandIconDown
-		);
-		_turnOffPrice(
-			elementPriceOptionList,
-			elementPriceOptionListChild,
-			elementPriceIconDown
 		);
 	};
 }
@@ -63,9 +54,11 @@ function _turnOffPrice(price, priceChild, icon) {
 phương thức hiện sort theo giá
 */
 function _turnOnPrice(price, priceChild, icon) {
-	price.classList.toggle("border_option_list");
-	priceChild.classList.toggle("active");
-	icon.classList.toggle("rotate_icon");
+	price.classList.add("border_option_list");
+	priceChild.classList.add("active");
+	icon.classList.add("rotate_icon");
+	elementModalOverlayOpacity.classList.add("active");
+
 }
 
 /* Create: Cao Thành Nam
@@ -73,7 +66,9 @@ phương thức tắt sort theo brand
 */
 function _turnOffBrand(brand, brandChild, icon) {
 	brand.classList.remove("border_option_list");
-	brandChild.classList.remove("active");
+
+	brandChild.classList.remove("active_filter");
+
 	icon.classList.remove("rotate_icon");
 }
 
@@ -81,9 +76,30 @@ function _turnOffBrand(brand, brandChild, icon) {
 phương thức hiện sort theo brand
 */
 function _turnOnBrand(brand, brandChild, icon) {
-	brand.classList.toggle("border_option_list");
-	brandChild.classList.toggle("active");
-	icon.classList.toggle("rotate_icon");
+	brand.classList.add("border_option_list");
+	brandChild.classList.add("active_filter");
+	icon.classList.add("rotate_icon");
+	elementModalOverlayOpacity.classList.add("active");
+}
+
+/* Create: Cao Thành Nam
+phương thức này khi ấn vào bất kỳ chỗ nào trên trang thì bộ lọc sẽ tắt
+*/
+function _clickOutsideFilter() {
+	elementModalOverlayOpacity.onclick = function() {
+		_turnOffBrand(
+			elementBrandOptionList,
+			elementBrandOptionListChild,
+			elementBrandIconDown
+		);
+		_turnOffPrice(
+			elementPriceOptionList,
+			elementPriceOptionListChild,
+			elementPriceIconDown
+		);
+		elementModalOverlayOpacity.classList.remove("active");
+	}
+
 }
 
 /* Create: Cao Thành Nam
@@ -110,66 +126,6 @@ function _changePage() {
 	});
 }
 
-/* Create: Cao Thành Nam
-phương thức set item cho bộ lọc theo giá
-*/
-function _chooseOptionPrice() {
-	elementPriceOptionListChildItem.forEach(function(value) {
-		var elementShowChoose = value.parentElement.parentElement.querySelector(
-			".category_price_option_default"
-		);
-		value.onclick = function() {
-			elementShowChoose.innerText = value.innerText;
-		};
-	});
-}
-
-
-/* Create: Cao Thành Nam
-phương thức set item cho bộ lọc theo thương hiệu
-*/
-var re = [];
-function _chooseOptionBrand() {
-	elementBrandOptionListItem.forEach(function(value) {
-		value.onchange = function(e) {
-			elementBrandOptionListChild.classList.add("active");
-			if (e.target.checked) {
-				re.push(e.target.name);
-			} else {
-				re = re.filter(function(value) {
-					return value !== e.target.name;
-				});
-			}
-			_setChooseBrand(re);
-		};
-	});
-}
-
-/*
-create: Cao Thành Nam
-phương thức lấy các thương hiệu khi ấn (bộ lọc)
- */
-function _setChooseBrand(array) {
-	var elementSetBrand = document.querySelector(
-		".category_brand_option_default"
-	);
-
-	if (array.length === 0) {
-		console.log("default");
-		elementSetBrand.innerText = "Theo thương hiệu";
-	} else {
-		elementSetBrand.innerText = "";
-	}
-
-	array.forEach(function(value, index) {
-		if (index === array.length - 1) {
-			elementSetBrand.innerText += value;
-		} else {
-			elementSetBrand.innerText += value + "-";
-		}
-	});
-}
-
 /*
 Create: Cao Thành Nam
 Date: 19/10/2023
@@ -182,26 +138,6 @@ function _eventChangeStateIconheart() {
 			value.classList.toggle("no_wishlist");
 		}
 	})
-}
-
-
-function _addToCard() {
-	var elementAddCard = document.querySelectorAll(".product_btn button");
-	var elemmentQuantity = document.querySelector(".header_cart_amount_product");
-	elementAddCard.forEach(function(value) {
-		value.onclick = function() {
-			var elementImgProduct =
-				value.parentElement.parentElement.querySelector(".fly_to_card");
-			elementImgProduct.classList.add("animation_add_to_card");
-
-			elemmentQuantity.innerHTML =
-				parseInt(elemmentQuantity.innerText) + 1 + "";
-
-			setTimeout(function() {
-				elementImgProduct.classList.remove("animation_add_to_card");
-			}, 800);
-		};
-	});
 }
 
 /*
@@ -221,14 +157,144 @@ function _setStateWishlisted() {
 	})
 }
 
+
+/* Create: Cao Thành Nam
+phương thức này khi chọn thương hiệu nào thì sẽ border hình ảnh của thương hiệu đó
+*/
+function _checkChoiceBrand() {
+	var brands = elementSetBrand.innerText.split(', ');
+	brands.forEach(function(nameBrand) {
+		elementBrandOptionListItem.forEach(function(brandImg) {
+			if (nameBrand === brandImg.getAttribute("id")) {
+				brandImg.classList.toggle("choose_page_item")
+			}
+		})
+	})
+}
+
+
+/* Create: Cao Thành Nam
+phương thức này set giá trị của input min khi nút trượt min di chuyển đồng thời set trạng thái progess
+*/
+function _slideMin() {
+	var gap = parseInt(elementRangeMax.value) - parseInt(elementRangeMin.value);
+	if (gap <= minGap) {
+		elementRangeMin.value = parseInt(elementRangeMax.value) - minGap
+	}
+	elementPriceInputMin.value = elementRangeMin.value;
+	_setArea();
+}
+
+/* Create: Cao Thành Nam
+phương thức này set giá trị của input max khi nút trượt max di chuyển đồng thời set trạng thái progess
+*/
+function _slideMax() {
+	var gap = parseInt(elementRangeMax.value) - parseInt(elementRangeMin.value);
+
+	if (gap <= minGap) {
+		elementRangeMax.value = parseInt(elementRangeMin.value) + minGap
+	}
+
+	elementPriceInputMax.value = elementRangeMax.value;
+	_setArea();
+}
+
+/* Create: Cao Thành Nam
+phương thức này set thanh progress khi trượt
+*/
+function _setArea() {
+	var sliderMinValue = elementRangeMin.min;
+	var sliderMaxValue = elementRangeMax.max;
+	elementProgress.style.left = ((elementRangeMin.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100 + "%"
+	elementProgress.style.right = 100 - ((elementRangeMax.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100 + "%";
+}
+
+/* Create: Cao Thành Nam
+phương thức này thực hiện các thao tác khi trượt nút trượt
+*/
+function _stateRangePrice() {
+	var sliderMinValue = elementRangeMin.min;
+	var sliderMaxValue = elementRangeMax.max;
+	elementProgress.style.left = ((elementRangeMin.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100 + "%"
+	elementProgress.style.right = 100 - ((elementRangeMax.value - sliderMinValue) / (sliderMaxValue - sliderMinValue)) * 100 + "%";
+	elementRangeMin.oninput = function() {
+		_slideMin();
+	}
+	elementRangeMax.oninput = function() {
+		_slideMax();
+	}
+}
+
+/* Create: Cao Thành Nam
+phương thức này set trạng thái cho nút trượt min khi input thay đổi
+*/
+function _slideMinInput() {
+	var maxPrice = parseInt(elementPriceInputMax.value);
+	var minPrice = parseInt(elementPriceInputMin.value);
+	if (minPrice > maxPrice) {
+		elementRangeMin.value = maxPrice;
+	}
+	else {
+		elementRangeMin.value = minPrice;
+	}
+	_setArea();
+}
+
+/* Create: Cao Thành Nam
+phương thức này set trạng thái cho nút trượt max khi input thay đổi
+*/
+function _slideMaxInput() {
+	var maxPrice = parseInt(elementPriceInputMax.value);
+	var minPrice = parseInt(elementPriceInputMin.value);
+
+	if (maxPrice < minPrice) {
+		elementRangeMax.value = minPrice;
+	}
+	else {
+		elementRangeMax.value = maxPrice;
+	}
+	_setArea();
+}
+
+
+
+/* Create: Cao Thành Nam
+phương thức này thực hiện các thao tác khi input thay đổi phần filter trong khoảng giá
+*/
+function _stateInputPrice() {
+	elementPriceInputMin.oninput = function() {
+		_slideMinInput();
+	}
+	elementPriceInputMax.oninput = function() {
+		_slideMaxInput();
+	}
+}
+
+var elementPriceInputMin = document.querySelector(".price_input_left-min");
+var elementPriceInputMax = document.querySelector(".price_input_right-max");
+var elementRangeMin = document.querySelector(".range_min");
+var elementRangeMax = document.querySelector(".range_max");
+
+var elementProgress = document.querySelector(".slider_price_progress");
+var minGap = 0;
+
+
+var elementModalOverlayOpacity = document.querySelector('.modal_overlay_filter_opacity');
+var elementSetBrand = document.querySelector(
+	".category_brand_option_default"
+);
+
 var elementNoWishlist = document.querySelectorAll(".no_wishlist");
 var elementWishlist = document.querySelectorAll(".remove_one");
 var elementPriceOptionListChildItem = document.querySelectorAll(
 	".category_price_option_list .category_price_option_item ul li"
 );
 
+var elementShowChoose = document.querySelector(
+	".category_price_option_default"
+);
 var elementBrandOptionListItem = document.querySelectorAll(
-	".category_brand_option_list .category_brand_option_item ul label"
+	".category_brand_option_list .category_brand_option_item ul li"
 );
 
 var elementNewPageItem = document.querySelectorAll(".new_page_item");
