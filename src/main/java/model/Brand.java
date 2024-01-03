@@ -13,20 +13,18 @@ public class Brand {
 	private String name;
 	private String pathImg;
 
-	public Brand(int id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-
 	public Brand(int id, String name, String pathImg) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.pathImg = pathImg;
 	}
 
 	public Brand() {
+	}
+	
+	public Brand(int id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	public String getImgbrand() throws IOException {

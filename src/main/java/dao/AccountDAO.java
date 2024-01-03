@@ -1,7 +1,10 @@
 package dao;
 
-import static database.TableUsers.*;
+import static database.TableUsers.ADDRESS;
+import static database.TableUsers.DOB;
+import static database.TableUsers.EMAIL;
 import static database.TableUsers.FULL_NAME;
+import static database.TableUsers.GENDER;
 import static database.TableUsers.ID;
 import static database.TableUsers.NAME_TABLE;
 import static database.TableUsers.PASSWORD;
@@ -9,7 +12,6 @@ import static database.TableUsers.PHONE;
 import static database.TableUsers.ROLE;
 import static database.TableUsers.STATUS;
 
-import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 import org.jdbi.v3.core.Handle;

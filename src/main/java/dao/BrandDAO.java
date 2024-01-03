@@ -36,5 +36,11 @@ public class BrandDAO {
 		}
 		return brands;
 	}
+	
+	public Brand getBrand(int id) {
+		Brand brand = handle.select("SELECT id, name FROM brands WHERE id=?", id).map((rs, a) -> new Brand(rs.getInt("id"), rs.getString("name"))).one();
+		brand.setPathImg(pathImgs);
+		return brand;
+	}
 
 }
