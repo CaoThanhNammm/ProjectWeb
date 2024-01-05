@@ -19,12 +19,19 @@ String title = (String) request.getAttribute("title");
 <%@ page import="java.util.*"%>
 <%
 Product product = (Product) request.getAttribute("product");
-List<String> imgs = product.getImgsProduct();
-List<ProductModel> productModels = product.getModels();
+List<String> imgs = null;
+List<ProductModel> productModels = null;
+if (product != null) {
+	imgs = product.getImgsProduct();
+	productModels = product.getModels();
+}
 %>
 <body class="d-flex">
 	<%@include file="headerAdmin.jsp"%>
 	<div>
+		<%
+		if (product != null) {
+		%>
 		<div class="col-5 mx-auto w-50">
 			<div class="slider_main">
 				<img src="<%=imgs.get(0)%>" alt="img1">
@@ -42,7 +49,9 @@ List<ProductModel> productModels = product.getModels();
 			</div>
 		</div>
 		<div class="ms-4">
-			<p>Lần cập nhật cuối: <%= product.getLastUpdated() %></p>
+			<p>
+				Lần cập nhật cuối:
+				<%=product.getLastUpdated()%></p>
 			<h2><%=product.getName()%></h2>
 			<div class="price">
 				<h3 class="old_price">
@@ -65,47 +74,32 @@ List<ProductModel> productModels = product.getModels();
 				<table class="table_full w-100">
 					<tr>
 						<td class="table_title">Mã sản phẩm</td>
-						<td><%=product.getId()%></td>
+						<td><b><%=product.getId()%></b></td>
 					</tr>
 					<tr>
 						<td class="table_title">Thương hiệu</td>
-						<td><%=product.getBrand()%></td>
+						<td><b><%=product.getBrand().getName()%></b></td>
 					</tr>
 					<tr>
 						<td class="table_title">Màu</td>
-						<td>Trắng</td>
+						<td><b>Trắng</b></td>
 					</tr>
+					<%
+					for (int i = 0; i < product.getAttributes().size(); ++i) {
+					%>
 					<tr>
-						<td class="table_title">Chất liệu</td>
-						<td>Nhôm</td>
+						<td class="table_title"><%=product.getAttributes().get(i).getName()%></td>
+						<td><b><%=product.getAttributes().get(i).getValue()%></b></td>
 					</tr>
-					<tr>
-						<td class="table_title">Kích thước (Dài x Rộng x Cao)</td>
-						<td>3cm x 3cm x 3cm</td>
-					</tr>
-					<tr>
-						<td class="table_title">Dung tích</td>
-						<td>2 lít</td>
-					</tr>
-					<tr>
-						<td class="table_title">Công suất</td>
-						<td>500 Wát</td>
-					</tr>
-					<tr>
-						<td class="table_title">Khối lượng</td>
-						<td>3 Kg</td>
-					</tr>
-					<tr>
-						<td class="table_title">Dung tích</td>
-						<td>5 Lít</td>
-					</tr>
-					<tr>
-						<td class="table_title">Vôn</td>
-						<td>220 Vôn</td>
-					</tr>
+					<%
+					}
+					%>
 				</table>
 			</div>
 		</div>
+		<%
+		}
+		%>
 	</div>
 
 	<script src="../js/detail.js"></script>

@@ -73,30 +73,28 @@ if (products == null)
 			<div class="card-products ms-2 me-2">
 				<div class="card-group">
 					<%for (int i = 0; i < products.size(); ++i) {%>
-					<form action="editProduct" id="<%=products.get(i).getId()%>"
-						method="post" style="min-height: 550px;">
-						<div class="card">
-							<input type="hidden" name="id-product" value="<%=products.get(i).getId()%>">
-							 <img
-								class="card-img-top"
-								src="<%=products.get(i).getImgsProduct().get(0)%>"
-								alt="Card image cap">
-							<div class="card-body">
-								<h5 class="card-title"><%=products.get(i).getName()%></h5>
-								<p class="card-text"><%=products.get(i).getPrice()%>
-									VND / Còn lại: <%= products.get(i).getAmountSold() %> sản phẩm
-								</p>
-								<div class="d-flex">
-									<button class="btn btn-secondary me-2">
-										<i class="fa-solid fa-eye-slash"></i> Ẩn
-									</button>
-									<button class="btn btn-warning">
-										<i class="fa-solid fa-pen-to-square"></i>Chỉnh sửa
-									</button>
-								</div>
+					<div class="card" style="min-height: 550px;">
+						<img class="card-img-top"
+							src="<%=products.get(i).getImgsProduct().get(0)%>"
+							alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title"><%=products.get(i).getName()%></h5>
+							<p class="card-text"><%=products.get(i).getPrice()%>
+								VND / Còn lại:
+								<%=products.get(i).getAmountSold()%>
+								sản phẩm
+							</p>
+							<div class="d-flex">
+								<button class="btn btn-secondary me-2">
+									<i class="fa-solid fa-eye-slash"></i> Ẩn
+								</button>
+								<button class="btn btn-warning"
+									onclick="edit(<%=products.get(i).getId()%>)">
+									<i class="fa-solid fa-pen-to-square"></i>Chỉnh sửa
+								</button>
 							</div>
 						</div>
-					</form>
+					</div>
 					<%
 					}
 					%>
@@ -105,6 +103,11 @@ if (products == null)
 		</div>
 	</div>
 
+	<script>
+		function edit(id) {
+			window.location = "editProduct?id-product=" + id;
+		}
+	</script>
 </body>
 
 </html>

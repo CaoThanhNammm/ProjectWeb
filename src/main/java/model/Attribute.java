@@ -9,7 +9,6 @@ public class Attribute {
 		super();
 		this.id = id;
 		this.name = name;
-		this.value = value;
 	}
 
 	public int getId() {
@@ -26,6 +25,20 @@ public class Attribute {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the value
+	 */
+	public String getValue() {
+		return value;
+	}
+
+	/**
+	 * @param value the value to set
+	 */
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 }

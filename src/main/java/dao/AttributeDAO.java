@@ -19,7 +19,7 @@ public class AttributeDAO {
 
 	public List<Attribute> getAttributes(int idProduct) {
 		List<Attribute> ats = handle.select(
-				"SELECT id, name FROM attributes WHERE id IN (SELECT attributeID FROM product_details WHERE productID=?)",
+				"SELECT id, name, value FROM attributes JOIN  product_details ON id = attributeID AND productID=?",
 				idProduct).mapToBean(Attribute.class).list();
 		return ats;
 	}
