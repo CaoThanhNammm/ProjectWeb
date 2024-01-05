@@ -105,7 +105,7 @@ public class Product {
 		this.status = status;
 		this.imgs = imgs;
 	}
-
+  
 	public List<String> getImgsProduct() throws IOException {
 		File src = new File(imgs + "/image/product/" + id);
 		List<String> res = new ArrayList<>();
