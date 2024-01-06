@@ -9,6 +9,7 @@
     flex-direction: column;
     background-color: var(--blue-second);
     width: 280px;
+    min-width: 280px;
     padding: 0 20px;
     min-height: 100vh;
     height: 100%;

@@ -57,7 +57,6 @@ public class AccountRole {
 	}
 
 	// Kiểm tra vai trò hiện tại có phù hợp
-	@SuppressWarnings("unlikely-arg-type")
 	public boolean checkRole(String role) {
 		return roles.get(this.id).getName().equals(role);
 	}

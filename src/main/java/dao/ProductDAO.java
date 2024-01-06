@@ -1,5 +1,12 @@
 package dao;
 
+import static database.TableUsers.FULL_NAME;
+import static database.TableUsers.ID;
+import static database.TableUsers.NAME_TABLE;
+import static database.TableUsers.PASSWORD;
+import static database.TableUsers.ROLE;
+import static database.TableUsers.STATUS;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,11 +14,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-
 import org.jdbi.v3.core.Handle;
 
+import model.Account;
+import model.AccountRole;
+import model.AccountStatus;
 import model.Brand;
+import model.Category;
+import model.Encrypt;
 import model.Product;
+import model.Status;
 
 public class ProductDAO {
 	private Handle handle;
@@ -119,10 +131,20 @@ public class ProductDAO {
 	public Product findProductByID(int productID) {
 		if (productID < 0)
 			return null;
-
-		Product product = handle.select("SELECT id, name, price, discount FROM products where id = ?")
-				.bind(0, productID).mapToBean(Product.class).first();
-
+		BrandDAO brandDao = new BrandDAO(handle, pathImg);
+		CategoriesDAO categoriesDAO = new CategoriesDAO(handle);
+		StatusDAO statusDAO = new StatusDAO(handle);
+		Product product = handle.createQuery("SELECT * FROM products WHERE id=?").bind(0, productID)
+				.map((rs, ctx) -> new Product(rs.getInt("id"), rs.getString("name"),
+						brandDao.getBrand(rs.getInt("brandID")), rs.getString("description"),
+						categoriesDAO.getCategory(rs.getInt("categoryID")), rs.getInt("price"), rs.getInt("discount"),
+						rs.getDate("lastUpdated").toLocalDate(), rs.getInt("amountSold"),
+						statusDAO.getStatus(rs.getInt("statusID")), pathImg))
+				.findOne().orElse(null);
+		ProductModelDAO modelDao = new ProductModelDAO(handle);
+		product.setModels(modelDao.getModels(product));
+		AttributeDAO attributeDAO = new AttributeDAO(handle);
+		product.setAttributes(attributeDAO.getAttributes(productID));
 		return product;
 	}
 

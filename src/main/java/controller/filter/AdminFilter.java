@@ -1,6 +1,7 @@
 package controller.filter;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,13 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Account;
+import model.Product;
 
 /**
  * Servlet Filter implementation class AdminFilter
  */
 @WebFilter("/html/*")
 public class AdminFilter extends HttpFilter implements Filter {
-
+	private boolean check = false;
 	/**
 	 * 
 	 */
@@ -30,19 +32,19 @@ public class AdminFilter extends HttpFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-
 		String url = ((HttpServletRequest) request).getRequestURI();
 		if (url.contains("Admin")) {
 			Account ac = (Account) ((HttpServletRequest) request).getSession().getAttribute("account");
 			if (ac != null && ac.getRole().isAdmin()) {
-				request.getRequestDispatcher(url.substring(url.lastIndexOf("/") + 1)).forward(request, response);
+				if (!check) {
+					check = true;
+					((HttpServletResponse) response).sendRedirect(url.substring(url.lastIndexOf("/") + 1));
+				}
 			} else {
 				((HttpServletResponse) response).sendRedirect("../html/login.jsp");
 			}
-		} else {
-			chain.doFilter(request, response);
 		}
+		chain.doFilter(request, response);
 
 	}
 
