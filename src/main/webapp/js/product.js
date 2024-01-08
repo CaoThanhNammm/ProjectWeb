@@ -24,7 +24,16 @@ function _clickPrice() {
 			elementPriceOptionListChild,
 			elementPriceIconDown
 		);
+		_scrollOnTop(elementFilterDiv);
+
 	};
+}
+
+/* Create: Cao Thành Nam
+phương thức khi ấn vào trang web sẽ tự động scroll vào chỗ filter
+*/
+function _scrollOnTop(value) {
+	value.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 /* Create: Cao Thành Nam
@@ -38,6 +47,7 @@ function _clickBrand() {
 			elementBrandOptionListChild,
 			elementBrandIconDown
 		);
+		_scrollOnTop(elementFilterDiv);
 	};
 }
 
@@ -46,7 +56,7 @@ phương thức tắt sort theo giá
 */
 function _turnOffPrice(price, priceChild, icon) {
 	price.classList.remove("border_option_list");
-	priceChild.classList.remove("active");
+	priceChild.classList.remove("show_filter");
 	icon.classList.remove("rotate_icon");
 }
 
@@ -55,7 +65,7 @@ phương thức hiện sort theo giá
 */
 function _turnOnPrice(price, priceChild, icon) {
 	price.classList.add("border_option_list");
-	priceChild.classList.add("active");
+	priceChild.classList.add("show_filter");
 	icon.classList.add("rotate_icon");
 	elementModalOverlayOpacity.classList.add("active");
 
@@ -67,7 +77,7 @@ phương thức tắt sort theo brand
 function _turnOffBrand(brand, brandChild, icon) {
 	brand.classList.remove("border_option_list");
 
-	brandChild.classList.remove("active_filter");
+	brandChild.classList.remove("show_filter");
 
 	icon.classList.remove("rotate_icon");
 }
@@ -77,7 +87,7 @@ phương thức hiện sort theo brand
 */
 function _turnOnBrand(brand, brandChild, icon) {
 	brand.classList.add("border_option_list");
-	brandChild.classList.add("active_filter");
+	brandChild.classList.add("show_filter");
 	icon.classList.add("rotate_icon");
 	elementModalOverlayOpacity.classList.add("active");
 }
@@ -321,3 +331,5 @@ var elementBrandOptionListChild = document.querySelector(
 var elementBrandIconDown = document.querySelector(
 	".category_brand_option_list .category_all_item_icon"
 );
+
+var elementFilterDiv = document.querySelector(".category_product ");

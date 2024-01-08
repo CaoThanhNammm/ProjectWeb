@@ -207,8 +207,6 @@ function _clickOutsideSearch() {
 
 /*
 	Create: Cao Thành Nam
-=======
->>>>>>> master
 	Date: 29/11/2023
 	Note: phương thức gửi request tới servlet khi truyền tên 
 	sản phẩm vào và gắn tên sản phẩm lên tham số của url

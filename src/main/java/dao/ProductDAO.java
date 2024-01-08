@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import org.jdbi.v3.core.Handle;
 
@@ -24,25 +23,8 @@ public class ProductDAO {
 
 	// lấy ra tất cả sản phẩm
 	public List<Product> getAll() throws SQLException {
-
-		List<Product> products = new ArrayList<>();
-		String qslStr = "SELECT p.id, p.name, b.id as bID, b.name as bName, p.description, c.id as cID, c.name as cName, p.price, p.discount, YEAR(p.lastUpdated) as year, MONTH(p.lastUpdated) as month, DAY(p.lastUpdated) as day, p.amountSold, s.id as sID, s.name as sName FROM "
-				+ "products p JOIN brands b ON p.brandID = b.id " + "JOIN categories c ON p.categoryID = c.id "
-				+ "JOIN product_status s ON p.statusID = s.id";
-
-		PreparedStatement statement = handle.getConnection().prepareStatement(qslStr);
-
-		ResultSet rs = statement.executeQuery();
-		while (rs.next()) {
-			LocalDate lastUpdated = LocalDate.of(rs.getInt("year"), rs.getInt("month"), rs.getInt("day"));
-
-			Product product = new Product(rs.getInt("id"), rs.getString("name"), rs.getInt("bID"),
-					rs.getString("bName"), rs.getString("description"), rs.getInt("cID"), rs.getString("cName"),
-					rs.getInt("price"), rs.getInt("discount"), lastUpdated, rs.getInt("amountSold"), rs.getInt("sID"),
-					rs.getString("cName"));
-			products.add(product);
-		}
-
+		List<Product> products = handle.select("SELECT id, name, price, discount FROM products")
+				.mapToBean(Product.class).list();
 		return products;
 	}
 
@@ -123,14 +105,17 @@ public class ProductDAO {
 		Product product = handle.select("SELECT id, name, price, discount FROM products where id = ?")
 				.bind(0, productID).mapToBean(Product.class).first();
 
+		product.setImgs(pathImg);
+
 		return product;
 	}
 
 	// tìm sản phẩm giống 1 phần tên, truyền vào tên sản phẩm và số lượng sản phẩm
 	// muốn lấy
 	public List<Product> findProductByNameLimitN(String name, int num) {
-		if (name.equals(""))
+		if (name == null)
 			return new ArrayList<>();
+
 		List<Product> products = handle
 				.select("SELECT id, name, price, discount FROM products WHERE name LIKE ? LIMIT ?")
 				.bind(0, "%" + name + "%").bind(1, num).mapToBean(Product.class).list();
@@ -144,7 +129,9 @@ public class ProductDAO {
 
 	// tìm sản phẩm giống 1 phần tên, truyền vào tên sản phẩm
 	public List<Product> findProductByNameLimitN(String name) {
-		if (name.equals(""))
+		String regex = ".*[!@#\\$%^&*()_+=<>?/.,;:'\"\\[\\]{}\\\\|`~].*";
+
+		if (name.matches(regex))
 			return new ArrayList<>();
 
 		List<Product> products = handle.select("SELECT id, name, price, discount FROM products WHERE name LIKE ?")
@@ -157,7 +144,7 @@ public class ProductDAO {
 		return products;
 	}
 
-	public List<Product> findProductByCategoryId(int id) {
+	public List<Product> findProductByNameLimitN(int id) {
 		if (id < 0)
 			return new ArrayList<>();
 
@@ -253,6 +240,10 @@ public class ProductDAO {
 
 	// lấy tất cả thương hiệu của tất sản phẩm, tên sản phẩm là tham số
 	public List<Product> getProductDefaultByBrand(String name) {
+		String regex = ".*[!@#\\$%^&*()_+=<>?/.,;:'\"\\[\\]{}\\\\|`~].*";
+		if (name.matches(regex) || name.equals(""))
+			return new ArrayList<>();
+
 		List<Product> products = handle.select(
 				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ?)")
 				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
@@ -291,7 +282,6 @@ public class ProductDAO {
 	}
 
 	public int getMaxPrice(String name) throws SQLException {
-
 		String sql = "SELECT MAX(price - discount) as price FROM products WHERE name LIKE ?";
 
 		PreparedStatement statement = handle.getConnection().prepareStatement(sql);

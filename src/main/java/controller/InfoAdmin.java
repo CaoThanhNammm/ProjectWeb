@@ -16,34 +16,22 @@ import service.MailService;
 
 import static database.TableUsers.*;
 
-/**
- * Servlet implementation class InfoAdmin
- */
 @WebServlet("/html/infoAdmin")
 public class InfoAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public InfoAdmin() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		doPost(req, resp);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		Account ac = (Account) request.getSession().getAttribute("account");
 		Account moreInfo = (Account) request.getSession().getAttribute("moreInfo");
 		if (ac != null) {

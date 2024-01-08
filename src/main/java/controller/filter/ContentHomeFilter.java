@@ -27,12 +27,12 @@ import model.Category;
 import model.Product;
 import model.Wishlist;
 
-@WebFilter({ "/html/*", "/index/*" })
+@WebFilter({ "/html/*", "/index/*"})
 public class ContentHomeFilter extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-
+		
 		showSliderShow(request, response);
 
 		getShowProductBestDiscount(request, response);
@@ -40,6 +40,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 
 		showSliderShow(request, response);
 		showCategoryBanner(request, response);
+
 		chain.doFilter(request, response);
 	}
 
@@ -102,7 +103,6 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 		for (int i = 1; i < categories.size(); i++) {
 			File folderBanner = new File(
 					request.getServletContext().getRealPath("") + "/image/home/banner/" + categories.get(i).getId());
-			
 
 			String[] name = folderBanner.list();
 

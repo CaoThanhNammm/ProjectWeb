@@ -27,7 +27,9 @@
     Create: Cao Thành Nam
     Note: Trang product 
  -->
-
+<%
+List<Product> products = (List) request.getAttribute("products");
+%>
 <body>
 	<div id="page">
 		<%@include file="header.jsp"%>
@@ -37,7 +39,9 @@
 		<div class="modal_overlay_filter_opacity"></div>
 
 		<!-- phần lọc -->
-		<div class="category_product container">
+		<div class="category_product container"
+			<%if (products.size() == 0) {%> style="display: none;" <%} else {%>
+			style="display: flex;" <%}%>>
 			<div class="category_price">
 				<span>Giá</span>
 
@@ -133,8 +137,7 @@
 										<button>
 
 											<img class="category_brand_option_item_img" alt=""
-												src="<%=brand.getImgbrand()%>"
-												id="<%=brand.getName()%>">
+												src="<%=brand.getImgbrand()%>" id="<%=brand.getName()%>">
 
 										</button>
 									</form>
@@ -151,24 +154,18 @@
 
 		<!-- danh sách các sản phẩm -->
 		<div class="product_list container">
-			<h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm nổi
-				bật</h2>
+			<h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm</h2>
 
 			<div class="row">
 				<%
-				List<Product> products = (List) request.getAttribute("products");
 				for (Product p : products) {
 				%>
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
 					<div class="product_img">
-						<img
-							src="<%=p.getImgsProduct().get(0)%>"
-							alt="">
+						<img src="<%=p.getImgsProduct().get(0)%>" alt="">
 
 						<div class="product_img_hover">
-							<img
-								src="<%=p.getImgsProduct().get(1)%>"
-								alt="">
+							<img src="<%=p.getImgsProduct().get(1)%>" alt="">
 						</div>
 					</div>
 

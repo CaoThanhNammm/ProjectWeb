@@ -107,7 +107,7 @@ h6 {
 	position: relative;
 	cursor: pointer;
 	color: var(--white-primary);
-	padding-top: 30px;
+	padding-top: 24px;
 }
 
 .introduce_product_name {
@@ -117,7 +117,7 @@ h6 {
 	right: 0;
 	bottom: 0;
 	color: var(--white-primary);
-	font-size: 40px;
+	font-size: 35px;
 	display: flex;
 	justify-content: center;
 	text-decoration: none;

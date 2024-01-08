@@ -2,6 +2,7 @@ package service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -40,7 +41,9 @@ public class ProductSuggestionService extends HttpServlet {
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		ProductDAO dao = new ProductDAO(connection, request.getServletContext().getRealPath(""));
 
-		List<Product> products = dao.findProductByNameLimitN(nameProduct, 10);
+		List<Product> products;
+		products = dao.findProductByNameLimitN(nameProduct, 10);
+
 		JDBIConnectionPool.get().releaseConnection(connection);
 
 		request.setAttribute("products", products);
@@ -57,6 +60,7 @@ public class ProductSuggestionService extends HttpServlet {
 		String json = gson.toJson(jsonArray);
 
 		out.print(json);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,3 +1,4 @@
+<%@page import="model.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +22,7 @@
     Date: 08/11/2023
     Note: Trang điều chỉnh, thêm, xóa sản phẩm
 -->
+<%@ page import="java.util.*"%>
 
 <body class="d-flex">
 
@@ -65,28 +67,14 @@
 			</div>
 		</nav>
 
+		<%
+		List<Product> products = (List) request.getAttribute("getShowProductRecommend");
+		out.println(products);
+		%>
+
 		<div class="mt-5 ">
 			<div class="card-products ms-2 me-2">
-				<div class="card-group">
-					<div class="card">
-						<img class="card-img-top" src="../image/product/bepdien/bd1.jpg"
-							alt="Card image cap">
-						<div class="card-body">
-							<h5 class="card-title">This is a wider card with supporting
-								text below as a natural lead-in to additional content. This
-								content is a little bit longer.</h5>
-							<p class="card-text">1.200.000.000 VND</p>
-							<div class="d-flex">
-								<button class="btn btn-secondary me-2">
-									<i class="fa-solid fa-eye-slash"></i> Ẩn
-								</button>
-								<button class="btn btn-warning">
-									<i class="fa-solid fa-pen-to-square"></i>Chỉnh sửa
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div class="card-group"></div>
 			</div>
 		</div>
 	</div>

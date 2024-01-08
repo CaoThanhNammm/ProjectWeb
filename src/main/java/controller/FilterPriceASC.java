@@ -11,10 +11,10 @@ import model.Product;
 public class FilterPriceASC implements IFilterByPrice {
 
 	@Override
-	public List<Product> filterProduct(String name, String pathImg) {
+	public List<Product> filterProduct(String nameProduct, String pathImg) {
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
-		List<Product> productsASC = productDAO.sortByDiscountASC(name);
+		List<Product> productsASC = productDAO.sortByDiscountASC(nameProduct);
 		JDBIConnectionPool.get().releaseConnection(conn);
 
 		return productsASC;

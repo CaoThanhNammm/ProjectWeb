@@ -1,12 +1,9 @@
 package controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +19,10 @@ import database.JDBIConnectionPool;
 import model.Brand;
 import model.Product;
 
+/**
+ * Create: Cao Thành Nam 
+ * Note: Xử lý tìm kiếm sản phẩm, phân trang, lọc 
+ */
 @WebServlet("/html/FindProduct")
 public class FindProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -186,7 +187,6 @@ public class FindProduct extends HttpServlet {
 		}
 
 		strategy = new FilterStrategy(iFilterByPrice, iFilterByBrand);
-
 		products = strategy.filter(nameProduct, brands, request.getServletContext().getRealPath(""));
 
 		// lấy trang hiện tại thông qua tham số currentPage trên url, mặc định là trang
@@ -209,6 +209,7 @@ public class FindProduct extends HttpServlet {
 
 		// sau khi lấy tất cả dữ liệu cần thiết thì dùng method doGet để xử lý dữ liệu
 		doGet(request, response);
+
 	}
 
 	// trả về object brand đã được chọn để filter

@@ -1,5 +1,7 @@
 package controller;
 
+import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 
 import org.jdbi.v3.core.Handle;
@@ -11,14 +13,17 @@ import model.Product;
 public class FilterEmpty implements IFilterByPrice {
 
 	@Override
-	public List<Product> filterProduct(String name, String pathImg) {
+	public List<Product> filterProduct(String nameProduct, String pathImg) {
 
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
-		List<Product> productsDefault = productDAO.findProductByNameLimitN(name);
+		List<Product> productsDefault;
+
+		productsDefault = productDAO.findProductByNameLimitN(nameProduct);
 		JDBIConnectionPool.get().releaseConnection(conn);
 
 		return productsDefault;
+
 	}
 
 }
