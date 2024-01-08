@@ -1,4 +1,3 @@
-<%@page import="model.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,18 +11,21 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/headAdmin.css">
 <link rel="stylesheet" href="../css/productAdmin.css">
-<link rel="stylesheet" href="../css/index.css">
 <title>Sửa sản phẩm</title>
 </head>
 <!-- 
     Create: Nguyễn Khải Nam
     Date: 08/11/2023
-    Note: Trang điều chỉnh, thêm, xóa sản phẩm
+    Note: Trang điều chỉnh, thêm, xóa sản phẩm 
 -->
 <%@ page import="java.util.*"%>
-
+<%@ page import="model.Product"%>
+<%
+List<Product> products = (List) request.getAttribute("getShowProductRecommend");
+if (products == null)
+	products = new ArrayList<>();
+%>
 <body class="d-flex">
 
 	<%@include file="headerAdmin.jsp"%>
@@ -67,20 +69,45 @@
 			</div>
 		</nav>
 
-		<%
-		List<Product> products = (List) request.getAttribute("getShowProductRecommend");
-		out.println(products);
-		%>
-
 		<div class="mt-5 ">
 			<div class="card-products ms-2 me-2">
-				<div class="card-group"></div>
+				<div class="card-group">
+					<%for (int i = 0; i < products.size(); ++i) {%>
+					<div class="card" style="min-height: 550px;">
+						<img class="card-img-top"
+							src="<%=products.get(i).getImgsProduct().get(0)%>"
+							alt="Card image cap">
+						<div class="card-body">
+							<h5 class="card-title"><%=products.get(i).getName()%></h5>
+							<p class="card-text"><%=products.get(i).getPrice()%>
+								VND / Còn lại:
+								<%=products.get(i).getAmountSold()%>
+								sản phẩm
+							</p>
+							<div class="d-flex">
+								<button class="btn btn-secondary me-2">
+									<i class="fa-solid fa-eye-slash"></i> Ẩn
+								</button>
+								<button class="btn btn-warning"
+									onclick="edit(<%=products.get(i).getId()%>)">
+									<i class="fa-solid fa-pen-to-square"></i>Chỉnh sửa
+								</button>
+							</div>
+						</div>
+					</div>
+					<%
+					}
+					%>
+				</div>
 			</div>
 		</div>
 	</div>
 
-	<script src="../js/productAdmin.js"></script>
-
+	<script>
+		function edit(id) {
+			window.location = "editProduct?id-product=" + id;
+		}
+	</script>
 </body>
 
 </html>

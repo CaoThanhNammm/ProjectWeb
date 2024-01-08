@@ -73,7 +73,7 @@
 }
 
 #product .card-products .card {
-    width: 250px;
+    width: 300px;
     height: 100px;
     flex: auto 0;
     margin-right: 20px;
@@ -93,7 +93,6 @@
 }
 
 #product .card-products .card .card-body {
-    border: 2px solid var(--gray-primary);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }

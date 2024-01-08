@@ -77,6 +77,22 @@ public class Product {
 		this.brand = brand;
 	}
 
+	public Product(int id, String name, Brand brand, String description, Category category, int price, int discount,
+			LocalDate lastUpdated, int amountSold, Status status, String imgs) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.brand = brand;
+		this.description = description;
+		this.category = category;
+		this.price = price;
+		this.discount = discount;
+		this.lastUpdated = lastUpdated;
+		this.amountSold = amountSold;
+		this.status = status;
+		this.imgs = imgs;
+	}
+  
 	public List<String> getImgsProduct() throws IOException {
 		File src = new File(imgs + "/image/product/" + id);
 		List<String> res = new ArrayList<>();

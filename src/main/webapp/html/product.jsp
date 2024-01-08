@@ -137,7 +137,12 @@ List<Product> products = (List) request.getAttribute("products");
 										<button>
 
 											<img class="category_brand_option_item_img" alt=""
+<<<<<<< HEAD
 												src="<%=brand.getImgbrand()%>" id="<%=brand.getName()%>">
+=======
+												src="<%=brand.getImgbrand()%>"
+												id="<%=brand.getName()%>">
+>>>>>>> master
 
 										</button>
 									</form>
@@ -162,10 +167,21 @@ List<Product> products = (List) request.getAttribute("products");
 				%>
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
 					<div class="product_img">
+<<<<<<< HEAD
 						<img src="<%=p.getImgsProduct().get(0)%>" alt="">
 
 						<div class="product_img_hover">
 							<img src="<%=p.getImgsProduct().get(1)%>" alt="">
+=======
+						<img
+							src="<%=p.getImgsProduct().get(0)%>"
+							alt="">
+
+						<div class="product_img_hover">
+							<img
+								src="<%=p.getImgsProduct().get(1)%>"
+								alt="">
+>>>>>>> master
 						</div>
 					</div>
 

@@ -107,7 +107,8 @@ Account ac = (Account) session.getAttribute("account");
 		<ul class="navigtion-list">
 			<c:forEach items="${categories}" var="c">
 				<li class="navigtion-item">
-					<form action="../html/FindProduct?nameProduct=${c.name}&currentPage=1"
+					<form
+						action="../html/FindProduct?nameProduct=${c.name}&currentPage=1"
 						method="POST">
 						<button>${c.name}</button>
 					</form>

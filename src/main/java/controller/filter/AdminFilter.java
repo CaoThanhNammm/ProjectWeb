@@ -14,11 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Account;
+import model.Product;
 
 @WebFilter("/html/*")
 public class AdminFilter extends HttpFilter implements Filter {
 	private boolean check = false;
-
+	
 	private static final long serialVersionUID = 1L;
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

@@ -187,6 +187,7 @@ public class FindProduct extends HttpServlet {
 		}
 
 		strategy = new FilterStrategy(iFilterByPrice, iFilterByBrand);
+
 		products = strategy.filter(nameProduct, brands, request.getServletContext().getRealPath(""));
 
 		// lấy trang hiện tại thông qua tham số currentPage trên url, mặc định là trang
