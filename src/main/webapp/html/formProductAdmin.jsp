@@ -28,10 +28,11 @@ if (product != null) {
 %>
 <body class="d-flex">
 	<%@include file="headerAdmin.jsp"%>
-	<div>
+	<div id="form-product">
 		<%
 		if (product != null) {
 		%>
+		<input value="<%=product.getId()%>" type="hidden" name="id-product">
 		<div class="col-5 mx-auto w-50">
 			<div class="slider_main">
 				<img src="<%=imgs.get(0)%>" alt="img1">
@@ -52,44 +53,42 @@ if (product != null) {
 			<p>
 				Lần cập nhật cuối:
 				<%=product.getLastUpdated()%></p>
-			<h2><%=product.getName()%></h2>
+			<h2 class="e-info"><%=product.getName()%></h2>
 			<div class="price">
 				<h3 class="old_price">
-					Giá:
-					<%=product.getPrice()%>
+					Giá: <span class="e-info text-md"><%=product.getPrice()%></span>
 					VND
 				</h3>
 				<h3 class="final_price">
-					Giảm giá:
-					<%=product.getDiscount()%>
+					Giảm giá: <span class="e-info text-md"><%=product.getDiscount()%></span>
 					VND
 				</h3>
 			</div>
 			<div id="describe" class="tabcontent active">
 				<h2 class="title">Giới thiệu</h2>
-				<p style="font-size: 16px;"><%=product.getDescription()%></p>
+				<p class="e-info " style="font-size: 16px;"><%=product.getDescription()%></p>
 			</div>
 			<div id="info" class="tabcontent w-100">
 				<h2 class="title">Thông tin sản phẩm</h2>
 				<table class="table_full w-100">
 					<tr>
 						<td class="table_title">Mã sản phẩm</td>
-						<td><b><%=product.getId()%></b></td>
+						<td><b class="e-info"><%=product.getId()%></b></td>
 					</tr>
 					<tr>
 						<td class="table_title">Thương hiệu</td>
-						<td><b><%=product.getBrand().getName()%></b></td>
+						<td><b class="e-info"><%=product.getBrand().getName()%></b></td>
 					</tr>
 					<tr>
 						<td class="table_title">Màu</td>
-						<td><b>Trắng</b></td>
+						<td><b class="e-info">Trắng</b></td>
 					</tr>
 					<%
 					for (int i = 0; i < product.getAttributes().size(); ++i) {
 					%>
 					<tr>
 						<td class="table_title"><%=product.getAttributes().get(i).getName()%></td>
-						<td><b><%=product.getAttributes().get(i).getValue()%></b></td>
+						<td><b class="e-info"><%=product.getAttributes().get(i).getValue()%></b></td>
 					</tr>
 					<%
 					}
@@ -100,8 +99,14 @@ if (product != null) {
 		<%
 		}
 		%>
+		<div class="mt-3 mb-3 w-100">
+			<!-- e mean edit -->
+			<button onclick="edit()" name="edit"
+				class="e-btn btn btn-warning w-100">Điều chỉnh sản phẩm</button>
+		</div>
 	</div>
 
 	<script src="../js/detail.js"></script>
+	<script src="../js/editProduct.js"></script>
 </body>
 </html>

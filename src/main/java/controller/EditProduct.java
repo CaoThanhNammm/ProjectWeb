@@ -46,13 +46,19 @@ public class EditProduct extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String status = request.getParameter("status");
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		int id = Integer.parseInt(request.getParameter("id-product"));
 		ProductDAO dao = new ProductDAO(connection, request.getServletContext().getRealPath(""));
-		Product p = dao.findProductByID(id);
+		Product p = null;
+		if (status.equals("edit")) {
+			p  = dao.findProductByID(id);
+		} else if(status.equals("update")){
+			
+		}
 		request.setAttribute("product", p);
 		JDBIConnectionPool.get().releaseConnection(connection);
-		request.setAttribute("title", "?");
+		request.setAttribute("title", p.getName());
 		request.getRequestDispatcher("formProductAdmin.jsp").forward(request, response);
 	}
 

@@ -72,7 +72,9 @@ if (products == null)
 		<div class="mt-5 ">
 			<div class="card-products ms-2 me-2">
 				<div class="card-group">
-					<%for (int i = 0; i < products.size(); ++i) {%>
+					<%
+					for (int i = 0; i < products.size(); ++i) {
+					%>
 					<div class="card" style="min-height: 550px;">
 						<img class="card-img-top"
 							src="<%=products.get(i).getImgsProduct().get(0)%>"
@@ -105,7 +107,7 @@ if (products == null)
 
 	<script>
 		function edit(id) {
-			window.location = "editProduct?id-product=" + id;
+			window.location = "editProduct?id-product=" + id + '&status=edit';
 		}
 	</script>
 </body>
