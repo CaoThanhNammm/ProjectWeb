@@ -39,9 +39,7 @@ List<Product> products = (List) request.getAttribute("products");
 		<div class="modal_overlay_filter_opacity"></div>
 
 		<!-- phần lọc -->
-		<div class="category_product container"
-			<%if (products.size() == 0) {%> style="display: none;" <%} else {%>
-			style="display: flex;" <%}%>>
+		<div class="category_product container">
 			<div class="category_price">
 				<span>Giá</span>
 
@@ -136,13 +134,8 @@ List<Product> products = (List) request.getAttribute("products");
 										method="POST">
 										<button>
 
-											<img class="category_brand_option_item_img" alt=""
-<<<<<<< HEAD
+											<img class="category_brand_option_item_img"
 												src="<%=brand.getImgbrand()%>" id="<%=brand.getName()%>">
-=======
-												src="<%=brand.getImgbrand()%>"
-												id="<%=brand.getName()%>">
->>>>>>> master
 
 										</button>
 									</form>
@@ -167,24 +160,13 @@ List<Product> products = (List) request.getAttribute("products");
 				%>
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
 					<div class="product_img">
-<<<<<<< HEAD
 						<img src="<%=p.getImgsProduct().get(0)%>" alt="">
 
 						<div class="product_img_hover">
 							<img src="<%=p.getImgsProduct().get(1)%>" alt="">
-=======
-						<img
-							src="<%=p.getImgsProduct().get(0)%>"
-							alt="">
-
-						<div class="product_img_hover">
-							<img
-								src="<%=p.getImgsProduct().get(1)%>"
-								alt="">
->>>>>>> master
 						</div>
 					</div>
-
+					
 					<div class="product_in4">
 						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
 						<div class="product_in4_bottom">
@@ -252,8 +234,6 @@ List<Product> products = (List) request.getAttribute("products");
 		</div>
 		<%@include file="footer.jsp"%>
 	</div>
-
-
 </body>
 
 <script src="../js/product.js"></script>

@@ -333,3 +333,6 @@ var elementBrandIconDown = document.querySelector(
 );
 
 var elementFilterDiv = document.querySelector(".category_product ");
+
+
+

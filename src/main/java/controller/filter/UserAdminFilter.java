@@ -2,6 +2,7 @@ package controller.filter;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -16,30 +17,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.AccountDAO;
 import model.Account;
-import model.Product;
 
-@WebFilter("/html/*")
-public class AdminFilter extends HttpFilter implements Filter {
-	private boolean check = false;
-
+@WebFilter({ "/html/userDecentralizationAdmin.jsp", "/html/userStatisticsAdmin.jsp" })
+public class UserAdminFilter extends HttpFilter implements Filter {
 	private static final long serialVersionUID = 1L;
+
+	public UserAdminFilter() {
+		super();
+	}
+
+	public void destroy() {
+	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		String url = ((HttpServletRequest) request).getRequestURI();
-		if (url.contains("Admin")) {
-			Account ac = (Account) ((HttpServletRequest) request).getSession().getAttribute("account");
-			if (ac != null && ac.getRole().isAdmin()) {
-				if (!check) {
-					check = true;
-					((HttpServletResponse) response).sendRedirect(url.substring(url.lastIndexOf("/") + 1));
-				}
-			} else {
-				((HttpServletResponse) response).sendRedirect("../html/login.jsp");
-			}
+		List<Account> accs = null;
+		try {
+			accs = AccountDAO.getAll();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		chain.doFilter(request, response);
 
+		request.setAttribute("email", "");
+		request.setAttribute("phone", "");
+		request.setAttribute("name", "");
+		request.setAttribute("accounts", accs);
+
+		chain.doFilter(request, response);
 	}
 
 }

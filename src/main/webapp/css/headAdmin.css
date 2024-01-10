@@ -91,5 +91,5 @@
 }
 
 .active_child {
-    display: block;
+    display: block !important;
 }

@@ -46,7 +46,6 @@ public class Account {
 	@ColumnName(STATUS)
 	private AccountStatus status;
 
-
 	public Account(String id, String fullName, AccountRole role, AccountStatus status) {
 		super();
 		this.id = id;
@@ -55,11 +54,23 @@ public class Account {
 		this.status = status;
 	}
 
+	public Account(String id, String email, String phone, String fullName, String address, Gender gender,
+			AccountRole role, AccountStatus status) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.phone = phone;
+		this.fullName = fullName;
+		this.address = address;
+		this.gender = gender;
+		this.role = role;
+		this.status = status;
+	}
+
 	public Account(String email) {
 		super();
 		this.email = email;
 	}
-
 
 	public Account(String id, String email, String phone, String pass, String fullName, Gender gender, LocalDate dob,
 			AccountRole role, String address, AccountStatus status) {
@@ -86,36 +97,29 @@ public class Account {
 		this.address = address;
 	}
 
-	
 	public Account() {
 		super();
 	}
-
 
 	public String getId() {
 		return id;
 	}
 
-	
 	public void setId(String id) {
 		this.id = id;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-	
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	
 	public String getPhone() {
 		return phone;
 	}
-
 
 	public void setPhone(String phone) {
 		this.phone = phone;
@@ -129,42 +133,34 @@ public class Account {
 		this.pass = pass;
 	}
 
-
 	public String getFullName() {
 		return fullName;
 	}
-
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
 
-
 	public LocalDate getDob() {
 		return dob;
 	}
-
 
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
-	
 	public String getAddress() {
 		return address;
 	}
 
-	
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 
 	public Gender getGender() {
 		return gender;
 	}
 
-	
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
@@ -173,12 +169,10 @@ public class Account {
 		return role;
 	}
 
-	
 	public void setRole(AccountRole role) {
 		this.role = role;
 	}
 
-	
 	public AccountStatus getStatus() {
 		return status;
 	}

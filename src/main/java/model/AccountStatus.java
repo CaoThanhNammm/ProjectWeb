@@ -4,8 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Create: Nguyễn Khải Nam 
- * Date: 30/11/2023 
+ * Create: Nguyễn Khải Nam Date: 30/11/2023 
  * Note: Trạng thái của một tài khoản
  */
 public class AccountStatus {
@@ -14,7 +13,7 @@ public class AccountStatus {
 
 	private static Map<Integer, AccountStatus> status = new HashMap<>();
 	static {
-		// Cần tuân theo luật viết hoa chữ đầu 
+		// Cần tuân theo luật viết hoa chữ đầu
 		// không thì khi thêm mới phải có hàm check
 		int i = 0;
 		// Start 1
@@ -22,7 +21,7 @@ public class AccountStatus {
 		status.put(++i, new AccountStatus(2, "Hoạt động"));
 	}
 
-	private AccountStatus(int id, String name) {
+	public AccountStatus(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -46,7 +45,7 @@ public class AccountStatus {
 		return name;
 	}
 
-	public boolean  isAction(){
+	public boolean isAction() {
 		// TODO Auto-generated method stub
 		return status.get(this.id).getName().equals("Hoạt động");
 	}
