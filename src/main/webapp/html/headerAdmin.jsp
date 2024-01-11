@@ -27,12 +27,13 @@
 			<a href="#"> <img class="admin_logo"
 				src="../image/general/logo.png" alt=""></a>
 		</div>
+
 		<div class="admin-menu">
 			<ul class="navbar-nav mr-auto mt-2">
 				<li class="nav-item">
 					<div class="nav-link">
-						<a href="overviewAdmin.jsp"> <i
-							class="fa-solid fa-house icon_title"></i> Tổng quan
+						<a href="overviewAdmin.jsp" id="nav-item_item_child-GENERAL">
+							<i class="fa-solid fa-house icon_title"></i> Tổng quan
 						</a>
 					</div>
 				</li>
@@ -79,23 +80,29 @@
 					</div>
 
 					<ul class="nav-item_list_child" id="nav-item_list_child-order">
-						<li class="nav-item_item_child" id="nav-item_item_child-XDH"><a href="orderAdmin.jsp">Xem
-								đơn hàng</a></li>
+						<li class="nav-item_item_child" id="nav-item_item_child-XDH"><a
+							href="orderAdmin.jsp">Xem đơn hàng</a></li>
 						<li class="nav-item_item_child" id="nav-item_item_child-TKDT"><a
-							href="statisticsOrderAdmin.jsp">Thống kê doanh thu</a></li>
+							href="statisticOrderAdmin.jsp">Thống kê doanh thu</a></li>
 					</ul>
 				</li>
 
 				<li class="nav-item">
 					<div class="nav-link">
-						<a href="editVoucherAdmin.jsp"> <i
-							class="fa-solid fa-ticket icon_title"></i> Voucher
-						</a>
+						<a href="#"> <i class="fa-solid fa-cart-shopping icon_title"></i>
+							Voucher
+						</a> <i class="fa-solid fa-caret-down icon_down"></i>
 					</div>
+
+					<ul class="nav-item_list_child" id="nav-item_list_child-voucher">
+						<li class="nav-item_item_child" id="nav-item_item_child-QLVC"><a
+							href="editVoucherAdmin.jsp">Quản lý voucher</a></li>
+					</ul>
 				</li>
 			</ul>
 		</div>
 	</div>
+
 	<script src="../js/headerAdmin.js"></script>
 </body>
 

@@ -291,7 +291,8 @@ public class AccountDAO {
 		} else {
 			sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
 					+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
-					+ "JOIN genders g ON g.id = u.genderID " + "WHERE u.email like ? and u.phone like ? and u.fullname like ?";
+					+ "JOIN genders g ON g.id = u.genderID "
+					+ "WHERE u.email like ? and u.phone like ? and u.fullname like ?";
 			conn = h.getConnection();
 
 			st = conn.prepareStatement(sql);
@@ -324,4 +325,29 @@ public class AccountDAO {
 		JDBIConnectionPool.get().releaseConnection(h);
 		return accs;
 	}
+
+	// tính tổng số user 
+	public static int totalUser() {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		List<Account> accs = h.select("SELECT id FROM users").mapToBean(Account.class).list();
+		JDBIConnectionPool.get().releaseConnection(h);
+		return accs.size();
+	}
+
+	// tính số user vẫn còn hoạt động(chưa bị khóa)
+	public static int countUserAvailable() {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		List<Account> accs = h.select("SELECT id FROM users WHERE statusID = 2").mapToBean(Account.class).list();
+		JDBIConnectionPool.get().releaseConnection(h);
+		return accs.size();
+	}
+
+	// tính số user bị khóa acc
+	public static int countUserUnAvailable() {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		List<Account> accs = h.select("SELECT id FROM users WHERE statusID = 1").mapToBean(Account.class).list();
+		JDBIConnectionPool.get().releaseConnection(h);
+		return accs.size();
+	}
+
 }

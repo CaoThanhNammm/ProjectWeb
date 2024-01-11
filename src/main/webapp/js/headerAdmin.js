@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	_slideTopToBottom();
 	_loadTabState();
 	_addElementChildActive();
+	_activeGeneral();
 })
 
 
@@ -44,6 +45,11 @@ function _loadTabState() {
 				value.classList.add("active");
 			}
 		})
+		
+		// active tab tổng quan
+		if(localStorage.getItem("nav-item_item_child-GENERAL") === "open"){
+			elementGeneral.parentElement.classList.add("active")
+		}
 	})
 }
 
@@ -69,6 +75,14 @@ function _addElementChildActive() {
 	})
 }
 
+function _activeGeneral() {
+	elementGeneral.onclick = function() {
+		localStorage.clear();
+		localStorage.setItem("nav-item_item_child-GENERAL", "open");
+	}
+}
+
+var elementGeneral = document.querySelector("#nav-item_item_child-GENERAL");
 var elementNavItem = document.querySelectorAll(".nav-item");
 var elementNavlink = document.querySelectorAll(".nav-link");
 var elementParentActive = document.querySelectorAll(".nav-item_list_child");

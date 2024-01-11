@@ -38,9 +38,16 @@ public class UserAdminFilter extends HttpFilter implements Filter {
 			e.printStackTrace();
 		}
 
+		int totalUser = AccountDAO.totalUser();
+		int userAvailable = AccountDAO.countUserAvailable();
+		int userUnAvailable = AccountDAO.countUserUnAvailable();
+
 		request.setAttribute("email", "");
 		request.setAttribute("phone", "");
 		request.setAttribute("name", "");
+		request.setAttribute("totalUser", totalUser);
+		request.setAttribute("userAvailable", userAvailable);
+		request.setAttribute("userUnAvailable", userUnAvailable);
 		request.setAttribute("accounts", accs);
 
 		chain.doFilter(request, response);

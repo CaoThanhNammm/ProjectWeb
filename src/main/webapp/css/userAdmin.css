@@ -52,11 +52,13 @@ tr:nth-child(even) {
 	font-weight: 600;
 }
 
-.header_search button {
+.search_logo_btn {
 	border: none;
-	background-color: var(--yellow-primary);
 	transition: 0.3s ease;
 	height: 100%;
+	background-color: var(--yellow-primary);
+	border-bottom-right-radius: 6px;
+	border-top-right-radius: 6px;
 }
 
 #user_des_admin .header_search .search_logo {
@@ -66,14 +68,11 @@ tr:nth-child(even) {
 	font-size: 25px;
 	justify-content: center;
 	align-items: center;
-	border-bottom-right-radius: 6px;
-	border-top-right-radius: 6px;
-	background-color: var(--yellow-primary);
 	transition: 0.3s ease;
 }
 
-#user_des_admin .search_logo:hover,
-.header_search button:hover {
+.search_logo_btn:hover .search_logo,
+.search_logo_btn:hover {
 	background-color: var(--yellow-second);
 }
 

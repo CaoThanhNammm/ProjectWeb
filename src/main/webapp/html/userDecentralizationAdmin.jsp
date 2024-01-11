@@ -30,7 +30,7 @@
 			</nav>
 
 			<div class="header_search bg-light">
-				<form action="../html/userAdminFind" method="POST">
+				<form action="../html/userAdminFind" method="POST" style="overflow: hidden">
 					<input type="text" class="search"
 						placeholder="Tìm người dùng theo email"
 						name="userAdmin_findByEmail"
@@ -43,7 +43,7 @@
 						placeholder="Tìm người dùng theo họ tên"
 						name="userAdmin_findByName"
 						value="<%=request.getAttribute("name")%>">
-					<button>
+					<button class="search_logo_btn">
 						<i class="fa-solid fa-magnifying-glass search_logo"></i>
 					</button>
 				</form>

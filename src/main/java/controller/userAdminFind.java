@@ -47,48 +47,16 @@ public class userAdminFind extends HttpServlet {
 		this.phone = phone;
 		this.name = name;
 
-		System.out.println("email:" + email);
-		System.out.println("phone: " + phone);
-		System.out.println("name: " + name);
-
 		try {
 			accs = AccountDAO.find(email, phone, name);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-//		if (email != null) {
-//			this.email = email;
-//			try {
-//				accs = AccountDAO.findUserByEmail(email);
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		if (phone != null) {
-//			this.phone = phone;
-//			try {
-//				accs = AccountDAO.findUserByPhone(phone);
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		
-//		if (name != null) {
-//			this.name = name;
-//			try {
-//				accs = AccountDAO.findUserByName(name);
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-
 		request.setAttribute("accounts", accs);
 		request.setAttribute("email", this.email);
 		request.setAttribute("phone", this.phone);
 		request.setAttribute("name", this.name);
-		// xử lý tìm theo nhiều tiêu chí
 
 		request.getRequestDispatcher("/html/userDecentralizationAdmin.jsp").forward(request, response);
 	}
