@@ -20,8 +20,7 @@ import model.Brand;
 import model.Product;
 
 /**
- * Create: Cao Thành Nam 
- * Note: Xử lý tìm kiếm sản phẩm, phân trang, lọc 
+ * Create: Cao Thành Nam Note: Xử lý tìm kiếm sản phẩm, phân trang, lọc
  */
 @WebServlet("/html/FindProduct")
 public class FindProduct extends HttpServlet {
@@ -125,7 +124,6 @@ public class FindProduct extends HttpServlet {
 			minPriceCurrent = minPrice;
 			maxPriceCurrent = maxPrice;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		JDBIConnectionPool.get().releaseConnection(connection);

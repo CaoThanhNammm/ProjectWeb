@@ -151,51 +151,7 @@ List<Product> products = (List) request.getAttribute("products");
 		</div>
 
 		<!-- danh sách các sản phẩm -->
-		<div class="product_list container">
-			<h2 style="margin-bottom: 20px; cursor: default;">Sản phẩm</h2>
-
-			<div class="row">
-				<%
-				for (Product p : products) {
-				%>
-				<div class="col-lg-3 col-sm-6 col-md-4 product">
-					<div class="product_img">
-						<img src="<%=p.getImgsProduct().get(0)%>" alt="">
-
-						<div class="product_img_hover">
-							<img src="<%=p.getImgsProduct().get(1)%>" alt="">
-						</div>
-					</div>
-					
-					<div class="product_in4">
-						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
-						<div class="product_in4_bottom">
-							<div>
-								<span class="product_in4_price"><%=p.formatNumber(p.getPrice())%>₫
-								</span> <span style="font-size: 5px; padding-left: 5px">-<%=p.percentSale(p.getPrice(), p.getDiscount())%>%
-								</span>
-
-								<p class="product_in4_sale_price">
-									<%=p.formatNumber(p.getPrice() - p.getDiscount())%>
-									₫
-
-								</p>
-							</div>
-							<form action="../html/wishlist?id=<%=p.getId()%>" method="POST">
-								<button class="product_in4_wishlist no_wishlist"
-									id="<%=p.getId()%>">
-									<i class="fa-solid fa-heart"></i>
-								</button>
-							</form>
-
-						</div>
-					</div>
-				</div>
-				<%
-				}
-				%>
-			</div>
-		</div>
+		
 
 		<div class="new_page">
 			<div class="row">
