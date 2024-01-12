@@ -9,11 +9,17 @@ import database.JDBIConnectionPool;
 import model.Product;
 
 public class FilterPriceASC implements IFilterByPrice {
+	private String nameProduct;
 
-	public List<Product> filterProduct(String name, String pathImg) {
+	public FilterPriceASC(String nameProduct) {
+		super();
+		this.nameProduct = nameProduct;
+	}
+
+	public List<Product> filterProduct(String pathImg) {
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
-		List<Product> productsASC = productDAO.sortByDiscountASC(name);
+		List<Product> productsASC = productDAO.sortByDiscountASC(nameProduct);
 
 		JDBIConnectionPool.get().releaseConnection(conn);
 

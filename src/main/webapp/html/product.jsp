@@ -1,6 +1,6 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="model.Brand"%>
-<%@page import="controller.FindProduct"%>
+<%@page import="controller.FindProductBackup"%>
 <%@page import="model.Product"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -51,7 +51,7 @@ List<Product> products = (List) request.getAttribute("products");
 							<ul>
 								<li>
 									<form
-										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=1"
+										action="../html/FilterProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=1"
 										method="POST">
 										<button class="filter_price_asc_btn">Từ thấp đến cao</button>
 									</form>
@@ -59,7 +59,7 @@ List<Product> products = (List) request.getAttribute("products");
 
 								<li>
 									<form
-										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=0"
+										action="../html/FilterProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=0"
 										method="POST">
 										<button class="filter_price_desc_btn">Từ cao đến thấp</button>
 									</form>
@@ -67,7 +67,7 @@ List<Product> products = (List) request.getAttribute("products");
 
 								<li>
 									<form
-										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=2"
+										action="../html/FilterProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=2"
 										method="POST">
 										<div class="price_input">
 											<div class="price_input_left">
@@ -130,13 +130,11 @@ List<Product> products = (List) request.getAttribute("products");
 								%>
 								<li id="<%=brand.getName()%>">
 									<form
-										action="../html/FindProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&order=<%=request.getAttribute("typeOfSort")%>&brands=<%=brand.getId()%>"
+										action="../html/FilterProduct?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=1&brand=<%=brand.getId()%>"
 										method="POST">
 										<button>
-
 											<img class="category_brand_option_item_img"
 												src="<%=brand.getImgbrand()%>" id="<%=brand.getName()%>">
-
 										</button>
 									</form>
 								</li>
@@ -202,21 +200,20 @@ List<Product> products = (List) request.getAttribute("products");
 		<div class="new_page">
 			<div class="row">
 				<div class="col-lg-12">
-					<span> <%
- String notify = (String) request.getAttribute("notify");
- if (notify != null)
- 	out.println(request.getAttribute("notify"));
- %>
-					</span>
+					<%
+					String notify = (String) request.getAttribute("notify");
+					if (notify != null)
+						out.println(request.getAttribute("notify"));
+					%>
 
 					<ul class="new_page_list">
 						<%
-						int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+						int currentPage = (int) request.getAttribute("currentPage");
 						List<Integer> listPage = (List) request.getAttribute("createPages");
 						for (Integer num : listPage) {
 							if (num == currentPage) {
 						%>
-						<li class="new_page_item choose_page_item"><a
+						<li class="new_page_item"><a class="choose_page_item"
 							href="<%=request.getAttribute("uri")%>?nameProduct=<%=request.getAttribute("nameProduct")%>&currentPage=<%=num%>"><%=num%></a>
 						</li>
 

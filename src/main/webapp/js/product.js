@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
 		_stateInputPrice();
 	}
 	_eventChangeStateIconheart();
-	_changePage();
 	_setStateWishlisted();
 });
 
@@ -111,31 +110,6 @@ function _clickOutsideFilter() {
 	}
 
 }
-
-/* Create: Cao Thành Nam
-phương thức này khi ấn vào trang mới thì trang cũ sẽ không đc avtive
-*/
-
-function _refreshPageItem() {
-	elementNewPageItem.forEach(function(value) {
-		value.classList.remove("padding_down");
-		value.classList.remove("choose_page_item");
-	});
-}
-
-/* Create: Cao Thành Nam
-phương thức ấn chuyển trang sẽ được avtive
-*/
-function _changePage() {
-	elementNewPageItem.forEach(function(value) {
-		value.onclick = function() {
-			_refreshPageItem();
-			value.classList.add("padding_down");
-			value.classList.add("choose_page_item");
-		};
-	});
-}
-
 /*
 Create: Cao Thành Nam
 Date: 19/10/2023
@@ -307,7 +281,6 @@ var elementBrandOptionListItem = document.querySelectorAll(
 	".category_brand_option_list .category_brand_option_item ul li"
 );
 
-var elementNewPageItem = document.querySelectorAll(".new_page_item");
 var elementPriceOptionList = document.querySelector(
 	".category_price_option_list"
 );

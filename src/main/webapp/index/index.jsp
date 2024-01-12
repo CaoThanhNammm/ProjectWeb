@@ -88,7 +88,6 @@
 								<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 							</form>
 						</div>
-
 						<%
 						}
 						%>

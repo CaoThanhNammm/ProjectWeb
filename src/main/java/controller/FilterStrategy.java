@@ -17,9 +17,9 @@ public class FilterStrategy implements IFilterStrategy {
 	}
 
 	@Override
-	public List<Product> filter(String name, List<Brand> brands, String pathImg) {
-		List<Product> productByPrice = filterPrice(name, pathImg);
-		List<Product> productByBrands = chooseBrands(name, brands, pathImg);
+	public List<Product> filter(String pathImg) {
+		List<Product> productByPrice = filterPrice(pathImg);
+		List<Product> productByBrands = chooseBrands(pathImg);
 
 		List<Product> res = new ArrayList<>();
 
@@ -43,13 +43,13 @@ public class FilterStrategy implements IFilterStrategy {
 	}
 
 	@Override
-	public List<Product> filterPrice(String name, String pathImg) {
-		return filterPrice.filterProduct(name, pathImg);
+	public List<Product> filterPrice(String pathImg) {
+		return filterPrice.filterProduct(pathImg);
 	}
 
 	@Override
-	public List<Product> chooseBrands(String name, List<Brand> brands, String pathImg) {
-		return filterBrand.chooseBrands(name, brands, pathImg);
+	public List<Product> chooseBrands(String pathImg) {
+		return filterBrand.chooseBrands(pathImg);
 	}
 
 }

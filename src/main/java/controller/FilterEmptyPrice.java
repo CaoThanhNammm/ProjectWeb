@@ -8,13 +8,19 @@ import dao.ProductDAO;
 import database.JDBIConnectionPool;
 import model.Product;
 
-public class FilterEmpty implements IFilterByPrice {
+public class FilterEmptyPrice implements IFilterByPrice {
+	private String nameProduct;
 
-	public List<Product> filterProduct(String name, String pathImg) {
+	public FilterEmptyPrice(String nameProduct) {
+		super();
+		this.nameProduct = nameProduct;
+	}
+
+	public List<Product> filterProduct(String pathImg) {
 
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
-		List<Product> productsDefault = productDAO.findProductByNameLimitN(name);
+		List<Product> productsDefault = productDAO.findProductByNameLimitN(nameProduct);
 		JDBIConnectionPool.get().releaseConnection(conn);
 
 		return productsDefault;

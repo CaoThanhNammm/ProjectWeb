@@ -10,9 +10,15 @@ import model.Brand;
 import model.Product;
 
 public class FilterEmptyBrands implements IFilterByBrand {
+	private String name;
+
+	public FilterEmptyBrands(String name) {
+		super();
+		this.name = name;
+	}
 
 	@Override
-	public List<Product> chooseBrands(String name, List<Brand> brandID, String pathImg) {
+	public List<Product> chooseBrands(String pathImg) {
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
 		List<Product> productsOfBrand = productDAO.getProductDefaultByBrand(name);

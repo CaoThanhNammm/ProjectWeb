@@ -9,12 +9,18 @@ import database.JDBIConnectionPool;
 import model.Product;
 
 public class FilterPriceDESC implements IFilterByPrice {
+	private String nameProduct;
+
+	public FilterPriceDESC(String nameProduct) {
+		super();
+		this.nameProduct = nameProduct;
+	}
 
 	@Override
-	public List<Product> filterProduct(String name, String pathImg) {
+	public List<Product> filterProduct(String pathImg) {
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
-		List<Product> productsDESC = productDAO.sortByDiscountDESC(name);
+		List<Product> productsDESC = productDAO.sortByDiscountDESC(nameProduct);
 		JDBIConnectionPool.get().releaseConnection(conn);
 
 		return productsDESC;

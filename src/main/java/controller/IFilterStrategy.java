@@ -7,10 +7,10 @@ import model.Product;
 
 public interface IFilterStrategy {
 
-	List<Product> filterPrice(String name, String pathImg);
+	List<Product> filterPrice(String pathImg);
 
-	List<Product> chooseBrands(String name, List<Brand> brandID, String pathImg);
+	List<Product> chooseBrands(String pathImg);
 
-	List<Product> filter(String name, List<Brand> brandID, String pathImg);
+	List<Product> filter(String pathImg);
 
 }
