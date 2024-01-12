@@ -18,6 +18,30 @@
 </head>
 
 <%@ page import="model.Account"%>
+<%
+Account moreInfo = (Account) session.getAttribute("moreInfo");
+String note = (String) request.getParameter("status");
+boolean flag = true;
+if (note != null && !note.isBlank()) {
+	switch (note) {
+	case "success":
+		note = "Cập nhật thành công";
+		break;
+	case "failed":
+		note = "Kiểm tra lại thông tin";
+		break;
+	case "change":
+		flag = false;
+		note = "";
+		break;
+	default:
+		note = "Có lỗi";
+		break;
+	}
+} else {
+	note = "";
+}
+%>
 
 <body class="d-flex">
 	<%@include file="headerAdmin.jsp"%>

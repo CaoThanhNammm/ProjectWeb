@@ -13,30 +13,16 @@ public class Brand {
 	private String name;
 	private String pathImg;
 
-<<<<<<< HEAD
-	public Brand() {
-=======
-	public Brand(int id, String name, String pathImg) {
-		this.id = id;
-		this.name = name;
-		this.pathImg = pathImg;
->>>>>>> e5652b184d229531456d6248ac9916becbcc5a06
-	}
-
 	public Brand(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-<<<<<<< HEAD
 	public Brand(int id, String name, String pathImg) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.pathImg = pathImg;
-=======
-	public Brand() {
->>>>>>> e5652b184d229531456d6248ac9916becbcc5a06
 	}
 
 	public String getImgbrand() throws IOException {
