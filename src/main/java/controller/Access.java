@@ -42,34 +42,21 @@ public class Access extends HttpServlet {
 	// Dùng cho việc đăng ký
 	private static VerifyEmail verify;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public Access() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String access = request.getParameter("access");
 		HttpSession session = request.getSession();
+		
 		if (access == null)
 			access = "";
 

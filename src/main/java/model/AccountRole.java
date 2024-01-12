@@ -22,7 +22,7 @@ public class AccountRole {
 	 * @param id
 	 * @param name
 	 */
-	private AccountRole(int id, String name) {
+	public AccountRole(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}

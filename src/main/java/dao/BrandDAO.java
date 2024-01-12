@@ -11,7 +11,7 @@ import model.Product;
 public class BrandDAO {
 	private Handle handle;
 	private String pathImgs;
-	
+
 	public BrandDAO(Handle handle, String pathImgs) {
 		super();
 		this.handle = handle;
@@ -36,11 +36,11 @@ public class BrandDAO {
 		}
 		return brands;
 	}
-	
+
 	public Brand getBrand(int id) {
-		Brand brand = handle.select("SELECT id, name FROM brands WHERE id=?", id).map((rs, a) -> new Brand(rs.getInt("id"), rs.getString("name"))).one();
+		Brand brand = handle.select("SELECT id, name FROM brands WHERE id=?", id)
+				.map((rs, a) -> new Brand(rs.getInt("id"), rs.getString("name"))).one();
 		brand.setPathImg(pathImgs);
 		return brand;
 	}
-
 }

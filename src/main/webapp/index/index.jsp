@@ -63,7 +63,7 @@
 				<div class="col-lg-6 introduce_product_item">
 					<img src="<%=entry.getValue()%>" alt="">
 					<form
-						action="../html/FindProduct?categoryId=<%=entry.getKey().getId()%>&currentPage=1"
+						action="../html/FindProduct?nameProduct=<%=entry.getKey().getName()%>&currentPage=1"
 						method="POST">
 
 						<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
@@ -83,7 +83,7 @@
 						<div class="col-lg-6 introduce_product_item">
 							<img src="<%=entry.getValue()%>" alt="">
 							<form
-								action="../html/FindProduct?nameProduct=<%=entry.getKey().getId()%>&currentPage=1"
+								action="../html/FindProduct?nameProduct=<%=entry.getKey().getName()%>&currentPage=1"
 								method="POST">
 								<button class="introduce_product_name"><%=entry.getKey().getName()%></button>
 							</form>

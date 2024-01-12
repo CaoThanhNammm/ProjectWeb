@@ -46,12 +46,6 @@ public class Account {
 	@ColumnName(STATUS)
 	private AccountStatus status;
 
-	/**
-	 * @param id
-	 * @param fullName
-	 * @param role
-	 * @param status
-	 */
 	public Account(String id, String fullName, AccountRole role, AccountStatus status) {
 		super();
 		this.id = id;
@@ -60,26 +54,24 @@ public class Account {
 		this.status = status;
 	}
 
-	/**
-	 * @param email
-	 */
+	public Account(String id, String email, String phone, String fullName, String address, Gender gender,
+			AccountRole role, AccountStatus status) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.phone = phone;
+		this.fullName = fullName;
+		this.address = address;
+		this.gender = gender;
+		this.role = role;
+		this.status = status;
+	}
+
 	public Account(String email) {
 		super();
 		this.email = email;
 	}
 
-	/**
-	 * @param id
-	 * @param email
-	 * @param phone
-	 * @param pass
-	 * @param fullName
-	 * @param gender
-	 * @param dob
-	 * @param role
-	 * @param address
-	 * @param status
-	 */
 	public Account(String id, String email, String phone, String pass, String fullName, Gender gender, LocalDate dob,
 			AccountRole role, String address, AccountStatus status) {
 		super();
@@ -95,14 +87,6 @@ public class Account {
 		this.status = status;
 	}
 
-	/**
-	 * @param email
-	 * @param phone
-	 * @param fullName
-	 * @param gender
-	 * @param dob
-	 * @param address
-	 */
 	public Account(String email, String phone, String fullName, Gender gender, LocalDate dob, String address) {
 		super();
 		this.email = email;
@@ -113,149 +97,86 @@ public class Account {
 		this.address = address;
 	}
 
-	/**
-	 * 
-	 */
 	public Account() {
 		super();
 	}
 
-	/**
-	 * @return the id
-	 */
 	public String getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	/**
-	 * @return the email
-	 */
 	public String getEmail() {
 		return email;
 	}
 
-	/**
-	 * @param email the email to set
-	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	/**
-	 * @return the phone
-	 */
 	public String getPhone() {
 		return phone;
 	}
 
-	/**
-	 * @param phone the phone to set
-	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	/**
-	 * @return the pass
-	 */
 	public String getPass() {
 		return pass;
 	}
 
-	/**
-	 * @param pass the pass to set
-	 */
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
 
-	/**
-	 * @return the fullName
-	 */
 	public String getFullName() {
 		return fullName;
 	}
 
-	/**
-	 * @param fullName the fullName to set
-	 */
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
 
-	/**
-	 * @return the dob
-	 */
 	public LocalDate getDob() {
 		return dob;
 	}
 
-	/**
-	 * @param dob the dob to set
-	 */
 	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
-	/**
-	 * @return the address
-	 */
 	public String getAddress() {
 		return address;
 	}
 
-	/**
-	 * @param address the address to set
-	 */
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	/**
-	 * @return the gender
-	 */
 	public Gender getGender() {
 		return gender;
 	}
 
-	/**
-	 * @param gender the gender to set
-	 */
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
 
-	/**
-	 * @return the role
-	 */
 	public AccountRole getRole() {
 		return role;
 	}
 
-	/**
-	 * @param role the role to set
-	 */
 	public void setRole(AccountRole role) {
 		this.role = role;
 	}
 
-	/**
-	 * @return the status
-	 */
 	public AccountStatus getStatus() {
 		return status;
 	}
 
-	/**
-	 * @param status the status to set
-	 */
 	public void setStatus(AccountStatus status) {
 		this.status = status;
 	}

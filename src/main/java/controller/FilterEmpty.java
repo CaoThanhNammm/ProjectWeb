@@ -10,7 +10,6 @@ import model.Product;
 
 public class FilterEmpty implements IFilterByPrice {
 
-	@Override
 	public List<Product> filterProduct(String name, String pathImg) {
 
 		Handle conn = JDBIConnectionPool.get().getConnection();
@@ -19,6 +18,7 @@ public class FilterEmpty implements IFilterByPrice {
 		JDBIConnectionPool.get().releaseConnection(conn);
 
 		return productsDefault;
+
 	}
 
 }

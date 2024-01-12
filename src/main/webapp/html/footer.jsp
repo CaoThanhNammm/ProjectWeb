@@ -47,8 +47,6 @@
 						<li class="footer_list_item">
 							<h5>N2Q</h5>
 						</li>
-						<li class="footer_list_item"><a
-							href="../html/product.jsp">Sản phẩm</a></li>
 						<li class="footer_list_item"><a href="../html/about.jsp">Giới
 								thiệu</a></li>
 						<li class="footer_list_item"><a href="../html/about.jsp">Liên

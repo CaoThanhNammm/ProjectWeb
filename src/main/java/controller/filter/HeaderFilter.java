@@ -17,7 +17,7 @@ import dao.CategoriesDAO;
 import database.JDBIConnectionPool;
 import model.Category;
 
-@WebFilter({"/html/*", "/index/*"})
+@WebFilter({ "/html/*", "/index/*" })
 public class HeaderFilter implements Filter {
 
 	public void destroy() {
@@ -33,10 +33,9 @@ public class HeaderFilter implements Filter {
 		JDBIConnectionPool.get().releaseConnection(connection);
 
 		request.setAttribute("categories", categories);
-		
+
 		chain.doFilter(request, response);
 	}
-
 
 	public void init(FilterConfig fConfig) throws ServletException {
 

@@ -12,13 +12,17 @@ import static database.TableUsers.PHONE;
 import static database.TableUsers.ROLE;
 import static database.TableUsers.STATUS;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import org.jdbi.v3.core.Handle;
-import org.jdbi.v3.core.Jdbi;
 
 import database.JDBIConnectionPool;
-import database.JDBIConnector;
 import model.Account;
 import model.AccountRole;
 import model.AccountStatus;
@@ -30,7 +34,39 @@ import model.Gender;
  * Date: 25/11/2023
  */
 public class AccountDAO {
-	public static final Jdbi connect = JDBIConnector.getConnection();
+
+	// lấy ra tất cả user có trong DB
+	public static List<Account> getAll() throws SQLException {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		Connection conn = h.getConnection();
+
+		String sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName FROM users u JOIN role r ON u.roleID = r.id "
+				+ "JOIN user_status us ON u.statusID = us.id JOIN genders g ON g.id = u.genderID";
+		PreparedStatement st = conn.prepareStatement(sql);
+		ResultSet rs = st.executeQuery();
+		List<Account> accs = new ArrayList<>();
+
+		while (rs.next()) {
+			String id = rs.getString("id");
+			String email = rs.getString("email");
+			String phone = rs.getString("phone");
+			String fullname = rs.getString("fullname");
+			String address = rs.getString("address");
+			int roleID = rs.getInt("roleID");
+			String roleName = rs.getString("roleName");
+			int statusID = rs.getInt("statusID");
+			String statusName = rs.getString("statusName");
+			int genderID = rs.getInt("genderID");
+			String genderName = rs.getString("genderName");
+
+			Account acc = new Account(id, email, phone, fullname, address, new Gender(genderID, genderName),
+					new AccountRole(roleID, roleName), new AccountStatus(statusID, statusName));
+			accs.add(acc);
+		}
+		JDBIConnectionPool.get().releaseConnection(h);
+
+		return accs;
+	}
 
 	// Tạo ra id của account
 	public synchronized static String generateID(String email, String phone) {
@@ -81,7 +117,7 @@ public class AccountDAO {
 			String valueChange) {
 		// TODO Auto-generated method stub
 		Handle h = JDBIConnectionPool.get().getConnection();
-		boolean check = h.execute("UPDATE " + NAME_TABLE + " SET " + fieldChange + "=? WHERE " + field + "=?",
+		boolean check = h.execute("UPDATE " + NAME_TABLE + " SET " + fieldChange + "= ? WHERE " + field + "= ?",
 				valueChange, value) > 0;
 		JDBIConnectionPool.get().releaseConnection(h);
 		return check;
@@ -114,6 +150,204 @@ public class AccountDAO {
 	public static boolean isEmail(String email) {
 		return Pattern.compile("^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 				.matcher(email).matches();
+	}
+
+	public static List<Account> findUserByEmail(String email) throws SQLException {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		String sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
+				+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
+				+ "JOIN genders g ON g.id = u.genderID " + "WHERE u.email like ? ";
+		Connection conn = h.getConnection();
+
+		PreparedStatement st = conn.prepareStatement(sql);
+		st.setString(1, "%" + email + "%");
+		ResultSet rs = st.executeQuery();
+		List<Account> accs = new ArrayList<>();
+
+		while (rs.next()) {
+			String id = rs.getString("id");
+			String email1 = rs.getString("email");
+			String phone = rs.getString("phone");
+			String fullname = rs.getString("fullname");
+			String address = rs.getString("address");
+			int roleID = rs.getInt("roleID");
+			String roleName = rs.getString("roleName");
+			int statusID = rs.getInt("statusID");
+			String statusName = rs.getString("statusName");
+			int genderID = rs.getInt("genderID");
+			String genderName = rs.getString("genderName");
+
+			Account acc = new Account(id, email1, phone, fullname, address, new Gender(genderID, genderName),
+					new AccountRole(roleID, roleName), new AccountStatus(statusID, statusName));
+			accs.add(acc);
+		}
+		JDBIConnectionPool.get().releaseConnection(h);
+
+		return accs;
+	}
+
+	public static List<Account> findUserByPhone(String phone) throws SQLException {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		String sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
+				+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
+				+ "JOIN genders g ON g.id = u.genderID " + "WHERE u.phone like ? ";
+		Connection conn = h.getConnection();
+
+		PreparedStatement st = conn.prepareStatement(sql);
+		st.setString(1, "%" + phone + "%");
+		ResultSet rs = st.executeQuery();
+		List<Account> accs = new ArrayList<>();
+
+		while (rs.next()) {
+			String id = rs.getString("id");
+			String email = rs.getString("email");
+			String phone1 = rs.getString("phone");
+			String fullname = rs.getString("fullname");
+			String address = rs.getString("address");
+			int roleID = rs.getInt("roleID");
+			String roleName = rs.getString("roleName");
+			int statusID = rs.getInt("statusID");
+			String statusName = rs.getString("statusName");
+			int genderID = rs.getInt("genderID");
+			String genderName = rs.getString("genderName");
+
+			Account acc = new Account(id, email, phone1, fullname, address, new Gender(genderID, genderName),
+					new AccountRole(roleID, roleName), new AccountStatus(statusID, statusName));
+			accs.add(acc);
+		}
+		JDBIConnectionPool.get().releaseConnection(h);
+
+		return accs;
+	}
+
+	public static List<Account> findUserByName(String name) throws SQLException {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		String sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
+				+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
+				+ "JOIN genders g ON g.id = u.genderID " + "WHERE u.fullname like ? ";
+		Connection conn = h.getConnection();
+
+		PreparedStatement st = conn.prepareStatement(sql);
+		st.setString(1, "%" + name + "%");
+		ResultSet rs = st.executeQuery();
+		List<Account> accs = new ArrayList<>();
+
+		while (rs.next()) {
+			String id = rs.getString("id");
+			String email = rs.getString("email");
+			String phone = rs.getString("phone");
+			String fullname = rs.getString("fullname");
+			String address = rs.getString("address");
+			int roleID = rs.getInt("roleID");
+			String roleName = rs.getString("roleName");
+			int statusID = rs.getInt("statusID");
+			String statusName = rs.getString("statusName");
+			int genderID = rs.getInt("genderID");
+			String genderName = rs.getString("genderName");
+
+			Account acc = new Account(id, email, phone, fullname, address, new Gender(genderID, genderName),
+					new AccountRole(roleID, roleName), new AccountStatus(statusID, statusName));
+			accs.add(acc);
+		}
+		JDBIConnectionPool.get().releaseConnection(h);
+
+		return accs;
+	}
+
+	public static List<Account> find(String email, String phone, String name) throws SQLException {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		String sql = "";
+		PreparedStatement st = null;
+		Connection conn = null;
+
+		if (email.equals("")) {
+			sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
+					+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
+					+ "JOIN genders g ON g.id = u.genderID " + "WHERE u.fullname like ? and u.phone like ?";
+			conn = h.getConnection();
+
+			st = conn.prepareStatement(sql);
+			st.setString(1, "%" + name + "%");
+			st.setString(2, "%" + phone + "%");
+
+		} else if (phone.equals("")) {
+			sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
+					+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
+					+ "JOIN genders g ON g.id = u.genderID " + "WHERE u.email like ? and u.fullname like ?";
+			conn = h.getConnection();
+
+			st = conn.prepareStatement(sql);
+			st.setString(1, "%" + email + "%");
+			st.setString(2, "%" + name + "%");
+		} else if (name.equals("")) {
+			sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
+					+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
+					+ "JOIN genders g ON g.id = u.genderID " + "WHERE u.email like ? and u.phone like ?";
+			conn = h.getConnection();
+
+			st = conn.prepareStatement(sql);
+			st.setString(1, "%" + email + "%");
+			st.setString(2, "%" + phone + "%");
+		} else {
+			sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
+					+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
+					+ "JOIN genders g ON g.id = u.genderID "
+					+ "WHERE u.email like ? and u.phone like ? and u.fullname like ?";
+			conn = h.getConnection();
+
+			st = conn.prepareStatement(sql);
+			st.setString(1, "%" + email + "%");
+			st.setString(2, "%" + phone + "%");
+			st.setString(3, "%" + name + "%");
+		}
+
+		ResultSet rs = st.executeQuery();
+		List<Account> accs = new ArrayList<>();
+
+		while (rs.next()) {
+			String id = rs.getString("id");
+			String email1 = rs.getString("email");
+			String phone1 = rs.getString("phone");
+			String fullname = rs.getString("fullname");
+			String address = rs.getString("address");
+			int roleID = rs.getInt("roleID");
+			String roleName = rs.getString("roleName");
+			int statusID = rs.getInt("statusID");
+			String statusName = rs.getString("statusName");
+			int genderID = rs.getInt("genderID");
+			String genderName = rs.getString("genderName");
+
+			Account acc = new Account(id, email1, phone1, fullname, address, new Gender(genderID, genderName),
+					new AccountRole(roleID, roleName), new AccountStatus(statusID, statusName));
+			accs.add(acc);
+		}
+
+		JDBIConnectionPool.get().releaseConnection(h);
+		return accs;
+	}
+
+	// tính tổng số user 
+	public static int totalUser() {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		List<Account> accs = h.select("SELECT id FROM users").mapToBean(Account.class).list();
+		JDBIConnectionPool.get().releaseConnection(h);
+		return accs.size();
+	}
+
+	// tính số user vẫn còn hoạt động(chưa bị khóa)
+	public static int countUserAvailable() {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		List<Account> accs = h.select("SELECT id FROM users WHERE statusID = 2").mapToBean(Account.class).list();
+		JDBIConnectionPool.get().releaseConnection(h);
+		return accs.size();
+	}
+
+	// tính số user bị khóa acc
+	public static int countUserUnAvailable() {
+		Handle h = JDBIConnectionPool.get().getConnection();
+		List<Account> accs = h.select("SELECT id FROM users WHERE statusID = 1").mapToBean(Account.class).list();
+		JDBIConnectionPool.get().releaseConnection(h);
+		return accs.size();
 	}
 
 }
