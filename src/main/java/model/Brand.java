@@ -24,7 +24,10 @@ public class Brand {
 		this.name = name;
 		this.pathImg = pathImg;
 	}
-
+	
+	public Brand() {
+	}
+	
 	public String getImgbrand() throws IOException {
 		File folder = new File(pathImg + "/image/product/filter/" + this.id);
 
