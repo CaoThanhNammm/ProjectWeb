@@ -52,7 +52,7 @@
             <div class="row mt-3">
                 <div class="row bg-light">
                     <div class="col-lg-2 pt-1 pb-1 ps-2">
-                        <h1>Thống kê</h1>
+                        <h2>Thống kê</h2>
                     </div>
                     <div class="col-lg-10 my-auto">
                         <ul class="d-flex nav">

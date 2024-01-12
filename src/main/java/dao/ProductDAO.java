@@ -1,29 +1,15 @@
 package dao;
 
-import static database.TableUsers.FULL_NAME;
-import static database.TableUsers.ID;
-import static database.TableUsers.NAME_TABLE;
-import static database.TableUsers.PASSWORD;
-import static database.TableUsers.ROLE;
-import static database.TableUsers.STATUS;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 import org.jdbi.v3.core.Handle;
 
-import model.Account;
-import model.AccountRole;
-import model.AccountStatus;
 import model.Brand;
-import model.Category;
-import model.Encrypt;
 import model.Product;
-import model.Status;
 
 public class ProductDAO {
 	private Handle handle;
@@ -270,6 +256,10 @@ public class ProductDAO {
 			}
 		}
 
+		for (Product product : res) {
+			product.setImgs(pathImg);
+		}
+
 		return res;
 	}
 
@@ -282,7 +272,6 @@ public class ProductDAO {
 		for (Product product : products) {
 			product.setImgs(pathImg);
 		}
-
 		return products;
 	}
 

@@ -16,31 +16,6 @@
 <link rel="stylesheet" href="../css/overviewAdmin.css">
 <title>Tổng quan</title>
 </head>
-<%@ page import="model.Account"%>
-<%
-Account moreInfo = (Account) session.getAttribute("moreInfo");
-String note = (String) request.getParameter("status");
-boolean flag = true;
-if (note != null && !note.isBlank()) {
-	switch (note) {
-	case "success":
-		note = "Cập nhật thành công";
-		break;
-	case "failed":
-		note = "Kiểm tra lại thông tin";
-		break;
-	case "change":
-		flag = false;
-		note = "";
-		break;
-	default:
-		note = "Có lỗi";
-		break;
-	}
-} else {
-	note = "";
-}
-%>
 
 <%@ page import="model.Account"%>
 <%
@@ -86,39 +61,62 @@ if (note != null && !note.isBlank()) {
 						<%
 						if (flag) {
 						%>
-						<div class="form-group">
-							<label for="fullName"><i class="fa-solid fa-envelope"></i>Địa
-								chỉ email</label> <input type="email" class="form-control" id="email"
-								aria-describedby="email" placeholder="Địa chỉ email"
-								name="email" value="<%=moreInfo.getEmail()%>" readonly>
-							<label for="tel"><i class="fa-solid fa-phone"></i>Số điện
-								thoại</label> <input type="tel" class="form-control" id="tel" name="tel"
-								aria-describedby="tel" placeholder="Số điện thoại"
-								value="<%=moreInfo.getPhone()%>" readonly> <label
-								for="fullName"><i class="fa-solid fa-user"></i>Họ và tên</label>
-							<input type="text" class="form-control" id="fullName"
-								name="fullName" aria-describedby="fullName"
-								placeholder="Họ và tên" value="<%=moreInfo.getFullName()%>"
-								readonly> <label for="address"><i
-								class="fa-solid fa-location-dot"></i>Địa chỉ</label> <input type="text"
-								class="form-control" id="address" aria-describedby="address"
-								placeholder="Địa chỉ" name="address"
-								value="<%=moreInfo.getAddress()%>" readonly> <label
-								for="address-fb"><i class="fa-brands fa-facebook"></i>Địa
-								chỉ liên kết Facebook</label> <input type="text" class="form-control"
-								id="address-fb" aria-describedby="address-fb"
-								placeholder="Địa chỉ liên kết Facebook" value="facebook"
-								readonly> <label for="address-fb"><i
-								class="fa-brands fa-linkedin"></i>Địa chỉ liên kết Linkedin</label> <input
-								type="text" class="form-control" id="address-linkedin"
-								aria-describedby="address-linkedin"
-								placeholder="Địa chỉ liên kết Linkedin" value="linkedin"
-								readonly> <label for="address-instagram"><i
-								class="fa-brands fa-instagram"></i>Địa chỉ liên kết Instagram</label> <input
-								type="text" class="form-control" id="address-instagram"
-								aria-describedby="address-instagram"
-								placeholder="Địa chỉ liên kết Instagram" value="instagram"
-								readonly>
+						<div>
+							<div class="form-group">
+								<label for="email"> <i class="fa-solid fa-envelope"></i>email
+								</label> <input type="email" class="form-control" id="email"
+									aria-describedby="email" placeholder="Địa chỉ email"
+									name="email" value="<%=moreInfo.getEmail()%>" readonly>
+							</div>
+
+							<div class="form-group">
+								<label for="tel"><i class="fa-solid fa-phone"> </i>Số
+									điện thoại</label> <input type="tel" class="form-control" id="tel"
+									name="tel" aria-describedby="tel" placeholder="Số điện thoại"
+									value="<%=moreInfo.getPhone()%>" readonly>
+							</div>
+
+							<div class="form-group">
+								<label for="fullName"><i class="fa-solid fa-user"></i>Họ
+									và tên</label> <input type="text" class="form-control" id="fullName"
+									name="fullName" aria-describedby="fullName"
+									placeholder="Họ và tên" value="<%=moreInfo.getFullName()%>"
+									readonly>
+							</div>
+
+							<div class="form-group">
+								<label for="address"><i class="fa-solid fa-location-dot"></i>Địa
+									chỉ</label> <input type="text" class="form-control" id="address"
+									aria-describedby="address" placeholder="Địa chỉ" name="address"
+									value="<%=moreInfo.getAddress()%>" readonly>
+							</div>
+
+							<div class="form-group">
+								<label for="address-fb"><i class="fa-brands fa-facebook"></i>Facebook</label>
+								<input type="text" class="form-control" id="address-fb"
+									aria-describedby="address-fb"
+									placeholder="Địa chỉ liên kết Facebook" value="facebook"
+									readonly>
+							</div>
+
+							<div class="form-group">
+								<label for="address-linkedin"><i
+									class="fa-brands fa-linkedin"></i>Linkedin</label> <input type="text"
+									class="form-control" id="address-linkedin"
+									aria-describedby="address-linkedin"
+									placeholder="Địa chỉ liên kết Linkedin" value="linkedin"
+									readonly>
+							</div>
+
+							<div class="form-group">
+								<label for="address-instagram"><i
+									class="fa-brands fa-instagram"></i>Instagram</label> <input type="text"
+									class="form-control" id="address-instagram"
+									aria-describedby="address-instagram"
+									placeholder="Địa chỉ liên kết Instagram" value="instagram"
+									readonly>
+							</div>
+
 							<button class="btn btn-warning resest-password mt-2"
 								onclick="_changePass()">
 								<i class="fa-solid fa-lock"></i> <span class="mt-1">Đổi

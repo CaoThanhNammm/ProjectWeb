@@ -1,192 +1,278 @@
 @charset "UTF-8";
+
+.admin_body {
+	width: 100%;
+	margin: 0;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
 /* start: user_des_admin*/
 #user_des_admin {
-    width: 100%;
-    height: 100%;
-    padding-bottom: 20px;
+	width: 100vw;
+	height: 100%;
+	padding-bottom: 20px;
 }
 
 #user_des_admin .table_user {
-    border-collapse: collapse;
-    width: 100%;
+	border-collapse: collapse;
+	width: 100%;
 }
 
-#user_des_admin .table_user td, #user_des_admin .table_user th{
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+#user_des_admin .table_user td,
+#user_des_admin .table_user th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
 }
 
 tr:nth-child(even) {
-    background-color: var(--gray-primary);
+	background-color: var(--gray-primary);
 }
 
-#user_des_admin .submit{
-    float: right;
-    border: none;
-    background-color: var(--yellow-primary);
-    padding: 7px 20px;
-    margin-right: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-#user_des_admin .submit:hover{
-    opacity: 0.8;
-}
-
-#user_des_admin .header_search{
-    display: flex;
-    border-radius: 6px;
-    background-color: var(--white-primary);
-    padding: 8px 0 8px 12px;
+#user_des_admin .header_search {
+	display: flex;
+	border-radius: 6px;
+	background-color: var(--white-primary);
+	padding: 8px 0 8px 12px;
 }
 
 #user_des_admin .header_search .search {
-    border-radius: 6px;
-    height: 40px;
-    background-color: var(--white-primary);
-    outline: none;
-    border: none;
-    font-size: 16px;
-    padding: 0 10px;
+	border-radius: 6px;
+	height: 40px;
+	background-color: var(--white-primary);
+	outline: none;
+	border: none;
+	font-size: 16px;
+	padding: 0 10px;
 }
 
 ::placeholder {
-    font-size: 14px;
-    font-weight: 600;
+	font-size: 14px;
+	font-weight: 600;
 }
 
-#user_des_admin  .header_search .search_logo {
-    width: 50px;
-    display: flex;
-    cursor: pointer;
-    font-size: 25px;
-    justify-content: center;
-    align-items: center;
-    border-bottom-right-radius: 6px;
-    border-top-right-radius: 6px;
-    background-color: var(--yellow-primary);
-    transition: 0.3s ease;
+.search_logo_btn {
+	border: none;
+	transition: 0.3s ease;
+	height: 100%;
+	background-color: var(--yellow-primary);
+	border-bottom-right-radius: 6px;
+	border-top-right-radius: 6px;
 }
 
-#user_des_admin  .search_logo:hover {
-    background-color: var(--yellow-second);
+#user_des_admin .header_search .search_logo {
+	width: 50px;
+	display: flex;
+	cursor: pointer;
+	font-size: 25px;
+	justify-content: center;
+	align-items: center;
+	transition: 0.3s ease;
 }
+
+.search_logo_btn:hover .search_logo,
+.search_logo_btn:hover {
+	background-color: var(--yellow-second);
+}
+
 /* end: user_des_admin*/
 
 /* start: statistic_admin*/
 #statistic_admin {
-    width: 100%;
+	width: 100%;
 }
 
 ::placeholder {
-    font-size: 14px;
-    font-weight: 600;
+	font-size: 14px;
+	font-weight: 600;
 }
 
 #statistic_admin .row {
-    padding-right: 0;
-    margin-right: 0;
-    width: 100%;
-    --bs-gutter-x: 0;
+	padding-right: 0;
+	margin-right: 0;
+	width: 100%;
+	--bs-gutter-x: 0;
 }
 
 #statistic_admin .card-group {
-    justify-content: space-between;
-    padding-right: 0;
-    margin-right: 0;
+	justify-content: space-between;
+	padding-right: 0;
+	margin-right: 0;
 
 }
 
 #statistic_admin .card {
-    margin-right: 20px;
-    border: none;
-    border-radius: 5px !important;
+	margin-right: 20px;
+	border: none;
+	border-radius: 5px !important;
 }
 
 .chart {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 2;
-    position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	flex-grow: 2;
+	position: relative;
 }
 
 .operating-systems {
-    display: flex;
-    justify-content: space-between;
-    width: max-content;
-    margin-top: 30px;
-    margin-bottom: 50px;
+	display: flex;
+	justify-content: space-between;
+	width: max-content;
+	margin-top: 30px;
+	margin-bottom: 50px;
 }
 
 span[class*="os"] {
-    font-size: 14px;
-    font-weight: 300;
-    font-size: 14px;
-    margin-right: 5px;
-    margin-left: 5px;
-    color: black;
+	font-size: 14px;
+	font-weight: 300;
+	font-size: 14px;
+	margin-right: 5px;
+	margin-left: 5px;
+	color: black;
 }
 
 span[class*="os"] span {
-    width: 9px;
-    height: 9px;
-    display: inline-block;
-    border-radius: 50%;
-    margin-right: 9px;
+	width: 9px;
+	height: 9px;
+	display: inline-block;
+	border-radius: 50%;
+	margin-right: 9px;
 }
 
 .os3-os span {
-    background: #80B354;
+	background: #80B354;
 }
 
 .os1-os span {
-    background: #F5A623;
+	background: #F5A623;
 }
 
 .os2-os span {
-    background: #F8E71C;
+	background: #F8E71C;
 }
 
 div[class*="-stats"] {
-    position: absolute;
-    color: #fff;
-    font-size: 12px;
-    display: flex;
-    opacity: 0;
-    animation: showstats 0.6s linear 1.8s;
-    animation-fill-mode: forwards;
+	position: absolute;
+	color: #fff;
+	font-size: 12px;
+	display: flex;
+	opacity: 0;
+	animation: showstats 0.6s linear 1.8s;
+	animation-fill-mode: forwards;
 }
 
 div[class*="-stats"] span {
-    height: 12px;
-    width: 12px;
-    margin: 0 7px;
-    background-color: #fff;
-    border: 2px solid transparent;
-    border-radius: 50%;
+	height: 12px;
+	width: 12px;
+	margin: 0 7px;
+	background-color: #fff;
+	border: 2px solid transparent;
+	border-radius: 50%;
 }
 
 .os3-stats {
-    bottom: 155px;
-    right: 230px;
+	bottom: 155px;
+	right: 230px;
 }
 
 .os1-stats {
-    bottom: 83px;
-    left: 133px;
+	bottom: 83px;
+	left: 133px;
 }
 
 .os2-stats {
-    bottom: 133px;
-    right: 62px;
+	bottom: 133px;
+	right: 62px;
 }
 
 .svg-container {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
+
 /* end: statistic_admin*/
+
+
+/**/
+.users_status_list,
+.users_role_list {
+	position: relative;
+}
+
+.users_status_list,
+.users_status_list ul,
+.users_role_list,
+.users_role_list ul {
+	margin: 0;
+	padding: 0;
+	width: 136px;
+}
+
+.users_role_list,
+.users_role_list ul {
+	width: 80px;
+}
+
+.users_status_list ul,
+.users_role_list ul {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	background-color: white;
+	right: 0;
+	z-index: 1;
+	box-shadow: 4px 2px 8px 0px var(--gray-second);
+	border-radius: 5px;
+	display: none;
+}
+
+.users_status_item,
+.users_status_item_child,
+.users_role_item,
+.users_role_item_child {
+	cursor: pointer;
+	margin-top: 6px;
+}
+
+.users_status_item_child,
+.users_role_item_child {
+	margin-left: 9px;
+}
+
+.users_status_item_child:hover,
+.users_role_item_child:hover {
+	opacity: 0.7;
+}
+
+.users_status_item,
+.users_role_item {
+	border: 2px solid var(--black-primary);
+	border-radius: 5px;
+	padding: 4px 4px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.users_status_item i,
+.users_role_item i {
+	margin-left: 3px;
+	font-size: 14px;
+}
+
+.users_status_item button,
+.users_role_item button {
+	background-color: var(--white-primary);
+	border: none;
+	padding: 4px 4px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+/**/

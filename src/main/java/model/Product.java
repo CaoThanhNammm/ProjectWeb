@@ -77,19 +77,6 @@ public class Product {
 		this.brand = brand;
 	}
 
-	/**
-	 * @param id
-	 * @param name
-	 * @param brand
-	 * @param description
-	 * @param category
-	 * @param price
-	 * @param discount
-	 * @param lastUpdated
-	 * @param amountSold
-	 * @param status
-	 * @param imgs
-	 */
 	public Product(int id, String name, Brand brand, String description, Category category, int price, int discount,
 			LocalDate lastUpdated, int amountSold, Status status, String imgs) {
 		super();
