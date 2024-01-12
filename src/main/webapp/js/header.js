@@ -140,7 +140,7 @@ function _renameParentElement(oldParentId, newTagName) {
 	newParent.classList.add(oldParentId);
 
 	if (newTagName === "form") {
-		newParent.setAttribute("action", "../html/FindProductCopy");
+		newParent.setAttribute("action", "../html/FindProduct");
 		newParent.setAttribute("method", "POST");
 		newParent.classList.add("available");
 	}

@@ -24,7 +24,7 @@ import model.Product;
  * Note: Xử lý tìm kiếm sản phẩm, phân trang, lọc
  *
  */
-@WebServlet("/html/FindProduct")
+@WebServlet("/html/FindProductBackup")
 public class FindProductBackup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductDAO productDAO;
