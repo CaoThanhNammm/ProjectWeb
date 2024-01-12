@@ -13,26 +13,12 @@ public class Brand {
 	private String name;
 	private String pathImg;
 
-	public Brand(int id, String name, String pathImg) {
-		this.id = id;
-		this.name = name;
-		this.pathImg = pathImg;
-	}
-
 	public Brand() {
 	}
-	
+
 	public Brand(int id, String name) {
 		this.id = id;
 		this.name = name;
-	}
-
-	public String getImgbrand() throws IOException {
-		File folder = new File(pathImg + "/image/product/filter/" + this.id);
-
-		File[] files = folder.listFiles();
-		
-		return "../image/product/filter/" + id + "/" + files[files.length - 1].getName();
 	}
 
 	public Brand(int id, String name, String pathImg) {
@@ -42,14 +28,11 @@ public class Brand {
 		this.pathImg = pathImg;
 	}
 
-	public Brand() {
-	}
-
 	public String getImgbrand() throws IOException {
 		File folder = new File(pathImg + "/image/product/filter/" + this.id);
 
 		File[] files = folder.listFiles();
-		
+
 		return "../image/product/filter/" + id + "/" + files[files.length - 1].getName();
 	}
 
