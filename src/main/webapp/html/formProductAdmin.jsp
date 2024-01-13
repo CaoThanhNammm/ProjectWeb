@@ -35,19 +35,21 @@ if (product != null) {
 		<input value="<%=product.getId()%>" type="hidden" name="id-product">
 		<div class="col-5 mx-auto w-50">
 			<div class="slider_main">
-				<img src="<%=imgs.get(0)%>" alt="img1">
+				<img src="<%=imgs.get(0)%>" id='e-img-active' alt="img1">
 			</div>
 			<div class="slider_images">
-				<img class="slider_image active" src="<%=imgs.get(0)%>" alt="img1">
+				<img class="slider_image active" src="<%=imgs.get(0)%>" id='e-img-0'
+					alt="img1">
 				<%
 				for (int i = 1; i < imgs.size(); i++) {
 				%>
 				<img class="slider_image" src="<%=imgs.get(i)%>"
-					alt="<%="img" + (i + 1)%>">
+					alt="<%="img" + (i + 1)%>" id='e-img-<%=i%>'>
 				<%
 				}
 				%>
 			</div>
+			<div id="e-img" class='d-flex'></div>
 		</div>
 		<div class="ms-4">
 			<p>
@@ -70,7 +72,8 @@ if (product != null) {
 			</div>
 			<div id="info" class="tabcontent w-100">
 				<h2 class="title">Thông tin sản phẩm</h2>
-				<table class="table_full w-100">
+				<hr />
+				<table class="table_full w-100" id="e-table">
 					<tr>
 						<td class="table_title">Mã sản phẩm</td>
 						<td><b class="e-info"><%=product.getId()%></b></td>
@@ -83,11 +86,19 @@ if (product != null) {
 						<td class="table_title">Màu</td>
 						<td><b class="e-info">Trắng</b></td>
 					</tr>
+					<tr>
+						<td><hr /></td>
+						<td><hr /></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td id="e-add" class="text-end"></td>
+					</tr>
 					<%
 					for (int i = 0; i < product.getAttributes().size(); ++i) {
 					%>
 					<tr>
-						<td class="table_title"><%=product.getAttributes().get(i).getName()%></td>
+						<td class="table_title e-info"><%=product.getAttributes().get(i).getName()%></td>
 						<td><b class="e-info"><%=product.getAttributes().get(i).getValue()%></b></td>
 					</tr>
 					<%
@@ -99,8 +110,8 @@ if (product != null) {
 		<%
 		}
 		%>
-		<div class="mt-3 mb-3 w-100">
-			<!-- e mean edit -->
+		<div class="mt-3 mb-3 w-100" id="e-function">
+			<!-- "e" mean edit -->
 			<button onclick="edit()" name="edit"
 				class="e-btn btn btn-warning w-100">Điều chỉnh sản phẩm</button>
 		</div>
