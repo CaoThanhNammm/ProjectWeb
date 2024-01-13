@@ -54,7 +54,9 @@ public class EditProduct extends HttpServlet {
 		if (status.equals("edit")) {
 			p  = dao.findProductByID(id);
 		} else if(status.equals("update")){
-			
+			int skip = 3; // Đây là 3 giá trị bắt buộc
+			String[] values = request.getParameterValues("p-fixed");
+			System.out.println(values);
 		}
 		request.setAttribute("product", p);
 		JDBIConnectionPool.get().releaseConnection(connection);

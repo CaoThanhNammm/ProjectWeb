@@ -6,8 +6,52 @@ var $ = document.querySelector.bind(document)
 var $$ = document.querySelectorAll.bind(document)
 
 function addAttributeTable() {
-	let parent = $('#e-table')
-	parent.innerHTML = parent.innerHTML + '<tr><td class="table_title"><textarea class="w-100 e-txt"></textarea></td><td><b class="e-info"><textarea class="w-100 e-txt"></textarea></b></td></tr>'
+	let parent = $('#e-table');
+	let tr = document.createElement('tr');
+	let btn = document.createElement('button');
+
+	btn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+	btn.setAttribute('class', 'btn btn-warning');
+	btn.addEventListener('click', function() {
+		removeAttributeTable(tr)
+	})
+
+	let td1 = document.createElement('td');
+	td1.setAttribute('class', 'table_title');
+	td1.innerHTML = '<span><textarea class="w-100 e-txt"></textarea><button class="btn">&nbsp;</button></span>';
+
+	let td2 = document.createElement('td');
+	let b = document.createElement('b');
+	b.setAttribute('class', 'e-info');
+	b.innerHTML = '<span><textarea class="w-100 e-txt"></textarea></span>';
+	b.querySelector('span').appendChild(btn);
+	td2.appendChild(b);
+
+	tr.appendChild(td1);
+	tr.appendChild(td2);
+
+	parent.append(tr);
+}
+
+
+
+function removeAttributeTable(e) {
+	let etxts = e.getElementsByClassName('e-txt');
+	let check = Array.from(etxts).reduce((isNull, e) => isNull && e.innerText, true);
+
+	let re = true
+	if (check) {
+		let confirm = confirm('Bạn có chắc muốn loại bỏ thuộc tính này?')
+		if (!confirm) {
+			re = false
+		}
+	}
+
+	if (re) {
+		if (e && e.parentNode) {
+			e.parentNode.removeChild(e);
+		}
+	}
 }
 
 function cancel() {
@@ -58,7 +102,7 @@ function updateImg(input) {
 
 }
 
-function edit() {
+function edit(pid) {
 	let btn = $('.e-btn')
 	let parent = $('#form-product')
 	if (btn.name === 'edit') {
@@ -68,7 +112,7 @@ function edit() {
 			classInfos.forEach(e => {
 				let input = document.createElement('textarea')
 				input.setAttribute('class', 'w-100 e-txt')
-				input.value = e.innerText
+				input.innerText = e.innerText
 				e.innerHTML = ''
 				e.appendChild(input)
 			})
@@ -117,6 +161,7 @@ function edit() {
 			addBtn.setAttribute('class', 'btn')
 			addBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>'
 			addBtn.addEventListener('click', function() {
+				console.log("Button clicked");
 				addAttributeTable()
 			})
 			eAdd.appendChild(addBtn)
@@ -128,7 +173,7 @@ function edit() {
 			while (parent.firstChild) {
 				form.appendChild(parent.firstChild);
 			}
-			form.setAttribute('action', 'editProduct?status=update')
+			form.setAttribute('action', 'editProduct?status=update&id-product=' + pid)
 			form.setAttribute('method', 'post')
 			form.setAttribute('id', 'form-product')
 			parent.parentNode.replaceChild(form, parent)

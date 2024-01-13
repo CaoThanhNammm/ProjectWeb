@@ -75,16 +75,15 @@ if (product != null) {
 				<hr />
 				<table class="table_full w-100" id="e-table">
 					<tr>
+						<input type="hidden" name="p-fixed" value="<%=product.getId()%>" />
 						<td class="table_title">Mã sản phẩm</td>
 						<td><b class="e-info"><%=product.getId()%></b></td>
 					</tr>
 					<tr>
+						<input type="hidden" name="p-fixed"
+							value="<%=product.getBrand().getName()%>" />
 						<td class="table_title">Thương hiệu</td>
 						<td><b class="e-info"><%=product.getBrand().getName()%></b></td>
-					</tr>
-					<tr>
-						<td class="table_title">Màu</td>
-						<td><b class="e-info">Trắng</b></td>
 					</tr>
 					<tr>
 						<td><hr /></td>
@@ -112,7 +111,7 @@ if (product != null) {
 		%>
 		<div class="mt-3 mb-3 w-100" id="e-function">
 			<!-- "e" mean edit -->
-			<button onclick="edit()" name="edit"
+			<button onclick="edit(<%=product.getId()%>)" name="edit"
 				class="e-btn btn btn-warning w-100">Điều chỉnh sản phẩm</button>
 		</div>
 	</div>
