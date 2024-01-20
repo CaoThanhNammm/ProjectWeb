@@ -41,9 +41,10 @@ public class CategoriesDAO {
 
 		return categories;
 	}
-	
+
 	public Category getCategory(int id) {
-		Category category = handle.select("SELECT id, name FROM categories WHERE id=?", id).mapToBean(Category.class).one();
+		Category category = handle.select("SELECT id, name FROM categories WHERE id=?", id).mapToBean(Category.class)
+				.one();
 		return category;
 	}
 

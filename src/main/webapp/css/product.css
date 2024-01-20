@@ -213,7 +213,7 @@
 .category_price_option_default,
 .category_brand_option_default {
 	margin-bottom: 0;
-	width: 170px;
+	width: 250px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;

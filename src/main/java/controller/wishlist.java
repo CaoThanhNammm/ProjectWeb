@@ -20,9 +20,6 @@ import model.Account;
 import model.Product;
 import model.Wishlist;
 
-/**
- * Servlet implementation class wishlistProcess
- */
 @WebServlet("/html/wishlist")
 public class wishlist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -58,7 +55,6 @@ public class wishlist extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		HttpSession session = request.getSession(false);
-		System.out.println("wishlist: " + session);
 
 		int productId = Integer.parseInt(request.getParameter("id"));
 		String isRemove = request.getParameter("remove");
@@ -71,9 +67,9 @@ public class wishlist extends HttpServlet {
 
 		if (isRemove == null || isRemove.equals("yes")) {
 			if (productsWishlist.contains(p)) {
-				removeProduct(productsWishlist, p);
+				removeProduct(p);
 			} else {
-				addProduct(productsWishlist, p);
+				addProduct(p);
 			}
 		}
 
@@ -84,31 +80,28 @@ public class wishlist extends HttpServlet {
 	}
 
 	/*
-	 * xóa sản phẩm vào danh sách yêu thích trừ đi giá tiền vào tổng giá trừ số
-	 * lượng đi 1
+	 * xóa sản phẩm từ danh sách yêu thích
 	 */
-	private void removeProduct(List<Product> products, Product product) {
-		products.remove(product);
+	private void removeProduct(Product product) {
+		wishlist.getProducts().remove(product);
 		totalPrice -= product.getPrice() - product.getDiscount();
 		quantityWishlist--;
 	}
 
 	/*
-	 * thêm sản phẩm vào danh sách yêu thích cộng thêm giá tiền vào tổng giá cộng số
-	 * lượng thêm 1
+	 * thêm sản phẩm vào danh sách yêu thích
 	 */
-	private void addProduct(List<Product> products, Product product) {
-		products.add(product);
+	private void addProduct(Product product) {
+		wishlist.getProducts().add(product);
 		totalPrice += product.getPrice() - product.getDiscount();
 		quantityWishlist++;
 	}
 
 	/*
-	 * thực hiên xóa tất cả sản phẩm trong danh sách yêu thích set list thành rỗng
-	 * tổng giá tiền = 0 tổng sản phẩm = 0
+	 * xóa tất cả sản phẩm trong danh sách yêu thích
 	 */
 	private void removeAll() {
-		wishlist.setProducts(new ArrayList<>());
+		wishlist.getProducts().clear();
 		totalPrice = 0;
 		quantityWishlist = 0;
 	}

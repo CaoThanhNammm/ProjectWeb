@@ -105,7 +105,7 @@ Account ac = (Account) session.getAttribute("account");
 
 
 		<ul class="navigtion-list">
-			<c:forEach items="${categories}" var="c">
+			<c:forEach items="${categoriesInNavigation}" var="c">
 				<li class="navigtion-item">
 					<form
 						action="../html/FindProduct?nameProduct=${c.name}&currentPage=1"
@@ -125,51 +125,15 @@ Account ac = (Account) session.getAttribute("account");
 	<div class="modal_body">
 		<i class="fa-solid fa-xmark modal_body_quit"></i>
 		<ul class="category_all_list">
-			<div>
-				<li class="category_all_item">Nồi, Bếp Lò <i
-					class="fa-solid fa-chevron-down category_all_item_icon"></i>
+			<c:forEach items="${categoriesMore}" var="c">
+				<li class="category_all_item">
+					<form
+						action="../html/FindProduct?nameProduct=${c.name}&currentPage=1"
+						method="POST">
+						<button>${c.name}</button>
+					</form>
 				</li>
-				<ul class="category_all_item_child_list">
-					<li><a href="../html/product.jsp">Nồi chiên không dầu</a></li>
-					<li><a href="../html/product.jsp">Nồi cơm điện</a></li>
-					<li><a href="../html/product.jsp">Nồi áp suất</a></li>
-					<li><a href="../html/product.jsp">Nồi nấu chậm</a></li>
-					<li><a href="../html/product.jsp">Nồi, bộ nồi</a></li>
-					<li><a href="../html/product.jsp">Chảo chống dính</a></li>
-					<li><a href="../html/product.jsp">Bếp từ</a></li>
-					<li><a href="../html/product.jsp">Bếp gà</a></li>
-					<li><a href="../html/product.jsp">Bếp hồng ngoại</a></li>
-					<li><a href="../html/product.jsp">Lò vi sóng</a></li>
-					<li><a href="../html/product.jsp">Lò nướng</a></li>
-					<li><a href="../html/product.jsp">Lẩu điện</a></li>
-				</ul>
-			</div>
-
-			<div>
-				<li class="category_all_item">Xay ép pha chế <i
-					class="fa-solid fa-chevron-down category_all_item_icon"></i>
-				</li>
-				<ul class="category_all_item_child_list">
-					<li><a href="../html/product.jsp">Máy xay sinh tố</a></li>
-					<li><a href="../html/product.jsp">Máy ép trái cây</a></li>
-					<li><a href="../html/product.jsp">Máy ép chậm</a></li>
-					<li><a href="../html/product.jsp">Máy pha cà phê</a></li>
-					<li><a href="../html/product.jsp">Máy xay cà phê</a></li>
-				</ul>
-			</div>
-
-			<div>
-				<li class="category_all_item">Gia dụng nhà bếp <i
-					class="fa-solid fa-chevron-down category_all_item_icon"></i>
-				</li>
-				<ul class="category_all_item_child_list">
-					<li><a href="../html/product.jsp">Bình đun siêu tốc</a></li>
-					<li><a href="../html/product.jsp">Bình thủy điện</a></li>
-					<li><a href="../html/product.jsp">Chén bát</a></li>
-					<li><a href="../html/product.jsp">dao, kéo</a></li>
-					<li><a href="../html/product.jsp">thớt</a></li>
-				</ul>
-			</div>
+			</c:forEach>
 		</ul>
 	</div>
 

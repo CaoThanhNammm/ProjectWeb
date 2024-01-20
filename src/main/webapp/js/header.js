@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 	_startSlideAllList();
 	_clickQuit();
-	_clickChildItem();
 	_changeStateOfFormFindProduct();
 	_showTabProduct();
 	_showButtonRemoveAll();
@@ -90,41 +89,8 @@ function _quitSlide() {
 	elementModalBody.style.left = -$(elementModalBody).width() + "px";
 	elementBody.classList.remove('hidden_overflow');
 	elementModalBodyWishList.style.right = -$(elementModalBodyWishList).width() + "px";
-
-	setTimeout(function() {
-		elementCategoryItem.forEach(function(value, index) {
-			_resetSlide(index);
-		})
-	}, 350);
 }
 
-/*
-	Create: Cao Thành Nam
-	Date: 22/10/2023
-	Note: phương thức reset lại modal trở về vị trí ban đầu
-*/
-function _resetSlide(index) {
-	elementCategoryChildItem[index].classList.replace('active', 'unactive');
-	elementIconDown[index].classList.replace('icon_up_rotate', 'icon_down_rotate');
-	elementCategoryItem[index].classList.remove('category_all_item_border-none');
-}
-
-
-/*
-	Create: Cao Thành Nam
-	Date: 22/10/2023
-	Note: phương thức xử lý khi ấn vào từng item sẽ hiện lên item con
-*/
-function _clickChildItem() {
-	elementCategoryItem.forEach(function(value, index) {
-		value.onclick = function() {
-			value.classList.toggle("category_all_item_border-none");
-			elementCategoryChildItem[index].classList.toggle('active');
-			elementCategoryChildItem[index].classList.remove('unactive');
-			elementIconDown[index].classList.toggle('icon_up_rotate');
-		}
-	});
-}
 
 /*
 	Create: Cao Thành Nam

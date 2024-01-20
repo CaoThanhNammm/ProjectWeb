@@ -29,10 +29,12 @@ public class HeaderFilter implements Filter {
 
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		CategoriesDAO categoriesDAO = new CategoriesDAO(connection);
-		List<Category> categories = categoriesDAO.getCategoryLimitN(8);
+		List<Category> categoriesInNavigation = categoriesDAO.getCategoryLimitN(5);
+		List<Category> categoriesMore = categoriesDAO.getAll();
 		JDBIConnectionPool.get().releaseConnection(connection);
 
-		request.setAttribute("categories", categories);
+		request.setAttribute("categoriesInNavigation", categoriesInNavigation);
+		request.setAttribute("categoriesMore", categoriesMore);
 
 		chain.doFilter(request, response);
 	}

@@ -99,6 +99,20 @@
 							href="editVoucherAdmin.jsp">Quản lý voucher</a></li>
 					</ul>
 				</li>
+
+				<li class="nav-item">
+					<div class="nav-link">
+						<a href="#"> <i class="fa-solid fa-cart-shopping icon_title"></i>
+							Khác
+						</a> <i class="fa-solid fa-caret-down icon_down"></i>
+					</div>
+
+					<ul class="nav-item_list_child" id="nav-item_list_child-more">
+						<li class="nav-item_item_child"
+							id="nav-item_item_child-slidershow"><a
+							href="slidershowAdmin.jsp">Quản lý slidershow</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</div>

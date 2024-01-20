@@ -146,9 +146,8 @@
 		<%@include file="../html/productSuggestion.jsp"%>
 	</div>
 	<%@include file="../html/footer.jsp"%>
-
-	<script src="../js/index.js" type="text/javascript"></script>
-	<script src="../js/product.js" type="text/javascript"></script>
-
 </body>
+
+<script src="../js/index.js" type="text/javascript"></script>
+<script src="../js/product.js" type="text/javascript"></script>
 </html>

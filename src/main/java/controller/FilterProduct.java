@@ -2,8 +2,10 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -152,6 +154,8 @@ public class FilterProduct extends HttpServlet {
 				minPriceCurrent = fromPrice;
 				maxPriceCurrent = toPrice;
 			}
+
+			priceSortText = "Từ " + formatNumber(minPriceCurrent) + "₫ đến " + formatNumber(maxPriceCurrent) + "₫";
 		}
 
 		if (brandChoice.size() == 0) {
@@ -250,6 +254,13 @@ public class FilterProduct extends HttpServlet {
 			}
 		}
 		return res;
+	}
+
+	public String formatNumber(int nums) {
+		Locale vietnameseLocale = new Locale("vi", "VN");
+		NumberFormat vietnameseFormat = NumberFormat.getInstance(vietnameseLocale);
+		String formattedNumberVietnamese = vietnameseFormat.format(nums);
+		return formattedNumberVietnamese;
 	}
 
 }

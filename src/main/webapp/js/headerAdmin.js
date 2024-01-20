@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	_slideTopToBottom();
 	_loadTabState();
 	_addElementChildActive();
-	_activeGeneral();
+	_activeGeneral();	
 })
 
 
@@ -45,9 +45,9 @@ function _loadTabState() {
 				value.classList.add("active");
 			}
 		})
-		
+
 		// active tab tổng quan
-		if(localStorage.getItem("nav-item_item_child-GENERAL") === "open"){
+		if (localStorage.getItem("nav-item_item_child-GENERAL") === "open") {
 			elementGeneral.parentElement.classList.add("active")
 		}
 	})

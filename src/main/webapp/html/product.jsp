@@ -92,7 +92,6 @@ List<Product> products = (List) request.getAttribute("products");
 													min="<%=request.getAttribute("minPrice")%>"
 													max="<%=request.getAttribute("maxPrice")%>"
 													value="<%=request.getAttribute("minPriceCurrent")%>">
-
 												<input type="range" class="range_max"
 													min="<%=request.getAttribute("minPrice")%>"
 													max="<%=request.getAttribute("maxPrice")%>"

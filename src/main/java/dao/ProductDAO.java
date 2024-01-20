@@ -14,6 +14,8 @@ import model.Product;
 public class ProductDAO {
 	private Handle handle;
 	private String pathImg;
+	public static final int STATUS_HIDDEN = 1;
+	public static final int STATUS_AVAILABLE = 2;
 
 	public ProductDAO(Handle handle, String pathImg) {
 		this.handle = handle;
@@ -103,7 +105,6 @@ public class ProductDAO {
 	 * ẩn sản phẩm, truyền vào id sản phẩm muốn ẩn
 	 */
 	public List<Product> hide(int productID) throws SQLException {
-
 		if (isExistID(productID)) {
 			handle.execute("UPDATE products set status = ? where id = ?", productID, 1);
 		} else {
@@ -140,8 +141,8 @@ public class ProductDAO {
 		if (name.equals(""))
 			return new ArrayList<>();
 		List<Product> products = handle
-				.select("SELECT id, name, price, discount FROM products WHERE name LIKE ? LIMIT ?")
-				.bind(0, "%" + name + "%").bind(1, num).mapToBean(Product.class).list();
+				.select("SELECT id, name, price, discount FROM products WHERE name LIKE ? and statusID = ? LIMIT ?")
+				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).bind(2, num).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -155,8 +156,9 @@ public class ProductDAO {
 		if (name.equals(""))
 			return new ArrayList<>();
 
-		List<Product> products = handle.select("SELECT id, name, price, discount FROM products WHERE name LIKE ?")
-				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+		List<Product> products = handle
+				.select("SELECT id, name, price, discount FROM products WHERE name LIKE ? and statusID = ?")
+				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -169,8 +171,9 @@ public class ProductDAO {
 		if (id < 0)
 			return new ArrayList<>();
 
-		List<Product> products = handle.select("SELECT id, name, price, discount FROM products WHERE categoryID = ?")
-				.bind(0, id).mapToBean(Product.class).list();
+		List<Product> products = handle
+				.select("SELECT id, name, price, discount FROM products WHERE categoryID = ? and statusID = ?")
+				.bind(0, id).bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -182,9 +185,9 @@ public class ProductDAO {
 	// lấy ra sản phẩm giảm giá cao nhất, truyền vào số sản phẩm muốn lấy
 	// tính theo %
 	public List<Product> getProductBestDiscount(int limit) {
-		List<Product> products = handle
-				.select("SELECT id, name, price, discount FROM products ORDER BY discount/price DESC LIMIT ?")
-				.bind(0, limit).mapToBean(Product.class).list();
+		List<Product> products = handle.select(
+				"SELECT id, name, price, discount FROM products WHERE statusID = ? ORDER BY discount/price DESC LIMIT ?")
+				.bind(0, STATUS_AVAILABLE).bind(1, limit).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -195,8 +198,8 @@ public class ProductDAO {
 
 	// lấy ra sản phẩm random, truyền vào số sản phẩm muốn lấy
 	public List<Product> getProductRecommend(int limit) {
-		List<Product> products = handle.select("SELECT * FROM products ORDER BY RAND() LIMIT ?").bind(0, limit)
-				.mapToBean(Product.class).list();
+		List<Product> products = handle.select("SELECT * FROM products WHERE statusID = ? ORDER BY RAND() LIMIT ?")
+				.bind(0, STATUS_AVAILABLE).bind(1, limit).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -215,8 +218,8 @@ public class ProductDAO {
 		if (name.equals(""))
 			return new ArrayList<>();
 		List<Product> products = handle.select(
-				"SELECT id, name, price, discount FROM products where name like ? ORDER BY price - discount DESC")
-				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+				"SELECT id, name, price, discount FROM products where name like ? AND statusID = ? ORDER BY price - discount DESC")
+				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -230,8 +233,8 @@ public class ProductDAO {
 		if (name.equals(""))
 			return new ArrayList<>();
 		List<Product> products = handle.select(
-				"SELECT id, name, price, discount FROM products where name like ? ORDER BY price - discount ASC")
-				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+				"SELECT id, name, price, discount FROM products where name like ? AND statusID = ? ORDER BY price - discount ASC")
+				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -240,7 +243,6 @@ public class ProductDAO {
 	}
 
 	// lấy ra sản phẩm có thương hiệu, tên thương hiệu là tham số
-
 	public List<Product> getProductByBrand(String name, List<Brand> brands) {
 		if (name.equals(""))
 			return new ArrayList<>();
@@ -248,8 +250,9 @@ public class ProductDAO {
 
 		for (Brand brand : brands) {
 			List<Product> products = handle.select(
-					"SELECT p.id, p.name, p.price, p.discount FROM products p JOIN brands b ON p.brandID = b.id where b.id = ? and p.name like ?")
-					.bind(0, brand.getId()).bind(1, "%" + name + "%").mapToBean(Product.class).list();
+					"SELECT p.id, p.name, p.price, p.discount FROM products p JOIN brands b ON p.brandID = b.id where b.id = ? and p.name like ? and p.statusID = ?")
+					.bind(0, brand.getId()).bind(1, "%" + name + "%").bind(2, STATUS_AVAILABLE).mapToBean(Product.class)
+					.list();
 
 			for (Product product : products) {
 				res.add(product);
@@ -266,8 +269,8 @@ public class ProductDAO {
 	// lấy tất cả thương hiệu của tất sản phẩm, tên sản phẩm là tham số
 	public List<Product> getProductDefaultByBrand(String name) {
 		List<Product> products = handle.select(
-				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ?)")
-				.bind(0, "%" + name + "%").mapToBean(Product.class).list();
+				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ? AND statusID = ?)")
+				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -278,8 +281,9 @@ public class ProductDAO {
 	// lấy ra sản phẩm có giá trong khoảng giá cho phép
 	public List<Product> getProductsInRangePrice(String name, int from, int to) {
 		List<Product> products = handle.select(
-				"SELECT id, name, price, discount FROM products WHERE name LIKE ? and (price - discount) >= ? and (price - discount) <= ?")
-				.bind(0, "%" + name + "%").bind(1, from).bind(2, to).mapToBean(Product.class).list();
+				"SELECT id, name, price, discount FROM products WHERE name LIKE ? and (price - discount) >= ? and (price - discount) <= ? and statusID = ?")
+				.bind(0, "%" + name + "%").bind(1, from).bind(2, to).bind(3, STATUS_AVAILABLE).mapToBean(Product.class)
+				.list();
 		for (Product product : products) {
 			product.setImgs(pathImg);
 		}
@@ -288,10 +292,11 @@ public class ProductDAO {
 	}
 
 	public int getMinPrice(String name) throws SQLException {
-		String sql = "SELECT MIN(price - discount) as price FROM products WHERE name LIKE ?";
+		String sql = "SELECT MIN(price - discount) as price FROM products WHERE name LIKE ? AND statusID = ?";
 
 		PreparedStatement statement = handle.getConnection().prepareStatement(sql);
 		statement.setString(1, "%" + name + "%");
+		statement.setInt(2, STATUS_AVAILABLE);
 		int res = 0;
 		ResultSet rs = statement.executeQuery();
 
@@ -303,10 +308,11 @@ public class ProductDAO {
 
 	public int getMaxPrice(String name) throws SQLException {
 
-		String sql = "SELECT MAX(price - discount) as price FROM products WHERE name LIKE ?";
+		String sql = "SELECT MAX(price - discount) as price FROM products WHERE name LIKE ? AND statusID = ?";
 
 		PreparedStatement statement = handle.getConnection().prepareStatement(sql);
 		statement.setString(1, "%" + name + "%");
+		statement.setInt(2, STATUS_AVAILABLE);
 		int res = 0;
 		ResultSet rs = statement.executeQuery();
 
