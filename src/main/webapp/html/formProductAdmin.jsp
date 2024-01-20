@@ -1,3 +1,4 @@
+<%@page import="model.Category"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,10 +16,14 @@ String title = (String) request.getAttribute("title");
 <title><%=title%></title>
 </head>
 <%@ page import="model.Product"%>
+<%@ page import="model.Brand"%>
 <%@ page import="model.ProductModel"%>
+<%@ page import="model.Category"%>
 <%@ page import="java.util.*"%>
 <%
 Product product = (Product) request.getAttribute("product");
+List<Brand> bs = (List) request.getAttribute("list-brand");
+List<Category> cs = (List) request.getAttribute("list-category");
 List<String> imgs = null;
 List<ProductModel> productModels = null;
 if (product != null) {
@@ -38,13 +43,16 @@ if (product != null) {
 				<img src="<%=imgs.get(0)%>" id='e-img-active' alt="img1">
 			</div>
 			<div class="slider_images">
-				<img class="slider_image active" src="<%=imgs.get(0)%>" id='e-img-0'
-					alt="img1">
+				<input type='hidden' name='e-img' value='<%=imgs.get(0)%>'
+					class='e-inp-0'> <img class="slider_image active"
+					src="<%=imgs.get(0)%>" id='e-img-0' alt="img1">
 				<%
 				for (int i = 1; i < imgs.size(); i++) {
 				%>
-				<img class="slider_image" src="<%=imgs.get(i)%>"
-					alt="<%="img" + (i + 1)%>" id='e-img-<%=i%>'>
+				<input type='hidden' name='e-img' value='<%=imgs.get(i)%>'
+					class='e-inp-<%=i%>'> <img class="slider_image"
+					src="<%=imgs.get(i)%>" alt="<%="img - " + (i + 1)%>"
+					id='e-img-<%=i%>'>
 				<%
 				}
 				%>
@@ -52,11 +60,15 @@ if (product != null) {
 			<div id="e-img" class='d-flex'></div>
 		</div>
 		<div class="ms-4">
+			<input type="hidden" name="p-name" value="<%=product.getName()%>" />
 			<p>
 				Lần cập nhật cuối:
 				<%=product.getLastUpdated()%></p>
 			<h2 class="e-info"><%=product.getName()%></h2>
 			<div class="price">
+				<input type="hidden" name="p-price" value="<%=product.getPrice()%>" />
+				<input type="hidden" name="p-discount"
+					value="<%=product.getDiscount()%>" />
 				<h3 class="old_price">
 					Giá: <span class="e-info text-md"><%=product.getPrice()%></span>
 					VND
@@ -67,6 +79,8 @@ if (product != null) {
 				</h3>
 			</div>
 			<div id="describe" class="tabcontent active">
+				<input type="hidden" name="p-description"
+					value="<%=product.getDescription()%>" />
 				<h2 class="title">Giới thiệu</h2>
 				<p class="e-info " style="font-size: 16px;"><%=product.getDescription()%></p>
 			</div>
@@ -75,15 +89,49 @@ if (product != null) {
 				<hr />
 				<table class="table_full w-100" id="e-table">
 					<tr>
-						<input type="hidden" name="p-fixed" value="<%=product.getId()%>" />
 						<td class="table_title">Mã sản phẩm</td>
-						<td><b class="e-info"><%=product.getId()%></b></td>
+						<td><b><%=product.getId()%></b></td>
 					</tr>
 					<tr>
-						<input type="hidden" name="p-fixed"
-							value="<%=product.getBrand().getName()%>" />
+						<td class="table_title">Số lượng sản phẩm</td>
+						<td><input type="hidden" name="p-amount"
+							value="<%=product.getAmountSold()%>" /><b class="e-info"><%=product.getAmountSold()%></b></td>
+					</tr>
+					<tr>
+						<input type="hidden" name="p-brand"
+							value="<%=product.getBrand().getId()%>" />
 						<td class="table_title">Thương hiệu</td>
-						<td><b class="e-info"><%=product.getBrand().getName()%></b></td>
+						<td><span> <select class="e-select e-select-brand">
+									<%
+									for (Brand b : bs) {
+									%>
+									<option
+										<%=b.getId() == product.getBrand().getId() ? "selected" : ""%>
+										class="e-option <%=b.getId() == product.getBrand().getId() ? "d-block" : "d-none"%>"
+										value="<%=b.getId()%>"><%=b.getName()%></option>
+									<%
+									}
+									%>
+							</select>
+						</span></td>
+					</tr>
+					<tr>
+						<input type="hidden" name="p-category"
+							value="<%=product.getCategory().getId()%>" />
+						<td class="table_title">Loại sản phẩm</td>
+						<td><span> <select class="e-select e-select-category">
+									<%
+									for (Category c : cs) {
+									%>
+									<option
+										<%=c.getId() == product.getCategory().getId() ? "selected" : ""%>
+										class="e-option <%=c.getId() == product.getCategory().getId() ? "d-block" : "d-none"%>"
+										value="<%=c.getId()%>"><%=c.getName()%></option>
+									<%
+									}
+									%>
+							</select>
+						</span></td>
 					</tr>
 					<tr>
 						<td><hr /></td>
@@ -97,8 +145,14 @@ if (product != null) {
 					for (int i = 0; i < product.getAttributes().size(); ++i) {
 					%>
 					<tr>
-						<td class="table_title e-info"><%=product.getAttributes().get(i).getName()%></td>
-						<td><b class="e-info"><%=product.getAttributes().get(i).getValue()%></b></td>
+						<td class="table_title"><input type="hidden" name="p-at-name"
+							value="<%=product.getAttributes().get(i).getName()%>" /><span
+							class="e-old-empty"><span class="e-info"><%=product.getAttributes().get(i).getName()%></span>
+						</span></td>
+						<td><input type="hidden" name="p-at-value"
+							value="<%=product.getAttributes().get(i).getValue()%>" /><span
+							class="e-old-btn"><b class="e-info"><%=product.getAttributes().get(i).getValue()%></b>
+						</span></td>
 					</tr>
 					<%
 					}

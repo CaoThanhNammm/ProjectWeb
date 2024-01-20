@@ -5,10 +5,23 @@ public class Attribute {
 	private String name;
 	private String value;
 
+	/**
+	 * 
+	 */
+	public Attribute() {
+		super();
+	}
+
+	public Attribute(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	public Attribute(int id, String name, String value) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.value = value;
 	}
 
 	public int getId() {
@@ -39,6 +52,11 @@ public class Attribute {
 	 */
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	@Override
+	public String toString() {
+		return "Attribute [id=" + id + ", name=" + name + ", value=" + value + "]";
 	}
 
 }

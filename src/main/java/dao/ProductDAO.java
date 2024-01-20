@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import org.jdbi.v3.core.Handle;
 
+import model.Attribute;
 import model.Brand;
 import model.Product;
 
@@ -66,51 +68,56 @@ public class ProductDAO {
 	}
 
 	// cập nhập lại số lượng bán của sản phẩm, truyền vào id và số lượng bán mới
-	public List<Product> updateAmountSold(int productID, int quantity) throws SQLException {
+	public boolean updateAmountSold(int productID, int quantity) throws SQLException {
+		int re = 0;
 		if (isExistID(productID)) {
-			handle.execute("UPDATE products set amoundSold = ? where id = ?", quantity, productID);
+			re = handle.execute("UPDATE products set amoundSold = ? where id = ?", quantity, productID);
 		} else {
+			re = -1;
 			System.out.println("không tìm thấy id");
 		}
 
-		return getAll();
+		return re > 0;
 	}
 
 	// cập nhập lại giá của sản phẩm, truyền vào id sản phẩm và giá mới
-	public List<Product> updatePrice(int productID, int newPrice) throws SQLException {
-
+	public boolean updatePrice(int productID, int newPrice) throws SQLException {
+		int re = 0;
 		if (isExistID(productID)) {
-			handle.execute("UPDATE products set price = ? where id = ?", newPrice, productID);
+			re = handle.execute("UPDATE products set price = ? where id = ?", newPrice, productID);
 		} else {
+			re = -1;
 			System.out.println("không tìm thấy id");
 		}
-
-		return getAll();
+		return re > 0;
 	}
-	// cập nhập lại giá khuyến mãi của sản phẩm, truyền vào id sản phẩm và giá mới
-	public List<Product> updateDiscount(int productID, int newDiscount) throws SQLException {
 
+	// cập nhập lại giá khuyến mãi của sản phẩm, truyền vào id sản phẩm và giá mới
+	public boolean updateDiscount(int productID, int newDiscount) throws SQLException {
+		int re = 0;
 		if (isExistID(productID)) {
-			handle.execute("UPDATE products set amoundSold = ? where id = ?", newDiscount, productID);
+			re = handle.execute("UPDATE products set amoundSold = ? where id = ?", newDiscount, productID);
 		} else {
+			re = -1;
 			System.out.println("không tìm thấy id");
 		}
 
-		return getAll();
+		return re > 0;
 	}
 
 	/*
 	 * ẩn sản phẩm, truyền vào id sản phẩm muốn ẩn
 	 */
-	public List<Product> hide(int productID) throws SQLException {
-
+	public boolean hide(int productID) throws SQLException {
+		int re = 0;
 		if (isExistID(productID)) {
-			handle.execute("UPDATE products set status = ? where id = ?", productID, 1);
+			re = handle.execute("UPDATE products set status = ? where id = ?", productID, 1);
 		} else {
+			re = -1;
 			System.out.println("không tìm thấy id");
 		}
 
-		return getAll();
+		return re > 0;
 	}
 
 	// tìm sản phẩm theo id
@@ -311,6 +318,70 @@ public class ProductDAO {
 			res = rs.getInt("price");
 		}
 		return res;
+	}
+
+	public Product updateProduct(int id, Product newProduct) throws SQLException {
+		Product p = null;
+		if (newProduct.getId() == id) {
+			String sql = "UPDATE products SET name=?, brandID=?, description=?, categoryID=?, price=?, discount=?, lastUpdated=?, amountSold=? WHERE id=?";
+			PreparedStatement ps = handle.getConnection().prepareStatement(sql);
+			int i = 0;
+			ps.setString(++i, newProduct.getName());
+			ps.setInt(++i, newProduct.getBrand().getId());
+			ps.setString(++i, newProduct.getDescription());
+			ps.setInt(++i, newProduct.getCategory().getId());
+			ps.setLong(++i, newProduct.getPrice());
+			ps.setLong(++i, newProduct.getDiscount());
+			ps.setDate(++i, Date.valueOf(newProduct.getLastUpdated()));
+			ps.setInt(++i, newProduct.getAmountSold());
+			ps.setInt(++i, id);
+			boolean check = ps.executeUpdate() > 0;
+			ps.close();
+
+			List<Attribute> ats = newProduct.getAttributes();
+			AttributeDAO atDAO = new AttributeDAO(handle);
+			ats.forEach(e -> {
+				try {
+					atDAO.insertAttribute(id, e);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			});
+			updateAtProduct(id, ats);
+
+			if (check) {
+				p = findProductByID(id);
+			}
+		}
+		return p;
+	}
+
+	public void updateAtProduct(int id, List<Attribute> ats) throws SQLException {
+		// TODO Auto-generated method stub
+		AttributeDAO atDAO = new AttributeDAO(handle);
+		List<Attribute> atsl = atDAO.getAttributes(id);
+		for (Attribute at1 : atsl) {
+			boolean re = false;
+			for (Attribute at2 : ats) {
+				if (at1.getId() == at2.getId()) {
+					re = true;
+					break;
+				}
+			}
+			if (!re) {
+				String sql = "DELETE FROM product_details WHERE productID=? AND attributeID=?;";
+				PreparedStatement ps = handle.getConnection().prepareStatement(sql);
+				ps.setInt(1, id);
+				ps.setInt(2, at1.getId());
+				boolean check = ps.executeUpdate() > 0;
+				ps.close();
+				if (!check) {
+					System.out.println("Kiểm tra lại việc xóa data!!!");
+					return;
+				}
+			}
+		}
 	}
 
 }
