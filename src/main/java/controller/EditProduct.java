@@ -33,6 +33,7 @@ import model.Attribute;
 import model.Brand;
 import model.Category;
 import model.Product;
+import model.ProductModel;
 import model.Status;
 
 /**
@@ -69,17 +70,44 @@ public class EditProduct extends HttpServlet {
 		// TODO Auto-generated method stub
 		String status = request.getParameter("status");
 		Handle connection = JDBIConnectionPool.get().getConnection();
-		int id = Integer.parseInt(request.getParameter("id-product"));
+
+		String strId = request.getParameter("id-product");
 		ProductDAO dao = new ProductDAO(connection, request.getServletContext().getRealPath(""));
+		int id = -1;
+		try {
+			id = strId.equals("?") ? dao.getAvaiId() : Integer.parseInt(strId);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		BrandDAO brandDAO = new BrandDAO(connection, request.getServletContext().getRealPath(""));
 		CategoriesDAO cateDAO = new CategoriesDAO(connection);
 		AttributeDAO atDAO = new AttributeDAO(connection);
 		Product p = null;
 		List<Brand> bs = brandDAO.getAll();
 		List<Category> cs = cateDAO.getAll();
-		if (status.equals("edit")) {
+		String rediect = "formProductAdmin.jsp";
+		if (status.equals("unhide")) {
+			dao.unhide(id);
+			p = dao.findProductByID(id);
+		} else if (status.equals("hide")) {
+			try {
+				dao.hide(id);
+				p = dao.findProductByID(id);
+				rediect = "editProductsAdmin.jsp";
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (status.equals("add")) {
+			p = new Product(id, "Tên sản phẩm", new Brand(-1, "Tên hãng"), "Mô tả", new Category(-1, "Tên loại"), 0, 0,
+					LocalDate.now(), 0, new Status(1, "Bị ẩn"), new ArrayList<ProductModel>(), "",
+					new ArrayList<Attribute>());
+			rediect = "addProductAdmin.jsp";
+		} else if (status.equals("edit")) {
 			p = dao.findProductByID(id);
 		} else if (status.equals("update")) {
+			p = dao.findProductByID(id);
 			String[] paths = request.getParameterValues("e-img");
 			imageDecoder(request.getServletContext().getRealPath("image/product"), id, paths);
 			int price = Integer.parseInt(request.getParameter("p-price"));
@@ -110,7 +138,11 @@ public class EditProduct extends HttpServlet {
 					discount, LocalDate.now(), amount,
 					amount == 0 ? new Status(3, "Hết hàng") : new Status(2, "Khả dụng"), null, null, ats);
 			try {
-				p = dao.updateProduct(id, newP);
+				if (p == null) {
+					p = dao.insertProduct(newP);
+				} else {
+					p = dao.updateProduct(id, newP);
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				p = dao.findProductByID(id);
@@ -123,19 +155,29 @@ public class EditProduct extends HttpServlet {
 		request.setAttribute("title", p.getName());
 		request.setAttribute("list-brand", bs);
 		request.setAttribute("list-category", cs);
-		request.getRequestDispatcher("formProductAdmin.jsp").forward(request, response);
+		request.getRequestDispatcher(rediect).forward(request, response);
 	}
 
-	private void imageDecoder(String src, int pid, String[] paths) {
+	private void imageDecoder(String src, int pid, String[] paths) throws IOException {
 		// TODO Auto-generated method stub
 		if (paths != null) {
 			String pack = src + "\\" + pid + "\\";
-			File realFolder = new File(src.substring(0, src.indexOf("java") + 4)
-					+ "\\ProjectWeb\\src\\main\\webapp\\image\\product\\" + pid);
+			String realPack = src.substring(0, src.indexOf("java") + 4)
+					+ "\\ProjectWeb\\src\\main\\webapp\\image\\product\\" + pid;
+			File realFolder = new File(realPack);
 			File folder = new File(pack);
-			if (!folder.exists()) {
-				System.out.println("Chưa tồn tại thư mục!!!");
-				return;
+			if (!realFolder.exists()) {
+				System.out.println("Chưa tồn tại thư mục nên đã được tạo");
+				realFolder.mkdirs();
+				folder.mkdirs();
+				for (int i = 0; i < paths.length; i++) {
+					if (paths[i].contains(",")) {
+						File file1 = new File(realPack + "\\temp_" + i + ".txt");
+						file1.createNewFile();
+						File file2 = new File(pack + "temp_" + i + ".txt");
+						file2.createNewFile();
+					}
+				}
 			}
 			for (String path : paths) {
 				if (path.contains(",")) {

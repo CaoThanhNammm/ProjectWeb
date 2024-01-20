@@ -144,8 +144,10 @@ public class Product {
 		File src = new File(imgs + "/image/product/" + id);
 		List<String> res = new ArrayList<>();
 
-		for (File file : src.listFiles()) {
-			res.add("../image/product/" + id + "/" + file.getName());
+		if (src.exists()) {
+			for (File file : src.listFiles()) {
+				res.add("../image/product/" + id + "/" + file.getName());
+			}
 		}
 
 		return res;

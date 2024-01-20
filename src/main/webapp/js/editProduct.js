@@ -133,7 +133,7 @@ function updateImg(input) {
 
 }
 
-function edit(pid) {
+function edit(pid, type) {
 	let btn = $('.e-btn')
 	let parent = $('#form-product')
 	if (btn.name === 'edit') {
@@ -182,14 +182,23 @@ function edit(pid) {
 					}
 				}
 			})
+			
 
 			let e_select_brand = $('.e-select-brand')
+			let inp_brand = $('input[name="p-brand"]')
+			if(inp_brand.value == '-1') {
+				inp_brand.value = e_select_brand.firstElementChild.value
+			}
 			e_select_brand.addEventListener("change", function() {
 				let input = $('input[name="p-brand"]')
 				input.value = e_select_brand.value;
 			});
 
 			let e_select_cate = $('.e-select-category')
+			let inp_category = $('input[name="p-category"]')
+			if(inp_category.value == '-1') {
+				inp_category.value = e_select_cate.firstElementChild.value
+			}
 			e_select_cate.addEventListener("change", function() {
 				let input = $('input[name="p-category"]')
 				input.value = e_select_cate.value;
@@ -247,7 +256,7 @@ function edit(pid) {
 			while (parent.firstChild) {
 				form.appendChild(parent.firstChild);
 			}
-			form.setAttribute('action', 'editProduct?status=update&id-product=' + pid)
+			form.setAttribute('action', 'editProduct?status=' + type + '&id-product=' + pid)
 			form.setAttribute('method', 'post')
 			form.setAttribute('id', 'form-product')
 			parent.parentNode.replaceChild(form, parent)
@@ -274,8 +283,10 @@ function changeInput(e_txt) {
 	if (e_txt) {
 		e_txt.addEventListener('change', function(e) {
 			let trElement = e_txt.closest('td');
-			let inp = trElement.querySelector('input');
-			inp.value = e_txt.value;
+			if (trElement) {
+				let inp = trElement.querySelector('input');
+				inp.value = e_txt.value;
+			}
 		});
 	}
 }

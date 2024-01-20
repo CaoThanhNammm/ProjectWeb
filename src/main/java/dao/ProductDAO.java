@@ -111,7 +111,7 @@ public class ProductDAO {
 	public boolean hide(int productID) throws SQLException {
 		int re = 0;
 		if (isExistID(productID)) {
-			re = handle.execute("UPDATE products set status = ? where id = ?", productID, 1);
+			re = handle.execute("UPDATE products SET statusID = ? WHERE id = ?", 1, productID);
 		} else {
 			re = -1;
 			System.out.println("không tìm thấy id");
@@ -134,6 +134,8 @@ public class ProductDAO {
 						rs.getDate("lastUpdated").toLocalDate(), rs.getInt("amountSold"),
 						statusDAO.getStatus(rs.getInt("statusID")), pathImg))
 				.findOne().orElse(null);
+		if (product == null)
+			return null;
 		ProductModelDAO modelDao = new ProductModelDAO(handle);
 		product.setModels(modelDao.getModels(product));
 		AttributeDAO attributeDAO = new AttributeDAO(handle);
@@ -382,6 +384,80 @@ public class ProductDAO {
 				}
 			}
 		}
+	}
+
+	public int getAvaiId() {
+		// TODO Auto-generated method stub
+		int id = -1;
+		for (int i = 1; i < Integer.MAX_VALUE; i++) {
+			if (findProductByID(i) == null) {
+				id = i;
+				break;
+			}
+		}
+		return id;
+	}
+
+	public Product insertProduct(Product newProduct) throws SQLException {
+		// TODO Auto-generated method stub
+		Product p = null;
+		String sql = "INSERT INTO products VALUES (?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement ps = handle.getConnection().prepareStatement(sql);
+		int i = 0;
+		ps.setInt(++i, newProduct.getId());
+		ps.setString(++i, newProduct.getName());
+		ps.setInt(++i, newProduct.getBrand().getId());
+		ps.setString(++i, newProduct.getDescription());
+		ps.setInt(++i, newProduct.getCategory().getId());
+		ps.setLong(++i, newProduct.getPrice());
+		ps.setLong(++i, newProduct.getDiscount());
+		ps.setDate(++i, Date.valueOf(newProduct.getLastUpdated()));
+		ps.setInt(++i, newProduct.getAmountSold());
+		ps.setInt(++i, newProduct.getStatus().getId());
+		boolean check = ps.executeUpdate() > 0;
+		ps.close();
+
+		List<Attribute> ats = newProduct.getAttributes();
+		AttributeDAO atDAO = new AttributeDAO(handle);
+		ats.forEach(e -> {
+			try {
+				atDAO.insertAttribute(newProduct.getId(), e);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		updateAtProduct(newProduct.getId(), ats);
+
+		if (check) {
+			p = findProductByID(newProduct.getId());
+		}
+		return p;
+	}
+
+	public List<Product> getHidenProduct() {
+		// TODO Auto-generated method stub
+		List<Product> products = handle.select("SELECT * FROM products WHERE statusID=1")
+				.mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
+		return products;
+	}
+
+	public boolean unhide(int productID) {
+		// TODO Auto-generated method stub
+		int re = 0;
+		if (isExistID(productID)) {
+			re = handle.execute("UPDATE products SET statusID = ? WHERE id = ?", 2, productID);
+		} else {
+			re = -1;
+			System.out.println("không tìm thấy id");
+		}
+
+		return re > 0;
 	}
 
 }

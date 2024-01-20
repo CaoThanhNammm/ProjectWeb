@@ -63,8 +63,8 @@ if (products == null)
 				<div>
 					<label class="btn btn-warning"><input type="file"
 						accept=".xlsx, .xls">+ Tải file lên</label>
-					<button class="btn btn-warning" onclick="addProduct()">+
-						Thêm sản phẩm</button>
+					<a href="editProduct?status=add&id-product=?" class="btn btn-warning">+
+						Thêm sản phẩm</a>
 				</div>
 			</div>
 		</nav>
@@ -87,7 +87,7 @@ if (products == null)
 								sản phẩm
 							</p>
 							<div class="d-flex">
-								<button class="btn btn-secondary me-2">
+								<button class="btn btn-secondary me-2" onclick="hideP(<%=products.get(i).getId()%>)">
 									<i class="fa-solid fa-eye-slash"></i> Ẩn
 								</button>
 								<button class="btn btn-warning"
@@ -108,6 +108,10 @@ if (products == null)
 	<script>
 		function edit(id) {
 			window.location = "editProduct?id-product=" + id + '&status=edit';
+		}
+		
+		function hideP(id) {
+			window.location = "editProduct?id-product=" + id + '&status=hide';
 		}
 	</script>
 </body>

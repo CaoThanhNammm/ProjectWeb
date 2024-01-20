@@ -39,6 +39,32 @@ if (product != null) {
 		%>
 		<input value="<%=product.getId()%>" type="hidden" name="id-product">
 		<div class="col-5 mx-auto w-50">
+			<%
+			if (imgs == null || imgs.isEmpty()) {
+			%>
+			<div class="slider_main">
+				<img src="../image/product/empty/empty.png" id='e-img-active'
+					alt="img1">
+			</div>
+			<div class="slider_images">
+				<input type='hidden' name='e-img'
+					value='../image/product/empty/empty.png' class='e-inp-0'> <img
+					class="slider_image active" src="../image/product/empty/empty.png"
+					id='e-img-0' alt="img1">
+				<%
+				for (int i = 1; i < 6; i++) {
+				%>
+				<input type='hidden' name='e-img'
+					value='../image/product/empty/empty.png' class='e-inp-<%=i%>'>
+				<img class="slider_image" src="../image/product/empty/empty.png"
+					alt="empty" id='e-img-<%=i%>'>
+				<%
+				}
+				%>
+			</div>
+			<%
+			} else {
+			%>
 			<div class="slider_main">
 				<img src="<%=imgs.get(0)%>" id='e-img-active' alt="img1">
 			</div>
@@ -57,6 +83,9 @@ if (product != null) {
 				}
 				%>
 			</div>
+			<%
+			}
+			%>
 			<div id="e-img" class='d-flex'></div>
 		</div>
 		<div class="ms-4">
@@ -172,5 +201,8 @@ if (product != null) {
 
 	<script src="../js/detail.js"></script>
 	<script src="../js/editProduct.js"></script>
+	<script>
+	edit(<%=product.getId()%>, 'update')
+	</script>
 </body>
 </html>
