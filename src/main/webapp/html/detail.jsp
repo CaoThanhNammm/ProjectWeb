@@ -19,7 +19,22 @@
 <link rel="stylesheet" href="../css/indexRes.css">
 <title>Chi tiết</title>
 </head>
-
+<%@ page import="model.ProductModel" %>
+<%@ page import="model.Attribute" %>
+<% 
+	Product product = (Product) request.getAttribute("product");
+	List<ProductModel> models = product.getModels();
+	List<Attribute> attributes = product.getAttributes();
+	int productID = product.getId();
+	String productName = product.getName();
+	int brandID = product.getBrand().getId();
+	String brandName = product.getBrand().getName();
+	String originalPrice = product.formatNumber(product.getPrice());
+	String discountPrice = product.formatNumber(product.getPrice() - product.getDiscount());
+	String description = product.getDescription();
+	List<String> imgs = (List<String>) request.getAttribute("images");
+	boolean available = (boolean) request.getAttribute("available");
+%>
 <body>
 	<div id="page">
 
@@ -33,23 +48,18 @@
 			<div class="row detail_part">
 				<div class="col-5">
 					<div class="slider_main">
-						<img src="../image/detail/img1.jpg" alt="img1">
+						<img src="../image/product/<%=productID%>/<%=imgs.get(0)%>" alt="img1">
 					</div>
 					<div class="slider_images">
-						<img class="slider_image active" src="../image/detail/img1.jpg"
-							alt="img1"> <img class="slider_image"
-							src="../image/detail/img2.jpg" alt="img2"> <img
-							class="slider_image" src="../image/detail/img3.jpg" alt="img3">
-						<img class="slider_image" src="../image/detail/img4.jpg"
-							alt="img4"> <img class="slider_image"
-							src="../image/detail/img5.jpg" alt="img5"> <img
-							class="slider_image" src="../image/detail/img6.jpg" alt="img6">
+						<img class="slider_image active" src="../image/product/<%=productID%>/<%=imgs.get(0)%>">
+						<%for(int i = 1; i < imgs.size(); i++) { %>
+							<img class="slider_image" src="../image/product/<%=productID%>/<%=imgs.get(i)%>">
+						<%} %>
 					</div>
 				</div>
 				<div class="col-7">
-					<h2>Nồi điện đa năng, nồi lẩu mini đa năng kèm khay hấp, chất
-						liệu chống dính, dung tích 1,8L tốc độ sôi cực nhanh</h2>
-					<a href="../index/index.jsp" class="brand">Thương hiệu: Aroma</a>
+					<h2><%=productName%></h2>
+					<a href="../html/FindProduct?nameProduct= &currentPage=1&order=null&brands=<%=brandID%>" class="brand">Thương hiệu: <%=brandName %></a>
 					<div class="rate">
 						<p class="starrate">5.0</p>
 						<img class="star" src="../image/detail/star.png" alt="star">
@@ -60,38 +70,34 @@
 					</div>
 					<div class="line"></div>
 					<div class="price">
-						<h3 class="final_price">1.100.000đ</h3>
-						<h3 class="old_price">2.000.000đ</h3>
+						<h3 class="final_price"><%=discountPrice%>đ</h3>
+						<h3 class="old_price"><%=originalPrice%>đ</h3>
 					</div>
 					<table class="quickview">
+						<%for(int i = 0; i < Math.min(4, attributes.size()); i++){ %>
 						<tr>
-							<td class="quickview_title">Thương hiệu:</td>
-							<td>Aroma Housewares</td>
+							<td class="quickview_title"><%=attributes.get(i).getName() %></td>
+							<td><%=attributes.get(i).getValue() %></td>
 						</tr>
-						<tr>
-							<td class="quickview_title">Màu:</td>
-							<td>Trắng</td>
-						</tr>
-						<tr>
-							<td class="quickview_title">Chất liệu:</td>
-							<td>Nhôm</td>
-						</tr>
-						<tr>
-							<td class="quickview_title">Kích thước (Dài x Rộng x Cao):</td>
-							<td>3cm x 3cm x 3cm</td>
-						</tr>
-						<tr>
-							<td class="quickview_title">Dung tích</td>
-							<td>2 lít</td>
-						</tr>
+						<%}%>
 					</table>
-					<div>
-						<form action="../hmtl/checkout.jsp" style="display: inline;">
+					<div class="choices">
+						<button class="choice actived" id="<%=models.get(0).getId()%>"><%=models.get(0).getOptionValue()%></button>
+					 	<%for(int i = 1; i < models.size(); i++){ %>
+					 		<button class="choice" id="<%=models.get(i).getId()%>"><%=models.get(i).getOptionValue()%></button>
+					 	<%}%>
+					</div>
+					<div class="checkout">
+						<% if(available){ %>
+						<form action="<%=models.get(0).getId()%>" style="display: inline;">
 							<button class="buy_button">Mua ngay!</button>
 						</form>
-						<form action="cart.jsp" style="display: inline;">
+						<form method="POST" action="cart?method=add&id=<%=models.get(0).getId()%>" style="display: inline;">
 							<button class="addcart_button">Thêm vào giỏ</button>
 						</form>
+						<%} else{%>
+						<h2 style="color: red;">Sản phẩm hiện chưa khả dụng</h2>
+						<%} %>
 					</div>
 				</div>
 			</div>
@@ -106,63 +112,17 @@
 				</div>
 				<div id="describe" class="tabcontent active">
 					<h2 class="title">Giới thiệu</h2>
-					<p style="white-space: pre-line; font-size: 16px;">- BỀ MẶT NẤU
-						DUAL: Nồi điện mới của chúng tôi vừa là NƯỚNG vừa là Lẩu, giúp nấu
-						nướng linh hoạt hơn mà ít tốn công sức hơn - để chuẩn bị những bữa
-						ăn ngon. - ĐA CHỨC NĂNG: Bạn có thể điều chỉnh nhiệt độ từ 300°
-						đến 450° F, giúp bạn thoải mái chế biến các món súp thịnh soạn,
-						nướng thịt và rau - và nhiều hơn thế nữa. - NẤU CHE: Nắp kính
-						cường lực ngăn ngừa bắn tung tóe khi nướng và nấu. Nó có thể ngăn
-						ngừa sự lộn xộn trong nhà bếp và vết bẩn trên quần áo của bạn. -
-						RỘNG RÃI & DI ĐỘNG: Nồi nấu bằng thép không gỉ cực lớn của chúng
-						tôi có dung tích 2,5 lít và đảm bảo phân phối nhiệt đều và dễ dàng
-						làm sạch – đó là máy rửa chén an toàn. - PHỤ KIỆN: Nồi này đi kèm
-						đế nhiệt có thể điều chỉnh, nồi nấu bằng thép không gỉ, chảo nướng
-						chống dính và nắp thủy tinh - cho những bữa ăn hoàn hảo mọi lúc.</p>
+					<p style="white-space: pre-line; font-size: 16px;"><%=description %></p>
 				</div>
 				<div id="info" class="tabcontent">
 					<h2 class="title">Thông tin sản phẩm</h2>
 					<table class="table_full">
+						<%for(Attribute a : attributes){ %>
 						<tr>
-							<td class="table_title">Mã sản phẩm</td>
-							<td>ND-123</td>
+							<td class="table_title"><%=a.getName() %></td>
+							<td><%=a.getValue()%></td>
 						</tr>
-						<tr>
-							<td class="table_title">Thương hiệu</td>
-							<td>Aroma Housewares</td>
-						</tr>
-						<tr>
-							<td class="table_title">Màu</td>
-							<td>Trắng</td>
-						</tr>
-						<tr>
-							<td class="table_title">Chất liệu</td>
-							<td>Nhôm</td>
-						</tr>
-						<tr>
-							<td class="table_title">Kích thước (Dài x Rộng x Cao)</td>
-							<td>3cm x 3cm x 3cm</td>
-						</tr>
-						<tr>
-							<td class="table_title">Dung tích</td>
-							<td>2 lít</td>
-						</tr>
-						<tr>
-							<td class="table_title">Công suất</td>
-							<td>500 Wát</td>
-						</tr>
-						<tr>
-							<td class="table_title">Khối lượng</td>
-							<td>3 Kg</td>
-						</tr>
-						<tr>
-							<td class="table_title">Dung tích</td>
-							<td>5 Lít</td>
-						</tr>
-						<tr>
-							<td class="table_title">Vôn</td>
-							<td>220 Vôn</td>
-						</tr>
+						<%}%>
 					</table>
 				</div>
 				<div id="rates" class="tabcontent">

@@ -17,7 +17,11 @@
 <link rel="stylesheet" href="../css/indexRes.css">
 <title>Giỏ hàng</title>
 </head>
-
+<%@ page import="model.Cart"%>
+<%@ page import="model.ProductModel"%>
+<%
+	Cart cart = (Cart) request.getAttribute("cart");
+%>
 <body>
 	<div id="page">
 		<%@include file="header.jsp"%>
@@ -30,101 +34,51 @@
 		<div id="cart" class="container mt-5">
 			<div class="cart_head">
 				<h1>Giỏ hàng</h1>
-				<span class="cart_head_count">0</span>
+				<span class="cart_head_count"><%=cart.getCartItems().size() %></span>
 			</div>
 
 			<div class="cart_body container mt-5">
 				<!-- Nếu không có sản phẩm -->
+				<% if(cart.getCartItems().size() == 0){ %>
 				<div class="cart_body-empty">
 					<h3>Hiện giỏ hàng của bạn đang trống</h3>
 					<a class="cart_body_btn btn" href="../index/index.jsp">Quay lại
 						cửa hàng</a>
 				</div>
-
+				<%} else {%>
 				<!-- Nếu có sản phẩm -->
-				<div class="cart_body-item row">
-					<div class="row text-start mb-2">
-						<span class="card_abate"> <span
-							class="card_abate-empty  card_abate-all"
-							onclick="_checkAbate(this, '.card_abate-check')"></span> Thanh
-							toán toàn bộ
-						</span>
-					</div>
-
+				<div class="cart_body-item row">	
 					<div class="cart_body_list col-lg-8">
-						<div class="card">
-							<img class="card-img-top" src="../image/product/bepga/bg7.jpg"
-								alt="Card image cap">
-							<div class="card-body">
-								<h5 class="card-title">Bếp ga đôi Sakura SA-2181EB</h5>
-								<p class="card-text">Chúng tôi có một chiếc ghế bếp với công
-									dụng tuyệt vời có thể giúp bạn lấy lại sức khi mệt, ngoài ra
-									ghế đá của chúng tôi có sức tải lên tới 200kg.</p>
-								<div class="mt-5">
-									<span>Trị giá: 1.200.000.000 VND / 1 sản phẩm</span>
-								</div>
-								<div class="card-body_footer">
-									<div>
-										<span class="card_abate"> <span
-											class="card_abate-empty"
-											onclick="_checkAbate(this, '.card_abate-check')"></span>
-											Thanh toán
-										</span>
-										<button class="btn btn-warning"
-											onclick="_removeItem('.cart_body_list', this, '.card')">Loại
-											bỏ</button>
+						<% for(ProductModel model : cart.getCartItems()){ %>
+							<% Product product = model.getProduct(); %>
+							<div class="card">
+								<img class="card-img-top" src="../image/product/<%=product.getId()%>/<%=product.getImgs()%>">
+								<div class="card-body">
+									<h5 class="card-title"><%=product.getName()%></h5>
+									<p class="card-text">Lựa chọn: <%=model.getOptionValue()%></p>
+									<div class="mt-5">
+										<span>Giá: <%=product.formatNumber(product.getPrice() - product.getDiscount())%></span>
 									</div>
-									<span class="card_amount">
-										<button class="card_amount-minus"
-											onclick="_quantityAdjust(this, '.card_amount_input', '-')">
-											<i class="fa-solid fa-minus"></i>
-										</button> <input class="card_amount_input" type="number" min="1"
-										max="999" step="1" value="1" readonly>
-										<button class="card_amount-plus"
-											onclick="_quantityAdjust(this, '.card_amount_input', '+')">
-											<i class="fa-solid fa-plus"></i>
-										</button>
-									</span>
+									<div class="card-body_footer">
+										<form method="POST" action="cart?method=remove&id=<%=model.getId()%>">
+											<div>
+												<button type="submit" class="btn btn-warning">Loại bỏ</button>
+											</div>
+										</form>
+										<span class="card_amount">
+											<button class="card_amount-minus" onclick="_quantityAdjust(this, '.card_amount_input', '-')">
+												<i class="fa-solid fa-minus"></i>
+											</button> 
+											<input name="modelID" type="hidden" value="<%=model.getId() %>">
+											 <input name="quantity" class="card_amount_input" type="number" min="1" max="999" step="1" value="1" readonly>
+											<button class="card_amount-plus" onclick="_quantityAdjust(this, '.card_amount_input', '+')">
+												<i class="fa-solid fa-plus"></i>
+											</button>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
-
-						<div class="card">
-							<img class="card-img-top" src="../image/product/bepga/bg16.jpg"
-								alt="Card image cap">
-							<div class="card-body">
-								<h5 class="card-title">Bếp ga đôi Sakura SA-695SG</h5>
-								<p class="card-text">Chúng tôi có một chiếc ghế bếp với công
-									dụng tuyệt vời có thể giúp bạn lấy lại sức khi mệt, ngoài ra
-									ghế đá của chúng tôi có sức tải lên tới 200kg.</p>
-								<div class="mt-5">
-									<span>Trị giá: 1.200.000.000 VND / 1 sản phẩm</span>
-								</div>
-								<div class="card-body_footer">
-									<div>
-										<span class="card_abate"> <span
-											class="card_abate-empty"
-											onclick="_checkAbate(this, '.card_abate-check')"></span>
-											Thanh toán
-										</span>
-										<button class="btn btn-warning"
-											onclick="_removeItem('.cart_body_list', this, '.card')">Loại
-											bỏ</button>
-									</div>
-									<span class="card_amount">
-										<button class="card_amount-minus"
-											onclick="_quantityAdjust(this, '.card_amount_input', '-')">
-											<i class="fa-solid fa-minus"></i>
-										</button> <input class="card_amount_input" type="number" min="1"
-										max="999" step="1" value="1" readonly>
-										<button class="card_amount-plus"
-											onclick="_quantityAdjust(this, '.card_amount_input', '+')">
-											<i class="fa-solid fa-plus"></i>
-										</button>
-									</span>
-								</div>
-							</div>
-						</div>
+						<%} %>
 
 						<div class="mb-5">
 							<div class="cart_body_bill_group">
@@ -177,6 +131,7 @@
 						</div>
 					</div>
 				</div>
+				<%} %>
 			</div>
 			<%@include file="../html/productSuggestion.jsp"%>
 		</div>

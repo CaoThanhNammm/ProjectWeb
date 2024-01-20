@@ -169,7 +169,7 @@ List<Product> products = (List) request.getAttribute("products");
 					</div>
 
 					<div class="product_in4">
-						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
+						<a href="../html/detail?id=<%=p.getId()%>" class="product_in4_name_product"><%=p.getName()%></a>
 						<div class="product_in4_bottom">
 							<div>
 								<span class="product_in4_price"><%=p.formatNumber(p.getPrice())%>₫

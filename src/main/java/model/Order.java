@@ -11,6 +11,7 @@ public class Order {
 	private String phone;
 	private String address;
 	private Status status;
+	private int totalPrice;
 	private List<OrderDetail> details;
 
 	public Order(int id, Account account, LocalDate dateCreated, LocalDate lastUpdated, String phone, String address,
@@ -90,4 +91,13 @@ public class Order {
 		this.details = details;
 	}
 
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	
 }

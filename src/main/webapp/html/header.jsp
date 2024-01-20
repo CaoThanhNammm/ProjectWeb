@@ -89,7 +89,7 @@ Account ac = (Account) session.getAttribute("account");
 		<!-- phần giỏ hàng của header -->
 		<div class="header_cart">
 			<div class="header_cart_info">
-				<a href="../html/cart.jsp"> <img src="../image/home/cart.png"
+				<a href="../html/cart"> <img src="../image/home/cart.png"
 					class="header_cart_logo" alt=""> <span
 					class="header_cart_amount_product">0</span>
 				</a>

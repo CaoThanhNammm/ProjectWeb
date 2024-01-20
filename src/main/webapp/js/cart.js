@@ -4,9 +4,7 @@ Create: Nguyễn Khải Nam
 Date: 21/10/2023
 Note: Tạo hành đồng cho sản phẩm
 */
-document.addEventListener('DOMContentLoaded', function () {
-    _update()
-})
+
 
 /*
 Note: Hàm tăng giảm số lượng
