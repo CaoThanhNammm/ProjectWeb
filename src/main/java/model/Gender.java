@@ -22,7 +22,7 @@ public class Gender {
 	}
 
 	// Chỉ là hàm khởi tạo
-	private Gender(int id, String sex) {
+	public Gender(int id, String sex) {
 		this.id = id;
 		this.sex = sex;
 	}
@@ -65,4 +65,5 @@ public class Gender {
 	public String getSex() {
 		return sex;
 	}
+
 }

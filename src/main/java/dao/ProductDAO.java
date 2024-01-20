@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.jdbi.v3.core.Handle;
 
 import model.Attribute;
@@ -265,6 +264,10 @@ public class ProductDAO {
 			}
 		}
 
+		for (Product product : res) {
+			product.setImgs(pathImg);
+		}
+
 		return res;
 	}
 
@@ -277,7 +280,6 @@ public class ProductDAO {
 		for (Product product : products) {
 			product.setImgs(pathImg);
 		}
-
 		return products;
 	}
 

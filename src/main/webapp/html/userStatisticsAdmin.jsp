@@ -33,21 +33,30 @@
 					<div class="card text-white bg-dark">
 						<div class="card-body">
 							<h5 class="card-title">Số lượng người dùng</h5>
-							<p class="card-text">Số lượng người dùng hiện tại đang có:
-								1230 người</p>
+							<p class="card-text">
+								Số lượng người dùng hiện tại đang có:
+								<%=request.getAttribute("totalUser")%>
+								người
+							</p>
 						</div>
 					</div>
 					<div class="card text-white bg-warning">
 						<div class="card-body">
 							<h5 class="card-title">Số lượng người dùng khả dụng</h5>
-							<p class="card-text">Số lượng người dùng khả dụng là: 1000
-								người</p>
+							<p class="card-text">
+								Số lượng người dùng khả dụng là:
+								<%=request.getAttribute("userAvailable")%>
+								người
+							</p>
 						</div>
 					</div>
 					<div class="card bg-light">
 						<div class="card-body">
 							<h5 class="card-title">Số lượng người dùng mua vi phạm</h5>
-							<p class="card-text">Số lượng người dùng vi phạm là: 30 người
+							<p class="card-text">
+								Số lượng người dùng vi phạm là:
+								<%=request.getAttribute("userUnAvailable")%>
+								người
 							</p>
 						</div>
 					</div>
@@ -57,7 +66,7 @@
 			<div class="row mt-3">
 				<div class="row bg-light">
 					<div class="col-lg-2 pt-1 pb-1 ps-2">
-						<h1>Thống kê</h1>
+						<h2>Thống kê</h2>
 					</div>
 					<div class="col-lg-10 my-auto">
 						<ul class="d-flex nav">

@@ -51,5 +51,4 @@ public class BrandDAO {
 		});
 		return bs;
 	}
-
 }

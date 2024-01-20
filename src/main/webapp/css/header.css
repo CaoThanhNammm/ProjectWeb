@@ -112,6 +112,7 @@ body {
 .header_login_signin {
 	position: relative;
 	display: flex;
+	overflow: hidden;
 }
 
 .log_in,

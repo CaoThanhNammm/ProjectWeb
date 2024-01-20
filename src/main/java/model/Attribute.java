@@ -21,7 +21,6 @@ public class Attribute {
 		super();
 		this.id = id;
 		this.name = name;
-		this.value = value;
 	}
 
 	public int getId() {
@@ -58,5 +57,4 @@ public class Attribute {
 	public String toString() {
 		return "Attribute [id=" + id + ", name=" + name + ", value=" + value + "]";
 	}
-
 }

@@ -14,7 +14,19 @@
 }
 
 #overview .form-group {
-	width: 100%;
+	margin-bottom: 15px;
+}
+
+.form-group i {
+	margin-right: 7px;
+}
+
+.form-group label{
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	font-size: 16px;
+	margin-bottom: 5px;
 }
 
 #overview .form-control {
@@ -22,10 +34,11 @@
 	display: inline;
 }
 
-#overview label {
-	margin-top: 5px;
-	margin-bottom: 5px;
+#overview .form-control:focus {
+	border: 1px solid var(--gray-second);
+	box-shadow: none;
 }
+
 
 #overview label:first-child {
 	margin-top: 0;

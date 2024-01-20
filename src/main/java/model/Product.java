@@ -111,6 +111,7 @@ public class Product {
 		this.brand = brand;
 	}
 
+
 	/**
 	 * @param id
 	 * @param name
@@ -124,6 +125,7 @@ public class Product {
 	 * @param status
 	 * @param imgs
 	 */
+
 	public Product(int id, String name, Brand brand, String description, Category category, int price, int discount,
 			LocalDate lastUpdated, int amountSold, Status status, String imgs) {
 		super();
@@ -139,7 +141,7 @@ public class Product {
 		this.status = status;
 		this.imgs = imgs;
 	}
-
+	
 	public List<String> getImgsProduct() throws IOException {
 		File src = new File(imgs + "/image/product/" + id);
 		List<String> res = new ArrayList<>();

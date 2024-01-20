@@ -4,14 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
@@ -151,10 +148,10 @@ public class EditProduct extends HttpServlet {
 
 		}
 		request.setAttribute("product", p);
-		JDBIConnectionPool.get().releaseConnection(connection);
 		request.setAttribute("title", p.getName());
 		request.setAttribute("list-brand", bs);
 		request.setAttribute("list-category", cs);
+		JDBIConnectionPool.get().releaseConnection(connection);
 		request.getRequestDispatcher(rediect).forward(request, response);
 	}
 
@@ -200,4 +197,5 @@ public class EditProduct extends HttpServlet {
 			}
 		}
 	}
+
 }

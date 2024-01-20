@@ -27,7 +27,9 @@
     Create: Cao Thành Nam
     Note: Trang product 
  -->
-
+<%
+List<Product> products = (List) request.getAttribute("products");
+%>
 <body>
 	<div id="page">
 		<%@include file="header.jsp"%>
@@ -132,9 +134,8 @@
 										method="POST">
 										<button>
 
-											<img class="category_brand_option_item_img" alt=""
-												src="<%=brand.getImgbrand()%>"
-												id="<%=brand.getName()%>">
+											<img class="category_brand_option_item_img"
+												src="<%=brand.getImgbrand()%>" id="<%=brand.getName()%>">
 
 										</button>
 									</form>
@@ -156,24 +157,19 @@
 
 			<div class="row">
 				<%
-				List<Product> products = (List) request.getAttribute("products");
 				for (Product p : products) {
 				%>
 				<div class="col-lg-3 col-sm-6 col-md-4 product">
 					<div class="product_img">
-						<img
-							src="<%=p.getImgsProduct().get(0)%>"
-							alt="">
+						<img src="<%=p.getImgsProduct().get(0)%>" alt="">
 
 						<div class="product_img_hover">
-							<img
-								src="<%=p.getImgsProduct().get(1)%>"
-								alt="">
+							<img src="<%=p.getImgsProduct().get(1)%>" alt="">
 						</div>
 					</div>
 
 					<div class="product_in4">
-						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
+						<a href="../html/detail?id=<%=p.getId()%>" class="product_in4_name_product"><%=p.getName()%></a>
 						<div class="product_in4_bottom">
 							<div>
 								<span class="product_in4_price"><%=p.formatNumber(p.getPrice())%>₫
@@ -201,6 +197,7 @@
 				%>
 			</div>
 		</div>
+
 
 		<div class="new_page">
 			<div class="row">
@@ -239,8 +236,6 @@
 		</div>
 		<%@include file="footer.jsp"%>
 	</div>
-
-
 </body>
 
 <script src="../js/product.js"></script>

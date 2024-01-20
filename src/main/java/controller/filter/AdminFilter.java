@@ -1,7 +1,6 @@
 package controller.filter;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -14,22 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.Account;
-import model.Product;
 
-/**
- * Servlet Filter implementation class AdminFilter
- */
 @WebFilter("/html/*")
 public class AdminFilter extends HttpFilter implements Filter {
 	private boolean check = false;
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		String url = ((HttpServletRequest) request).getRequestURI();

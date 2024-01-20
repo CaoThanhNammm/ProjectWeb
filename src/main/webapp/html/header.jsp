@@ -89,7 +89,7 @@ Account ac = (Account) session.getAttribute("account");
 		<!-- phần giỏ hàng của header -->
 		<div class="header_cart">
 			<div class="header_cart_info">
-				<a href="../html/cart.jsp"> <img src="../image/home/cart.png"
+				<a href="../html/cart"> <img src="../image/home/cart.png"
 					class="header_cart_logo" alt=""> <span
 					class="header_cart_amount_product">0</span>
 				</a>
@@ -108,7 +108,7 @@ Account ac = (Account) session.getAttribute("account");
 			<c:forEach items="${categories}" var="c">
 				<li class="navigtion-item">
 					<form
-						action="../html/FindProduct?nameProduct=${c.id}&currentPage=1"
+						action="../html/FindProduct?nameProduct=${c.name}&currentPage=1"
 						method="POST">
 						<button>${c.name}</button>
 					</form>
@@ -188,7 +188,7 @@ Account ac = (Account) session.getAttribute("account");
 		%>
 
 		<div class="wishlist_product">
-			<img src="../image/product/bepga/bg12.jpg" alt="">
+			<img src="<%=p.getImgsProduct().get(0)%>" alt="">
 			<div class="wishlist_product_in4">
 				<a class="wishlist_product_title"><%=p.getName()%></a>
 				<div class="wishlist_product_right_under">

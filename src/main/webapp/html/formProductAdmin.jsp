@@ -24,6 +24,7 @@ String title = (String) request.getAttribute("title");
 Product product = (Product) request.getAttribute("product");
 List<Brand> bs = (List) request.getAttribute("list-brand");
 List<Category> cs = (List) request.getAttribute("list-category");
+
 List<String> imgs = null;
 List<ProductModel> productModels = null;
 if (product != null) {
@@ -60,23 +61,27 @@ if (product != null) {
 			<div id="e-img" class='d-flex'></div>
 		</div>
 		<div class="ms-4">
-			<input type="hidden" name="p-name" value="<%=product.getName()%>" />
 			<p>
 				Lần cập nhật cuối:
 				<%=product.getLastUpdated()%></p>
-			<h2 class="e-info"><%=product.getName()%></h2>
+			<span> <input type="hidden" name="p-name"
+				value="<%=product.getName()%>" />
+				<h2 class="e-info"><%=product.getName()%></h2>
+			</span>
 			<div class="price">
-				<input type="hidden" name="p-price" value="<%=product.getPrice()%>" />
-				<input type="hidden" name="p-discount"
+				<span> <input type="hidden" name="p-price"
+					value="<%=product.getPrice()%>" />
+					<h3 class="old_price">
+						Giá: <span class="e-info text-md"><%=product.getPrice()%></span>
+						VND
+					</h3>
+				</span> <span> <input type="hidden" name="p-discount"
 					value="<%=product.getDiscount()%>" />
-				<h3 class="old_price">
-					Giá: <span class="e-info text-md"><%=product.getPrice()%></span>
-					VND
-				</h3>
-				<h3 class="final_price">
-					Giảm giá: <span class="e-info text-md"><%=product.getDiscount()%></span>
-					VND
-				</h3>
+					<h3 class="final_price">
+						Giảm giá: <span class="e-info text-md"><%=product.getDiscount()%></span>
+						VND
+					</h3>
+				</span>
 			</div>
 			<div id="describe" class="tabcontent active">
 				<input type="hidden" name="p-description"

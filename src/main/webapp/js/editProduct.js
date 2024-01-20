@@ -182,11 +182,11 @@ function edit(pid, type) {
 					}
 				}
 			})
-			
+
 
 			let e_select_brand = $('.e-select-brand')
 			let inp_brand = $('input[name="p-brand"]')
-			if(inp_brand.value == '-1') {
+			if (inp_brand.value == '-1') {
 				inp_brand.value = e_select_brand.firstElementChild.value
 			}
 			e_select_brand.addEventListener("change", function() {
@@ -196,7 +196,7 @@ function edit(pid, type) {
 
 			let e_select_cate = $('.e-select-category')
 			let inp_category = $('input[name="p-category"]')
-			if(inp_category.value == '-1') {
+			if (inp_category.value == '-1') {
 				inp_category.value = e_select_cate.firstElementChild.value
 			}
 			e_select_cate.addEventListener("change", function() {
@@ -286,6 +286,12 @@ function changeInput(e_txt) {
 			if (trElement) {
 				let inp = trElement.querySelector('input');
 				inp.value = e_txt.value;
+			} else {
+				let spanE = e_txt.parentElement.parentElement
+				if (spanE) {
+					let inp = spanE.querySelector('input');
+					inp.value = e_txt.value;
+				}
 			}
 		});
 	}
