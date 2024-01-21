@@ -193,9 +193,9 @@ CREATE TABLE IF NOT EXISTS `personal_vouchers` (
 -- Dumping structure for table n2q.products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
+  `name` MEDIUMTEXT NOT NULL,
   `brandID` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL,
+  `description` MEDIUMTEXT NOT NULL,
   `categoryID` int(11) NOT NULL,
   `price` bigint(20) NOT NULL,
   `discount` bigint(20) NOT NULL,
@@ -903,7 +903,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `email`, `phone`, `encryptedPassword`, `fullName`, `genderID`, `dob`, `roleID`, `address`, `statusID`) VALUES
 	('ABCD', 'nam123@gmail.com', '901123254', 'JK^%!HJHJ', 'Nguyễn Nhật Nam', 1, '2003-01-03', 2, 'BH', 3),
 	('AHDJ', 'quan123@gmail.com', '821431247', 'IOPHJ78#!S', 'Nguyễn Hoàng Khánh Quân', 1, '2003-12-02', 1, 'TPHCM', 3),
-	('KLSL', 'knam123@gmail.com', '761324312', 'HJ%HJ&^!7J', 'Cao Khải Nam', 1, '2003-01-03', 2, 'TPHCM', 3);
+	('KLSL', 'knam123@gmail.com', '761324312', 'HJ%HJ&^!7J', 'Cao Khải Nam', 1, '2003-01-03', 2, 'TPHCM', 3),
+	('We06VAgVgKNZIxfvIND5', 'ltwgroup23@gmail.com', '0123456789', 'iFJg8CwhaWKLF5GCp3sMChlcKiEtpH', 'admin', 1, '2000-12-15', 2, 'TPHCM', '2');
 
 -- Dumping structure for table n2q.user_status
 CREATE TABLE IF NOT EXISTS `user_status` (

@@ -117,7 +117,7 @@ public class AccountDAO {
 			String valueChange) {
 		// TODO Auto-generated method stub
 		Handle h = JDBIConnectionPool.get().getConnection();
-		boolean check = h.execute("UPDATE " + NAME_TABLE + " SET " + fieldChange + "= ? WHERE " + field + "= ?",
+		boolean check = h.execute("UPDATE " + NAME_TABLE + " SET " + fieldChange + "=? WHERE " + field + "=?",
 				valueChange, value) > 0;
 		JDBIConnectionPool.get().releaseConnection(h);
 		return check;

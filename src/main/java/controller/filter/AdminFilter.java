@@ -16,7 +16,6 @@ import model.Account;
 @WebFilter("/html/*")
 public class AdminFilter extends HttpFilter implements Filter {
 	private boolean check = false;
-
 	private static final long serialVersionUID = 1L;
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

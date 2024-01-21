@@ -16,7 +16,6 @@
 <link rel="stylesheet" href="../css/overviewAdmin.css">
 <title>Tổng quan</title>
 </head>
-
 <%@ page import="model.Account"%>
 <%
 Account moreInfo = (Account) session.getAttribute("moreInfo");

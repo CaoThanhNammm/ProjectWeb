@@ -38,8 +38,16 @@ public class BrandDAO {
 
 	public Brand getBrand(int id) {
 		Brand brand = handle.select("SELECT id, name FROM brands WHERE id=?", id)
-				.map((rs, a) -> new Brand(rs.getInt("id"), rs.getString("name"))).one();
+				.map((rs, a) -> new Brand(rs.getInt("id"), rs.getString("name"))).findFirst().orElse(null);
 		brand.setPathImg(pathImgs);
 		return brand;
+	}
+
+	public List<Brand> getAll() {
+		List<Brand> bs = handle.select("SELECT id, name FROM brands").mapToBean(Brand.class).list();
+		bs.forEach(e -> {
+			e.setPathImg(pathImgs);
+		});
+		return bs;
 	}
 }
