@@ -2,10 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.regex.Pattern;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +35,10 @@ public class Access extends HttpServlet {
 	private static int minute = 3;
 	private static long exist = 60 * minute;
 
+	// Dùng cho việc phân tích
+	private long countUser = 0;
+	private long countSign = 0;
+
 	private static String[] subject = { minute + " PHÚT - MÃ BẢO MẬT - ĐĂNG KÝ",
 			minute + " PHÚT - MÃ BẢO MẬT - ĐẶT LẠI MẬT KHẨU", minute + " PHÚT - THIẾT LẬP MẬT KHẨU MỚI" };
 	private static String[] mess = {
@@ -54,11 +61,15 @@ public class Access extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+
 		String access = request.getParameter("access");
 		HttpSession session = request.getSession();
-		
+
 		if (access == null)
 			access = "";
+
+		request.getSession().setAttribute("count-user", countUser);
+		request.getSession().setAttribute("count-sign", countSign);
 
 		switch (access) {
 		case "login": {
@@ -74,6 +85,10 @@ public class Access extends HttpServlet {
 							request.getSession().setAttribute("moreInfo", moreInfo);
 							response.sendRedirect("overviewAdmin.jsp");
 						} else {
+							if (countSign == 0) {
+								resest(2592000);
+							}
+							countSign += 1;
 							response.sendRedirect("../index/index.jsp");
 						}
 					} else {
@@ -151,6 +166,10 @@ public class Access extends HttpServlet {
 						// Đăng ký
 						int count = AccountDAO.insertAccount(verify.getAc());
 						if (count > 0) {
+							if (countUser == 0) {
+								resest(2592000); // 30 days
+							}
+							countUser += 1;
 							request.getRequestDispatcher("login.jsp?status=success").forward(request, response);
 						} else {
 							request.getRequestDispatcher("register.jsp?status=failed").forward(request, response);
@@ -204,4 +223,13 @@ public class Access extends HttpServlet {
 		}
 		return true;
 	}
+
+	private void resest(long time) {
+		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+		scheduler.schedule(() -> {
+			countUser = 0;
+			scheduler.shutdown(); // Đóng scheduler sau khi công việc hoàn thành
+		}, time, TimeUnit.SECONDS);
+	}
+
 }

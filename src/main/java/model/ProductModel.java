@@ -6,6 +6,21 @@ public class ProductModel {
 	private String optionValue;
 	private Status status;
 
+	/**
+	 * 
+	 */
+	public ProductModel() {
+		super();
+	}
+
+	/**
+	 * @param id
+	 */
+	public ProductModel(int id) {
+		super();
+		this.id = id;
+	}
+
 	public ProductModel(int id, Product product, String optionValue, Status status) {
 		this.id = id;
 		this.product = product;
