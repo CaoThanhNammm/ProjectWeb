@@ -7,7 +7,6 @@ public class ProductModel {
 	private Status status;
 
 	public ProductModel(int id, Product product, String optionValue, Status status) {
-		super();
 		this.id = id;
 		this.product = product;
 		this.optionValue = optionValue;

@@ -117,7 +117,7 @@ public class AccountDAO {
 			String valueChange) {
 		// TODO Auto-generated method stub
 		Handle h = JDBIConnectionPool.get().getConnection();
-		boolean check = h.execute("UPDATE " + NAME_TABLE + " SET " + fieldChange + "= ? WHERE " + field + "= ?",
+		boolean check = h.execute("UPDATE " + NAME_TABLE + " SET " + fieldChange + "=? WHERE " + field + "=?",
 				valueChange, value) > 0;
 		JDBIConnectionPool.get().releaseConnection(h);
 		return check;
@@ -326,7 +326,7 @@ public class AccountDAO {
 		return accs;
 	}
 
-	// tính tổng số user 
+	// tính tổng số user
 	public static int totalUser() {
 		Handle h = JDBIConnectionPool.get().getConnection();
 		List<Account> accs = h.select("SELECT id FROM users").mapToBean(Account.class).list();

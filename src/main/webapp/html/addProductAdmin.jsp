@@ -24,7 +24,6 @@ String title = (String) request.getAttribute("title");
 Product product = (Product) request.getAttribute("product");
 List<Brand> bs = (List) request.getAttribute("list-brand");
 List<Category> cs = (List) request.getAttribute("list-category");
-
 List<String> imgs = null;
 List<ProductModel> productModels = null;
 if (product != null) {
@@ -40,6 +39,32 @@ if (product != null) {
 		%>
 		<input value="<%=product.getId()%>" type="hidden" name="id-product">
 		<div class="col-5 mx-auto w-50">
+			<%
+			if (imgs == null || imgs.isEmpty()) {
+			%>
+			<div class="slider_main">
+				<img src="../image/product/empty/empty.png" id='e-img-active'
+					alt="img1">
+			</div>
+			<div class="slider_images">
+				<input type='hidden' name='e-img'
+					value='../image/product/empty/empty.png' class='e-inp-0'> <img
+					class="slider_image active" src="../image/product/empty/empty.png"
+					id='e-img-0' alt="img1">
+				<%
+				for (int i = 1; i < 6; i++) {
+				%>
+				<input type='hidden' name='e-img'
+					value='../image/product/empty/empty.png' class='e-inp-<%=i%>'>
+				<img class="slider_image" src="../image/product/empty/empty.png"
+					alt="empty" id='e-img-<%=i%>'>
+				<%
+				}
+				%>
+			</div>
+			<%
+			} else {
+			%>
 			<div class="slider_main">
 				<img src="<%=imgs.get(0)%>" id='e-img-active' alt="img1">
 			</div>
@@ -58,30 +83,29 @@ if (product != null) {
 				}
 				%>
 			</div>
+			<%
+			}
+			%>
 			<div id="e-img" class='d-flex'></div>
 		</div>
 		<div class="ms-4">
+			<input type="hidden" name="p-name" value="<%=product.getName()%>" />
 			<p>
 				Lần cập nhật cuối:
 				<%=product.getLastUpdated()%></p>
-			<span> <input type="hidden" name="p-name"
-				value="<%=product.getName()%>" />
-				<h2 class="e-info"><%=product.getName()%></h2>
-			</span>
+			<h2 class="e-info"><%=product.getName()%></h2>
 			<div class="price">
-				<span> <input type="hidden" name="p-price"
-					value="<%=product.getPrice()%>" />
-					<h3 class="old_price">
-						Giá: <span class="e-info text-md"><%=product.getPrice()%></span>
-						VND
-					</h3>
-				</span> <span> <input type="hidden" name="p-discount"
+				<input type="hidden" name="p-price" value="<%=product.getPrice()%>" />
+				<input type="hidden" name="p-discount"
 					value="<%=product.getDiscount()%>" />
-					<h3 class="final_price">
-						Giảm giá: <span class="e-info text-md"><%=product.getDiscount()%></span>
-						VND
-					</h3>
-				</span>
+				<h3 class="old_price">
+					Giá: <span class="e-info text-md"><%=product.getPrice()%></span>
+					VND
+				</h3>
+				<h3 class="final_price">
+					Giảm giá: <span class="e-info text-md"><%=product.getDiscount()%></span>
+					VND
+				</h3>
 			</div>
 			<div id="describe" class="tabcontent active">
 				<input type="hidden" name="p-description"
@@ -177,5 +201,8 @@ if (product != null) {
 
 	<script src="../js/detail.js"></script>
 	<script src="../js/editProduct.js"></script>
+	<script>
+	edit(<%=product.getId()%>, 'update')
+	</script>
 </body>
 </html>

@@ -16,7 +16,6 @@ public class CategoriesDAO {
 
 	public List<Category> getAll() {
 		List<Category> categories = handle.select("SELECT id, name FROM categories").mapToBean(Category.class).list();
-
 		return categories;
 	}
 

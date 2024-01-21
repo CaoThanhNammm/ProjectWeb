@@ -62,9 +62,9 @@ if (products == null)
 
 				<div>
 					<label class="btn btn-warning"><input type="file"
-						accept=".xlsx, .xls">+ Tải file lên</label>
-					<button class="btn btn-warning" onclick="addProduct()">+
-						Thêm sản phẩm</button>
+						accept=".xlsx, .xls">+ Tải file lên</label> <a
+						href="editProduct?status=add&id-product=?" class="btn btn-warning">+
+						Thêm sản phẩm</a>
 				</div>
 			</div>
 		</nav>
@@ -72,7 +72,9 @@ if (products == null)
 		<div class="mt-5 ">
 			<div class="card-products ms-2 me-2">
 				<div class="card-group">
-					<%for (int i = 0; i < products.size(); ++i) {%>
+					<%
+					for (int i = 0; i < products.size(); ++i) {
+					%>
 					<div class="card" style="min-height: 550px;">
 						<img class="card-img-top"
 							src="<%=products.get(i).getImgsProduct().get(0)%>"
@@ -85,7 +87,8 @@ if (products == null)
 								sản phẩm
 							</p>
 							<div class="d-flex">
-								<button class="btn btn-secondary me-2">
+								<button class="btn btn-secondary me-2"
+									onclick="hideP(<%=products.get(i).getId()%>)">
 									<i class="fa-solid fa-eye-slash"></i> Ẩn
 								</button>
 								<button class="btn btn-warning"
@@ -105,7 +108,11 @@ if (products == null)
 
 	<script>
 		function edit(id) {
-			window.location = "editProduct?id-product=" + id;
+			window.location = "editProduct?id-product=" + id + '&status=edit';
+		}
+		
+		function hideP(id) {
+			window.location = "editProduct?id-product=" + id + '&status=hide';
 		}
 	</script>
 </body>

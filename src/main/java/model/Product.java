@@ -49,6 +49,40 @@ public class Product {
 		this.rates = rates;
 	}
 
+	/**
+	 * @param id
+	 * @param name
+	 * @param brand
+	 * @param description
+	 * @param category
+	 * @param price
+	 * @param discount
+	 * @param lastUpdated
+	 * @param amountSold
+	 * @param status
+	 * @param models
+	 * @param imgs
+	 * @param attributes
+	 */
+	public Product(int id, String name, Brand brand, String description, Category category, int price, int discount,
+			LocalDate lastUpdated, int amountSold, Status status, List<ProductModel> models, String imgs,
+			List<Attribute> attributes) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.brand = brand;
+		this.description = description;
+		this.category = category;
+		this.price = price;
+		this.discount = discount;
+		this.lastUpdated = lastUpdated;
+		this.amountSold = amountSold;
+		this.status = status;
+		this.models = models;
+		this.imgs = imgs;
+		this.attributes = attributes;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -77,6 +111,21 @@ public class Product {
 		this.brand = brand;
 	}
 
+
+	/**
+	 * @param id
+	 * @param name
+	 * @param brand
+	 * @param description
+	 * @param category
+	 * @param price
+	 * @param discount
+	 * @param lastUpdated
+	 * @param amountSold
+	 * @param status
+	 * @param imgs
+	 */
+
 	public Product(int id, String name, Brand brand, String description, Category category, int price, int discount,
 			LocalDate lastUpdated, int amountSold, Status status, String imgs) {
 		super();
@@ -92,13 +141,15 @@ public class Product {
 		this.status = status;
 		this.imgs = imgs;
 	}
-  
+	
 	public List<String> getImgsProduct() throws IOException {
 		File src = new File(imgs + "/image/product/" + id);
 		List<String> res = new ArrayList<>();
 
-		for (File file : src.listFiles()) {
-			res.add("../image/product/" + id + "/" + file.getName());
+		if (src.exists()) {
+			for (File file : src.listFiles()) {
+				res.add("../image/product/" + id + "/" + file.getName());
+			}
 		}
 
 		return res;
@@ -247,7 +298,10 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return id + "";
+		return "Product [id=" + id + ", name=" + name + ", brand=" + brand + ", description=" + description
+				+ ", category=" + category + ", price=" + price + ", discount=" + discount + ", lastUpdated="
+				+ lastUpdated + ", amountSold=" + amountSold + ", status=" + status + ", models=" + models + ", imgs="
+				+ imgs + ", attributes=" + attributes + ", rates=" + rates + "]";
 	}
 
 }

@@ -19,7 +19,6 @@ public class Brand {
 	}
 
 	public Brand(int id, String name, String pathImg) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.pathImg = pathImg;
@@ -27,7 +26,7 @@ public class Brand {
 	
 	public Brand() {
 	}
-	
+
 	public String getImgbrand() throws IOException {
 		File folder = new File(pathImg + "/image/product/filter/" + this.id);
 
