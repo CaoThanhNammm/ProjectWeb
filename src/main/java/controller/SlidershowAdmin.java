@@ -22,13 +22,13 @@ import javax.servlet.http.Part;
 		maxFileSize = 1024 * 1024 * 5, // 5 MB
 		maxRequestSize = 1024 * 1024 * 5 * 5 // 25 MB
 )
-public class slidershowAdmin extends HttpServlet {
+public class SlidershowAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String FOLDER_SLIDERSHOW = "/image/home/sliderShow";
 	public static final int WITDH = 1920;
 	public static final int HEIGHT = 400;
 
-	public slidershowAdmin() {
+	public SlidershowAdmin() {
 		super();
 	}
 

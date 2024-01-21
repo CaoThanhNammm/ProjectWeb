@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 import org.jdbi.v3.core.Handle;
 
@@ -20,15 +18,15 @@ import model.Account;
 import model.Product;
 import model.Wishlist;
 
-@WebServlet("/html/wishlist")
-public class wishlist extends HttpServlet {
+@WebServlet("/html/Wishlist")
+public class WishlistProccess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Wishlist wishlist;
 	private int quantityWishlist = 0;
 	private int totalPrice = 0;
 	private Product p;
 
-	public wishlist() {
+	public WishlistProccess() {
 		super();
 		wishlist = new Wishlist(new Account());
 	}
@@ -79,12 +77,9 @@ public class wishlist extends HttpServlet {
 	}
 
 	/*
-<<<<<<< HEAD
-	 * xóa sản phẩm từ danh sách yêu thích
-=======
-	 * xóa sản phẩm vào danh sách yêu thích trừ đi giá tiền vào tổng giá trừ số
-	 * lượng đi 1
->>>>>>> master
+	 * <<<<<<< HEAD xóa sản phẩm từ danh sách yêu thích ======= xóa sản phẩm vào
+	 * danh sách yêu thích trừ đi giá tiền vào tổng giá trừ số lượng đi 1 >>>>>>>
+	 * master
 	 */
 	private void removeProduct(Product product) {
 		wishlist.getProducts().remove(product);
@@ -93,12 +88,9 @@ public class wishlist extends HttpServlet {
 	}
 
 	/*
-<<<<<<< HEAD
-	 * thêm sản phẩm vào danh sách yêu thích
-=======
-	 * thêm sản phẩm vào danh sách yêu thích cộng thêm giá tiền vào tổng giá cộng số
-	 * lượng thêm 1
->>>>>>> master
+	 * <<<<<<< HEAD thêm sản phẩm vào danh sách yêu thích ======= thêm sản phẩm vào
+	 * danh sách yêu thích cộng thêm giá tiền vào tổng giá cộng số lượng thêm 1
+	 * >>>>>>> master
 	 */
 	private void addProduct(Product product) {
 		wishlist.getProducts().add(product);
@@ -107,12 +99,9 @@ public class wishlist extends HttpServlet {
 	}
 
 	/*
-<<<<<<< HEAD
-	 * xóa tất cả sản phẩm trong danh sách yêu thích
-=======
-	 * thực hiên xóa tất cả sản phẩm trong danh sách yêu thích set list thành rỗng
-	 * tổng giá tiền = 0 tổng sản phẩm = 0
->>>>>>> master
+	 * <<<<<<< HEAD xóa tất cả sản phẩm trong danh sách yêu thích ======= thực hiên
+	 * xóa tất cả sản phẩm trong danh sách yêu thích set list thành rỗng tổng giá
+	 * tiền = 0 tổng sản phẩm = 0 >>>>>>> master
 	 */
 	private void removeAll() {
 		wishlist.getProducts().clear();

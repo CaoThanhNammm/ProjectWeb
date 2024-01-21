@@ -18,14 +18,14 @@ import model.Account;
  * Create: Cao Thành Nam Note: Xử lý các thao tác tìm kiếm người dùng
  */
 @WebServlet("/html/userAdminFind")
-public class userAdminFind extends HttpServlet {
+public class UserAdminFind extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Account> accs;
 	private String email;
 	private String phone;
 	private String name;
 
-	public userAdminFind() {
+	public UserAdminFind() {
 		super();
 		accs = new ArrayList<>();
 	}

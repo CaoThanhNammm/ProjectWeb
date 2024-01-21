@@ -2,9 +2,7 @@ package controller.filter;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.Filter;
@@ -17,6 +15,7 @@ import javax.servlet.http.HttpFilter;
 
 @WebFilter("/html/slidershowAdmin.jsp")
 public class slidershowAdminFilter extends HttpFilter implements Filter {
+	private static final long serialVersionUID = 1L;
 
 	public slidershowAdminFilter() {
 		super();

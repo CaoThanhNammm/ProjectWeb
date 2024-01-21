@@ -278,6 +278,18 @@ public class ProductDAO {
 		return products;
 	}
 
+	// lấy tất cả thương hiệu của tất sản phẩm, tên sản phẩm là tham số
+	public List<Product> getProductDefaultByBrand() {
+		List<Product> products = handle.select(
+				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE statusID = ?)")
+				.bind(0, STATUS_AVAILABLE).mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+		return products;
+	}
+
 	// lấy ra sản phẩm có giá trong khoảng giá cho phép
 	public List<Product> getProductsInRangePrice(String name, int from, int to) {
 		List<Product> products = handle.select(

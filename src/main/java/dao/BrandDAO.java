@@ -26,7 +26,6 @@ public class BrandDAO {
 	}
 
 	public List<Brand> getBrandOfProduct(String findNameProduct) {
-
 		List<Brand> brands = handle.select(
 				"SELECT DISTINCT b.id, b.name FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ?)")
 				.bind(0, "%" + findNameProduct + "%").mapToBean(Brand.class).list();

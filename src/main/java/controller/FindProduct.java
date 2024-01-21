@@ -20,12 +20,9 @@ import model.Brand;
 import model.Product;
 
 /**
-<<<<<<< HEAD
  * Create: Cao Thành Nam Note: Xử lý tìm kiếm sản phẩm, load sản phẩm khi ấn qua
  * trang mới
-=======
- * Create: Cao Thành Nam Note: Xử lý tìm kiếm sản phẩm, phân trang, lọc
->>>>>>> master
+ * 
  */
 @WebServlet("/html/FindProduct")
 public class FindProduct extends HttpServlet {

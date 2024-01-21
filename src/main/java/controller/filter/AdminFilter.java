@@ -1,8 +1,6 @@
 package controller.filter;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,10 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import dao.AccountDAO;
 import model.Account;
-import model.Product;
 
 @WebFilter("/html/*")
 public class AdminFilter extends HttpFilter implements Filter {

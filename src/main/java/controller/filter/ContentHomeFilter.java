@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -14,21 +13,16 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
-import javax.servlet.http.HttpServletRequest;
-
 import org.jdbi.v3.core.Handle;
-
-import com.mysql.cj.protocol.x.XProtocolRow;
-
 import dao.CategoriesDAO;
 import dao.ProductDAO;
 import database.JDBIConnectionPool;
 import model.Category;
 import model.Product;
-import model.Wishlist;
 
-@WebFilter({ "/html/*", "/index/*"})
+@WebFilter({ "/html/*", "/index/*" })
 public class ContentHomeFilter extends HttpFilter implements Filter {
+	private static final long serialVersionUID = 1L;
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -76,7 +70,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 	private void showSliderShow(ServletRequest request, ServletResponse response) {
 		String realPath = request.getServletContext().getRealPath("/image/home/sliderShow");
 		File imgSliderShow = new File(realPath);
-		
+
 		List<String> imgs = new ArrayList<>();
 		int totalImg = 0;
 
