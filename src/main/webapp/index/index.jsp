@@ -32,7 +32,6 @@
          Note: phần body của trang
     -->
 	<%@include file="../html/sliderShow.jsp"%>
-
 	<div class="content container">
 		<div class="content_event_product">
 			<a href="../../html/product.jsp" class="product_event"> <img
@@ -114,7 +113,7 @@
 						</div>
 					</div>
 					<div class="product_in4">
-						<a href="../html/detail.jsp" class="product_in4_name_product"><%=p.getName()%></a>
+						<a href="../html/detail?id=<%=p.getId()%>" class="product_in4_name_product"><%=p.getName()%></a>
 						<div class="product_in4_bottom">
 							<div>
 								<span class="product_in4_price"><%=p.formatNumber(p.getPrice())%>

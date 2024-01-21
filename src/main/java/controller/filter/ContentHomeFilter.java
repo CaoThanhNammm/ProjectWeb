@@ -76,7 +76,7 @@ public class ContentHomeFilter extends HttpFilter implements Filter {
 	private void showSliderShow(ServletRequest request, ServletResponse response) {
 		String realPath = request.getServletContext().getRealPath("/image/home/sliderShow");
 		File imgSliderShow = new File(realPath);
-
+		
 		List<String> imgs = new ArrayList<>();
 		int totalImg = 0;
 

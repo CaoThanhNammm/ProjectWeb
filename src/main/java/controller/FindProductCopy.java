@@ -19,51 +19,58 @@ import database.JDBIConnectionPool;
 import model.Brand;
 import model.Product;
 
-/**
-<<<<<<< HEAD
- * Create: Cao Thành Nam Note: Xử lý tìm kiếm sản phẩm, load sản phẩm khi ấn qua
- * trang mới
-=======
- * Create: Cao Thành Nam Note: Xử lý tìm kiếm sản phẩm, phân trang, lọc
->>>>>>> master
- */
-@WebServlet("/html/FindProduct")
-public class FindProduct extends HttpServlet {
+@WebServlet("/html/FindProductCopy")
+public class FindProductCopy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static int PER_PAGE = 20;
 	private static int PAGES_PER_GROUP = 5;
-	private List<Product> products;
-	private List<Product> perProduct;
-	private int currentPage;
-	private String priceSortTextDefault;
-	private String brandSortTextDefault;
-	private List<Integer> createPages;
-	private List<Brand> brandsDefault;
-	private String nameProduct;
-	private int minPrice;
-	private int maxPrice;
-	private int minPriceCurrent;
-	private int maxPriceCurrent;
+	private static int TOTAL_PAGE;
 
-	public FindProduct() {
+	public FindProductCopy() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// xuất ra sản phẩm dựa vào số trang hiện tại đang đứng
-		if (request.getParameter("currentPage") != null) {
-			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		int currentPage = 1;
+		String nameProduct = request.getParameter("nameProduct").trim();
+		Handle connection = JDBIConnectionPool.get().getConnection();
+		// khởi tạo dao product
+		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
+		BrandDAO brandDAO = new BrandDAO(connection, request.getServletContext().getRealPath(""));
+		List<Brand> brandsDefault = brandDAO.getBrandOfProduct(nameProduct);
+		int minPrice = 0;
+		int maxPrice = 0;
+		try {
+			minPrice = productDAO.getMinPrice(nameProduct);
+			maxPrice = productDAO.getMaxPrice(nameProduct);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
-		perProduct = renderProduct(currentPage, PER_PAGE, products);
-		createPages = generatePagination(currentPage, PAGES_PER_GROUP);
+		IFilterByPrice iFilterByPrice = new FilterEmpty();
+		IFilterByBrand iFilterByBrand = new FilterEmptyBrands();
+
+		FilterStrategy strategy = new FilterStrategy(iFilterByPrice, iFilterByBrand);
+		List<Product> products = strategy.filter(nameProduct, new ArrayList<Brand>(),
+				request.getServletContext().getRealPath(""));
+
+		int totalProduct = products.size();
+
+		TOTAL_PAGE = totalPage(totalProduct, PER_PAGE);
+
+		List<Product> perProduct = renderProduct(currentPage, PER_PAGE, products);
+		String priceSortTextDefault = "Theo mức giá";
+		String brandSortTextDefault = "Theo thương hiệu";
+		
+		List<Integer> createPages = generatePagination(currentPage, PAGES_PER_GROUP);
 
 		// gán dữ liệu qua trang jsp
 		// dùng để load sản phẩm
 		request.setAttribute("products", perProduct);
 		// dùng để hiển thị tổng số trang
 		request.setAttribute("currentPage", currentPage);
+		request.setAttribute("totalPage", TOTAL_PAGE);
 		// dùng để hiển thị những thương hiệu mặc định của tất cả sản phẩm
 		request.setAttribute("brands", brandsDefault);
 		// dùng để hiển thị những thương hiệu mặc định của tất cả sản phẩm
@@ -74,10 +81,7 @@ public class FindProduct extends HttpServlet {
 		request.setAttribute("brandSortText", brandSortTextDefault);
 		request.setAttribute("minPrice", minPrice);
 		request.setAttribute("maxPrice", maxPrice);
-		request.setAttribute("minPriceCurrent", minPriceCurrent);
-		request.setAttribute("maxPriceCurrent", maxPriceCurrent);
 
-		int totalProduct = products.size();
 		if (totalProduct == 0) {
 			String name = "Rất tiếc, N2Q không tìm thấy kết quả nào phù hợp với từ khóa " + "\"" + nameProduct + "\"";
 			request.setAttribute("notify", name);
@@ -86,42 +90,6 @@ public class FindProduct extends HttpServlet {
 
 		// đẩy dữ liệu qua trang jsp và chuyển trang
 		request.getRequestDispatcher("/html/product.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		currentPage = 1;
-		nameProduct = request.getParameter("nameProduct").trim();
-		Handle connection = JDBIConnectionPool.get().getConnection();
-		// khởi tạo dao product
-		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
-		BrandDAO brandDAO = new BrandDAO(connection, request.getServletContext().getRealPath(""));
-		brandsDefault = brandDAO.getBrandOfProduct(nameProduct);
-		try {
-			minPrice = productDAO.getMinPrice(nameProduct);
-			maxPrice = productDAO.getMaxPrice(nameProduct);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		minPriceCurrent = minPrice;
-		maxPriceCurrent = maxPrice;
-		priceSortTextDefault = "Theo mức giá";
-		brandSortTextDefault = "Theo thương hiệu";
-
-		IFilterByPrice iFilterByPrice = new FilterEmptyPrice(nameProduct);
-		IFilterByBrand iFilterByBrand = new FilterEmptyBrands(nameProduct);
-
-		FilterStrategy strategy = new FilterStrategy(iFilterByPrice, iFilterByBrand);
-
-		products = strategy.filter(request.getServletContext().getRealPath(""));
-		JDBIConnectionPool.get().releaseConnection(connection);
-
-		perProduct = renderProduct(currentPage, PER_PAGE, products);
-
-		// sau khi lấy tất cả dữ liệu cần thiết thì dùng method doGet để xử lý dữ liệu
-		doGet(request, response);
-
 	}
 
 	// lấy ra tổng số trang, 2 tham số là tổng số sản phẩm và số sản phẩm trên 1
@@ -160,7 +128,7 @@ public class FindProduct extends HttpServlet {
 
 		pagesPerGroup = (pagesPerGroup - 1) / 2;
 		for (int i = currentPage - pagesPerGroup; i <= currentPage + pagesPerGroup; i++) {
-			if (i > 0 && i <= totalPage(products.size(), PER_PAGE)) {
+			if (i > 0 && i <= TOTAL_PAGE) {
 				res.add(i);
 			}
 		}

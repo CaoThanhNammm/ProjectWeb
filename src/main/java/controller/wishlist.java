@@ -55,7 +55,6 @@ public class wishlist extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		HttpSession session = request.getSession(false);
-
 		int productId = Integer.parseInt(request.getParameter("id"));
 		String isRemove = request.getParameter("remove");
 
@@ -80,7 +79,12 @@ public class wishlist extends HttpServlet {
 	}
 
 	/*
+<<<<<<< HEAD
 	 * xóa sản phẩm từ danh sách yêu thích
+=======
+	 * xóa sản phẩm vào danh sách yêu thích trừ đi giá tiền vào tổng giá trừ số
+	 * lượng đi 1
+>>>>>>> master
 	 */
 	private void removeProduct(Product product) {
 		wishlist.getProducts().remove(product);
@@ -89,7 +93,12 @@ public class wishlist extends HttpServlet {
 	}
 
 	/*
+<<<<<<< HEAD
 	 * thêm sản phẩm vào danh sách yêu thích
+=======
+	 * thêm sản phẩm vào danh sách yêu thích cộng thêm giá tiền vào tổng giá cộng số
+	 * lượng thêm 1
+>>>>>>> master
 	 */
 	private void addProduct(Product product) {
 		wishlist.getProducts().add(product);
@@ -98,7 +107,12 @@ public class wishlist extends HttpServlet {
 	}
 
 	/*
+<<<<<<< HEAD
 	 * xóa tất cả sản phẩm trong danh sách yêu thích
+=======
+	 * thực hiên xóa tất cả sản phẩm trong danh sách yêu thích set list thành rỗng
+	 * tổng giá tiền = 0 tổng sản phẩm = 0
+>>>>>>> master
 	 */
 	private void removeAll() {
 		wishlist.getProducts().clear();

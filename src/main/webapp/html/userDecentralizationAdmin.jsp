@@ -30,7 +30,9 @@
 			</nav>
 
 			<div class="header_search bg-light">
-				<form action="../html/userAdminFind" method="POST" style="overflow: hidden;display: flex">
+				<form action="../html/userAdminFind" method="POST"
+					style="overflow: hidden; display: flex">
+
 					<input type="text" class="search"
 						placeholder="Tìm người dùng theo email"
 						name="userAdmin_findByEmail"

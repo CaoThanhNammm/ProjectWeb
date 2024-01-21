@@ -124,6 +124,32 @@
     font-weight: bold;
 }
 
+.detail .choices{
+	padding-bottom: 20px;
+}
+
+.detail .choice{
+	min-width: 100px;
+    height: 40px;
+    background-color: white;
+    text-align: center;
+    line-height: 40px;
+    color: black;
+    border: 1px black solid;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.detail .choice.actived{
+	color: white !important;
+    background-color: black;
+}
+
+.detail .choice:hover{
+	color: white !important;
+    background-color: black;
+}
+
 .detail .buy_button {
     width: 150px;
     height: 50px;

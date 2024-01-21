@@ -20,7 +20,6 @@ public class FilterPriceASC implements IFilterByPrice {
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
 		List<Product> productsASC = productDAO.sortByDiscountASC(nameProduct);
-
 		JDBIConnectionPool.get().releaseConnection(conn);
 
 		return productsASC;

@@ -177,6 +177,12 @@
 	text-decoration: none;
 	color: var(--black-primary);
 	padding: 12px 18px;
+}
+
+.new_page_item {
+	padding: 10px 0;
+	cursor: pointer;
+	margin: 0 5px;
 	border: 1px solid var(--white-primary);
 }
 
