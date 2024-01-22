@@ -64,7 +64,7 @@
 					<ul class="nav-item_list_child" id="nav-item_list_child-product">
 
 						<li class="nav-item_item_child" id="nav-item_item_child-TKSP"><a
-							href="statisticProductsAdmin.jsp">Thống kê sản phẩm</a></li>
+							href="statisticProducts">Thống kê sản phẩm</a></li>
 						<li class="nav-item_item_child" id="nav-item_item_child-CS"><a
 							href="editProductsAdmin.jsp">Chỉnh sửa sản phẩm</a></li>
 						<li class="nav-item_item_child" id="nav-item_item_child-HIDDEN"><a

@@ -1,6 +1,7 @@
 package controller.filter;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -34,7 +35,6 @@ public class HeaderFilter implements Filter {
 		JDBIConnectionPool.get().releaseConnection(connection);
 		
 		request.setAttribute("categories", categories);
-
 		chain.doFilter(request, response);
 	}
 

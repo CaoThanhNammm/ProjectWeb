@@ -1,9 +1,11 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import model.Status;
 
 public class OrderDAO {
 	private Handle connection;
-	
+
 	public OrderDAO(Handle connection) {
 		this.connection = connection;
 	}
@@ -130,8 +132,8 @@ public class OrderDAO {
 			e.printStackTrace();
 		}
 	}
-	
-	public List<Order> getAccountOrders(Account account){
+
+	public List<Order> getAccountOrders(Account account) {
 		List<Order> orders = new ArrayList<Order>();
 		try {
 			StringBuilder sql = new StringBuilder();
@@ -145,7 +147,7 @@ public class OrderDAO {
 			PreparedStatement statement = connection.getConnection().prepareStatement(sql.toString());
 			statement.setString(1, account.getId());
 			ResultSet rs = statement.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				int orderID = rs.getInt(1);
 				LocalDate dateCreated = rs.getDate(2).toLocalDate();
 				LocalDate lastUpdated = rs.getDate(3).toLocalDate();
@@ -159,10 +161,10 @@ public class OrderDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return orders;
 	}
-	
+
 	public Order getOrderByID(int orderID) {
 		Order order = new Order(orderID, null, null, null, null, null, null, null);
 		List<OrderDetail> orderDetails = new ArrayList<OrderDetail>();
@@ -177,7 +179,7 @@ public class OrderDAO {
 			PreparedStatement statement = connection.getConnection().prepareStatement(sql.toString());
 			statement.setInt(1, orderID);
 			ResultSet rs = statement.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				LocalDate dateCreated = rs.getDate(1).toLocalDate();
 				LocalDate lastUpdated = rs.getDate(2).toLocalDate();
 				Status status = new Status(rs.getInt(9), rs.getString(3));
@@ -201,5 +203,51 @@ public class OrderDAO {
 			e.printStackTrace();
 		}
 		return order;
+	}
+
+	public long[] getGiveVai() {
+		// TODO Auto-generated method stub
+		List<Order> o1 = connection
+				.select("SELECT id FROM orders WHERE statusID=1 AND dateCreated=?", Date.valueOf(LocalDate.now()))
+				.mapToBean(Order.class).list();
+
+		List<Order> o2 = connection
+				.select("SELECT id FROM orders WHERE statusID=1 AND dateCreated >= ? AND dateCreated <= ?",
+						Date.valueOf(LocalDate.now().minus(1, ChronoUnit.WEEKS)), Date.valueOf(LocalDate.now()))
+				.mapToBean(Order.class).list();
+
+		List<Order> o3 = connection
+				.select("SELECT id FROM orders WHERE statusID=1 AND dateCreated >= ? AND dateCreated <= ?",
+						Date.valueOf(LocalDate.now().minus(1, ChronoUnit.MONTHS)), Date.valueOf(LocalDate.now()))
+				.mapToBean(Order.class).list();
+
+		long[] count = new long[3];
+		count[0] = o1.size();
+		count[1] = o2.size();
+		count[2] = o3.size();
+
+		return count;
+	}
+
+	public long[] getApproach() {
+		List<Order> o1 = connection.select("SELECT id FROM orders WHERE dateCreated=?", Date.valueOf(LocalDate.now()))
+				.mapToBean(Order.class).list();
+
+		List<Order> o2 = connection
+				.select("SELECT id FROM orders WHERE dateCreated >= ? AND dateCreated <= ?",
+						Date.valueOf(LocalDate.now().minus(1, ChronoUnit.WEEKS)), Date.valueOf(LocalDate.now()))
+				.mapToBean(Order.class).list();
+
+		List<Order> o3 = connection
+				.select("SELECT id FROM orders WHERE dateCreated >= ? AND dateCreated <= ?",
+						Date.valueOf(LocalDate.now().minus(1, ChronoUnit.MONTHS)), Date.valueOf(LocalDate.now()))
+				.mapToBean(Order.class).list();
+
+		long[] count = new long[3];
+		count[0] = o1.size();
+		count[1] = o2.size();
+		count[2] = o3.size();
+
+		return count;
 	}
 }
