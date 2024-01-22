@@ -24,6 +24,16 @@ function _quantityAdjust(self, name, option) {
     }
 }
 
+function remove(id){
+	console.log("OK")
+	document.querySelector("#removeCartItem-id").value = id
+	document.querySelector("#removeCartItem").submit()
+}
+
+function checkout(){
+	document.querySelector("#checkoutForm").submit()
+}
+
 /*
     Note: Xử lý check thanh toán
 */

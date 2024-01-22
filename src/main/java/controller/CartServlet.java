@@ -32,7 +32,7 @@ public class CartServlet extends HttpServlet{
 			req.getSession().setAttribute("cart", cart);
 		}
 		String command = req.getParameter("method");
-		int modelID = Integer.valueOf(req.getParameter("id"));
+		int modelID = Integer.valueOf(req.getParameter("modelID"));
 		if(command.equals("add")) {
 			ProductModel model = cart.getModel(modelID);
 			if(model == null) {

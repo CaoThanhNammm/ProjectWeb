@@ -16,13 +16,12 @@
 <link rel="stylesheet" href="../css/checkout.css">
 <title>Thanh toán</title>
 </head>
-<%@ page import="model.Cart"%>
 <%@ page import="model.ProductModel"%>
 <%@ page import="model.Account"%>
 <%@ page import="java.util.Map"%>
 <%
-Cart cart = (Cart) session.getAttribute("cart");
-Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
+Map<ProductModel, Integer> checkoutMap = (Map<ProductModel, Integer>) request.getAttribute("checkout");
+Account acInfo = (Account) request.getAttribute("acInfo");
 %>
 
 <body>
@@ -32,11 +31,10 @@ Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 		if (ac != null) {
 		%>
 		<div class="checkout">
-			<form class="checkout-form" action="../checkout">
-				<input type="hidden" name="checkout" value="pay">
+			<form class="checkout-form" action="complete-checkout" method="POST">
 				<h2>Thông tin khách hàng</h2>
 				<label>Tên khách hàng:</label> <input type="text" name="username"
-					placeholder="Nhập tên" value="<%=acInfo.getFullName()%>" required>
+					placeholder="Nhập tên" value="<%=ac.getFullName()%>" required>
 				<label>Email:</label> <input type="email" name="email"
 					placeholder="Nhập email..." value="<%=acInfo.getEmail()%>" readonly>
 				<label>Số điện thoại:</label> <input type="text" name="phone"
@@ -45,7 +43,7 @@ Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 					type="text" name="address" placeholder="Địa chỉ..."
 					value="<%=acInfo.getAddress()%>" required>
 				<div style="display: flex; justify-content: space-between;">
-					<a href="../html/cart.jsp" class="button">Trở về giỏ hàng</a>
+					<a href="cart" class="button">Trở về giỏ hàng</a>
 					<button>Đặt hàng</button>
 				</div>
 			</form>
@@ -53,27 +51,22 @@ Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 			<div class="summary">
 				<h2>Tóm tắt đơn hàng</h2>
 				<%
-				Map<ProductModel, Integer> map = cart.getCartItems();
 				long total = 0;
 				long voucher = 0;
 				%>
 				<%
-				for (Map.Entry<ProductModel, Integer> entry : map.entrySet()) {
+				for (Map.Entry<ProductModel, Integer> entry : checkoutMap.entrySet()) {
 				%>
 				<%
 				ProductModel model = entry.getKey();
 				Integer amount = entry.getValue();
-				if (amount > 0) {
 				%>
 				<div class="summary-item">
-					<span><%=model.getProduct().getName() + " x" + amount%></span> <span><strong><%=model.getProduct().getPrice() * amount%>đ</strong></span>
+					<span><%=model.getProduct().getName() + " | Lựa chọn: " + model.getOptionValue() + " x" + amount%></span> <span><strong><%=new Product().formatNumber((model.getProduct().getPrice() - model.getProduct().getDiscount()) * amount)%>đ</strong></span>
 					<%
-					total += model.getProduct().getPrice() * amount;
+					total += (model.getProduct().getPrice() - model.getProduct().getDiscount()) * amount;
 					%>
 				</div>
-				<%
-				}
-				%>
 				<%
 				}
 				%>
@@ -84,11 +77,11 @@ Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 				</div>
 				<hr>
 				<div class="summary-item">
-					<span>Phí vận chuyển:</span> <span><strong><%=total * 0.1%>đ</strong></span>
+					<span>Phí vận chuyển:</span> <span><strong>Miễn phí</strong></span>
 				</div>
 				<hr>
 				<div class="summary-item">
-					<span>Tổng</span> <span><strong><%=(total - voucher)%>đ</strong></span>
+					<span>Tổng</span> <span><strong><%=new Product().formatNumber((int) (total - voucher))%>đ</strong></span>
 				</div>
 				<div class="summary-item">
 					<span>Phương pháp thanh toán</span> <span><strong>Trả

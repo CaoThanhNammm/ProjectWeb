@@ -155,7 +155,7 @@ public class AccountDAO {
 	public static List<Account> findUserByEmail(String email) throws SQLException {
 		Handle h = JDBIConnectionPool.get().getConnection();
 		String sql = "SELECT u.id, u.email, u.phone, u.fullname, u.address, r.id as roleID, r.name as roleName, us.id as statusID, us.name as statusName, g.id as genderID, g.name as genderName "
-				+ "FROM users u JOIN role r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
+				+ "FROM users u JOIN role_user r ON u.roleID = r.id " + "JOIN user_status us ON u.statusID = us.id "
 				+ "JOIN genders g ON g.id = u.genderID " + "WHERE u.email like ? ";
 		Connection conn = h.getConnection();
 

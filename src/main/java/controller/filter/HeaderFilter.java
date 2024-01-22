@@ -15,6 +15,7 @@ import org.jdbi.v3.core.Handle;
 
 import dao.CategoriesDAO;
 import database.JDBIConnectionPool;
+import model.Cart;
 import model.Category;
 
 @WebFilter({ "/html/*", "/index/*" })
@@ -31,7 +32,7 @@ public class HeaderFilter implements Filter {
 		CategoriesDAO categoriesDAO = new CategoriesDAO(connection);
 		List<Category> categories = categoriesDAO.getCategoryLimitN(8);
 		JDBIConnectionPool.get().releaseConnection(connection);
-
+		
 		request.setAttribute("categories", categories);
 
 		chain.doFilter(request, response);
