@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jdbi.v3.core.Handle;
 
+import database.JDBIConnectionPool;
 import model.Attribute;
 import model.Brand;
 import model.Product;
@@ -24,16 +25,15 @@ public class ProductDAO {
 		this.pathImg = pathImg;
 	}
 
-	// lấy ra tất cả sản phẩm
-	public List<Product> getAll() throws SQLException {
-
+	public List<Product> getAll(String statusID) throws SQLException {
+		System.out.println("run");
 		List<Product> products = new ArrayList<>();
 		String qslStr = "SELECT p.id, p.name, b.id as bID, b.name as bName, p.description, c.id as cID, c.name as cName, p.price, p.discount, YEAR(p.lastUpdated) as year, MONTH(p.lastUpdated) as month, DAY(p.lastUpdated) as day, p.amountSold, s.id as sID, s.name as sName FROM "
 				+ "products p JOIN brands b ON p.brandID = b.id " + "JOIN categories c ON p.categoryID = c.id "
-				+ "JOIN product_status s ON p.statusID = s.id";
+				+ "JOIN product_status s ON p.statusID = s.id WHERE s.id = ?";
 
 		PreparedStatement statement = handle.getConnection().prepareStatement(qslStr);
-
+		statement.setString(1, statusID);
 		ResultSet rs = statement.executeQuery();
 		while (rs.next()) {
 			LocalDate lastUpdated = LocalDate.of(rs.getInt("year"), rs.getInt("month"), rs.getInt("day"));
@@ -43,6 +43,10 @@ public class ProductDAO {
 					rs.getInt("price"), rs.getInt("discount"), lastUpdated, rs.getInt("amountSold"), rs.getInt("sID"),
 					rs.getString("cName"));
 			products.add(product);
+		}
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
 		}
 
 		return products;
@@ -65,7 +69,7 @@ public class ProductDAO {
 			System.out.println("có thể bandID hoặc categoryID hoặc statusID không tồn tại");
 		}
 
-		return getAll();
+		return getAll("2");
 	}
 
 	// cập nhập lại số lượng bán của sản phẩm, truyền vào id và số lượng bán mới
@@ -146,7 +150,7 @@ public class ProductDAO {
 
 	// tìm sản phẩm giống 1 phần tên, truyền vào tên sản phẩm và số lượng sản phẩm
 	// muốn lấy
-	public List<Product> findProductByNameLimitN(String name, int num) {
+	public List<Product> findProductByNameLimitN(String name, int num, String statusID) {
 		if (name.equals(""))
 			return new ArrayList<>();
 		List<Product> products = handle
@@ -161,13 +165,13 @@ public class ProductDAO {
 	}
 
 	// tìm sản phẩm giống 1 phần tên, truyền vào tên sản phẩm
-	public List<Product> findProductByNameLimitN(String name) {
+	public List<Product> findProductByNameLimitN(String name, String statusID) {
 		if (name.equals(""))
 			return new ArrayList<>();
 
 		List<Product> products = handle
 				.select("SELECT id, name, price, discount FROM products WHERE name LIKE ? and statusID = ?")
-				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
+				.bind(0, "%" + name + "%").bind(1, statusID).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -223,12 +227,24 @@ public class ProductDAO {
 	}
 
 	// sắp xếp giá từ cao đến thấp
-	public List<Product> sortByDiscountDESC(String name) {
+	public List<Product> sortByDiscountDESC(String name, int statusID) {
 		if (name.equals(""))
 			return new ArrayList<>();
 		List<Product> products = handle.select(
 				"SELECT id, name, price, discount FROM products where name like ? AND statusID = ? ORDER BY price - discount DESC")
-				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
+				.bind(0, "%" + name + "%").bind(1, statusID).mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
+		return products;
+	}
+
+	public List<Product> sortByDiscountDESC(int statusID) {
+		List<Product> products = handle.select(
+				"SELECT id, name, price, discount FROM products WHERE statusID = ? ORDER BY price - discount DESC")
+				.bind(0, statusID).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -238,12 +254,12 @@ public class ProductDAO {
 	}
 
 	// sắp xếp giá từ thấp đến cao
-	public List<Product> sortByDiscountASC(String name) {
+	public List<Product> sortByDiscountASC(String name, int statusID) {
 		if (name.equals(""))
 			return new ArrayList<>();
 		List<Product> products = handle.select(
-				"SELECT id, name, price, discount FROM products where name like ? AND statusID = ? ORDER BY price - discount ASC")
-				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
+				"SELECT id, name, price, discount FROM products WHERE name LIKE ? AND statusID = ? ORDER BY price - discount ASC")
+				.bind(0, "%" + name + "%").bind(1, statusID).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -251,7 +267,20 @@ public class ProductDAO {
 		return products;
 	}
 
-	// lấy ra sản phẩm có thương hiệu, tên thương hiệu là tham số
+	// sắp xếp giá từ thấp đến cao
+	public List<Product> sortByDiscountASC(int statusID) {
+		List<Product> products = handle.select(
+				"SELECT id, name, price, discount FROM products WHERE statusID = ? ORDER BY price - discount ASC")
+				.bind(0, statusID).mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+		return products;
+	}
+
+	// lấy ra sản phẩm có thương hiệu, tên thương hiệu là tham số, tên sản phẩm là
+	// tham số
 	public List<Product> getProductByBrand(String name, List<Brand> brands) {
 		if (name.equals(""))
 			return new ArrayList<>();
@@ -259,7 +288,7 @@ public class ProductDAO {
 
 		for (Brand brand : brands) {
 			List<Product> products = handle.select(
-					"SELECT p.id, p.name, p.price, p.discount FROM products p JOIN brands b ON p.brandID = b.id where b.id = ? and p.name like ? and p.statusID = ?")
+					"SELECT p.id, p.name, p.price, p.discount, p.amountSold FROM products p JOIN brands b ON p.brandID = b.id where b.id = ? and p.name like ? and p.statusID = ?")
 					.bind(0, brand.getId()).bind(1, "%" + name + "%").bind(2, STATUS_AVAILABLE).mapToBean(Product.class)
 					.list();
 
@@ -275,23 +304,37 @@ public class ProductDAO {
 		return res;
 	}
 
+	// lấy ra tất cả sản phẩm có thương hiệu, tên thương hiệu là tham số
+	public List<Product> getProductByBrand(String brandID, int statusID) {
+		List<Product> products = handle.select(
+				"SELECT p.id, p.name, p.price, p.discount, p.amountSold FROM products p JOIN brands b ON p.brandID = b.id WHERE b.id = ? AND p.statusID = ?")
+				.bind(0, brandID).bind(1, statusID).mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
+		return products;
+	}
+
+	// lấy ra tất cả sản phẩm có thương hiệu, tên thương hiệu là tham số
+	public List<Product> getProductByBrand(String name, String brandID, String statusID) {
+		List<Product> products = handle.select(
+				"SELECT p.id, p.name, p.price, p.discount, p.amountSold FROM products p JOIN brands b ON p.brandID = b.id WHERE p.name like ? AND b.id = ? AND p.statusID = ?")
+				.bind(0, "%" + name + "%").bind(1, brandID).bind(2, statusID).mapToBean(Product.class).list();
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
+		return products;
+	}
+
 	// lấy tất cả thương hiệu của tất sản phẩm, tên sản phẩm là tham số
 	public List<Product> getProductDefaultByBrand(String name) {
 		List<Product> products = handle.select(
 				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ? AND statusID = ?)")
 				.bind(0, "%" + name + "%").bind(1, STATUS_AVAILABLE).mapToBean(Product.class).list();
-
-		for (Product product : products) {
-			product.setImgs(pathImg);
-		}
-		return products;
-	}
-
-	// lấy tất cả thương hiệu của tất sản phẩm, tên sản phẩm là tham số
-	public List<Product> getProductDefaultByBrand() {
-		List<Product> products = handle.select(
-				"SELECT DISTINCT p.id, p.name, p.price, p.discount FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE statusID = ?)")
-				.bind(0, STATUS_AVAILABLE).mapToBean(Product.class).list();
 
 		for (Product product : products) {
 			product.setImgs(pathImg);
@@ -312,6 +355,9 @@ public class ProductDAO {
 		return products;
 	}
 
+	/*
+	 * Lấy ra giá thấp nhất của sản phẩm, tên sản phẩm là tham số
+	 */
 	public int getMinPrice(String name) throws SQLException {
 		String sql = "SELECT MIN(price - discount) as price FROM products WHERE name LIKE ? AND statusID = ?";
 
@@ -327,6 +373,9 @@ public class ProductDAO {
 		return res;
 	}
 
+	/*
+	 * Lấy ra giá cao nhất của sản phẩm, tên sản phẩm là tham số
+	 */
 	public int getMaxPrice(String name) throws SQLException {
 
 		String sql = "SELECT MAX(price - discount) as price FROM products WHERE name LIKE ? AND statusID = ?";
@@ -456,18 +505,6 @@ public class ProductDAO {
 		return p;
 	}
 
-	public List<Product> getHidenProduct() {
-		// TODO Auto-generated method stub
-		List<Product> products = handle.select("SELECT * FROM products WHERE statusID=1").mapToBean(Product.class)
-				.list();
-
-		for (Product product : products) {
-			product.setImgs(pathImg);
-		}
-
-		return products;
-	}
-
 	public boolean unhide(int productID) {
 		// TODO Auto-generated method stub
 		int re = 0;
@@ -479,6 +516,78 @@ public class ProductDAO {
 		}
 
 		return re > 0;
+	}
+
+	public List<Product> findInAdmin(String brandID, String orderID) {
+		List<Product> products = new ArrayList<>();
+		if (brandID != null) {
+			products = getProductByBrand(brandID, STATUS_AVAILABLE);
+		} else if (orderID != null) {
+			products = getProductByBrand(brandID, STATUS_AVAILABLE);
+		} else {
+			products = getProductByBrand(brandID, STATUS_AVAILABLE);
+		}
+
+		for (Product product : products) {
+			product.setImgs(pathImg);
+		}
+
+		return products;
+	}
+
+	// lọc sản phẩm của admin
+	public List<Product> filterAdmin(String nameProduct, String orderID, String brandID, String statusID)
+			throws SQLException {
+		if (nameProduct.equals("")) {
+			if (orderID.equals("0") && brandID.equals("0")) {
+				return getAll(statusID);
+			} else if (orderID.equals("0")) {
+				return getProductByBrand(brandID, Integer.parseInt(statusID));
+			} else if (brandID.equals("0")) {
+				if (orderID.equals("1")) {
+					return sortByDiscountASC(Integer.parseInt(statusID));
+				} else if (orderID.equals("2")) {
+					return sortByDiscountDESC(Integer.parseInt(statusID));
+				}
+			} else {
+				String sql = "SELECT id, name, price, discount FROM products WHERE brandID = ? and statusID = ? ORDER BY (price - discount) ASC";
+				if (orderID.equals("2"))
+					sql = "SELECT id, name, price, discount FROM products WHERE brandID = ? and statusID = ? ORDER BY (price - discount) DESC";
+
+				List<Product> products = handle.select(sql).bind(0, brandID).bind(1, statusID).mapToBean(Product.class)
+						.list();
+				for (Product product : products) {
+					product.setImgs(pathImg);
+				}
+
+				return products;
+			}
+		} else {
+			if (orderID.equals("0") && brandID.equals("0")) {
+				return findProductByNameLimitN(nameProduct, statusID);
+			} else if (orderID.equals("0")) {
+				return getProductByBrand(nameProduct, brandID, statusID);
+			} else if (brandID.equals("0")) {
+				if (orderID.equals("1")) {
+					return sortByDiscountASC(nameProduct, Integer.parseInt(statusID));
+				} else if (orderID.equals("2")) {
+					return sortByDiscountDESC(nameProduct, Integer.parseInt(statusID));
+				}
+			} else {
+				String sql = "SELECT id, name, price, discount FROM products WHERE name like ? AND brandID = ? AND statusID = ? ORDER BY (price - discount) ASC";
+				if (orderID.equals("2"))
+					sql = "SELECT id, name, price, discount FROM products WHERE name like ? AND brandID = ? AND statusID = ? ORDER BY (price - discount) DESC";
+
+				List<Product> products = handle.select(sql).bind(0, "%" + nameProduct + "%").bind(1, brandID)
+						.bind(2, statusID).mapToBean(Product.class).list();
+				for (Product product : products) {
+					product.setImgs(pathImg);
+				}
+				return products;
+			}
+		}
+
+		return null;
 	}
 
 }

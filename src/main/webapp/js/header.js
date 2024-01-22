@@ -95,45 +95,25 @@ function _quitSlide() {
 /*
 	Create: Cao Thành Nam
 	Date: 29/11/2023
-	Note: phương thức thay đổi tên thẻ cha nhưng vẫn giữ các thẻ con
-*/
-function _renameParentElement(oldParentId, newTagName) {
-	// Lấy phần tử cha cũ
-	var oldParent = document.querySelector("." + oldParentId);
-
-	// Tạo một phần tử cha mới với tên mới
-	var newParent = document.createElement(newTagName);
-	newParent.classList.add(oldParentId);
-
-	if (newTagName === "form") {
-		newParent.setAttribute("action", "../html/FindProduct");
-		newParent.setAttribute("method", "POST");
-		newParent.classList.add("available");
-	}
-
-	// Di chuyển tất cả các phần tử con từ phần tử cha cũ sang phần tử cha mới
-	while (oldParent.firstChild) {
-		newParent.appendChild(oldParent.firstChild);
-	}
-
-	// Thay thế phần tử cha cũ bằng phần tử cha mới
-	oldParent.parentNode.replaceChild(newParent, oldParent);
-}
-
-/*
-	Create: Cao Thành Nam
-	Date: 29/11/2023
 	Note: phương thức chặn thao tác ấn của người dùng khi chưa nhập tên sản phẩm
 */
 function _changeStateOfFormFindProduct() {
-	elementInput.onchange = function(e) {
+	elementSearchBtn.disabled = true;
+	elementSearchBtn.style.cursor = "not-allowed";
+
+	elementInput.addEventListener("input", function(e) {
+		console.log(e.target.value)
 		if (e.target.value !== "") {
-			_renameParentElement("header_search", "form");
+			console.log("run")
+			elementSearchBtn.disabled = false;
+			elementSearchBtn.style.cursor = "pointer";
 		}
 		else {
-			_renameParentElement("header_search", "div");
+			elementSearchBtn.disabled = true;
+			elementSearchBtn.style.cursor = "not-allowed";
 		}
-	}
+
+	})
 }
 
 /*
@@ -143,7 +123,7 @@ function _changeStateOfFormFindProduct() {
 	những sản phẩm cùng tên
 */
 function _showTabProduct() {
-	elementInput.oninput = function(e) {
+	elementInput.addEventListener("input", function(e) {
 		var data = e.target.value;
 		if (data !== "") {
 			elementModalOverlaySearchOpacity.classList.add("active");
@@ -155,7 +135,7 @@ function _showTabProduct() {
 			elementModalOverlaySearchOpacity.classList.remove("active");
 			elementTabProducts.classList.remove("active_tab_product");
 		}
-	}
+	})
 }
 
 /*
@@ -324,6 +304,7 @@ var elementButtonRemoveAll = document.querySelector(".modal_wishlist_trash_all")
 var elementWishlistProduct = document.querySelectorAll(".wishlist_product");
 var elementTabProducts = document.querySelector(".tab_suggestion_products");
 var elementInput = document.querySelector(".search");
+var elementSearchBtn = document.querySelector(".search_logo");
 var elementWistListIcon = document.querySelector(".list_wishList");
 var elementWistListIconMobile = document.querySelector(".list_wishList--mobile");
 var elementModalBodyWishList = document.querySelector(".modal_body_wishList");

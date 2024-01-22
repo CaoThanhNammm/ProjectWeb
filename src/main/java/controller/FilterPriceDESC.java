@@ -20,7 +20,7 @@ public class FilterPriceDESC implements IFilterByPrice {
 	public List<Product> filterProduct(String pathImg) {
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
-		List<Product> productsDESC = productDAO.sortByDiscountDESC(nameProduct);
+		List<Product> productsDESC = productDAO.sortByDiscountDESC(nameProduct, 2);
 		JDBIConnectionPool.get().releaseConnection(conn);
 
 		return productsDESC;

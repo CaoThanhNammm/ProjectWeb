@@ -40,12 +40,15 @@ Account ac = (Account) session.getAttribute("account");
 			src="../image/general/logo.png" alt=""></a>
 		<!-- phần tìm kiếm sản phẩm của header -->
 		<div class="header_search">
-			<input type="text" name="nameProduct" class="search"
-				placeholder="Tìm đồ gia dụng">
-			<button class="search_logo">
-				<i class="fa-solid fa-magnifying-glass searchIcon"
-					style="font-size: 20px;"></i>
-			</button>
+			<form action="../html/FindProduct" method="POST" class="d-flex"
+				style="width: 100%">
+				<input type="text" name="nameProduct" class="search"
+					placeholder="Tìm đồ gia dụng">
+				<button class="search_logo">
+					<i class="fa-solid fa-magnifying-glass searchIcon"
+						style="font-size: 20px;"></i>
+				</button>
+			</form>
 
 			<!-- phần hiên thị ra danh sách sản phẩm đang tìm kiếm -->
 			<div class="tab_suggestion_products"></div>

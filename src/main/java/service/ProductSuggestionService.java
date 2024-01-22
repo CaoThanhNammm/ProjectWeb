@@ -41,7 +41,7 @@ public class ProductSuggestionService extends HttpServlet {
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		ProductDAO dao = new ProductDAO(connection, request.getServletContext().getRealPath(""));
 
-		List<Product> products = dao.findProductByNameLimitN(nameProduct, 10);
+		List<Product> products = dao.findProductByNameLimitN(nameProduct, 10, "2");
 
 		JDBIConnectionPool.get().releaseConnection(connection);
 

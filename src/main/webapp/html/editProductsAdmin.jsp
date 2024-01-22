@@ -1,3 +1,4 @@
+<%@page import="model.Brand"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="model.Product"%>
 <%
-List<Product> products = (List) request.getAttribute("getShowProductRecommend");
+List<Product> products = (List) request.getAttribute("getAll");
 if (products == null)
 	products = new ArrayList<>();
 %>
@@ -42,21 +43,62 @@ if (products == null)
 				<ul class="navbar-nav">
 					<li class="nav-item">
 						<div class="header_search">
-							<input type="text" class="search" placeholder="Tìm đồ gia dụng">
-							<i class="fa-solid fa-magnifying-glass search_logo"></i>
+							<form action="../html/FindProductAdmin" class="d-flex">
+								<input type="text"
+									value="<%=request.getAttribute("nameProduct")%>" class="search"
+									placeholder="Tìm đồ gia dụng" name="nameProduct">
+								<button class="search_logo">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</button>
+							</form>
 						</div>
 					</li>
+					<%
+					String sortText = (String) request.getAttribute("sortText");
+					%>
 
-					<li class="nav-item"><select>
-							<option value="">Từ thấp đến cao</option>
-							<option value="">Từ cao đến thấp</option>
+					<li class="nav-item"><select id="price_admin">
+							<%
+							if (sortText.equals("Tất cả")) {
+							%>
+							<option value="0" selected>Tất cả</option>
+							<option value="1">Từ thấp đến cao</option>
+							<option value="2">Từ cao đến thấp</option>
+							<%
+							} else if (sortText.equals("Từ thấp đến cao")) {
+							%>
+							<option value="1" selected>Từ thấp đến cao</option>
+							<option value="2">Từ cao đến thấp</option>
+							<option value="0">Tất cả</option>
+							<%
+							} else if (sortText.equals("Từ cao đến thấp")) {
+							%>
+							<option value="2" selected>Từ cao đến thấp</option>
+							<option value="1">Từ thấp đến cao</option>
+							<option value="0">Tất cả</option>
+							<%
+							}
+							%>
 					</select></li>
 
 					<li class="nav-item"><select id="brands_admin">
-							<option value="">LG</option>
-							<option value="">Samsung</option>
-							<option value="">Kanguroo</option>
-							<option value="">Xiaomi</option>
+							<option value="0" selected>Tất cả</option>
+							<%
+							List<Brand> brands = (List) request.getAttribute("brands");
+							String nameBrand = (String) request.getAttribute("brandText");
+							for (Brand brand : brands) {
+								if (brand.getName().equals(nameBrand)) {
+							%>
+							<option value="<%=brand.getId()%>" selected><%=brand.getName()%></option>
+							<%
+							} else {
+							%>
+							<option value="<%=brand.getId()%>"><%=brand.getName()%></option>
+							<%
+							}
+							}
+							%>
+
 					</select></li>
 				</ul>
 
@@ -81,8 +123,8 @@ if (products == null)
 							alt="Card image cap">
 						<div class="card-body">
 							<h5 class="card-title"><%=products.get(i).getName()%></h5>
-							<p class="card-text"><%=products.get(i).getPrice()%>
-								VND / Còn lại:
+							<p class="card-text"><%=products.get(i).formatNumber(products.get(i).getPrice() - products.get(i).getDiscount())%>
+								VND / đã bán:
 								<%=products.get(i).getAmountSold()%>
 								sản phẩm
 							</p>
@@ -105,23 +147,6 @@ if (products == null)
 			</div>
 		</div>
 	</div>
-
-	<script>
-		function edit(id) {
-			window.location = "editProduct?id-product=" + id + '&status=edit';
-		}
-		
-		function hideP(id) {
-			window.location = "editProduct?id-product=" + id + '&status=hide';
-		}
-	</script>
-
-	<script type="text/javascript">
-		var elementBrandsProduct = document.getElementById("brands_admin");
-		elementBrandsProduct.addEventListener("change", function(e){
-			window.location = "editProductsAdmin?id-product=" + id;
-		})
-	</script>
+	<script src="../js/editProductsAdmin.js"></script>
 </body>
-
 </html>

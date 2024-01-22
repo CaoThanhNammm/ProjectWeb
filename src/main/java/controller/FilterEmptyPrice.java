@@ -20,7 +20,8 @@ public class FilterEmptyPrice implements IFilterByPrice {
 
 		Handle conn = JDBIConnectionPool.get().getConnection();
 		ProductDAO productDAO = new ProductDAO(conn, pathImg);
-		List<Product> productsDefault = productDAO.findProductByNameLimitN(nameProduct);
+		List<Product> productsDefault = productDAO.findProductByNameLimitN(nameProduct, "2");
+
 		JDBIConnectionPool.get().releaseConnection(conn);
 		return productsDefault;
 

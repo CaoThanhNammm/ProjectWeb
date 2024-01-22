@@ -15,7 +15,7 @@ import javax.servlet.http.HttpFilter;
 import dao.AccountDAO;
 import model.Account;
 
-@WebFilter({ "/html/userDecentralizationAdmin.jsp", "/html/userStatisticsAdmin.jsp" })
+@WebFilter({ "/html/userDecentralizationAdmin.jsp" })
 public class UserAdminFilter extends HttpFilter implements Filter {
 	private static final long serialVersionUID = 1L;
 
@@ -29,6 +29,7 @@ public class UserAdminFilter extends HttpFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		List<Account> accs = null;
+		System.out.println("run");
 		try {
 			accs = AccountDAO.getAll();
 		} catch (SQLException e) {

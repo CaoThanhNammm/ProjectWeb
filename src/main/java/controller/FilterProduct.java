@@ -44,14 +44,12 @@ public class FilterProduct extends HttpServlet {
 	private int currentPage;
 	private int fromPrice;
 	private int toPrice;
-	private List<String> nameProducts;
 	private String temp;
 
 	public FilterProduct() {
 		super();
 		brandChoice = new ArrayList<>();
 		typeOfOrder = -1;
-		nameProducts = new ArrayList<>();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

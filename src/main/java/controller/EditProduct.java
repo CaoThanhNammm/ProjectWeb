@@ -33,38 +33,21 @@ import model.Product;
 import model.ProductModel;
 import model.Status;
 
-/**
- * Servlet implementation class EditProduct
- */
 @WebServlet("/html/editProduct")
 public class EditProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public EditProduct() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String status = request.getParameter("status");
 		Handle connection = JDBIConnectionPool.get().getConnection();
 
@@ -74,7 +57,6 @@ public class EditProduct extends HttpServlet {
 		try {
 			id = strId.equals("?") ? dao.getAvaiId() : Integer.parseInt(strId);
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		BrandDAO brandDAO = new BrandDAO(connection, request.getServletContext().getRealPath(""));
@@ -93,7 +75,6 @@ public class EditProduct extends HttpServlet {
 				p = dao.findProductByID(id);
 				rediect = "editProductsAdmin.jsp";
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (status.equals("add")) {
@@ -141,12 +122,12 @@ public class EditProduct extends HttpServlet {
 					p = dao.updateProduct(id, newP);
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				p = dao.findProductByID(id);
 				e.printStackTrace();
 			}
 
 		}
+
 		request.setAttribute("product", p);
 		request.setAttribute("title", p.getName());
 		request.setAttribute("list-brand", bs);
@@ -156,7 +137,6 @@ public class EditProduct extends HttpServlet {
 	}
 
 	private void imageDecoder(String src, int pid, String[] paths) throws IOException {
-		// TODO Auto-generated method stub
 		if (paths != null) {
 			String pack = src + "\\" + pid + "\\";
 			String realPack = src.substring(0, src.indexOf("java") + 4)

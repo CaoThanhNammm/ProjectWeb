@@ -25,10 +25,13 @@ public class BrandDAO {
 		return exists == 1;
 	}
 
-	public List<Brand> getBrandOfProduct(String findNameProduct) {
+	/*
+	 * lấy ra thương hiệu của sản phẩm
+	 */
+	public List<Brand> getBrandOfProduct(String nameProduct) {
 		List<Brand> brands = handle.select(
 				"SELECT DISTINCT b.id, b.name FROM brands b JOIN products p ON b.id = p.brandID WHERE p.id IN (SELECT id FROM products WHERE name LIKE ?)")
-				.bind(0, "%" + findNameProduct + "%").mapToBean(Brand.class).list();
+				.bind(0, "%" + nameProduct + "%").mapToBean(Brand.class).list();
 
 		for (Brand brand : brands) {
 			brand.setPathImg(pathImgs);
@@ -43,6 +46,9 @@ public class BrandDAO {
 		return brand;
 	}
 
+	/*
+	 * lấy ra tất cả sản phẩm
+	 */
 	public List<Brand> getAll() {
 		List<Brand> bs = handle.select("SELECT id, name FROM brands").mapToBean(Brand.class).list();
 		bs.forEach(e -> {
@@ -50,4 +56,5 @@ public class BrandDAO {
 		});
 		return bs;
 	}
+
 }

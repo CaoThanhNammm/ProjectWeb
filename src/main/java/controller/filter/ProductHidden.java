@@ -1,6 +1,7 @@
 package controller.filter;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -18,40 +19,26 @@ import dao.ProductDAO;
 import database.JDBIConnectionPool;
 import model.Product;
 
-/**
- * Servlet Filter implementation class ProductHidden
- */
 @WebFilter("/html/editProductHidenAdmin.jsp")
 public class ProductHidden extends HttpFilter implements Filter {
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+
 		Handle connection = JDBIConnectionPool.get().getConnection();
 		// khởi tạo dao product
 		ProductDAO productDAO = new ProductDAO(connection, request.getServletContext().getRealPath(""));
-		List<Product> products = productDAO.getHidenProduct();
+		List<Product> products = null;
+		try {
+			products = productDAO.getAll("1");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		JDBIConnectionPool.get().releaseConnection(connection);
 
 		request.setAttribute("getHiddenProduct", products);
-		// pass the request along the filter chain
 		chain.doFilter(request, response);
-	}
-
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 }

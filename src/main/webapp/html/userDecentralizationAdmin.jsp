@@ -45,7 +45,7 @@
 						placeholder="Tìm người dùng theo họ tên"
 						name="userAdmin_findByName"
 						value="<%=request.getAttribute("name")%>">
-					<button class="search_logo_btn">
+					<button class="search_logo_btn" style="margin-left: 10px">
 						<i class="fa-solid fa-magnifying-glass search_logo"></i>
 					</button>
 				</form>
@@ -66,16 +66,16 @@
 
 				<%
 				List<Account> accounts = (List) request.getAttribute("accounts");
-				for (Account ac : accounts) {
+				for (int i = 0; i < accounts.size(); i++) {
 				%>
 				<tr>
-					<td><%=ac.getId()%></td>
-					<td><%=ac.getEmail()%></td>
-					<td><%=ac.getPhone()%></td>
-					<td><%=ac.getFullName()%></td>
+					<td><%=i + 1%></td>
+					<td><%=accounts.get(i).getEmail()%></td>
+					<td><%=accounts.get(i).getPhone()%></td>
+					<td><%=accounts.get(i).getFullName()%></td>
 					<td>
 						<%
-						String currentRole = ac.getRole().getName();
+						String currentRole = accounts.get(i).getRole().getName();
 						%>
 						<ul class="users_role_list">
 							<li class="users_role_item"><%=currentRole%> <i
@@ -86,7 +86,8 @@
 									%>
 
 									<li class="users_role_item_child">
-										<form action="../html/UserAdmin?role=2&id=<%=ac.getId()%>"
+										<form
+											action="../html/UserAdmin?role=2&id=<%=accounts.get(i).getId()%>"
 											method="POST">
 											<button>Admin</button>
 										</form>
@@ -96,7 +97,8 @@
 									} else {
 									%>
 									<li class="users_role_item_child">
-										<form action="../html/UserAdmin?role=1&id=<%=ac.getId()%>"
+										<form
+											action="../html/UserAdmin?role=1&id=<%=accounts.get(i).getId()%>"
 											method="POST">
 											<button>User</button>
 										</form>
@@ -110,7 +112,7 @@
 
 					<td>
 						<%
-						String currentStatus = ac.getStatus().getName();
+						String currentStatus = accounts.get(i).getStatus().getName();
 						%>
 						<ul class="users_status_list">
 							<li class="users_status_item"><%=currentStatus%> <i
@@ -121,7 +123,8 @@
 									%>
 
 									<li class="users_status_item_child">
-										<form action="../html/UserAdmin?status=2&id=<%=ac.getId()%>"
+										<form
+											action="../html/UserAdmin?status=2&id=<%=accounts.get(i).getId()%>"
 											method="POST">
 											<button>Hoạt động</button>
 										</form>
@@ -131,7 +134,8 @@
 									} else {
 									%>
 									<li class="users_status_item_child">
-										<form action="../html/UserAdmin?status=1&id=<%=ac.getId()%>"
+										<form
+											action="../html/UserAdmin?status=1&id=<%=accounts.get(i).getId()%>"
 											method="POST">
 											<button>Khóa tài khoản</button>
 										</form>
@@ -142,8 +146,8 @@
 								</ul></li>
 						</ul>
 					</td>
-					<td><%=ac.getGender().getSex()%></td>
-					<td><%=ac.getAddress()%></td>
+					<td><%=accounts.get(i).getGender().getSex()%></td>
+					<td><%=accounts.get(i).getAddress()%></td>
 				</tr>
 
 				<%

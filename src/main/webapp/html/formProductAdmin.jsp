@@ -35,6 +35,9 @@ if (product != null) {
 <body class="d-flex">
 	<%@include file="headerAdmin.jsp"%>
 	<div id="form-product">
+		<a href="editProductHidenAdmin.jsp"><i
+			style="font-size: 30px; margin: 20px; cursor: pointer; color: var(--black-primary)"
+			class="fa-solid fa-arrow-left"></i></a>
 		<%
 		if (product != null) {
 		%>
