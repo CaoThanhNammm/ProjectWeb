@@ -26,7 +26,8 @@ public class ProductModelDAO {
 
 	public List<ProductModel> getModels(Product product) {
 		StatusDAO statusDAO = new StatusDAO(handle);
-		if (product == null)
+
+		if(product == null)
 			return null;
 		List<ProductModel> ps = handle
 				.createQuery("SELECT id, productID, optionValue, statusID FROM product_models WHERE productID=?")
