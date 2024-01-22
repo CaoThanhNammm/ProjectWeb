@@ -14,6 +14,13 @@ public class Order {
 	private int totalPrice;
 	private List<OrderDetail> details;
 
+	/**
+	 * 
+	 */
+	public Order() {
+		super();
+	}
+
 	public Order(int id, Account account, LocalDate dateCreated, LocalDate lastUpdated, String phone, String address,
 			Status status, List<OrderDetail> details) {
 		super();
@@ -99,5 +106,4 @@ public class Order {
 		this.totalPrice = totalPrice;
 	}
 
-	
 }
