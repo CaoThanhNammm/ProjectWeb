@@ -20,8 +20,9 @@ import java.util.List;
 
 @WebServlet("/html/detail")
 public class ProductDetailServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-    @Override
+	@Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int productID = Integer.valueOf(req.getParameter("id"));
         Handle connection = JDBIConnectionPool.get().getConnection();
@@ -36,11 +37,13 @@ public class ProductDetailServlet extends HttpServlet {
         String realPath = req.getServletContext().getRealPath("/image/product/" + productID);
         File productImagePath = new File(realPath);
         for(String imageName : productImagePath.list()) {
+        	System.out.println(imageName);
         	imgs.add(imageName);
         }
         req.setAttribute("product", product);
         req.setAttribute("images", imgs);
         req.setAttribute("available", available);
+        
         RequestDispatcher dispatcher = req.getRequestDispatcher("detail.jsp");
         dispatcher.forward(req, resp);
     }
