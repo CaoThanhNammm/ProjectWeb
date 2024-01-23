@@ -21,6 +21,7 @@
 <%@ page import="model.ProductModel"%>
 <%
 	Cart cart = (Cart) request.getAttribute("cart");
+	int sumPrice = 0;
 %>
 <body>
 	<div id="page">
@@ -40,7 +41,7 @@
 			<div class="cart_body container mt-5">
 				<!-- Nếu không có sản phẩm -->
 				<% if(cart.getCartItems().size() == 0){ %>
-				<div class="cart_body-empty">
+				<div >
 					<h3>Hiện giỏ hàng của bạn đang trống</h3>
 					<a class="cart_body_btn btn" href="../index/index.jsp">Quay lại
 						cửa hàng</a>
@@ -49,53 +50,45 @@
 				<!-- Nếu có sản phẩm -->
 				<div class="cart_body-item row">	
 					<div class="cart_body_list col-lg-8">
-						<% for(ProductModel model : cart.getCartItems()){ %>
-							<% Product product = model.getProduct(); %>
+						<form id="checkoutForm" action="checkout" method="POST">
+							<input type="hidden" name="cart" value="true">
+							<% for(ProductModel model : cart.getCartItems()){ %>
+							<% Product product = model.getProduct();
+								int finalPrice = product.getPrice() - product.getDiscount();
+								sumPrice += finalPrice;
+							%>
 							<div class="card">
 								<img class="card-img-top" src="../image/product/<%=product.getId()%>/<%=product.getImgs()%>">
 								<div class="card-body">
 									<h5 class="card-title"><%=product.getName()%></h5>
 									<p class="card-text">Lựa chọn: <%=model.getOptionValue()%></p>
 									<div class="mt-5">
-										<span>Giá: <%=product.formatNumber(product.getPrice() - product.getDiscount())%></span>
+										<span>Giá: <%=product.formatNumber(finalPrice)%></span>
 									</div>
 									<div class="card-body_footer">
-										<form method="POST" action="cart?method=remove&id=<%=model.getId()%>">
-											<div>
-												<button type="submit" class="btn btn-warning">Loại bỏ</button>
-											</div>
-										</form>
+										<button type="button" class="btn btn-warning" onclick="remove(<%=model.getId()%>)">Loại bỏ</button>	
 										<span class="card_amount">
-											<button class="card_amount-minus" onclick="_quantityAdjust(this, '.card_amount_input', '-')">
+											<button type="button" class="card_amount-minus" onclick="_quantityAdjust(this, '.card_amount_input', '-')">
 												<i class="fa-solid fa-minus"></i>
 											</button> 
 											<input name="modelID" type="hidden" value="<%=model.getId() %>">
-											 <input name="quantity" class="card_amount_input" type="number" min="1" max="999" step="1" value="1" readonly>
-											<button class="card_amount-plus" onclick="_quantityAdjust(this, '.card_amount_input', '+')">
+											<input name="quantity" class="card_amount_input" type="number" min="1" max="999" step="1" value="1" readonly>
+											<button type="button" class="card_amount-plus" onclick="_quantityAdjust(this, '.card_amount_input', '+')">
 												<i class="fa-solid fa-plus"></i>
 											</button>
 										</span>
 									</div>
 								</div>
 							</div>
-						<%} %>
-
-						<div class="mb-5">
-							<div class="cart_body_bill_group">
-								<a
-									class="button cart_body_bill_group_btn cart_body_bill_group_btn-back"
-									href="../index/index.jsp">Tiếp tục mua hàng</a> <a
-									class="button cart_body_bill_group_btn"
-									href="../checkout?checkout=move">Thanh toán</a>
-							</div>
-						</div>
+							<%} %>
+						</form>
 					</div>
 
 					<div class="cart_body_bill col-lg-4">
 						<h2 class="mt-3 text-start">Tóm tắt đơn hàng</h2>
 						<div class="cart_body_bill_group">
 							<h6>Thành tiền</h6>
-							<h6>1.200.000.000</h6>
+							<h6><%= new Product().formatNumber(sumPrice) %></h6>
 						</div>
 						<div class="cart_body_bill_group cart_body_bill-line">
 							<h6>Vận chuyển</h6>
@@ -113,7 +106,7 @@
 						</div>
 						<div class="cart_body_bill_group cart_body_bill-line">
 							<h6>Tổng cộng</h6>
-							<h6>1.200.000.000</h6>
+							<h6><%= new Product().formatNumber(sumPrice) %></h6>
 						</div>
 						<div class="cart_body_bill_group flex-column">
 							<h6 class="text-start">Thông tin giao hàng</h6>
@@ -125,9 +118,9 @@
 						<div class="cart_body_bill_group">
 							<a
 								class="button cart_body_bill_group_btn cart_body_bill_group_btn-back"
-								href="../index/index.jsp">Tiếp tục mua hàng</a> <a
-								class="button cart_body_bill_group_btn"
-								href="../checkout?checkout=move">Thanh toán</a>
+								href="../index/index.jsp">Tiếp tục mua hàng</a> 
+								<button class="button cart_body_bill_group_btn"
+								style="border: none !important;" onclick="checkout()">Thanh toán</button>
 						</div>
 					</div>
 				</div>
@@ -135,7 +128,10 @@
 			</div>
 			<%@include file="../html/productSuggestion.jsp"%>
 		</div>
-
+		<form id="removeCartItem" action="cart" method="post">
+			<input type="hidden" name="method" value="remove">
+			<input id="removeCartItem-id" type="hidden" name="modelID" value="-1">
+		</form>
 		<%@include file="footer.jsp"%>
 	</div>
 
@@ -146,8 +142,6 @@
 	</script>
 
 	<script src="../js/index.js"></script>
-
-
 	<!-- Tạo bởi: Nguyễn Khải Nam
     Ngày: 20/10/2023
     Tác dụng: Xử lý cho phần sản phẩm -->

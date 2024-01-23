@@ -62,7 +62,7 @@ public class UserAdmin extends HttpServlet {
 		}
 
 		request.setAttribute("accounts", accs);
-		response.sendRedirect("../html/userDecentralizationAdmin.jsp");
+		request.getRequestDispatcher("userDecentralizationAdmin.jsp").forward(request, response);
 	}
 
 }

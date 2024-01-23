@@ -24,8 +24,14 @@
 <title>Header</title>
 </head>
 <%@ page import="model.Account"%>
+<%@ page import="model.Cart"%>
 <%
-Account ac = (Account) session.getAttribute("account");
+	Account ac = (Account) session.getAttribute("account");
+	Object cartObject = session.getAttribute("cart");
+	int countCartItem = 0;
+	if(cartObject != null){
+		countCartItem = ((Cart) cartObject).getCartItems().size();
+	}
 %>
 
 <body>
@@ -91,7 +97,7 @@ Account ac = (Account) session.getAttribute("account");
 			<div class="header_cart_info">
 				<a href="../html/cart"> <img src="../image/home/cart.png"
 					class="header_cart_logo" alt=""> <span
-					class="header_cart_amount_product">0</span>
+					class="header_cart_amount_product"><%=countCartItem%></span>
 				</a>
 			</div>
 		</div>

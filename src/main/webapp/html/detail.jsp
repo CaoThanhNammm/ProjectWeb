@@ -21,9 +21,13 @@
 </head>
 <%@ page import="model.ProductModel" %>
 <%@ page import="model.Attribute" %>
+<%@ page import="java.util.ArrayList" %>
 <% 
 	Product product = (Product) request.getAttribute("product");
 	List<ProductModel> models = product.getModels();
+	if(models == null){
+		models = new ArrayList<ProductModel>();
+	}
 	List<Attribute> attributes = product.getAttributes();
 	int productID = product.getId();
 	String productName = product.getName();
@@ -60,14 +64,6 @@
 				<div class="col-7">
 					<h2><%=productName%></h2>
 					<a href="../html/FindProduct?nameProduct= &currentPage=1&order=null&brands=<%=brandID%>" class="brand">Thương hiệu: <%=brandName %></a>
-					<div class="rate">
-						<p class="starrate">5.0</p>
-						<img class="star" src="../image/detail/star.png" alt="star">
-						<img class="star" src="../image/detail/star.png" alt="star">
-						<img class="star" src="../image/detail/star.png" alt="star">
-						<img class="star" src="../image/detail/star.png" alt="star">
-						<img class="star" src="../image/detail/star.png" alt="star">
-					</div>
 					<div class="line"></div>
 					<div class="price">
 						<h3 class="final_price"><%=discountPrice%>đ</h3>
@@ -82,17 +78,23 @@
 						<%}%>
 					</table>
 					<div class="choices">
+						<%if(models.size() > 0){ %>
 						<button class="choice actived" id="<%=models.get(0).getId()%>"><%=models.get(0).getOptionValue()%></button>
+						<%} %>
 					 	<%for(int i = 1; i < models.size(); i++){ %>
 					 		<button class="choice" id="<%=models.get(i).getId()%>"><%=models.get(i).getOptionValue()%></button>
 					 	<%}%>
 					</div>
 					<div class="checkout">
-						<% if(available){ %>
-						<form action="<%=models.get(0).getId()%>" style="display: inline;">
+						<% if(available && models.size() > 0){ %>
+						<form method="POST" action="checkout" style="display: inline;">
+							<input type="hidden" name="cart" value="false">
+							<input class="productModelInput" type="hidden" name="modelID" value="<%=models.get(0).getId()%>">
 							<button class="buy_button">Mua ngay!</button>
 						</form>
-						<form method="POST" action="cart?method=add&id=<%=models.get(0).getId()%>" style="display: inline;">
+						<form method="POST" action="cart" style="display: inline;">
+							<input type="hidden" name="method" value="add">
+							<input class="productModelInput" type="hidden" name="modelID" value="<%=models.get(0).getId()%>">
 							<button class="addcart_button">Thêm vào giỏ</button>
 						</form>
 						<%} else{%>
@@ -107,8 +109,6 @@
 						onclick="_switchTab(event, 'describe')">Giới thiệu</button>
 					<button class="tablinks" onclick="_switchTab(event, 'info')">Thông
 						tin sản phẩm</button>
-					<button class="tablinks" onclick="_switchTab(event, 'rates')">Đánh
-						giá</button>
 				</div>
 				<div id="describe" class="tabcontent active">
 					<h2 class="title">Giới thiệu</h2>
@@ -125,63 +125,6 @@
 						<%}%>
 					</table>
 				</div>
-				<div id="rates" class="tabcontent">
-					<div class="row">
-						<div class="col-6">
-							<div class="user_review">
-								<div class="user_info">
-									<h4 class="name">Trần Minh Quân</h4>
-									<small class="date">Ngày: 30/10/2023</small>
-								</div>
-								<div class="rate">
-									<img class="star" src="../image/detail/star.png" alt="star">
-									<img class="star" src="../image/detail/star.png" alt="star">
-									<img class="star" src="../image/detail/star.png" alt="star">
-									<img class="star" src="../image/detail/star.png" alt="star">
-									<img class="star" src="../image/detail/star.png" alt="star">
-								</div>
-								<div class="review">
-									<p>Good</p>
-								</div>
-							</div>
-							<div class="user_review">
-								<div class="user_info">
-									<h4 class="name">Cao Thành Nam</h4>
-									<small class="date">Ngày: 29/10/2023</small>
-								</div>
-								<div class="rate">
-									<img class="star" src="../image/detail/star.png" alt="star">
-									<img class="star" src="../image/detail/star.png" alt="star">
-									<img class="star" src="../image/detail/star.png" alt="star">
-									<img class="star" src="../image/detail/star.png" alt="star">
-									<img class="star" src="../image/detail/star.png" alt="star">
-								</div>
-								<div class="review">
-									<p>Gạo nấu ghè tan, cực ngây, êm.</p>
-								</div>
-							</div>
-							<div class="user_review">
-								<div class="user_info">
-									<h4 class="name">Nguyễn Khải Nam</h4>
-									<small class="date">Ngày: 28/10/2023</small>
-								</div>
-								<div class="rate">
-									<img class="star" src="../image/detail/star.png" alt="star">
-								</div>
-								<div class="review">
-									<p>1 sao cho giống cờ Việt Nam.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-6">
-							<h2 class="title">Để lại đánh giá</h2>
-							<br>
-							<p style="color: gray; text-align: center;">Hãy đăng nhập để
-								gửi đánh giá</p>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<%@include file="../html/productSuggestion.jsp"%>
 		</div>
