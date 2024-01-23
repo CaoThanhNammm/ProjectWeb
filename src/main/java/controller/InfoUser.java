@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jdbi.v3.core.Handle;
+
 import dao.AccountDAO;
+import dao.OrderDAO;
+import database.JDBIConnectionPool;
 import model.Account;
 import model.Encrypt;
 import model.Gender;
+import model.Order;
 
 import static database.TableUsers.*;
 
@@ -32,11 +38,14 @@ public class InfoUser extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.setCharacterEncoding("UTF-8");
 		String info = req.getParameter("info");
 		Account ac = (Account) req.getSession().getAttribute("account");
 		Account acInfo = AccountDAO.getMoreInfo(ac);
 		if (ac != null) {
+			Handle connection = JDBIConnectionPool.get().getConnection();
+			List<Order> orders = new OrderDAO(connection).getAccountOrders(ac);
+			JDBIConnectionPool.get().releaseConnection(connection);
+			req.getSession().setAttribute("orders", orders);
 			if (info == null)
 				info = "";
 			switch (info) {
@@ -92,7 +101,7 @@ public class InfoUser extends HttpServlet {
 				break;
 			default:
 				req.getSession().setAttribute("accountInfo", acInfo);
-				resp.sendRedirect("user.jsp");
+				req.getRequestDispatcher("user.jsp").forward(req, resp);
 				break;
 			}
 		} else {

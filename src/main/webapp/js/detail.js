@@ -15,6 +15,7 @@ function _imageSlider() {
 function _optionSwitch() {
     var options = document.querySelectorAll('.detail .choices .choice');
     var forms = document.querySelectorAll('.detail .checkout form');
+    var input = document.querySelectorAll('.productModelInput');
     var buy_form = forms[0]
     var cart_form = forms[1]
 
@@ -22,8 +23,8 @@ function _optionSwitch() {
         option.addEventListener('click', () => {
             options.forEach((opt) => opt.classList.remove('actived'));
             option.classList.add('actived');
-            buy_form.action = option.id
-            cart_form.action = "cart?method=add&id=" + option.id
+            input[0].value = option.id
+            input[1].value = option.id
         });
     });
 }

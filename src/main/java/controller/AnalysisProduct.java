@@ -55,7 +55,7 @@ public class AnalysisProduct extends HttpServlet {
 		ProductDAO pDao = new ProductDAO(h, request.getServletContext().getRealPath(""));
 		try {
 			LocalDate date = LocalDate.now();
-			List<Product> ps = pDao.getAll();
+			List<Product> ps = pDao.getAll("2");
 			long total = ps.size();
 			long avai = 0;
 			long newP = 0;

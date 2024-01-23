@@ -81,7 +81,7 @@
 
 					<ul class="nav-item_list_child" id="nav-item_list_child-order">
 						<li class="nav-item_item_child" id="nav-item_item_child-XDH"><a
-							href="orderAdmin.jsp">Xem đơn hàng</a></li>
+							href="orderAdmin">Xem đơn hàng</a></li>
 						<li class="nav-item_item_child" id="nav-item_item_child-TKDT"><a
 							href="statisticOrderAdmin.jsp">Thống kê doanh thu</a></li>
 					</ul>

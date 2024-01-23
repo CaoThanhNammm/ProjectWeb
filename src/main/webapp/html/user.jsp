@@ -21,10 +21,17 @@
 <title>Thông tin tài khoản</title>
 </head>
 <%@ page import="model.Account"%>
+<%@ page import="model.Order"%>
+<%@ page import="java.util.List"%>
 <%
 Account acInfo = (Account) request.getSession().getAttribute("accountInfo");
 String status = request.getParameter("status");
 String field = request.getParameter("field");
+Object ordersObject = request.getSession().getAttribute("orders");
+List<Order> orders = null;
+if(ordersObject != null){
+	orders = (List<Order>) ordersObject;
+}
 if(field == null) 
 	field = "";
 String note = "";
@@ -151,53 +158,32 @@ if (status != null) {
 				<table>
 					<thead>
 						<tr>
-							<th>ID Đơn hàng</th>
-							<th>Ngày tạo</th>
-							<th>Ngày giao hàng</th>
-							<th>Giá tiền tổng</th>
-							<th>Trạng thái đơn hàng</th>
-							<th>Chi tiết</th>
+							<th style="text-align: center;">ID Đơn hàng</th>
+							<th style="text-align: center;">Ngày tạo</th>
+							<th style="text-align: center;">Lần cập nhật cuối</th>
+							<th style="text-align: center;">Giá tiền tổng</th>
+							<th style="text-align: center;">Trạng thái đơn hàng</th>
+							<th style="text-align: center;"></th>
 						</tr>
 					</thead>
 					<tbody>
+						<%for(Order order : orders){ %>
 						<tr>
-							<td>1</td>
-							<td>2023-01-05</td>
-							<td>2023-01-10</td>
-							<td>$100.00</td>
-							<td>Đã đặt</td>
-							<td><a class="details-button" href="#">Chi tiết</a></td>
+							<td><%=order.getId() %></td>
+							<td><%=order.getDateCreated().toString() %></td>
+							<td><%=order.getLastUpdated().toString() %></td>
+							<td><%=new Product().formatNumber(order.getTotalPrice()) %>đ</td>
+							<td><%=order.getStatus().getName() %></td>
+							<td><a target="_blank" rel="noopener noreferrer" class="details-button" href="orderDetail?orderID=<%=order.getId()%>">Chi tiết</a></td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>2023-02-10</td>
-							<td>2023-02-15</td>
-							<td>$75.50</td>
-							<td>Đang giao</td>
-							<td><a class="details-button" href="#">Chi tiết</a></td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>2023-03-20</td>
-							<td>2023-03-25</td>
-							<td>$50.25</td>
-							<td>Bị hủy</td>
-							<td><a class="details-button" href="#">Chi tiết</a></td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>2023-04-15</td>
-							<td>2023-04-20</td>
-							<td>$120.75</td>
-							<td>Hoàn thành</td>
-							<td><a class="details-button" href="#">Chi tiết</a></td>
-						</tr>
+						<%} %>
 					</tbody>
 				</table>
 			</div>
 		</div>
 		<%
 		request.getSession().removeAttribute("infoAccount");
+		request.getSession().removeAttribute("orders");
 		%>
 		<%
 		}
