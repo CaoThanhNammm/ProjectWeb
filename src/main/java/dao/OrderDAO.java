@@ -23,6 +23,20 @@ public class OrderDAO {
 		this.connection = connection;
 	}
 	
+	public void changeStatus(int orderID, int statusID) {
+		try {
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE orders SET statusID = ? WHERE id = ?");
+			PreparedStatement statement = connection.getConnection().prepareStatement(sql.toString());
+			statement.setInt(1, statusID);
+			statement.setInt(2, orderID);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public List<Order> getAll(){
 		List<Order> orders = new ArrayList<Order>();
 		try {
